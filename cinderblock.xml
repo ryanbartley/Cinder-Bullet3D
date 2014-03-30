@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<cinder>
+<block
+	name="Bullet 3D Physics"
+	id="org.libcinder.bullet"
+	author="Ryan Bartley"
+	version="2.82"
+	>
+	<supports os="ios" />
+	<platform os="ios">
+		
+		<headerPattern>src/BulletPhysics/*.h</headerPattern>
+		<headerPattern>src/BulletPhysics/BulletCollision/BroadPhaseCollision/*.h</headerPattern>
+		<sourcePattern>src/BulletPhysics/BulletCollision/BroadPhaseCollision/*.cpp</sourcePattern>
+		<headerPattern>src/BulletPhysics/BulletCollision/CollisionDispatch/*.h</headerPattern>
+		<sourcePattern>src/BulletPhysics/BulletCollision/CollisionDispatch/*.cpp</sourcePattern>
+		<headerPattern>src/BulletPhysics/BulletCollision/CollisionShapes/*.h</headerPattern>
+		<sourcePattern>src/BulletPhysics/BulletCollision/CollisionShapes/*.cpp</sourcePattern>
+		<headerPattern>src/BulletPhysics/BulletCollision/GImpact/*.h</headerPattern>
+		<sourcePattern>src/BulletPhysics/BulletCollision/GImpact/*.cpp</sourcePattern>
+		<headerPattern>src/BulletPhysics/BulletCollision/NarrowPhaseCollision/*.h</headerPattern>
+		<sourcePattern>src/BulletPhysics/BulletCollision/NarrowPhaseCollision/*.cpp</sourcePattern>
+		<headerPattern>src/BulletPhysics/BulletDynamics/Character/*.h</headerPattern>
+		<sourcePattern>src/BulletPhysics/BulletDynamics/Character/*.cpp</sourcePattern>
+		<headerPattern>src/BulletPhysics/BulletDynamics/ConstraintSolver/*.h</headerPattern>
+		<sourcePattern>src/BulletPhysics/BulletDynamics/ConstraintSolver/*.cpp</sourcePattern>
+		<headerPattern>src/BulletPhysics/BulletDynamics/Dynamics/*.h</headerPattern>
+		<sourcePattern>src/BulletPhysics/BulletDynamics/Dynamics/*.cpp</sourcePattern>
+		<headerPattern>src/BulletPhysics/BulletDynamics/FeatherStone/*.h</headerPattern>
+		<sourcePattern>src/BulletPhysics/BulletDynamics/FeatherStone/*.cpp</sourcePattern>
+		<headerPattern>src/BulletPhysics/BulletDynamics/MLCPSolvers/*.h</headerPattern>
+		<sourcePattern>src/BulletPhysics/BulletDynamics/MLCPSolvers/*.cpp</sourcePattern>
+		<headerPattern>src/BulletPhysics/BulletDynamics/Vehicle/*.h</headerPattern>
+		<sourcePattern>src/BulletPhysics/BulletDynamics/Vehicle/*.cpp</sourcePattern>
+		<headerPattern>src/BulletPhysics/BulletSoftBody/*.h</headerPattern>
+		<sourcePattern>src/BulletPhysics/BulletSoftBody/*.cpp</sourcePattern>
+		<headerPattern>src/BulletPhysics/BulletLinearMath/*.h</headerPattern>
+		<sourcePattern>src/BulletPhysics/BulletLinearMath/*.cpp</sourcePattern>
+		<headerPattern>src/BulletPhysics/vectormath/neon/*.h</headerPattern>
+		<sourcePattern>src/BulletPhysics/vectormath/neon/*.cpp</sourcePattern>
+		<headerPattern>src/BulletPhysics/vectormath/scalar/*.h</headerPattern>
+		<sourcePattern>src/BulletPhysics/vectormath/scalar/*.cpp</sourcePattern>
+		<headerPattern>src/BulletPhysics/vectormath/sse/*.h</headerPattern>
+		<sourcePattern>src/BulletPhysics/vectormath/sse/*.cpp</sourcePattern>
+		<headerPattern>src/BulletPhysics/vectormath/*.h</headerPattern>
+		
+		<includePath>src/BulletPhysics</includePath>
+		<includePath>src/BulletPhysics/LinearMath</includePath>
+		<includePath>src/BulletPhysics/BulletCollision</includePath>
+		<includePath>src/BulletPhysics/BulletDynamics</includePath>
+		<includePath>src/BulletPhysics/BulletSoftBody</includePath>
+		
+		<platform config="Debug">
+			<staticLibrary>lib/ios/libBulletCollision_debug.a</staticLibrary>
+			<staticLibrary>lib/ios/libBulletDynamics_debug.a</staticLibrary>
+			<staticLibrary>lib/ios/libBulletSoftBody_debug.a</staticLibrary>
+			<staticLibrary>lib/ios/libLinearMath_debug.a</staticLibrary>
+		</platform>
+		<platform config="Release">
+			<staticLibrary>lib/ios/libBulletCollision.a</staticLibrary>
+			<staticLibrary>lib/ios/libBulletDynamics.a</staticLibrary>
+			<staticLibrary>lib/ios/libBulletSoftBody.a</staticLibrary>
+			<staticLibrary>lib/ios/libLinearMath.a</staticLibrary>
+		</platform>
+	</platform>
+</block>
+
+</cinder>
