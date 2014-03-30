@@ -1,6 +1,6 @@
 This is a very simple made to order block that makes it easy to include Bullet Physics library with Cinder.
 
-Working platform only supports iOS for Cinder 0.8.5. Also, using tinder box will unfortunately add all the source to compile sources under build settings in xcode. You'll need to delete everything from that list except your App.cpp for compile times to be less than a million years. I'll fix this soon.
+Working platform only supports iOS for Cinder 0.8.5.
 
 TODO: make macosx and msw working platforms as well.
 
