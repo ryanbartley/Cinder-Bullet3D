@@ -7,6 +7,7 @@
 	version="2.82"
 	>
 	<supports os="ios" />
+	<supports os="macosx" />
 	
 	<headerPattern>src/BulletPhysics/*.h</headerPattern>
 	<headerPattern>src/BulletPhysics/BulletCollision/BroadPhaseCollision/*.h</headerPattern>
@@ -63,6 +64,12 @@
 			<staticLibrary>lib/ios/libBulletSoftBody.a</staticLibrary>
 			<staticLibrary>lib/ios/libLinearMath.a</staticLibrary>
 		</platform>
+	</platform>
+	<platform os="macosx">
+		<staticLibrary>lib/macosx/libBulletCollision_x32.a</staticLibrary>
+		<staticLibrary>lib/macosx/libBulletDynamics_x32.a</staticLibrary>
+		<staticLibrary>lib/macosx/libBulletSoftBody_x32.a</staticLibrary>
+		<staticLibrary>lib/macosx/libLinearMath_x32.a</staticLibrary>
 	</platform>
 </block>
 
