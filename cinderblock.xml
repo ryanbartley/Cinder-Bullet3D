@@ -7,49 +7,51 @@
 	version="2.82"
 	>
 	<supports os="ios" />
+	<supports os="macosx" />
+	
+	<headerPattern>src/BulletPhysics/*.h</headerPattern>
+	<headerPattern>src/BulletPhysics/BulletCollision/BroadPhaseCollision/*.h</headerPattern>
+	<headerPattern>src/BulletPhysics/BulletCollision/CollisionDispatch/*.h</headerPattern>
+	<headerPattern>src/BulletPhysics/BulletCollision/CollisionShapes/*.h</headerPattern>
+	<headerPattern>src/BulletPhysics/BulletCollision/GImpact/*.h</headerPattern>
+	<headerPattern>src/BulletPhysics/BulletCollision/NarrowPhaseCollision/*.h</headerPattern>
+	<headerPattern>src/BulletPhysics/BulletDynamics/Character/*.h</headerPattern>
+	<headerPattern>src/BulletPhysics/BulletDynamics/ConstraintSolver/*.h</headerPattern>
+	<headerPattern>src/BulletPhysics/BulletDynamics/Dynamics/*.h</headerPattern>
+	<headerPattern>src/BulletPhysics/BulletDynamics/FeatherStone/*.h</headerPattern>
+	<headerPattern>src/BulletPhysics/BulletDynamics/MLCPSolvers/*.h</headerPattern>
+	<headerPattern>src/BulletPhysics/BulletDynamics/Vehicle/*.h</headerPattern>
+	<headerPattern>src/BulletPhysics/BulletSoftBody/*.h</headerPattern>
+	<headerPattern>src/BulletPhysics/BulletLinearMath/*.h</headerPattern>
+	<headerPattern>src/BulletPhysics/vectormath/neon/*.h</headerPattern>
+	<headerPattern>src/BulletPhysics/vectormath/scalar/*.h</headerPattern>
+	<headerPattern>src/BulletPhysics/vectormath/sse/*.h</headerPattern>
+	<headerPattern>src/BulletPhysics/vectormath/*.h</headerPattern>
+	
+	<headerPattern>src/BulletPhysics/BulletCollision/BroadPhaseCollision/*.cpp</headerPattern>
+	<headerPattern>src/BulletPhysics/BulletCollision/CollisionDispatch/*.cpp</headerPattern>
+	<headerPattern>src/BulletPhysics/BulletCollision/CollisionShapes/*.cpp</headerPattern>
+	<headerPattern>src/BulletPhysics/BulletCollision/GImpact/*.cpp</headerPattern>
+	<headerPattern>src/BulletPhysics/BulletCollision/NarrowPhaseCollision/*.cpp</headerPattern>
+	<headerPattern>src/BulletPhysics/BulletDynamics/Character/*.cpp</headerPattern>
+	<headerPattern>src/BulletPhysics/BulletDynamics/ConstraintSolver/*.cpp</headerPattern>
+	<headerPattern>src/BulletPhysics/BulletDynamics/Dynamics/*.cpp</headerPattern>
+	<headerPattern>src/BulletPhysics/BulletDynamics/FeatherStone/*.cpp</headerPattern>
+	<headerPattern>src/BulletPhysics/BulletDynamics/MLCPSolvers/*.cpp</headerPattern>
+	<headerPattern>src/BulletPhysics/BulletDynamics/Vehicle/*.cpp</headerPattern>
+	<headerPattern>src/BulletPhysics/BulletSoftBody/*.cpp</headerPattern>
+	<headerPattern>src/BulletPhysics/BulletLinearMath/*.cpp</headerPattern>
+	<headerPattern>src/BulletPhysics/vectormath/neon/*.cpp</headerPattern>
+	<headerPattern>src/BulletPhysics/vectormath/scalar/*.cpp</headerPattern>
+	<headerPattern>src/BulletPhysics/vectormath/sse/*.cpp</headerPattern>
+	
+	<includePath>src/BulletPhysics</includePath>
+	<includePath>src/BulletPhysics/LinearMath</includePath>
+	<includePath>src/BulletPhysics/BulletCollision</includePath>
+	<includePath>src/BulletPhysics/BulletDynamics</includePath>
+	<includePath>src/BulletPhysics/BulletSoftBody</includePath>
+	
 	<platform os="ios">
-		
-		<headerPattern>src/BulletPhysics/*.h</headerPattern>
-		<headerPattern>src/BulletPhysics/BulletCollision/BroadPhaseCollision/*.h</headerPattern>
-		<sourcePattern>src/BulletPhysics/BulletCollision/BroadPhaseCollision/*.cpp</sourcePattern>
-		<headerPattern>src/BulletPhysics/BulletCollision/CollisionDispatch/*.h</headerPattern>
-		<sourcePattern>src/BulletPhysics/BulletCollision/CollisionDispatch/*.cpp</sourcePattern>
-		<headerPattern>src/BulletPhysics/BulletCollision/CollisionShapes/*.h</headerPattern>
-		<sourcePattern>src/BulletPhysics/BulletCollision/CollisionShapes/*.cpp</sourcePattern>
-		<headerPattern>src/BulletPhysics/BulletCollision/GImpact/*.h</headerPattern>
-		<sourcePattern>src/BulletPhysics/BulletCollision/GImpact/*.cpp</sourcePattern>
-		<headerPattern>src/BulletPhysics/BulletCollision/NarrowPhaseCollision/*.h</headerPattern>
-		<sourcePattern>src/BulletPhysics/BulletCollision/NarrowPhaseCollision/*.cpp</sourcePattern>
-		<headerPattern>src/BulletPhysics/BulletDynamics/Character/*.h</headerPattern>
-		<sourcePattern>src/BulletPhysics/BulletDynamics/Character/*.cpp</sourcePattern>
-		<headerPattern>src/BulletPhysics/BulletDynamics/ConstraintSolver/*.h</headerPattern>
-		<sourcePattern>src/BulletPhysics/BulletDynamics/ConstraintSolver/*.cpp</sourcePattern>
-		<headerPattern>src/BulletPhysics/BulletDynamics/Dynamics/*.h</headerPattern>
-		<sourcePattern>src/BulletPhysics/BulletDynamics/Dynamics/*.cpp</sourcePattern>
-		<headerPattern>src/BulletPhysics/BulletDynamics/FeatherStone/*.h</headerPattern>
-		<sourcePattern>src/BulletPhysics/BulletDynamics/FeatherStone/*.cpp</sourcePattern>
-		<headerPattern>src/BulletPhysics/BulletDynamics/MLCPSolvers/*.h</headerPattern>
-		<sourcePattern>src/BulletPhysics/BulletDynamics/MLCPSolvers/*.cpp</sourcePattern>
-		<headerPattern>src/BulletPhysics/BulletDynamics/Vehicle/*.h</headerPattern>
-		<sourcePattern>src/BulletPhysics/BulletDynamics/Vehicle/*.cpp</sourcePattern>
-		<headerPattern>src/BulletPhysics/BulletSoftBody/*.h</headerPattern>
-		<sourcePattern>src/BulletPhysics/BulletSoftBody/*.cpp</sourcePattern>
-		<headerPattern>src/BulletPhysics/BulletLinearMath/*.h</headerPattern>
-		<sourcePattern>src/BulletPhysics/BulletLinearMath/*.cpp</sourcePattern>
-		<headerPattern>src/BulletPhysics/vectormath/neon/*.h</headerPattern>
-		<sourcePattern>src/BulletPhysics/vectormath/neon/*.cpp</sourcePattern>
-		<headerPattern>src/BulletPhysics/vectormath/scalar/*.h</headerPattern>
-		<sourcePattern>src/BulletPhysics/vectormath/scalar/*.cpp</sourcePattern>
-		<headerPattern>src/BulletPhysics/vectormath/sse/*.h</headerPattern>
-		<sourcePattern>src/BulletPhysics/vectormath/sse/*.cpp</sourcePattern>
-		<headerPattern>src/BulletPhysics/vectormath/*.h</headerPattern>
-		
-		<includePath>src/BulletPhysics</includePath>
-		<includePath>src/BulletPhysics/LinearMath</includePath>
-		<includePath>src/BulletPhysics/BulletCollision</includePath>
-		<includePath>src/BulletPhysics/BulletDynamics</includePath>
-		<includePath>src/BulletPhysics/BulletSoftBody</includePath>
-		
 		<platform config="Debug">
 			<staticLibrary>lib/ios/libBulletCollision_debug.a</staticLibrary>
 			<staticLibrary>lib/ios/libBulletDynamics_debug.a</staticLibrary>
@@ -62,6 +64,12 @@
 			<staticLibrary>lib/ios/libBulletSoftBody.a</staticLibrary>
 			<staticLibrary>lib/ios/libLinearMath.a</staticLibrary>
 		</platform>
+	</platform>
+	<platform os="macosx">
+		<staticLibrary>lib/macosx/libBulletCollision_x32.a</staticLibrary>
+		<staticLibrary>lib/macosx/libBulletDynamics_x32.a</staticLibrary>
+		<staticLibrary>lib/macosx/libBulletSoftBody_x32.a</staticLibrary>
+		<staticLibrary>lib/macosx/libLinearMath_x32.a</staticLibrary>
 	</platform>
 </block>
 
