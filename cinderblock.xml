@@ -8,6 +8,7 @@
 	>
 	<supports os="ios" />
 	<supports os="macosx" />
+	<supports os="msw" />
 	
 	<headerPattern>src/BulletPhysics/*.h</headerPattern>
 	<headerPattern>src/BulletPhysics/BulletCollision/BroadPhaseCollision/*.h</headerPattern>
@@ -71,6 +72,18 @@
 		<staticLibrary>lib/macosx/libBulletSoftBody_x32.a</staticLibrary>
 		<staticLibrary>lib/macosx/libLinearMath_x32.a</staticLibrary>
 	</platform>
+	<platform os="msw">
+		<platform config="Debug">
+			<staticLibrary>lib/msw/BulletCollision_vs2012_debug.lib</staticLibrary>
+			<staticLibrary>lib/msw/BulletDynamics_vs2012_debug.lib</staticLibrary>
+			<staticLibrary>lib/msw/LinearMath_vs2012_debug.lib</staticLibrary>
+		</platform>
+		<platform config="Release">
+			<staticLibrary>lib/msw/BulletCollision_vs2012.lib</staticLibrary>
+			<staticLibrary>lib/msw/BulletDynamics_vs2012.lib</staticLibrary>
+			<staticLibrary>lib/msw/LinearMath_vs2012.lib</staticLibrary>
+		</platform>
+	</platform>	
 </block>
 
 </cinder>
