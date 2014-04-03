@@ -74,14 +74,16 @@
 	</platform>
 	<platform os="msw">
 		<platform config="Debug">
-			<staticLibrary>lib/msw/BulletCollision_vs2012_debug.lib</staticLibrary>
-			<staticLibrary>lib/msw/BulletDynamics_vs2012_debug.lib</staticLibrary>
-			<staticLibrary>lib/msw/LinearMath_vs2012_debug.lib</staticLibrary>
+			<staticLibrary>lib/msw/x86/BulletCollision-v110_d.lib</staticLibrary>
+			<staticLibrary>lib/msw/x86/BulletDynamics-v110_d.lib</staticLibrary>
+			<staticLibrary>lib/msw/x86/BulletSoftBody-v110_d.lib</staticLibrary>
+			<staticLibrary>lib/msw/x86/LinearMath-v110_d.lib</staticLibrary>
 		</platform>
 		<platform config="Release">
-			<staticLibrary>lib/msw/BulletCollision_vs2012.lib</staticLibrary>
-			<staticLibrary>lib/msw/BulletDynamics_vs2012.lib</staticLibrary>
-			<staticLibrary>lib/msw/LinearMath_vs2012.lib</staticLibrary>
+			<staticLibrary>lib/msw/x86/BulletCollision-v110.lib</staticLibrary>
+			<staticLibrary>lib/msw/x86/BulletDynamics-v110.lib</staticLibrary>
+			<staticLibrary>lib/msw/x86/BulletSoftBody-v110.lib</staticLibrary>
+			<staticLibrary>lib/msw/x86/LinearMath-v110.lib</staticLibrary>
 		</platform>
 	</platform>	
 </block>

@@ -64,8 +64,8 @@
       <AdditionalIncludeDirectories>..\..\..\..\..\include;..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>BulletCollision_vs2012_debug.lib;BulletDynamics_vs2012_debug.lib;LinearMath_vs2012_debug.lib;winmm.lib;cinder-v110_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\..\..\..\..\lib\msw;..\..\..\..\..\lib\msw\x86;..\..\..\lib\msw</AdditionalLibraryDirectories>
+      <AdditionalDependencies>BulletCollision-v110_d.lib;BulletDynamics-v110_d.lib;BulletSoftBody-v110_d.lib;LinearMath-v110_d.lib;winmm.lib;cinder-v110_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\..\..\..\lib\msw;..\..\..\..\..\lib\msw\x86;..\..\..\lib\msw\x86</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -93,8 +93,8 @@
       <AdditionalIncludeDirectories>..\..\..\..\..\include;..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>BulletCollision_vs2012.lib;BulletDynamics_vs2012.lib;LinearMath_vs2012.lib;winmm.lib;cinder-v110.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\..\..\..\..\lib\msw;..\..\..\..\..\lib\msw\x86;..\..\..\lib\msw</AdditionalLibraryDirectories>
+      <AdditionalDependencies>BulletCollision-v110.lib;BulletDynamics-v110.lib;BulletSoftBody-v110.lib;LinearMath-v110.lib;winmm.lib;cinder-v110.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\..\..\..\lib\msw;..\..\..\..\..\lib\msw\x86;..\..\..\lib\msw\x86</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <GenerateMapFile>true</GenerateMapFile>
       <SubSystem>Windows</SubSystem>
