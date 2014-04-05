@@ -45,11 +45,7 @@
 	<headerPattern>src/BulletPhysics/vectormath/scalar/*.cpp</headerPattern>
 	<headerPattern>src/BulletPhysics/vectormath/sse/*.cpp</headerPattern>
 	
-	<includePath>src/BulletPhysics</includePath>
-	<includePath>src/BulletPhysics/LinearMath</includePath>
-	<includePath>src/BulletPhysics/BulletCollision</includePath>
-	<includePath>src/BulletPhysics/BulletDynamics</includePath>
-	<includePath>src/BulletPhysics/BulletSoftBody</includePath>
+	<includePath>src/BulletPhysics/</includePath>
 	
 	<platform os="ios">
 		<platform config="Debug">
