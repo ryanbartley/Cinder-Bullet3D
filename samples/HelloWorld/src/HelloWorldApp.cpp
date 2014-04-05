@@ -59,7 +59,7 @@ void HelloWorldApp::setup()
 		btTransform trans;
 		fallRigidBody->getMotionState()->getWorldTransform(trans);
 		
-		std::cout << "sphere height: " << trans.getOrigin().getY() << std::endl;
+		ci::app::console() << "sphere height: " << trans.getOrigin().getY() << std::endl;
 	}
 	
 	dynamicsWorld->removeRigidBody(fallRigidBody);
