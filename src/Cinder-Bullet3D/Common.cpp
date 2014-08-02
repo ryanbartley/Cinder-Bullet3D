@@ -6,8 +6,8 @@
 //
 //
 
-#include "Common.h"
-#include "BulletContext.h"
+#include "Cinder-Bullet3D/Common.h"
+#include "Cinder-Bullet3D/BulletContext.h"
 
 using namespace cinder;
 

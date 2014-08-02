@@ -10,8 +10,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{B76B3DCD-C39E-4F0D-A8AE-3CD85E3DE74E}</ProjectGuid>
-    <RootNamespace>PhysicsPrimitives</RootNamespace>
+    <ProjectGuid>{4DF72671-F112-4AF7-BB9E-3B88D9B3176C}</ProjectGuid>
+    <RootNamespace>VisualPhysics</RootNamespace>
     <Keyword>Win32Proj</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -106,7 +106,7 @@
     <ResourceCompile Include="Resources.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\PhysicsPrimitivesApp.cpp" />
+    <ClCompile Include="..\src\VisualPhysicsApp.cpp" />
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\BulletContext.cpp" />
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\Common.cpp" />
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\ConstraintBase.cpp" />

@@ -6,10 +6,11 @@
 //
 //
 
-#include "PhyObjCharacterController.h"
+#include "Cinder-Bullet3D/PhyObjCharacterController.h"
+#include "Cinder-Bullet3D/BulletContext.h"
+
 #include "BulletDynamics/Character/btKinematicCharacterController.h"
 #include "BulletCollision/CollisionDispatch/btGhostObject.h"
-#include "BulletContext.h"
 
 namespace bullet {
 	

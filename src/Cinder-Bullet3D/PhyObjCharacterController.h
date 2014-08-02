@@ -6,9 +6,11 @@
 //
 //
 
-#include "Common.h"
 #include "BulletDynamics/Dynamics/btActionInterface.h"
-#include "PhyObjBase.h"
+
+#include "Cinder-Bullet3D/Common.h"
+#include "Cinder-Bullet3D/PhyObjBase.h"
+
 #include "cinder/AxisAlignedBox.h"
 
 class btDynamicsWorld;

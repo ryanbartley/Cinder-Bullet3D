@@ -9,7 +9,7 @@
 #pragma once
 
 #include "cinder/Matrix44.h"
-#include "Common.h"
+#include "Cinder-Bullet3D/Common.h"
 
 namespace bullet {
 	

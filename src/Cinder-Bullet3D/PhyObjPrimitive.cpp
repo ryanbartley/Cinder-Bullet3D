@@ -7,9 +7,9 @@
 //
 
 
-#include "Common.h"
-#include "PhyObjPrimitive.h"
-#include "PhyObjBase.h"
+#include "Cinder-Bullet3D/Common.h"
+#include "Cinder-Bullet3D/PhyObjPrimitive.h"
+#include "Cinder-Bullet3D/PhyObjBase.h"
 
 namespace bullet {
 	

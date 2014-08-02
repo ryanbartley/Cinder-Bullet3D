@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "Common.h"
+#include "Cinder-Bullet3D/Common.h"
 
 namespace bullet {
 	

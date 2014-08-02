@@ -8,9 +8,10 @@
 
 #pragma once
 
-#include "OpenGLMotionState.h"
+#include "Cinder-Bullet3D/Common.h"
+#include "Cinder-Bullet3D/OpenGLMotionState.h"
+
 #include "cinder/Log.h"
-#include "Common.h"
 #include "cinder/Sphere.h"
 #include "cinder/AxisAlignedBox.h"
 

@@ -6,9 +6,9 @@
 //
 //
 
-#include "Common.h"
-#include "PhyObjTriggerVol.h"
-#include "BulletContext.h"
+#include "Cinder-Bullet3D/Common.h"
+#include "Cinder-Bullet3D/PhyObjTriggerVol.h"
+#include "Cinder-Bullet3D/BulletContext.h"
 
 namespace bullet {
 

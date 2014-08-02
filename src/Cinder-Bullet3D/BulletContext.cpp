@@ -6,8 +6,8 @@
 //
 //
 
-#include "BulletContext.h"
-#include "PhysicsDebugRenderable.h"
+#include "Cinder-Bullet3D/BulletContext.h"
+#include "Cinder-Bullet3D/PhysicsDebugRenderable.h"
 
 namespace bullet {
 

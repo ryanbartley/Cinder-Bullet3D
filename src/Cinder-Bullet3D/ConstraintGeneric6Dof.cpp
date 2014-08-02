@@ -6,8 +6,8 @@
 //
 //
 
-#include "ConstraintGeneric6Dof.h"
-#include "BulletContext.h"
+#include "Cinder-Bullet3D/ConstraintGeneric6Dof.h"
+#include "Cinder-Bullet3D/BulletContext.h"
 
 namespace bullet {
 	

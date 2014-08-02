@@ -6,8 +6,8 @@
 //
 //
 
-#include "PhyObjConvexHull.h"
-#include "Common.h"
+#include "Cinder-Bullet3D/PhyObjConvexHull.h"
+#include "Cinder-Bullet3D/Common.h"
 
 namespace bullet {
 	

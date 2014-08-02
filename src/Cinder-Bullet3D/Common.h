@@ -14,7 +14,7 @@
 
 #include "cinder/Log.h"
 
-#include "Conversions.hpp"
+#include "Cinder-Bullet3D/Conversions.hpp"
 
 //! Useful for creating collision groups and Masks
 #define BIT(x) (1<<(x))

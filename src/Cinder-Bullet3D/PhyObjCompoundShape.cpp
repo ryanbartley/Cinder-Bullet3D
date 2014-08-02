@@ -6,8 +6,8 @@
 //
 //
 
-#include "PhyObjCompoundShape.h"
-#include "Common.h"
+#include "Cinder-Bullet3D/PhyObjCompoundShape.h"
+#include "Cinder-Bullet3D/Common.h"
 
 namespace bullet {
 	

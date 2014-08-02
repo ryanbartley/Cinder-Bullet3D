@@ -48,8 +48,8 @@
 	<headerPattern>src/BulletPhysics/vectormath/sse/*.cpp</headerPattern>
 	<sourcePattern>src/Cinder-Bullet3D/*.cpp</sourcePattern>
 	
+	<includePath>src/</includePath>
 	<includePath>src/BulletPhysics/</includePath>
-	<includePath>src/Cinder-Bullet3D/</includePath>
 	
 	<platform os="ios">
 		<platform config="Debug">

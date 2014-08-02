@@ -5,8 +5,8 @@
 #include "cinder/gl/Shader.h"
 #include "cinder/gl/Batch.h"
 
-#include "PhyObjPrimitive.h"
-#include "BulletContext.h"
+#include "Cinder-Bullet3D/PhyObjPrimitive.h"
+#include "Cinder-Bullet3D/BulletContext.h"
 
 using namespace ci;
 using namespace ci::app;

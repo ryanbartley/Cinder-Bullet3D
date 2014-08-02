@@ -6,8 +6,8 @@
 //
 //
 
-#include "PhyObjHeightfieldTerrain.h"
-#include "Common.h"
+#include "Cinder-Bullet3D/PhyObjHeightfieldTerrain.h"
+#include "Cinder-Bullet3D/Common.h"
 
 #include "btHeightfieldTerrainShape.h"
 

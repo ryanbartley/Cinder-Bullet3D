@@ -8,8 +8,8 @@
 
 #pragma once
 
-#include "PhyObjBase.h"
-#include "Common.h"
+#include "Cinder-Bullet3D/PhyObjBase.h"
+#include "Cinder-Bullet3D/Common.h"
 
 class btHeightfieldTerrainShape;
 

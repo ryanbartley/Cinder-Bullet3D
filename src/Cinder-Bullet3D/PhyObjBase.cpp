@@ -6,9 +6,9 @@
 //
 //
 
-#include "PhyObjBase.h"
-#include "Common.h"
-#include "BulletContext.h"
+#include "Cinder-Bullet3D/PhyObjBase.h"
+#include "Cinder-Bullet3D/Common.h"
+#include "Cinder-Bullet3D/BulletContext.h"
 #include "btCollisionObject.h"
 
 using namespace ci;

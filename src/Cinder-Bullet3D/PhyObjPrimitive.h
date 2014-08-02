@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "PhyObjBase.h"
+#include "Cinder-Bullet3D/PhyObjBase.h"
 
 namespace bullet {
 	

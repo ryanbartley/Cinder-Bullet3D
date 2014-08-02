@@ -8,8 +8,8 @@
 
 #pragma once
 
-#include "Common.h"
-#include "PhyObjBase.h"
+#include "Cinder-Bullet3D/Common.h"
+#include "Cinder-Bullet3D/PhyObjBase.h"
 
 namespace bullet {
 	

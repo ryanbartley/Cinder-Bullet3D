@@ -6,7 +6,7 @@
 //
 //
 
-#include "PhysicsDebugRenderable.h"
+#include "Cinder-Bullet3D/PhysicsDebugRenderable.h"
 #include "cinder/gl/gl.h"
 #include "cinder/gl/Vao.h"
 #include "cinder/gl/Vbo.h"

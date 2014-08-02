@@ -6,7 +6,7 @@
 //
 //
 
-#include "ConstraintBase.h"
+#include "Cinder-Bullet3D/ConstraintBase.h"
 
 namespace bullet {
 	
