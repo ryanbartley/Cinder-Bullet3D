@@ -46,7 +46,7 @@
 	<headerPattern>src/BulletPhysics/vectormath/neon/*.cpp</headerPattern>
 	<headerPattern>src/BulletPhysics/vectormath/scalar/*.cpp</headerPattern>
 	<headerPattern>src/BulletPhysics/vectormath/sse/*.cpp</headerPattern>
-	<headerPattern>src/Cinder-Bullet3D/*.cpp</headerPattern>
+	<sourcePattern>src/Cinder-Bullet3D/*.cpp</sourcePattern>
 	
 	<includePath>src/BulletPhysics/</includePath>
 	<includePath>src/Cinder-Bullet3D/</includePath>

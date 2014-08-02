@@ -6,8 +6,8 @@
 //
 //
 
-#include "Physics/Common.h"
-#include "Physics/BulletContext.h"
+#include "Common.h"
+#include "BulletContext.h"
 
 using namespace cinder;
 

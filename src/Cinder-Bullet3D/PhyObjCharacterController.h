@@ -6,7 +6,7 @@
 //
 //
 
-#include "Physics/Common.h"
+#include "Common.h"
 #include "BulletDynamics/Dynamics/btActionInterface.h"
 #include "PhyObjBase.h"
 #include "cinder/AxisAlignedBox.h"

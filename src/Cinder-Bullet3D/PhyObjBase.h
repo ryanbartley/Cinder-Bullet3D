@@ -10,7 +10,7 @@
 
 #include "OpenGLMotionState.h"
 #include "cinder/Log.h"
-#include "Physics/Common.h"
+#include "Common.h"
 #include "cinder/Sphere.h"
 #include "cinder/AxisAlignedBox.h"
 
@@ -99,18 +99,18 @@ public:
 	
 	virtual ~PhyObjBase();
 	
-	PhyObjPrimitiveRef getPhyObjPrimitive() {
-		return std::dynamic_pointer_cast<PhyObjPrimitive>( shared_from_this() );
-	}
-	PhyObjCompoundShapeRef getPhyObjCompoundShape() {
-		return std::dynamic_pointer_cast<PhyObjCompoundShape>( shared_from_this() );
-	}
-	PhyObjConvexHullRef getPhyObjConvexHull() {
-		return std::dynamic_pointer_cast<PhyObjConvexHull>( shared_from_this() );
-	}
-	PhyObjHeightfieldTerrainRef getPhyObjHeightfieldTerrain() {
-		return std::dynamic_pointer_cast<PhyObjHeightfieldTerrain>( shared_from_this() );
-	}
+//	PhyObjPrimitiveRef getPhyObjPrimitive() {
+//		return std::dynamic_pointer_cast<PhyObjPrimitive>( shared_from_this() );
+//	}
+//	PhyObjCompoundShapeRef getPhyObjCompoundShape() {
+//		return std::dynamic_pointer_cast<PhyObjCompoundShape>( shared_from_this() );
+//	}
+//	PhyObjConvexHullRef getPhyObjConvexHull() {
+//		return std::dynamic_pointer_cast<PhyObjConvexHull>( shared_from_this() );
+//	}
+//	PhyObjHeightfieldTerrainRef getPhyObjHeightfieldTerrain() {
+//		return std::dynamic_pointer_cast<PhyObjHeightfieldTerrain>( shared_from_this() );
+//	}
 	
 	//! Returns the const char* name assigned to the Collision Shape.
 	const char* getName() const { return mCollisionShape->getName(); }

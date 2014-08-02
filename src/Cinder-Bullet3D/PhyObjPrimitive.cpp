@@ -7,9 +7,9 @@
 //
 
 
-#include "Physics/Common.h"
-#include "Physics/PhyObjPrimitive.h"
-#include "Physics/PhyObjBase.h"
+#include "Common.h"
+#include "PhyObjPrimitive.h"
+#include "PhyObjBase.h"
 
 namespace bullet {
 	
@@ -55,9 +55,9 @@ PhyObjPrimitiveRef PhyObjPrimitive::createSphere( btScalar radius, float mass, c
 	return create( Format::Format().collisionShape( createSphereShape( radius ) ).initialPosition( initialPosition ).initialRotation( initialRotation ).mass( mass ).kinematic( kinematic ) );
 }
 
-PhyObjPrimitiveRef PhyObjPrimitive::createStaticPlane( const ci::Vec3f &normal, btScalar offset, const ci::Vec3f &initialPosition, const ci::Quatf &initialRotation )
+PhyObjPrimitiveRef PhyObjPrimitive::createStaticPlane( const ci::Vec3f &normal, btScalar offset )
 {
-	return create( Format::Format().collisionShape( createStaticPlaneShape( normal, offset ) ).initialPosition( initialPosition ).initialRotation( initialRotation ) );
+	return create( Format::Format().collisionShape( createStaticPlaneShape( normal, offset ) ) );
 }
 
 PhyObjPrimitiveRef PhyObjPrimitive::createMultiSphere( const std::vector<ci::Vec3f> &positions, const std::vector<btScalar> &radii, float mass, const ci::Vec3f &initialPosition, const ci::Quatf &initialRotation, bool kinematic )

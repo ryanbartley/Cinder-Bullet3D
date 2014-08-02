@@ -11,7 +11,7 @@
 #include "cinder/gl/Vao.h"
 #include "cinder/gl/Vbo.h"
 #include "cinder/gl/TextureFont.h"
-#include "Physics/Common.h"
+#include "Common.h"
 
 namespace bullet {
 	

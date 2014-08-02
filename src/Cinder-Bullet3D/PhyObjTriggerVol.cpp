@@ -6,9 +6,9 @@
 //
 //
 
-#include "Physics/Common.h"
-#include "Physics/PhyObjTriggerVol.h"
-#include "Physics/BulletContext.h"
+#include "Common.h"
+#include "PhyObjTriggerVol.h"
+#include "BulletContext.h"
 
 namespace bullet {
 

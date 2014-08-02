@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "Physics/PhyObjBase.h"
+#include "PhyObjBase.h"
 #include "cinder/TriMesh.h"
 
 namespace bullet {

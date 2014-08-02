@@ -10,8 +10,8 @@
 
 #include <boost/signals2.hpp>
 
-#include "Physics/Common.h"
-#include "Physics/PhyObjBase.h"
+#include "Common.h"
+#include "PhyObjBase.h"
 
 namespace bullet {
 	

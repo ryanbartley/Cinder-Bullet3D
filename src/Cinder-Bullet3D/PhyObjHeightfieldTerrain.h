@@ -8,8 +8,8 @@
 
 #pragma once
 
-#include "Physics/PhyObjBase.h"
-#include "Physics/Common.h"
+#include "PhyObjBase.h"
+#include "Common.h"
 
 class btHeightfieldTerrainShape;
 
@@ -56,9 +56,6 @@ public:
 		Format& minHeight( btScalar minHeight ) { mMinHeight = minHeight; return *this; }
 		Format& maxHeight( btScalar maxHeight ) { mMaxHeight = maxHeight; return *this; }
 		Format& scale( const ci::Vec3f &scale ) { mScale = scale; return *this; }
-		
-		Format& collGroup( int16_t collGroup ) { mCollisionGroup = collGroup; return *this; }
-		Format& collMask( int16_t collMask ) { mCollisionMask = collMask; return *this; }
 		
 	protected:
 		ci::Vec3f			mScale;

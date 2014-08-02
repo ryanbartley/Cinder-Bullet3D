@@ -6,8 +6,8 @@
 //
 //
 
-#include "Physics/PhyObjHeightfieldTerrain.h"
-#include "Physics/Common.h"
+#include "PhyObjHeightfieldTerrain.h"
+#include "Common.h"
 
 #include "btHeightfieldTerrainShape.h"
 

@@ -8,9 +8,9 @@
 
 #pragma once
 
-#include "Physics/Common.h"
-#include "Physics/PhyObjBase.h"
-#include "Physics/ConstraintBase.h"
+#include "Common.h"
+#include "PhyObjBase.h"
+#include "ConstraintBase.h"
 
 namespace bullet {
 	

@@ -9,7 +9,7 @@
 #pragma once
 
 #include "cinder/Matrix44.h"
-#include "Physics/Common.h"
+#include "Common.h"
 
 namespace bullet {
 	
@@ -39,6 +39,7 @@ protected:
 };
 	
 class SimpleGlDynamicMotionState : public PhyObjMotionState {
+public:
 	//! Used for Dynamic objects that bullet controls.
 	SimpleGlDynamicMotionState( const btTransform &initialPosition )
 	: PhyObjMotionState( initialPosition, true )

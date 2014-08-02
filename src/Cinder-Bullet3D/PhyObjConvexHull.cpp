@@ -6,8 +6,8 @@
 //
 //
 
-#include "Physics/PhyObjConvexHull.h"
-#include "Physics/Common.h"
+#include "PhyObjConvexHull.h"
+#include "Common.h"
 
 namespace bullet {
 	

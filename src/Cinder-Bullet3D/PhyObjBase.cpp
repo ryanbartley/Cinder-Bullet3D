@@ -7,7 +7,7 @@
 //
 
 #include "PhyObjBase.h"
-#include "Physics/Common.h"
+#include "Common.h"
 #include "BulletContext.h"
 #include "btCollisionObject.h"
 
@@ -83,11 +83,11 @@ void PhyObjBase::init( const Format &format )
 	}
 	
 	if( format.mSetKinematic ){
-		mMotionState.reset( new KinematicMotionState<Node>( transform ) );
+		mMotionState.reset( new SimpleGlKinematicMotionState( transform ) );
 		mMotionState->setUserPointer( format.mMotionStateUserPtr );
 	}
 	else {
-		mMotionState.reset( new DynamicMotionStateRef<Node>( transform ) );
+		mMotionState.reset( new SimpleGlDynamicMotionState( transform ) );
 		mMotionState->setUserPointer( format.mMotionStateUserPtr );
 	}
 	
