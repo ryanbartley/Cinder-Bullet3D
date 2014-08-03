@@ -9,7 +9,7 @@
 #pragma once
 
 #include "Cinder-Bullet3D/Common.h"
-#include "Cinder-Bullet3D/PhyObjBase.h"
+#include "Cinder-Bullet3D/RigidBody.h"
 
 namespace bullet {
 	
@@ -19,11 +19,11 @@ public:
 	struct Format {
 		Format();
 		
-		void setObjA( const PhyObjBaseRef &objA ) { mObjA = objA; }
-		void setObjB( const PhyObjBaseRef &objB ) { mObjB = objB; }
+		void setObjA( const RigidBodyRef &objA ) { mObjA = objA; }
+		void setObjB( const RigidBodyRef &objB ) { mObjB = objB; }
 		
 	protected:
-		PhyObjBaseRef	mObjA, mObjB;
+		RigidBodyRef	mObjA, mObjB;
 		
 	};
 	

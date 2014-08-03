@@ -9,7 +9,7 @@
 #include "BulletDynamics/Dynamics/btActionInterface.h"
 
 #include "Cinder-Bullet3D/Common.h"
-#include "Cinder-Bullet3D/PhyObjBase.h"
+#include "Cinder-Bullet3D/RigidBody.h"
 
 #include "cinder/AxisAlignedBox.h"
 

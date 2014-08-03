@@ -11,7 +11,7 @@
 #include <boost/signals2.hpp>
 
 #include "Cinder-Bullet3D/Common.h"
-#include "Cinder-Bullet3D/PhyObjBase.h"
+#include "Cinder-Bullet3D/RigidBody.h"
 
 namespace bullet {
 	
@@ -86,10 +86,10 @@ public:
 	inline void addRigidBody( btRigidBody *body ) { addRigidBody( body, -1, -1 ); }
 	//! Add a rigid body to the world with a Collision group and mask.
 	inline void addRigidBody( btRigidBody *body, int16_t group, int16_t mask ) { mWorld->addRigidBody( body, group, mask ); }
-	void addRigidBody( const PhyObjBaseRef &phyObj );
+	void addRigidBody( const RigidBodyRef &phyObj );
 	//! Remove a rigid body from the world.
 	inline void removeRigidBody( btRigidBody *body ){ mWorld->removeRigidBody( body ); }
-	void removeRigidBody( const PhyObjBaseRef &phyObj );
+	void removeRigidBody( const RigidBodyRef &phyObj );
 	//! Add a collision Object to the world.
 	inline void addCollisionObject( btCollisionObject *collObj ) { mWorld->addCollisionObject( collObj ); }
 	//! Removes a Collision Object from the world.

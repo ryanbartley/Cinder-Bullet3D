@@ -96,13 +96,13 @@ void Context::setupDebugRenderer( int mode )
 	}
 }
 	
-void Context::addRigidBody( const PhyObjBaseRef &phyObj )
+void Context::addRigidBody( const RigidBodyRef &phyObj )
 {
 	addRigidBody( phyObj->getRigidBody().get(), phyObj->mCollGroup, phyObj->mCollMask );
 	phyObj->setIsAddedToWorld( true );
 }
 	
-void Context::removeRigidBody( const PhyObjBaseRef &phyObj )
+void Context::removeRigidBody( const RigidBodyRef &phyObj )
 {
 	removeRigidBody( phyObj->getRigidBody().get() );
 }

@@ -9,7 +9,7 @@
 #pragma once
 
 #include "Cinder-Bullet3D/Common.h"
-#include "Cinder-Bullet3D/PhyObjBase.h"
+#include "Cinder-Bullet3D/RigidBody.h"
 #include "Cinder-Bullet3D/ConstraintBase.h"
 
 namespace bullet {
@@ -25,8 +25,8 @@ public:
 		void setFrameInA( const btTransform &frameInA ) { mFrameInA = frameInA; }
 		void setFrameInB( const btTransform &frameInB ) { mFrameInB = frameInB; }
 		
-		Format& objA( const PhyObjBaseRef &objA ) { mObjA = objA; return *this; }
-		Format& objB( const PhyObjBaseRef &objB ) { mObjB = objB; return *this; }
+		Format& objA( const RigidBodyRef &objA ) { mObjA = objA; return *this; }
+		Format& objB( const RigidBodyRef &objB ) { mObjB = objB; return *this; }
 		Format& frameInA( const btTransform &frameInA ) { mFrameInA = frameInA; return *this; }
 		Format& frameInB( const btTransform &frameInB ) { mFrameInB = frameInB; return *this; }
 		Format& useLinearReferenceFrame( bool useLinearReferenceFrame ) { mUseLinearReferenceFrame = useLinearReferenceFrame; return *this;}

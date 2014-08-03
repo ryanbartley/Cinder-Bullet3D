@@ -54,10 +54,10 @@ void PhyObjConvexHull::init( const Format &format )
 		auto changedFormat = const_cast<Format&>(format);
 		changedFormat.collisionShape( convexShape );
 		
-		PhyObjBase::init( changedFormat );
+		RigidBody::init( changedFormat );
 	}
 	else {
-		PhyObjBase::init( format );
+		RigidBody::init( format );
 	}
 }
 	

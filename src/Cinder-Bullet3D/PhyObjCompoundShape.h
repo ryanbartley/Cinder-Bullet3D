@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "Cinder-Bullet3D/PhyObjBase.h"
+#include "Cinder-Bullet3D/RigidBody.h"
 
 namespace bullet {
 
@@ -16,10 +16,10 @@ typedef std::vector<btTransform> Offsets;
 typedef std::map<btCollisionShape*, Offsets> ShapesAndOffsets;
 typedef std::shared_ptr<class PhyObjCompoundShape> PhyObjCompoundShapeRef;
 	
-class PhyObjCompoundShape : public PhyObjBase {
+class PhyObjCompoundShape : public RigidBody {
 public:
 	
-	struct Format : PhyObjBase::Format {
+	struct Format : RigidBody::Format {
 		Format();
 		
 		//! Sets the Collision shape of the object. Default is nullptr.
@@ -42,9 +42,9 @@ public:
 		Format& collMask( int16_t collMask ) { mCollisionMask = collMask; return *this; }
 		//! Sets whether to auto add to the world. Default is true.
 		Format& addToWorld( bool addToWorld ) { mAddToWorld = addToWorld; return *this; }
-		//! Sets whether to add "this" instance to Rigid Body User Pointer. Defaults to the PhyObjBase constructed object.
+		//! Sets whether to add "this" instance to Rigid Body User Pointer. Defaults to the RigidBody constructed object.
 		Format& rigidUserPointer( void* userPtr ) { mMotionStateUserPtr = userPtr; return *this; }
-		//! Sets whether to add "this" instance to Rigid Body User Pointer. Defaults to the PhyObjBase constructed object.
+		//! Sets whether to add "this" instance to Rigid Body User Pointer. Defaults to the RigidBody constructed object.
 		Format& collisionUserPointer( void* userPtr ) { mCollisionShapeUserPtr = userPtr; return *this; }
 		//! Sets whether to add "this" instance to Motion State User Pointer. Defaults to null.
 		Format& motionUserPointer( void* userPtr ) { mMotionStateUserPtr = userPtr; return *this; }

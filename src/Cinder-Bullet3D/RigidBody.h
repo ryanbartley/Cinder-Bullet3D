@@ -17,17 +17,19 @@
 
 namespace bullet {
 	
-typedef std::shared_ptr<class PhyObjBase> PhyObjBaseRef;
+typedef std::shared_ptr<class RigidBody> RigidBodyRef;
 
-class PhyObjBase : public boost::noncopyable, public std::enable_shared_from_this<PhyObjBase> {
+class RigidBody : public boost::noncopyable, public std::enable_shared_from_this<RigidBody> {
 public:
 	
 	struct Format {
 		Format();
 		virtual ~Format() {}
 		
-		//! Sets the Collision shape of the object.
-		const btCollisionShapeRef& setCollisionShape() const { return mCollShape; }
+		//! Gets the Collision shape of the format.
+		const btCollisionShapeRef& getCollisionShape() const { return mCollShape; }
+		//! Gets the Motion state of the format.
+		const PhyObjMotionStateRef& getMotionState() const { return mMotionState; }
 		//! Sets the mass of the object.
 		const btScalar getMass() const { return mMass; }
 		//! Sets the Vec3f for the initial position of the object.
@@ -46,16 +48,14 @@ public:
 		const int16_t getCollMask() const { return mCollisionMask; }
 		//! Returns whether to auto add to the world. Default is true.
 		const bool getAddToWorld() const { return mAddToWorld; }
-		//! Returns Rigid Body User Pointer. Defaults to nullptr.
-		const void* getRBUserPointer() const { return mCollisionShapeUserPtr; }
 		//! Returns Collision Shape User Pointer. Defaults to nullptr.
 		const bool getCSUserPointer() const { return mRigidBodyUserPtr; }
-		//! Returns Motion State User Pointer. Defaults to nullptr.
-		const bool getMSUserPointer() const { return mMotionStateUserPtr; }
 		//! Returns the object to kinematic and zeros the mass on construction and sets the appropriate flags.
 		const bool getIsKinematic() const { return mSetKinematic; }
 		//! Sets the Collision shape of the object.
 		void setCollisionShape( const btCollisionShapeRef &shape ) { mCollShape = shape; }
+		//! Sets the Motion state of the object.
+		void setMotionState( const PhyObjMotionStateRef &motionState ) { mMotionState = motionState; }
 		//! Sets the mass of the object.
 		void setMass( btScalar mass ) { mMass = mass; }
 		//! Sets the Vec3f for the initial position of the object.
@@ -74,44 +74,26 @@ public:
 		void setCollMask( int16_t collMask ) { mCollisionMask = collMask; }
 		//! Sets whether to auto add to the world. Default is true.
 		void setAddToWorld( bool addToWorld = true ) { mAddToWorld = addToWorld; }
-		//! Sets whether to add "this" instance to Rigid Body User Pointer. Defaults to the PhyObjBase constructed object.
-		void setRBUserPointer( void* userPtr ) { mMotionStateUserPtr = userPtr; }
-		//! Sets whether to add "this" instance to Rigid Body User Pointer. Defaults to the PhyObjBase constructed object.
-		void setCSUserPointer( void* userPtr ) { mCollisionShapeUserPtr = userPtr; }
-		//! Sets whether to add "this" instance to Motion State User Pointer. Defaults to null.
-		void setMSUserPointer( void* userPtr ) { mMotionStateUserPtr = userPtr; }
+		//! Sets whether to add "this" instance to Rigid Body User Pointer. Defaults to the RigidBody constructed object.
+		void setRBUserPointer( void* userPtr ) { mRigidBodyUserPtr = userPtr; }
 		//! Sets the object to kinematic and zeros the mass on construction and sets the appropriate flags.
 		void setToKinematic( bool shouldBeKinematic = true ) { mSetKinematic = shouldBeKinematic; }
 		
 	protected:
-		btCollisionShapeRef mCollShape;
-		btScalar			mMass, mFriction, mRestitution;
-		int16_t				mCollisionGroup, mCollisionMask;
-		ci::Vec3f			mInitialPosition;
-		ci::Vec3f			mInitialScale;
-		ci::Quatf			mInitialRotation;
-		bool				mSetKinematic, mAddToWorld;
-		void				*mMotionStateUserPtr,
-							*mRigidBodyUserPtr,
-							*mCollisionShapeUserPtr;
+		btCollisionShapeRef		mCollShape;
+		PhyObjMotionStateRef	mMotionState;
+		btScalar				mMass, mFriction, mRestitution;
+		int16_t					mCollisionGroup, mCollisionMask;
+		ci::Vec3f				mInitialPosition;
+		ci::Vec3f				mInitialScale;
+		ci::Quatf				mInitialRotation;
+		bool					mSetKinematic, mAddToWorld;
+		void				   *mRigidBodyUserPtr;
 		
-		friend class PhyObjBase;
+		friend class RigidBody;
 	};
 	
-	virtual ~PhyObjBase();
-	
-//	PhyObjPrimitiveRef getPhyObjPrimitive() {
-//		return std::dynamic_pointer_cast<PhyObjPrimitive>( shared_from_this() );
-//	}
-//	PhyObjCompoundShapeRef getPhyObjCompoundShape() {
-//		return std::dynamic_pointer_cast<PhyObjCompoundShape>( shared_from_this() );
-//	}
-//	PhyObjConvexHullRef getPhyObjConvexHull() {
-//		return std::dynamic_pointer_cast<PhyObjConvexHull>( shared_from_this() );
-//	}
-//	PhyObjHeightfieldTerrainRef getPhyObjHeightfieldTerrain() {
-//		return std::dynamic_pointer_cast<PhyObjHeightfieldTerrain>( shared_from_this() );
-//	}
+	virtual ~RigidBody();
 	
 	//! Returns the const char* name assigned to the Collision Shape.
 	const char* getName() const { return mCollisionShape->getName(); }
@@ -144,6 +126,19 @@ public:
 	PhyObjMotionStateRef&			getMotionState() { return mMotionState; }
 	//! Returns the const pointer to the Motion State of this object.
 	const PhyObjMotionStateRef&		getMotionState() const { return mMotionState; }
+	
+	void setMotionState( const PhyObjMotionStateRef &motionState )
+	{
+		mRigidBody->setMotionState( motionState.get() );
+	}
+	const btTransform& getCenterOfMassTransform() const
+	{
+		return mRigidBody->getCenterOfMassTransform();
+	}
+	const btVector3& getCenterOfMassPoint() const
+	{
+		return mRigidBody->getCenterOfMassPosition();
+	}
 	
 	void setCollisionGroup( int16_t collGroup );
 	void setCollisionMask( int16_t collMask );
@@ -231,7 +226,7 @@ public:
 	
 protected:
 	//! Base Class for a Physics Object.
-	PhyObjBase();
+	RigidBody();
 	
 	//! Initializes this object.
 	virtual void init( const Format &format );

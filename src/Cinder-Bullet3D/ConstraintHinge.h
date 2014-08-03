@@ -9,7 +9,7 @@
 #pragma once
 
 #include "Cinder-Bullet3D/Common.h"
-#include "Cinder-Bullet3D/PhyObjBase.h"
+#include "Cinder-Bullet3D/RigidBody.h"
 #include "Cinder-Bullet3D/ConstraintBase.h"
 
 namespace bullet {

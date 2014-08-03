@@ -49,10 +49,10 @@ void PhyObjHeightfieldTerrain::init( const Format &format )
 		auto changedFormat = const_cast<Format&>( format );
 		changedFormat.collisionShape( shape );
 		
-		PhyObjBase::init( changedFormat );
+		RigidBody::init( changedFormat );
 	}
 	else {
-		PhyObjBase::init( format );
+		RigidBody::init( format );
 	}
 }
 	

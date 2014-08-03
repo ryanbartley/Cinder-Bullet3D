@@ -43,10 +43,10 @@ void PhyObjCompoundShape::init( const Format &format )
 		
 		const_cast<Format&>( format ).collisionShape( pCompound );
 		
-		PhyObjBase::init( format );
+		RigidBody::init( format );
 	}
 	else {
-		PhyObjBase::init( format );
+		RigidBody::init( format );
 	}
 	
 	mCollisionShape->setUserPointer( this );

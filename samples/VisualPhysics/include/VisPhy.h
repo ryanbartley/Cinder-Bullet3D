@@ -13,14 +13,18 @@
 
 class VisPhy {
 public:
-	~VisPhy();
+	~VisPhy() {}
 	
 	void update();
 	void draw();
 	
-private:
-	VisPhy( const ci::geom::Source &source );
+	ci::gl::BatchRef&		getBatch() { return mVisObj; }
+	bullet::RigidBodyRef&	getPhyObj() { return mPhyObj; }
 	
-	bullet::PhyObjPrimitiveRef	mPhyObj;
+private:
+	VisPhy( const ci::gl::BatchRef &visual, const bullet::RigidBodyRef &physics );
+	
 	ci::gl::BatchRef			mVisObj;
+	bullet::RigidBodyRef		mPhyObj;
+	ci::Matrix44f				mModelMatrix;
 };

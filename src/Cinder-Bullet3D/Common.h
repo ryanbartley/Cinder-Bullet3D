@@ -45,7 +45,7 @@ typedef std::shared_ptr<btHeightfieldTerrainShape> btHeightfieldTerrainShapeRef;
 	
 typedef std::shared_ptr<class Context>					ContextRef;
 typedef std::shared_ptr<class PhysicsDebugRenderable>	DebugRendererRef;
-typedef std::shared_ptr<class PhyObjBase>				PhyObjBaseRef;
+typedef std::shared_ptr<class RigidBody>				RigidBodyRef;
 class PhyObjPrimitive;
 typedef std::shared_ptr<PhyObjPrimitive>				PhyObjPrimitiveRef;
 class PhyObjConvexHull;
