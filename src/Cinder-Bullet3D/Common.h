@@ -36,6 +36,18 @@ using btDiscreteDynamicsWorldRef = std::shared_ptr<btDiscreteDynamicsWorld>;
 using btDynamicsWorldRef = std::shared_ptr<btDynamicsWorld>;
 using btCollisionObjectRef = std::shared_ptr<btCollisionObject>;
 	
+	
+using ConstraintBaseRef = std::shared_ptr<class ConstraintBase>;
+using btTypedConstraintRef = std::shared_ptr<class btTypedConstraint>;
+using ConstraintConeTwistRef = std::shared_ptr<class ConstraintConeTwist>;
+using btConeTwistConstraintRef = std::shared_ptr<class btConeTwistConstraint>;
+using ConstraintHingeRef = std::shared_ptr<class ConstraintHinge>;
+using btHingeConstraintRef = std::shared_ptr<class btHingeConstraint>;
+using ConstraintPoint2PointRef = std::shared_ptr<class ConstraintPoint2Point>;
+using btPoint2PointConstraintRef = std::shared_ptr<class btPoint2PointConstraint>;
+using ConstraintGeneric6DofRef = std::shared_ptr<class ConstraintGeneric6Dof>;
+using btGeneric6DofConstraintRef = std::shared_ptr<class btGeneric6DofConstraint>;
+	
 
 using btBoxShapeRef = std::shared_ptr<btBoxShape>;
 using btConeShapeRef = std::shared_ptr<btConeShape>;

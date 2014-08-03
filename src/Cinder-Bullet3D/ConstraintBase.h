@@ -36,9 +36,9 @@ public:
 	btScalar getParam(int num, int axis = -1) const { return mConstraint->getParam( num, axis ); }
 	
 	//! Returns a pointer to the typed constraint.
-	btTypedConstraint* getTypedConstraint() { return mConstraint; }
+	btTypedConstraintRef& getTypedConstraint() { return mConstraint; }
 	//! Returns a const pointer to the typed constraint.
-	const btTypedConstraint* getTypedConstraint() const { return mConstraint; }
+	const btTypedConstraintRef& getTypedConstraint() const { return mConstraint; }
 	
 	//! Sets the Breaking Threshold of this Constraint.
 	void setBreakingImpulseThreshold( btScalar threshold ) { mConstraint->setBreakingImpulseThreshold( threshold ); }
@@ -58,7 +58,7 @@ public:
 protected:
 	ConstraintBase();
 	
-	btTypedConstraint* mConstraint;
+	btTypedConstraintRef mConstraint;
 };
 	
 }

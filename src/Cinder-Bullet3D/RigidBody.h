@@ -187,6 +187,21 @@ public:
 	
 	bool isCollisionShapeScaled() { return mUpdatedScale; }
 	
+	inline void setDamping( float linear, float angular )
+	{
+		mRigidBody->setDamping( linear, angular );
+	}
+	
+	inline void setDeactivationTime( float time )
+	{
+		mRigidBody->setDeactivationTime( time );
+	}
+	
+	inline void setSleepingThresholds( btScalar linear, btScalar angular )
+	{
+		mRigidBody->setSleepingThresholds( linear, angular );
+	}
+	
 	//! Returns the collision shapes bounding sphere for quick culling purposes
 	inline void getBoundingSphere( ci::Sphere &sphere )
 	{

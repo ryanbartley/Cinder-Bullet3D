@@ -14,8 +14,6 @@
 
 namespace bullet {
 	
-typedef std::shared_ptr<class ConstraintGeneric6Dof> ConstraintGeneric6DofRef;
-	
 class ConstraintGeneric6Dof : public ConstraintBase {
 public:
 	
@@ -43,8 +41,8 @@ public:
 	
 	static ConstraintGeneric6DofRef create( const Format &format );
 	
-	btGeneric6DofConstraint* getConstraintGeneric6Dof() { return static_cast<btGeneric6DofConstraint*>(mConstraint); }
-	const btGeneric6DofConstraint* getConstraintGeneric6Dof() const { return static_cast<btGeneric6DofConstraint*>(mConstraint); }
+	btGeneric6DofConstraintRef getConstraintGeneric6Dof() { return std::static_pointer_cast<btGeneric6DofConstraint>(mConstraint); }
+	const btGeneric6DofConstraintRef getConstraintGeneric6Dof() const { return std::static_pointer_cast<btGeneric6DofConstraint>(mConstraint); }
 	
 	//! From the Bullet Wiki, For each axis, if lower limit = upper limit, The axis is locked. If lower limit < upper limit, the axis is limited between the specified values. If lower limit > upper limit, The axis is free and has no limits.
 	void setLinearLowerLimit( const ci::Vec3f &linearLower ) { getConstraintGeneric6Dof()->setLinearLowerLimit( toBullet( linearLower ) ); }

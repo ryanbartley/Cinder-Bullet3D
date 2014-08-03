@@ -20,23 +20,23 @@ ConstraintGeneric6Dof::Format::Format()
 ConstraintGeneric6Dof::ConstraintGeneric6Dof( const Format &format )
 {
 	if( format.mObjB ) {
-		mConstraint = new btGeneric6DofConstraint( *format.mObjA->getRigidBody(), *format.mObjB->getRigidBody(), format.mFrameInA, format.mFrameInB, format.mUseLinearReferenceFrame );
+		mConstraint =  std::make_shared<btGeneric6DofConstraint>( *format.mObjA->getRigidBody().get(), *format.mObjB->getRigidBody().get(), format.mFrameInA, format.mFrameInB, format.mUseLinearReferenceFrame );
 	}
 	else {
-		mConstraint = new btGeneric6DofConstraint( *format.mObjA->getRigidBody(), format.mFrameInA, format.mUseLinearReferenceFrame );
+		mConstraint = std::make_shared<btGeneric6DofConstraint>( *format.mObjA->getRigidBody().get(), format.mFrameInA, format.mUseLinearReferenceFrame );
 	}
 	
 	mConstraint->setUserConstraintPtr( this );
 	
 	if( format.mAddToWorld ) {
-		Context()->world()->addConstraint( mConstraint );
+		Context()->addConstraint( mConstraint );
 	}
 	
 }
 	
 ConstraintGeneric6Dof::~ConstraintGeneric6Dof()
 {
-	delete mConstraint;
+	mConstraint.reset();
 }
 	
 ConstraintGeneric6DofRef ConstraintGeneric6Dof::create( const Format &format )

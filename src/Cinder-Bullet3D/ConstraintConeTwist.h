@@ -1,21 +1,18 @@
 //
-//  ConstraintHinge.h
-//  BulletSourceTest
+//  ConstraintConeTwist.h
+//  RagDoll
 //
-//  Created by Ryan Bartley on 4/7/14.
+//  Created by Ryan Bartley on 8/3/14.
 //
 //
 
-#pragma once
-
-#include "Cinder-Bullet3D/Common.h"
-#include "Cinder-Bullet3D/RigidBody.h"
 #include "Cinder-Bullet3D/ConstraintBase.h"
 
 namespace bullet {
+	
 
 	
-class ConstraintHinge : public ConstraintBase {
+class ConstraintConeTwist : public ConstraintBase {
 public:
 	
 	struct Format : ConstraintBase::Format {
@@ -29,31 +26,34 @@ public:
 		Format& localBRot( const ci::Quatf &rot ) { mLocalB.setBasis( toBullet( rot.toMatrix33() ) ); return *this; }
 		Format& localAtrans( const btTransform &trans ) { mLocalA = trans; return *this; }
 		Format& localBtrans( const btTransform &trans ) { mLocalB = trans; return *this; }
-		Format& useReferenceFrameA( bool use ) { mUseReferenceFrameA = use; return *this; }
 		
 	protected:
 		btTransform mLocalA, mLocalB;
-		bool mUseReferenceFrameA;
 		
-		friend class ConstraintHinge;
+		friend class ConstraintConeTwist;
 	};
 	
-	static ConstraintHingeRef create( const Format &format );
+	static ConstraintConeTwistRef create( const Format &format );
 	
-	btHingeConstraintRef getHingeConstraint()
+	inline btConeTwistConstraintRef getConeTwist()
 	{
-		return std::static_pointer_cast<btHingeConstraint>(mConstraint);
+		return std::static_pointer_cast<btConeTwistConstraint>(mConstraint);
 	}
 	
-	inline void setLimit( btScalar low, btScalar high )
+	inline void setLimit( int limitIndex, btScalar limitValue )
 	{
-		getHingeConstraint()->setLimit( low, high );
+		getConeTwist()->setLimit( limitIndex, limitValue );
 	}
 	
-	~ConstraintHinge() {}
+	inline void setLimit( btScalar swingSpan1, btScalar swingSpan2, btScalar swingSpan3 )
+	{
+		getConeTwist()->setLimit( swingSpan1, swingSpan2, swingSpan3 );
+	}
+	
+	~ConstraintConeTwist() {}
 	
 private:
-	ConstraintHinge( const Format &format );
+	ConstraintConeTwist( const Format &format );
 };
 	
 }
