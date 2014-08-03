@@ -25,11 +25,17 @@ RigidBody::Format::Format()
 {
 }
 	
-RigidBody::RigidBody()
+RigidBody::RigidBody( const Format &format )
 : mRigidBody( nullptr ), mCollisionShape( nullptr ),
 	mMotionState( nullptr ), mType( PhyObjType::NO_SHAPE ),
 	mAddedToWorld( false ), mCollGroup( -1 ), mCollMask( -1 ), mUpdatedScale( false )
 {
+	init( format );
+}
+	
+RigidBodyRef RigidBody::create( const bullet::RigidBody::Format &format )
+{
+	return RigidBodyRef( new RigidBody( format ) );
 }
 	
 RigidBody::~RigidBody()
@@ -95,6 +101,13 @@ void RigidBody::init( const Format &format )
 	if( format.mAddToWorld ) {
 		Context()->addRigidBody( mRigidBody.get(), mCollGroup, mCollMask );
 		mAddedToWorld = true;
+	}
+	
+	if( ! mMotionState ) {
+		btTransform trans;
+		trans.setOrigin( toBullet( format.mInitialPosition ) );
+		trans.setRotation( toBullet( format.mInitialRotation ) );
+		mRigidBody->setWorldTransform( trans );
 	}
 	
 	mRigidBody->setUserPointer( format.mRigidBodyUserPtr ? format.mRigidBodyUserPtr : this );

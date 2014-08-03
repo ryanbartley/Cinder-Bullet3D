@@ -13,11 +13,11 @@
 
 namespace bullet {
 	
-typedef std::shared_ptr<class PhyObjMotionState>	PhyObjMotionStateRef;
+typedef std::shared_ptr<class MotionState>	MotionStateRef;
 	
-class PhyObjMotionState : public btDefaultMotionState {
+class MotionState : public btDefaultMotionState {
 public:
-	virtual ~PhyObjMotionState() {}
+	virtual ~MotionState() {}
 	
 	//! Returns whether this Motion state is a dynamic state, meaning controlled by Bullet.
 	inline bool isDynamic() { return mDynamic; }
@@ -31,18 +31,18 @@ public:
 	
 protected:
 	//! This should be a base class with implementations for getting and setting world transform.
-	PhyObjMotionState( const btTransform &transform, bool dynamic )
+	MotionState( const btTransform &transform, bool dynamic )
 	: btDefaultMotionState( transform ), mDynamic( dynamic ) {}
 	
 	btTransform		mPosition;
 	const bool		mDynamic;
 };
 	
-class SimpleGlDynamicMotionState : public PhyObjMotionState {
+class SimpleGlDynamicMotionState : public MotionState {
 public:
 	//! Used for Dynamic objects that bullet controls.
 	SimpleGlDynamicMotionState( const btTransform &initialPosition )
-	: PhyObjMotionState( initialPosition, true )
+	: MotionState( initialPosition, true )
 	{ mPosition = initialPosition; }
 	
 	virtual ~SimpleGlDynamicMotionState() {}
@@ -58,11 +58,11 @@ public:
 	}
 };
 	
-class SimpleGlKinematicMotionState : public PhyObjMotionState {
+class SimpleGlKinematicMotionState : public MotionState {
 public:
 	//! Used for a kinematic object, Bullet will query the world transform for each step simulation. Implemented from http://www.bulletphysics.org/mediawiki-1.5.8/index.php/MotionStates.
 	SimpleGlKinematicMotionState( const btTransform &initialPosition )
-	: PhyObjMotionState( initialPosition, false )
+	: MotionState( initialPosition, false )
 	{ mPosition = initialPosition; }
 	
 	virtual ~SimpleGlKinematicMotionState() {}
@@ -84,11 +84,11 @@ protected:
 };
 
 template<typename T>
-class DynamicMotionState : public PhyObjMotionState {
+class DynamicMotionState : public MotionState {
 public:
 	//! Used for Dynamic objects that bullet controls.
 	DynamicMotionState( const btTransform &initialPosition )
-	: PhyObjMotionState( initialPosition, true )
+	: MotionState( initialPosition, true )
 	{ mPosition = initialPosition; }
 
 	virtual ~DynamicMotionState() {}
@@ -102,12 +102,12 @@ public:
 };
 
 template<typename T>
-class KinematicMotionState : public PhyObjMotionState {
+class KinematicMotionState : public MotionState {
 public:
 	
 	//! Used for a kinematic object, Bullet will query the world transform for each step simulation. Implemented from http://www.bulletphysics.org/mediawiki-1.5.8/index.php/MotionStates.
 	KinematicMotionState( const btTransform &initialPosition )
-	: PhyObjMotionState( initialPosition, false )
+	: MotionState( initialPosition, false )
 	{ mPosition = initialPosition; }
 	
 	virtual ~KinematicMotionState() {}
@@ -129,6 +129,9 @@ public:
 protected:
 };
 
+using SimpleGlDynamicMotionStateRef = std::shared_ptr<SimpleGlDynamicMotionState>;
+using SimpleGlKinematicMotionStateRef = std::shared_ptr<SimpleGlKinematicMotionState>;
+	
 template<typename T>
 using DynamicMotionStateRef = std::shared_ptr<DynamicMotionState<T>>;
 template<typename T>

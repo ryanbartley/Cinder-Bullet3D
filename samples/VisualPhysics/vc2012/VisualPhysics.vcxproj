@@ -10,7 +10,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{4DF72671-F112-4AF7-BB9E-3B88D9B3176C}</ProjectGuid>
+    <ProjectGuid>{47E0A14B-A6D1-46D0-BA23-42CB685D6692}</ProjectGuid>
     <RootNamespace>VisualPhysics</RootNamespace>
     <Keyword>Win32Proj</Keyword>
   </PropertyGroup>
@@ -112,14 +112,10 @@
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\ConstraintBase.cpp" />
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\ConstraintGeneric6Dof.cpp" />
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\ConstraintHinge.cpp" />
-    <ClCompile Include="..\..\..\src\Cinder-Bullet3D\PhyObjBase.cpp" />
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\PhyObjCharacterController.cpp" />
-    <ClCompile Include="..\..\..\src\Cinder-Bullet3D\PhyObjCompoundShape.cpp" />
-    <ClCompile Include="..\..\..\src\Cinder-Bullet3D\PhyObjConvexHull.cpp" />
-    <ClCompile Include="..\..\..\src\Cinder-Bullet3D\PhyObjHeightfieldTerrain.cpp" />
-    <ClCompile Include="..\..\..\src\Cinder-Bullet3D\PhyObjPrimitive.cpp" />
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\PhyObjTriggerVol.cpp" />
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\PhysicsDebugRenderable.cpp" />
+    <ClCompile Include="..\..\..\src\Cinder-Bullet3D\RigidBody.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Resources.h" />
@@ -334,15 +330,12 @@
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\ConstraintBase.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\ConstraintGeneric6Dof.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\ConstraintHinge.h" />
-    <ClInclude Include="..\..\..\src\Cinder-Bullet3D\OpenGLMotionState.h" />
-    <ClInclude Include="..\..\..\src\Cinder-Bullet3D\PhyObjBase.h" />
+    <ClInclude Include="..\..\..\src\Cinder-Bullet3D\MotionState.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\PhyObjCharacterController.h" />
-    <ClInclude Include="..\..\..\src\Cinder-Bullet3D\PhyObjCompoundShape.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\PhyObjConvexHull.h" />
-    <ClInclude Include="..\..\..\src\Cinder-Bullet3D\PhyObjHeightfieldTerrain.h" />
-    <ClInclude Include="..\..\..\src\Cinder-Bullet3D\PhyObjPrimitive.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\PhyObjTriggerVol.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\PhysicsDebugRenderable.h" />
+    <ClInclude Include="..\..\..\src\Cinder-Bullet3D\RigidBody.h" />
     <ClInclude Include="..\..\..\src\BulletPhysics\BulletCollision\BroadPhaseCollision\btAxisSweep3.cpp" />
     <ClInclude Include="..\..\..\src\BulletPhysics\BulletCollision\BroadPhaseCollision\btBroadphaseProxy.cpp" />
     <ClInclude Include="..\..\..\src\BulletPhysics\BulletCollision\BroadPhaseCollision\btCollisionAlgorithm.cpp" />

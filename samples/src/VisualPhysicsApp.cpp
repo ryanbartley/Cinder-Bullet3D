@@ -17,7 +17,6 @@ class VisualPhysicsApp : public AppNative {
 	void setup();
 	void mouseDown( MouseEvent event );
 	void keyDown( KeyEvent event );
-	void prepareSettings( Settings * settings ) { settings->enableMultiTouch( false ); }
 	void update();
 	void draw();
 	void createCube();

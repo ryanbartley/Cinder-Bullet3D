@@ -9,7 +9,7 @@
 #pragma once
 
 #include "Cinder-Bullet3D/Common.h"
-#include "Cinder-Bullet3D/OpenGLMotionState.h"
+#include "Cinder-Bullet3D/MotionState.h"
 
 #include "cinder/Log.h"
 #include "cinder/Sphere.h"
@@ -29,7 +29,7 @@ public:
 		//! Gets the Collision shape of the format.
 		const btCollisionShapeRef& getCollisionShape() const { return mCollShape; }
 		//! Gets the Motion state of the format.
-		const PhyObjMotionStateRef& getMotionState() const { return mMotionState; }
+		const MotionStateRef& getMotionState() const { return mMotionState; }
 		//! Sets the mass of the object.
 		const btScalar getMass() const { return mMass; }
 		//! Sets the Vec3f for the initial position of the object.
@@ -55,7 +55,7 @@ public:
 		//! Sets the Collision shape of the object.
 		void setCollisionShape( const btCollisionShapeRef &shape ) { mCollShape = shape; }
 		//! Sets the Motion state of the object.
-		void setMotionState( const PhyObjMotionStateRef &motionState ) { mMotionState = motionState; }
+		void setMotionState( const MotionStateRef &motionState ) { mMotionState = motionState; }
 		//! Sets the mass of the object.
 		void setMass( btScalar mass ) { mMass = mass; }
 		//! Sets the Vec3f for the initial position of the object.
@@ -79,9 +79,36 @@ public:
 		//! Sets the object to kinematic and zeros the mass on construction and sets the appropriate flags.
 		void setToKinematic( bool shouldBeKinematic = true ) { mSetKinematic = shouldBeKinematic; }
 		
+		//! Sets the Collision shape of the object. Default is nullptr.
+		Format& collisionShape( const btCollisionShapeRef &shape ) { mCollShape = shape; return *this; }
+		//! Sets the Motion State of the object. Default is nullptr.
+		Format& motionState( const MotionStateRef &motionState ) { mMotionState = motionState; return *this; }
+		//! Sets the mass of the object. Default is 0.0f or static object.
+		Format& mass( btScalar mass ) { mMass = mass; return *this; }
+		//! Sets the Vec3f for the initial position of the object. Default is Vec3f::yAxis() or Vec3f( 0.0f, 1.0f, 0.0f ).
+		Format& initialPosition( const ci::Vec3f &initialPosition ) { mInitialPosition = initialPosition; return *this; }
+		//! Sets the Vec3f for the initial scale of the object. Default is Vec3f( 1.0f, 1.0f, 1.0f ).
+		Format& initialScale( const ci::Vec3f &initialScale ) { mInitialScale = initialScale; return *this; }
+		//! Sets the Quatf for the initial rotation of the object. Default is Quatf::identity()
+		Format& initialRotation( const ci::Quatf &initialRotation ) { mInitialRotation = initialRotation; return *this; }
+		//! Sets the friction of the object. Can set friction after construction too. Default is 0.5.
+		Format& friction( btScalar friction ) { mFriction = friction; return *this; }
+		//! Sets the Restitution of the object. Can set restitution after construction too. Default is 0.0.
+		Format& restitution( btScalar restitution ) { mRestitution = restitution; return *this; }
+		//! Sets the Collision Group that this object is in. This is used for bitwise operations against CollMask. Helper in Common.h #define BIT(). Other things with this bit in their mask will collide with this object. Default is -1 or all bits set.
+		Format& collGroup( int16_t collGroup ) { mCollisionGroup = collGroup; return *this; }
+		//! Sets the Collision Mask of this object. This is used for bitwise operations against CollGroup. Helper in Common.h #define BIT(). Other things with this bit in their mask will collide with this object. Default is -1 or all bits set.
+		Format& collMask( int16_t collMask ) { mCollisionMask = collMask; return *this; }
+		//! Sets whether to auto add to the world. Default is true.
+		Format& addToWorld( bool addToWorld ) { mAddToWorld = addToWorld; return *this; }
+		//! Sets whether to add "this" instance to Rigid Body User Pointer. Defaults to the RigidBody constructed object.
+		Format& rigidUserPointer( void* userPtr ) { mRigidBodyUserPtr = userPtr; return *this; }
+		//! Sets the object to kinematic and zeros the mass on construction and sets the appropriate flags.
+		Format& kinematic( bool shouldBeKinematic = true ) { mSetKinematic = shouldBeKinematic; return *this; }
+		
 	protected:
 		btCollisionShapeRef		mCollShape;
-		PhyObjMotionStateRef	mMotionState;
+		MotionStateRef	mMotionState;
 		btScalar				mMass, mFriction, mRestitution;
 		int16_t					mCollisionGroup, mCollisionMask;
 		ci::Vec3f				mInitialPosition;
@@ -92,6 +119,8 @@ public:
 		
 		friend class RigidBody;
 	};
+	
+	static RigidBodyRef create( const Format &format );
 	
 	virtual ~RigidBody();
 	
@@ -123,11 +152,11 @@ public:
 	//! Returns the const pointer to the Rigid Body of this object.
 	const btRigidBodyRef&			getRigidBody() const { return mRigidBody; }
 	//! Returns the pointer to the Motion State of this object.
-	PhyObjMotionStateRef&			getMotionState() { return mMotionState; }
+	MotionStateRef&			getMotionState() { return mMotionState; }
 	//! Returns the const pointer to the Motion State of this object.
-	const PhyObjMotionStateRef&		getMotionState() const { return mMotionState; }
+	const MotionStateRef&		getMotionState() const { return mMotionState; }
 	
-	void setMotionState( const PhyObjMotionStateRef &motionState )
+	void setMotionState( const MotionStateRef &motionState )
 	{
 		mRigidBody->setMotionState( motionState.get() );
 	}
@@ -226,7 +255,7 @@ public:
 	
 protected:
 	//! Base Class for a Physics Object.
-	RigidBody();
+	RigidBody( const Format &format );
 	
 	//! Initializes this object.
 	virtual void init( const Format &format );
@@ -238,7 +267,7 @@ protected:
 	
 	btRigidBodyRef			mRigidBody;
 	btCollisionShapeRef		mCollisionShape;
-	PhyObjMotionStateRef	mMotionState;
+	MotionStateRef	mMotionState;
 	
 	ci::Vec3f			mBoundingSphereCenter;
 	btScalar			mBoundingSphereRadius;

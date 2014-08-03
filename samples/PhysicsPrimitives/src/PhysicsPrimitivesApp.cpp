@@ -5,7 +5,7 @@
 #include "cinder/gl/Shader.h"
 #include "cinder/gl/Batch.h"
 
-#include "Cinder-Bullet3D/PhyObjPrimitive.h"
+#include "Cinder-Bullet3D/RigidBody.h"
 #include "Cinder-Bullet3D/BulletContext.h"
 
 using namespace ci;
@@ -26,30 +26,38 @@ class PhysicsPrimitivesApp : public AppNative {
 	void draw();
 	
 	bullet::ContextRef mContext;
-	bullet::PhyObjPrimitiveRef mBox, mCapsule,
-								mPlane, mSphere,
-								mCone, mCylinder,
-								mMultiSphere;
+	bullet::RigidBodyRef mBox, mCapsule,
+							mPlane, mSphere,
+							mCone, mCylinder,
+							mMultiSphere;
 	CameraPersp			mCam;
 };
 
 void PhysicsPrimitivesApp::setup()
 {
+	using namespace bullet;
 	// Create a context. This Context stores all of the bullet world.
 	// Take a look at the Context::Format to find out just what can be
 	// controlled. Specifically here, we're creating a format that allows
 	// debug Drawing
-	mContext = bullet::Context::create( bullet::Context::Format().drawDebug( true ).createDebugRenderer( true ) );
+	mContext = Context::create( Context::Format().drawDebug( true ).createDebugRenderer( true ) );
 	
 	// Here we're creating the primitives for our physics world. These
 	// are helpers on the Primitive shapes that ship with bullet. We
 	// store a Reference to them in our application.
-	mBox = bullet::PhyObjPrimitive::createBox( Vec3f( 1, 1, 1 ), 1, Vec3f( 0, 10, 0 ) );
-	mCapsule = bullet::PhyObjPrimitive::createCapsule( 2, 5, 1, Vec3f( 3, 10, 0 ) );
-	mSphere = bullet::PhyObjPrimitive::createSphere( 1, 1, Vec3f( 0.5, 20, 0 ) );
-	mCone = bullet::PhyObjPrimitive::createCone( 1, 2, 1, Vec3f( -0.5, 20, 0 ) );
-	mCylinder = bullet::PhyObjPrimitive::createCylinder( Vec3f( 1, 1, 1 ), 1, Vec3f( -3, 10, 3 ) );
-	mPlane = bullet::PhyObjPrimitive::createStaticPlane( Vec3f( 0, 1, 0 ), 0 );
+	mBox = RigidBody::create( RigidBody::Format().collisionShape( createBoxShape( Vec3f( 1, 1, 1 ) ) ).initialPosition( Vec3f( 0, 10, 0 ) ).mass( 1 ) );
+	mCapsule = RigidBody::create( RigidBody::Format().collisionShape( createCapsuleShape( 2, 5 ) ).initialPosition( Vec3f( 3, 10, 0 ) ).mass( 1 ) );
+	mSphere = RigidBody::create( RigidBody::Format().collisionShape( createSphereShape( 1 ) ).initialPosition( Vec3f( 0.5, 20, 0 ) ).mass( 1 ) );
+	mCone = RigidBody::create( RigidBody::Format().collisionShape( createConeShape( 1, 2 ) ).initialPosition( Vec3f( -0.5, 20, 0 ) ).mass( 1 ) );
+	mCylinder = RigidBody::create( RigidBody::Format().collisionShape( createCylinderShape( Vec3f( 1, 5, 1 ) ) ).initialPosition( Vec3f( -0.5, 20, 0 ) ).mass( 1 ) );
+	
+	// Static Plane is the only interesting one really. It's infinite,
+	// So you give it a Normal first (Vec3f(0, 1, 0), is pointing up)
+	// and an offset on that normal, in this case 0. It's also static
+	// therefore we don't need to add a mass to it. The default
+	// RigidBody::Format value for mass is 0, which makes the rigidbody
+	// static, meaning not moving.
+	mPlane = RigidBody::create( RigidBody::Format().collisionShape( createStaticPlaneShape( Vec3f( 0, 1, 0 ), 0 ) ) );
 
 	std::vector<ci::Vec3f> positions = {
 		Vec3f( 1, 0, 0 ),
@@ -61,7 +69,7 @@ void PhysicsPrimitivesApp::setup()
 		1,
 		1
 	};
-	mMultiSphere = bullet::PhyObjPrimitive::createMultiSphere( positions, radii, 1, Vec3f( -1.5, 15, 0 ) );
+	mMultiSphere = RigidBody::create( RigidBody::Format().collisionShape( createMultiSphereShape( positions, radii ) ).initialPosition( Vec3f( -1.5, 15, 0 ) ).mass( 1 ) );
 
 	// Once a physics object is created, all we need to do is tell the
 	// context about them and it'll add them to the bullet world.
@@ -89,8 +97,8 @@ void PhysicsPrimitivesApp::collisionBegin( btRigidBody *rigid0, btRigidBody *rig
 	// Unless you set the rigid body's User Pointer manually, it will
 	// be set with the PhyObjPrimitives 'this' pointer. This is the way
 	// all of the PhyObj's work.
-	PhyObjPrimitive *phyObj0 = static_cast<PhyObjPrimitive*>( rigid0->getUserPointer() );
-	PhyObjPrimitive *phyObj1 = static_cast<PhyObjPrimitive*>( rigid1->getUserPointer() );
+	RigidBody *phyObj0 = static_cast<RigidBody*>( rigid0->getUserPointer() );
+	RigidBody *phyObj1 = static_cast<RigidBody*>( rigid1->getUserPointer() );
 	
 	std::cout << "PhyObj0 shape: " << phyObj0->getName() << " PhyObj1 shape: " << phyObj1->getName() << std::endl;
 }
@@ -101,8 +109,8 @@ void PhysicsPrimitivesApp::collisionEnd( btRigidBody *rigid0, btRigidBody *rigid
 	// Unless you set the rigid body's User Pointer manually, it will
 	// be set with the PhyObjPrimitives 'this' pointer. This is the way
 	// all of the PhyObj's work.
-	PhyObjPrimitive *phyObj0 = static_cast<PhyObjPrimitive*>( rigid0->getUserPointer() );
-	PhyObjPrimitive *phyObj1 = static_cast<PhyObjPrimitive*>( rigid1->getUserPointer() );
+	RigidBody *phyObj0 = static_cast<RigidBody*>( rigid0->getUserPointer() );
+	RigidBody *phyObj1 = static_cast<RigidBody*>( rigid1->getUserPointer() );
 	
 	std::cout << "PhyObj0 shape: " << phyObj0->getName() << " PhyObj1 shape: " << phyObj1->getName() << std::endl;
 }
