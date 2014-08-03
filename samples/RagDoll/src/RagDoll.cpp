@@ -32,52 +32,87 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::Vec3f &positionO
 	mShapes.push_back( createCapsuleShape( 0.05, 0.33 ) );
 	mShapes.push_back( createCapsuleShape( 0.04, 0.25 ) );
 	
+	btTransform offset; offset.setIdentity();
+	offset.setOrigin( toBullet( positionOffset ) );
 	
 	bullet::RigidBody::Format format;
 	format.addToWorld( true );
 	
 	// PELVIS
 	format.initialPosition( Vec3f( 0, 1, 0 ) ).mass( 1.0 ).collisionShape( mShapes[BODYPART_PELVIS] );
-	mBodies.push_back( RigidBody::create( format ) );
+	auto body = RigidBody::create( format );
+	mBodies.push_back( body );
+	mMotionStates.push_back( MotionStateRef( new SimpleGlDynamicMotionState( offset * body->getCenterOfMassTransform() ) ) );
+	mBodies.back()->setMotionState( mMotionStates.back() );
 	
 	// SPINE
 	format.initialPosition( Vec3f( 0, 1.2, 0 ) ).collisionShape( mShapes[BODYPART_SPINE] );
-	mBodies.push_back( RigidBody::create( format ) );
+	body = RigidBody::create( format );
+	mBodies.push_back( body );
+	mMotionStates.push_back( MotionStateRef( new SimpleGlDynamicMotionState( offset * body->getCenterOfMassTransform() ) ) );
+	mBodies.back()->setMotionState( mMotionStates.back() );
 	
 	// HEAD
 	format.initialPosition( Vec3f( 0, 1.6, 0 ) ).collisionShape( mShapes[BODYPART_HEAD] );
-	mBodies.push_back( RigidBody::create( format ) );
+	body = RigidBody::create( format );
+	mBodies.push_back( body );
+	mMotionStates.push_back( MotionStateRef( new SimpleGlDynamicMotionState( offset * body->getCenterOfMassTransform() ) ) );
+	mBodies.back()->setMotionState( mMotionStates.back() );
 	
 	// LEFT UPPER LEG
 	format.initialPosition( Vec3f( -0.18, 0.65, 0.0 ) ).collisionShape( mShapes[BODYPART_LEFT_UPPER_LEG] );
-	mBodies.push_back( RigidBody::create( format ) );
+	body = RigidBody::create( format );
+	mBodies.push_back( body );
+	mMotionStates.push_back( MotionStateRef( new SimpleGlDynamicMotionState( offset * body->getCenterOfMassTransform() ) ) );
+	mBodies.back()->setMotionState( mMotionStates.back() );
 	
 	// LEFT LOWER LEG
 	format.initialPosition( Vec3f( -0.18, 0.2, 0. ) ).collisionShape( mShapes[BODYPART_LEFT_LOWER_LEG] );
-	mBodies.push_back( RigidBody::create( format ) );
+	body = RigidBody::create( format );
+	mBodies.push_back( body );
+	mMotionStates.push_back( MotionStateRef( new SimpleGlDynamicMotionState( offset * body->getCenterOfMassTransform() ) ) );
+	mBodies.back()->setMotionState( mMotionStates.back() );
 	
 	// RIGHT UPPER LEG
 	format.initialPosition( Vec3f( 0.18, 0.65, 0. ) ).collisionShape( mShapes[BODYPART_RIGHT_UPPER_LEG] );
-	mBodies.push_back( RigidBody::create( format ) );
+	body = RigidBody::create( format );
+	mBodies.push_back( body );
+	mMotionStates.push_back( MotionStateRef( new SimpleGlDynamicMotionState( offset * body->getCenterOfMassTransform() ) ) );
+	mBodies.back()->setMotionState( mMotionStates.back() );
 	
 	// RIGHT LOWER LEG
 	format.initialPosition( Vec3f( 0.18, 0.2, 0. ) ).collisionShape( mShapes[BODYPART_RIGHT_LOWER_LEG] );
-	mBodies.push_back( RigidBody::create( format ) );
+	body = RigidBody::create( format );
+	mBodies.push_back( body );
+	mMotionStates.push_back( MotionStateRef( new SimpleGlDynamicMotionState( offset * body->getCenterOfMassTransform() ) ) );
+	mBodies.back()->setMotionState( mMotionStates.back() );
 	
 	// LEFT UPPER ARM
 	format.initialPosition( Vec3f( -0.35, 1.45, 0.0 ) ).initialRotation( Quatf( 0, 0, M_PI_2 ) ).collisionShape( mShapes[BODYPART_LEFT_UPPER_ARM] );
-	mBodies.push_back( RigidBody::create( format ) );
+	body = RigidBody::create( format );
+	mBodies.push_back( body );
+	mMotionStates.push_back( MotionStateRef( new SimpleGlDynamicMotionState( offset * body->getCenterOfMassTransform() ) ) );
+	mBodies.back()->setMotionState( mMotionStates.back() );
 	
 	// LEFT LOWER ARM
 	format.initialPosition( Vec3f( -0.7, 1.45, 0.0 ) ).initialRotation( Quatf( 0, 0, M_PI_2 ) ).collisionShape( mShapes[BODYPART_LEFT_LOWER_ARM] );
-	mBodies.push_back( RigidBody::create( format ) );
+	body = RigidBody::create( format );
+	mBodies.push_back( body );
+	mMotionStates.push_back( MotionStateRef( new SimpleGlDynamicMotionState( offset * body->getCenterOfMassTransform() ) ) );
+	mBodies.back()->setMotionState( mMotionStates.back() );
 	
 	format.initialPosition( Vec3f( 0.35, 1.45, 0.0 ) ).initialRotation( Quatf( 0, 0, -M_PI_2 ) ).collisionShape( mShapes[BODYPART_RIGHT_UPPER_ARM] );
-	mBodies.push_back( RigidBody::create( format ) );
+	body = RigidBody::create( format );
+	mBodies.push_back( body );
+	mMotionStates.push_back( MotionStateRef( new SimpleGlDynamicMotionState( offset * body->getCenterOfMassTransform() ) ) );
+	mBodies.back()->setMotionState( mMotionStates.back() );
 	
 	// RIGHT LOWER ARM
 	format.initialPosition( Vec3f( 0.7, 1.45, 0.0 ) ).initialRotation( Quatf( 0, 0, -M_PI_2 ) ).collisionShape( mShapes[BODYPART_RIGHT_LOWER_ARM] );
-	mBodies.push_back( RigidBody::create( format ) );
+	body = RigidBody::create( format );
+	mBodies.push_back( body );
+	mMotionStates.push_back( MotionStateRef( new SimpleGlDynamicMotionState( offset * body->getCenterOfMassTransform() ) ) );
+	mBodies.back()->setMotionState( mMotionStates.back() );
 	
 	{
 		// Setup some damping on the mBodies
@@ -85,9 +120,10 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::Vec3f &positionO
 		auto end = mBodies.end();
 		for ( ; bodyIt != end; ++bodyIt )
 		{
-			(*bodyIt)->setDamping(0.05, 0.85);
+			cout << "adding damping" << endl;
+			(*bodyIt)->setDamping(0.5, 0.85);
 			(*bodyIt)->setDeactivationTime(0.8);
-			(*bodyIt)->setSleepingThresholds(1.6, 2.5);
+			(*bodyIt)->setSleepingThresholds(4, 4);
 		}
 	}
 	

@@ -30,14 +30,20 @@ void RagDollApp::setup()
 	// Take a look at the Context::Format to find out just what can be
 	// controlled. Specifically here, we're creating a format that allows
 	// debug Drawing
-	mContext = bullet::Context::create( bullet::Context::Format().drawDebug( true ).createDebugRenderer( true ) );
+	bullet::Context::Format format;
+	format.drawDebug( true ).createDebugRenderer( true );
+	btVector3 worldAabbMin(-10000,-10000,-10000);
+	btVector3 worldAabbMax(10000,10000,10000);
+	format.broadphase( new btAxisSweep3 (worldAabbMin, worldAabbMax) );
+	
+	mContext = bullet::Context::create( format );
 	
 	mRagDolls.push_back( RagDoll::create( mContext, Vec3f( 1, .5, 0 ) ) );
 	
 	mPlane = bullet::RigidBody::create( bullet::RigidBody::Format().collisionShape( bullet::createStaticPlaneShape( Vec3f( 0, 1, 0 ), -1 ) ).mass( 0.0 ).addToWorld( true ) );
 	
 	mCam.setPerspective( 60.0f, getWindowAspectRatio(), .01f, 1000.0 );
-	mCam.lookAt( Vec3f( 0, 0, 5 ), Vec3f::zero() );
+	mCam.lookAt( Vec3f( 0, 5, 5 ), Vec3f::zero() );
 	
 	mDraw = false;
 }

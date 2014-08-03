@@ -65,5 +65,6 @@ private:
 	bullet::ContextRef				mOwner;
 	std::vector<bullet::btCollisionShapeRef>	mShapes;
 	std::vector<bullet::RigidBodyRef>			mBodies;
+	std::vector<bullet::MotionStateRef>			mMotionStates;
 	std::vector<bullet::ConstraintBaseRef>		mConstraints;
 };
