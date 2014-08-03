@@ -131,7 +131,7 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::Vec3f &positionO
 	ConstraintConeTwist::Format coneFormat;
 	
 	hingeFormat.localAOrigin( Vec3f( 0.0, 0.15, 0.0 ) ).localARot( Quatf(0,M_PI_2,0) ).objA( mBodies[BODYPART_PELVIS] )
-					.localBOrigin( Vec3f( 0.0, -0.15, 0.0 ) ).localBRot( Quatf(0,M_PI_2,0) ).objB( mBodies[BODYPART_SPINE] );
+				.localBOrigin( Vec3f( 0.0, -0.15, 0.0 ) ).localBRot( Quatf(0,M_PI_2,0) ).objB( mBodies[BODYPART_SPINE] );
 	{
 		auto hinge = ConstraintHinge::create( hingeFormat );
 		hinge->setLimit( btScalar(-M_PI_4), btScalar(M_PI_2) );
@@ -149,8 +149,8 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::Vec3f &positionO
 	}
 
 	// Something's going on with quaternions here
-	coneFormat.localAOrigin( Vec3f( -0.18, -0.10, 0.0 ) ).objA( mBodies[BODYPART_PELVIS] )
-			  .localBOrigin( Vec3f( 0.0, 0.225, 0.0 ) ).objB( mBodies[BODYPART_LEFT_UPPER_LEG] );
+	coneFormat.localAOrigin( Vec3f( -0.18, -0.10, 0.0 ) ).localARot( Quatf(0, 0, -M_PI_4*5 ) ).objA( mBodies[BODYPART_PELVIS] )
+			  .localBOrigin( Vec3f( 0.0, 0.225, 0.0 ) ).localARot( Quatf(0, 0, -M_PI_4*5 ) ).objB( mBodies[BODYPART_LEFT_UPPER_LEG] );
 	{
 		auto cone = ConstraintConeTwist::create( coneFormat );
 		cone->setLimit( M_PI_4, M_PI_4, 0 );

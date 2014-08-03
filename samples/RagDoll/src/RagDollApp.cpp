@@ -40,7 +40,7 @@ void RagDollApp::setup()
 	
 	mRagDolls.push_back( RagDoll::create( mContext, Vec3f( 1, .5, 0 ) ) );
 	
-	mPlane = bullet::RigidBody::create( bullet::RigidBody::Format().collisionShape( bullet::createStaticPlaneShape( Vec3f( 0, 1, 0 ), -1 ) ).mass( 0.0 ).addToWorld( true ) );
+	mPlane = bullet::RigidBody::create( bullet::RigidBody::Format().collisionShape( bullet::createStaticPlaneShape( Vec3f( 0, 1, 0 ), 0 ) ).mass( 0.0 ).addToWorld( true ) );
 	
 	mCam.setPerspective( 60.0f, getWindowAspectRatio(), .01f, 1000.0 );
 	mCam.lookAt( Vec3f( 0, 5, 5 ), Vec3f::zero() );
