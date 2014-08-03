@@ -21,39 +21,35 @@
 
 class btHeightfieldTerrainShape;
 
+
+using TriMeshRef = std::shared_ptr<ci::TriMesh>;
+
 namespace bullet {
 
 class Context;
-typedef std::shared_ptr<Context> ContextRef;
+using ContextRef = std::shared_ptr<Context>;
 	
-typedef std::shared_ptr<btCollisionShape> btCollisionShapeRef;
-typedef std::shared_ptr<class OpenGLMotionState> OpenGLMotionStateRef;
-typedef std::shared_ptr<btRigidBody> btRigidBodyRef;
-typedef std::shared_ptr<btDiscreteDynamicsWorld> btDiscreteDynamicsWorldRef;
-typedef std::shared_ptr<btDynamicsWorld> btDynamicsWorldRef;
-typedef std::shared_ptr<btCollisionObject> btCollisionObjectRef;
-typedef std::shared_ptr<btBoxShape> btBoxShapeRef;
-typedef std::shared_ptr<btConeShape> btConeShapeRef;
-typedef std::shared_ptr<btCapsuleShape> btCapsuleShapeRef;
-typedef std::shared_ptr<btCylinderShape> btCylinderShapeRef;
-typedef std::shared_ptr<btSphereShape> btSphereShapeRef;
-typedef std::shared_ptr<btStaticPlaneShape> btStaticPlaneShapeRef;
-typedef std::shared_ptr<btMultiSphereShape> btMultiSphereShapeRef;
-typedef std::shared_ptr<btCompoundShape> btCompoundShapeRef;
-typedef std::shared_ptr<btConvexHullShape> btConvexHullShapeRef;
-typedef std::shared_ptr<btHeightfieldTerrainShape> btHeightfieldTerrainShapeRef;
+using btCollisionShapeRef = std::shared_ptr<btCollisionShape>;
+using OpenGLMotionStateRef = std::shared_ptr<class OpenGLMotionState>;
+using btRigidBodyRef = std::shared_ptr<btRigidBody>;
+using btDiscreteDynamicsWorldRef = std::shared_ptr<btDiscreteDynamicsWorld>;
+using btDynamicsWorldRef = std::shared_ptr<btDynamicsWorld>;
+using btCollisionObjectRef = std::shared_ptr<btCollisionObject>;
 	
-typedef std::shared_ptr<class Context>					ContextRef;
-typedef std::shared_ptr<class PhysicsDebugRenderable>	DebugRendererRef;
-typedef std::shared_ptr<class RigidBody>				RigidBodyRef;
-class PhyObjPrimitive;
-typedef std::shared_ptr<PhyObjPrimitive>				PhyObjPrimitiveRef;
-class PhyObjConvexHull;
-typedef std::shared_ptr<PhyObjConvexHull>				PhyObjConvexHullRef;
-class PhyObjCompoundShape;
-typedef std::shared_ptr<PhyObjCompoundShape>			PhyObjCompoundShapeRef;
-class PhyObjHeightfieldTerrain;
-typedef std::shared_ptr<PhyObjHeightfieldTerrain>		PhyObjHeightfieldTerrainRef;
+
+using btBoxShapeRef = std::shared_ptr<btBoxShape>;
+using btConeShapeRef = std::shared_ptr<btConeShape>;
+using btCapsuleShapeRef = std::shared_ptr<btCapsuleShape>;
+using btCylinderShapeRef = std::shared_ptr<btCylinderShape>;
+using btSphereShapeRef = std::shared_ptr<btSphereShape>;
+using btStaticPlaneShapeRef = std::shared_ptr<btStaticPlaneShape>;
+using btMultiSphereShapeRef = std::shared_ptr<btMultiSphereShape>;
+using btCompoundShapeRef = std::shared_ptr<btCompoundShape>;
+using btConvexHullShapeRef = std::shared_ptr<btConvexHullShape>;
+using btHeightfieldTerrainShapeRef = std::shared_ptr<btHeightfieldTerrainShape>;
+	
+using DebugRendererRef = std::shared_ptr<class PhysicsDebugRenderable>;
+using RigidBodyRef = std::shared_ptr<class RigidBody>;
 	
 // Pointer to the main Bullet Context
 Context* Context();
@@ -66,6 +62,15 @@ btSphereShapeRef createSphereShape( btScalar radius );
 btStaticPlaneShapeRef createStaticPlaneShape( const ci::Vec3f &normal, btScalar offset );
 btMultiSphereShapeRef createMultiSphereShape( const std::vector<ci::Vec3f> &positions, const std::vector<btScalar> &radii );
 btMultiSphereShapeRef createMultiSphereShape( const std::vector<btVector3> &positions, const std::vector<btScalar> &radii );
+	
+using Offsets = std::vector<btTransform>;
+using ShapesAndOffsets = std::map<btCollisionShape*, Offsets>;
+btCompoundShapeRef createCompoundShape( const ShapesAndOffsets &shapesAndOffsets );
+btConvexHullShapeRef createConvexHull( const TriMeshRef &mesh );
+btHeightfieldTerrainShapeRef createHeightfieldShape( );
+
+	
+
 	
 enum PhyObjType {
 	BOX = 0,
