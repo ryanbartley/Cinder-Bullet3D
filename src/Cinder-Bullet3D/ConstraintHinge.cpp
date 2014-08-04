@@ -27,6 +27,7 @@ ConstraintHinge::ConstraintHinge( const Format &format )
 												 format.mLocalA,
 												 format.mLocalB,
 												 format.mUseReferenceFrameA );
+	mConstraint->setBreakingImpulseThreshold( 1000.0 );
 }
 
 ConstraintHingeRef ConstraintHinge::create( const Format &format )

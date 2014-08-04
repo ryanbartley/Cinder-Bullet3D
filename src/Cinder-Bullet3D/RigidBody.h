@@ -51,7 +51,7 @@ public:
 		//! Returns Collision Shape User Pointer. Defaults to nullptr.
 		const bool getCSUserPointer() const { return mRigidBodyUserPtr; }
 		//! Returns the object to kinematic and zeros the mass on construction and sets the appropriate flags.
-		const bool getIsKinematic() const { return mSetKinematic; }
+		const bool isKinematic() const { return mSetKinematic; }
 		//! Sets the Collision shape of the object.
 		void setCollisionShape( const btCollisionShapeRef &shape ) { mCollShape = shape; }
 		//! Sets the Motion state of the object.
@@ -131,7 +131,7 @@ public:
 	//! Returns the PhyObjType enumeration of the type.
 	PhyObjType getType() { return mType; }
 	//! Returns whether this object is added to the current world.
-	bool getIsAddedToWorld() { return mAddedToWorld; }
+	bool isAddedToWorld() { return mAddedToWorld; }
 	
 	//! Sets Collision flags for the rigid body
 	void setFlag( int flag ) { mRigidBody->setFlags( mRigidBody->getFlags() | flag ); }

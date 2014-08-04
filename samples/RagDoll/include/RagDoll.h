@@ -12,11 +12,13 @@
 #include "Cinder-Bullet3D/ConstraintBase.h"
 #include "Cinder-Bullet3D/BulletContext.h"
 
+#include "cinder/gl/Batch.h"
+
 using RagDollRef = std::shared_ptr<class RagDoll>;
 
 class RagDoll {
 public:
-	static RagDollRef create( const bullet::ContextRef &context, const ci::Vec3f &positionOffset );
+	static RagDollRef create( const bullet::ContextRef &context, const ci::Vec3f &positionOffset, const ci::gl::GlslProgRef &glsl  );
 	
 	virtual ~RagDoll();
 	
@@ -58,13 +60,34 @@ public:
 		
 		JOINT_COUNT
 	};
+	
+	void draw();
 
 private:
-	RagDoll( const bullet::ContextRef &context, const ci::Vec3f &positionOffset );
+	RagDoll( const bullet::ContextRef &context, const ci::Vec3f &positionOffset, const ci::gl::GlslProgRef &glsl );
 	
-	bullet::ContextRef				mOwner;
+	bullet::ContextRef							mOwner;
 	std::vector<bullet::btCollisionShapeRef>	mShapes;
 	std::vector<bullet::RigidBodyRef>			mBodies;
-	std::vector<bullet::MotionStateRef>			mMotionStates;
+	std::vector<bullet::SimpleGlDynamicMotionStateRef>	mMotionStates;
 	std::vector<bullet::ConstraintBaseRef>		mConstraints;
+	std::vector<ci::gl::BatchRef>				mBatches;
 };
+
+inline void RagDoll::draw()
+{
+	auto batchIt = mBatches.begin();
+	auto endBat = mBatches.end();
+	auto motionIt = mMotionStates.begin();
+	auto endMot = mMotionStates.end();
+	ci::Matrix44f model;
+	while( batchIt != endBat && motionIt != endMot ) {
+		
+		(*motionIt)->getGLWorldTransform( &model );
+		ci::gl::setModelMatrix( model );
+		
+		(*batchIt)->draw();
+		
+		++batchIt; ++motionIt;
+	}
+}

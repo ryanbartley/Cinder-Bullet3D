@@ -177,6 +177,7 @@ static const char * getPhyObjType( PhyObjType type )
 		}
 	}
 }
-
 	
 }
+
+namespace bt = bullet;
