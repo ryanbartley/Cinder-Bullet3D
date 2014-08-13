@@ -65,7 +65,7 @@ void VisualPhysicsApp::setup()
 	gl::enableDepthWrite();
 	
 	mCam.setPerspective( 60.0, getWindowAspectRatio(), .01f, 1000.0f );
-	mCam.lookAt( Vec3f( 0, 5, 10 ), Vec3f::zero() );
+	mCam.lookAt( Vec3f( 0, 5, 20 ), Vec3f::zero() );
 }
 
 void VisualPhysicsApp::createCube()
