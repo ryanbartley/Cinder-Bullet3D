@@ -796,26 +796,26 @@
 		95D540E4BEB24B5882CEBEC9 /* Cinder-Bullet3D */ = {
 			isa = PBXGroup;
 			children = (
+				82230B602925498F889F4561 /* BulletContext.cpp */,
 				D41D4732E5574933891964FE /* BulletContext.h */,
+				5A7EDC77890A48AA81AF349F /* Common.cpp */,
 				104F00FDD4924A3682473947 /* Common.h */,
+				C637961F3FE84BBBB2D92A63 /* ConstraintBase.cpp */,
 				9CD2450835EC48B6BA879C90 /* ConstraintBase.h */,
+				F462E3E308A9495C818319CA /* ConstraintGeneric6Dof.cpp */,
 				0A5812A25D044A18A47DD674 /* ConstraintGeneric6Dof.h */,
+				3DAA451823BC4F808A06B919 /* ConstraintHinge.cpp */,
 				1DF4F869035843B7B3948BC7 /* ConstraintHinge.h */,
 				E13E7F12ECF74AB18BFC8F82 /* MotionState.h */,
+				BD9650B52C9E46DFB81B4FAA /* PhyObjCharacterController.cpp */,
 				27FCFB91A7D34BFDA95E42F3 /* PhyObjCharacterController.h */,
 				3B928F0C682C4641BE24C994 /* PhyObjConvexHull.h */,
-				679EE811197F482BABE2E0AD /* PhyObjTriggerVol.h */,
-				9AF78FF64EA840C4B28400DF /* PhysicsDebugRenderable.h */,
-				8D578258B2804249894789F3 /* RigidBody.h */,
-				82230B602925498F889F4561 /* BulletContext.cpp */,
-				5A7EDC77890A48AA81AF349F /* Common.cpp */,
-				C637961F3FE84BBBB2D92A63 /* ConstraintBase.cpp */,
-				F462E3E308A9495C818319CA /* ConstraintGeneric6Dof.cpp */,
-				3DAA451823BC4F808A06B919 /* ConstraintHinge.cpp */,
-				BD9650B52C9E46DFB81B4FAA /* PhyObjCharacterController.cpp */,
 				46B392A3B5114A57A4C29B13 /* PhyObjTriggerVol.cpp */,
+				679EE811197F482BABE2E0AD /* PhyObjTriggerVol.h */,
 				0EB5687742FE41AFB8FA279A /* PhysicsDebugRenderable.cpp */,
+				9AF78FF64EA840C4B28400DF /* PhysicsDebugRenderable.h */,
 				099145A9FA2F401286D59A98 /* RigidBody.cpp */,
+				8D578258B2804249894789F3 /* RigidBody.h */,
 			);
 			name = "Cinder-Bullet3D";
 			sourceTree = "<group>";

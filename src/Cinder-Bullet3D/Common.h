@@ -23,6 +23,7 @@ class btHeightfieldTerrainShape;
 
 
 using TriMeshRef = std::shared_ptr<ci::TriMesh>;
+using VboMeshRef = std::shared_ptr<ci::gl::VboMesh>;
 
 namespace bullet {
 
@@ -79,8 +80,12 @@ using Offsets = std::vector<btTransform>;
 using ShapesAndOffsets = std::map<btCollisionShape*, Offsets>;
 btCompoundShapeRef createCompoundShape( const ShapesAndOffsets &shapesAndOffsets );
 btConvexHullShapeRef createConvexHull( const TriMeshRef &mesh );
-btHeightfieldTerrainShapeRef createHeightfieldShape( );
+btHeightfieldTerrainShapeRef createHeightfieldShape( const ci::Channel32f *heightData, float maxHeight, float minHeight, ci::Vec3f scale );
 
+	
+namespace drawableHelpers {
+	VboMeshRef getDrawableHeightfield( const ci::Channel32f *heightData );
+}
 	
 
 	
