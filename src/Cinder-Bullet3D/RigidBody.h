@@ -158,7 +158,8 @@ public:
 	
 	void setMotionState( const MotionStateRef &motionState )
 	{
-		mRigidBody->setMotionState( motionState.get() );
+		mMotionState = motionState;
+		mRigidBody->setMotionState( mMotionState.get() );
 	}
 	const btTransform& getCenterOfMassTransform() const
 	{
@@ -282,7 +283,7 @@ protected:
 	
 	btRigidBodyRef			mRigidBody;
 	btCollisionShapeRef		mCollisionShape;
-	MotionStateRef	mMotionState;
+	MotionStateRef			mMotionState;
 	
 	ci::Vec3f			mBoundingSphereCenter;
 	btScalar			mBoundingSphereRadius;
