@@ -69,7 +69,7 @@ void PhysicsPrimitivesApp::setup()
 		1,
 		1
 	};
-	mMultiSphere = RigidBody::create( RigidBody::Format().collisionShape( createMultiSphereShape( positions, radii ) ).initialPosition( Vec3f( -1.5, 15, 0 ) ).mass( 1 ) );
+	mMultiSphere = RigidBody::create( RigidBody::Format().collisionShape( createMultiSphereShape( positions, radii ) ).initialPosition( vec3( -1.5, 15, 0 ) ).mass( 1 ) );
 
 	// Once a physics object is created, all we need to do is tell the
 	// context about them and it'll add them to the bullet world.
@@ -88,7 +88,7 @@ void PhysicsPrimitivesApp::setup()
 	// For this example we'll make a simple camera to represent
 	// the physics object
 	mCam.setPerspective( 75.0f, getWindowAspectRatio(), .01f, 1000.0f );
-	mCam.lookAt( Vec3f( 0, 5, 20 ), Vec3f::zero() );
+	mCam.lookAt( Vec3f( 0, 5, 20 ), vec3( 0.0f ) );
 }
 
 void PhysicsPrimitivesApp::collisionBegin( btRigidBody *rigid0, btRigidBody *rigid1 )

@@ -16,10 +16,10 @@ typedef std::shared_ptr<class PTriggerVolume> PTriggerVolumeRef;
 
 class PhyObjTriggerVol {
 public:
-	PhyObjTriggerVol( btCollisionShape *collShape, const ci::Vec3f &position );
+	PhyObjTriggerVol( btCollisionShape *collShape, const ci::vec3 &position );
 	~PhyObjTriggerVol();
 	
-	void initObject( btCollisionShape *collShape, const ci::Vec3f &position );
+	void initObject( btCollisionShape *collShape, const ci::vec3 &position );
 	
 	operator btCollisionObject*() { return mTrigger; }
 	btCollisionObject* getCollisionObject() { return mTrigger; }

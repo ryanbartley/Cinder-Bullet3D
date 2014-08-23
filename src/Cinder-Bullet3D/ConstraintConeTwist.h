@@ -20,9 +20,9 @@ public:
 		
 		Format& objA( const RigidBodyRef &objA ) { mObjA = objA; return *this; }
 		Format& objB( const RigidBodyRef &objB ) { mObjB = objB; return *this; }
-		Format& localAOrigin( const ci::Vec3f &origin ) { mLocalA.setOrigin( toBullet( origin ) ); return *this; }
+		Format& localAOrigin( const ci::vec3 &origin ) { mLocalA.setOrigin( toBullet( origin ) ); return *this; }
 		Format& localARot( float z, float y, float x ) { mLocalA.getBasis().setEulerZYX( z, y, x ); return *this; }
-		Format& localBOrigin( const ci::Vec3f &origin ) { mLocalB.setOrigin( toBullet( origin ) ); return *this; }
+		Format& localBOrigin( const ci::vec3 &origin ) { mLocalB.setOrigin( toBullet( origin ) ); return *this; }
 		Format& localBRot( float z, float y, float x ) { mLocalB.getBasis().setEulerZYX( z, y, x ); return *this; }
 		Format& localAtrans( const btTransform &trans ) { mLocalA = trans; return *this; }
 		Format& localBtrans( const btTransform &trans ) { mLocalB = trans; return *this; }

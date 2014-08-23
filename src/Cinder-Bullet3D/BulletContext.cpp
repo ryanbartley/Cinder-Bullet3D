@@ -9,6 +9,8 @@
 #include "Cinder-Bullet3D/BulletContext.h"
 #include "Cinder-Bullet3D/PhysicsDebugRenderable.h"
 
+using namespace ci;
+
 namespace bullet {
 
 static class Context* sBulletContext = nullptr;
@@ -19,7 +21,7 @@ Context::Format::Format()
 : mWorld( nullptr ), mCollisionDispatcher( nullptr ),
 	mBroadphase( nullptr ), mSolver( nullptr ),
 	mConfiguration( nullptr ), mCreateDebugRenderer( false ),
-	mDrawDebug( false ), mStepVal( 1.0f / 60.0f), mGravity( ci::Vec3f( 0.0f, -9.8f, 0.0f ) ),
+	mDrawDebug( false ), mStepVal( 1.0f / 60.0f), mGravity( ci::vec3( 0.0f, -9.8f, 0.0f ) ),
 	mDebugMode(  btIDebugDraw::DBG_DrawWireframe | btIDebugDraw::DBG_DrawContactPoints | btIDebugDraw::DBG_DrawConstraints | btIDebugDraw::DBG_DrawConstraintLimits )
 {
 	
@@ -117,12 +119,12 @@ void Context::update()
 	}
 }
 	
-bool Context::closestRayCast( const ci::Vec3f &startPosition, const ci::Vec3f &direction, RayResult &result )
+bool Context::closestRayCast( const ci::vec3 &startPosition, const ci::vec3 &direction, RayResult &result )
 {
 	if( ! world() )
 		return false;
 	
-	btVector3 rayTo = toBullet( direction * 1000 );
+	btVector3 rayTo = toBullet( direction * 1000.0f );
 	btVector3 rayFrom = toBullet( startPosition );
 	
 	btCollisionWorld::ClosestRayResultCallback rayCallback( rayFrom, rayTo );

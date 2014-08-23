@@ -48,7 +48,7 @@ void PhyObjCharacterController::init( const Format &format )
 	world->addAction( this );
 }
 	
-void PhyObjCharacterController::setVelocity( const ci::Vec3f &v, float timeInterval )
+void PhyObjCharacterController::setVelocity( const ci::vec3 &v, float timeInterval )
 {
 	if( !mCharacter || !mCollisionObject )
 		return;
@@ -60,21 +60,21 @@ void PhyObjCharacterController::setLinearVelocity( float forward, float backward
 {
 	btTransform xform =  getGhostObject()->getWorldTransform();
 	
-	ci::Vec3f walkDirection(0.f, 0.f, 0.f);
+	ci::vec3 walkDirection(0.f, 0.f, 0.f);
 	
 	if (leftward != 0)
-		walkDirection -= ci::Vec3f(leftward, 0.f, 0.f);
+		walkDirection -= ci::vec3(leftward, 0.f, 0.f);
 	
 	if (rightward != 0)
-		walkDirection += ci::Vec3f(rightward, 0.f, 0.f);
+		walkDirection += ci::vec3(rightward, 0.f, 0.f);
 	
 	if (forward != 0)
-		walkDirection += ci::Vec3f(0.f, forward, 0.f);
+		walkDirection += ci::vec3(0.f, forward, 0.f);
 	
 	if (backward != 0)
-		walkDirection -= ci::Vec3f(0.f, backward, 0.f);
+		walkDirection -= ci::vec3(0.f, backward, 0.f);
 	
-	ci::Vec3f result = fromBullet(xform.getRotation()) * walkDirection;
+	ci::vec3 result = fromBullet(xform.getRotation()) * walkDirection;
 	
 	setVelocity(result, timeInterval);
 }
@@ -112,8 +112,8 @@ ci::AxisAlignedBox3f PhyObjCharacterController::getAabb()
 		
 		mCollisionObject->getCollisionShape()->getAabb( mCollisionObject->getWorldTransform(), aabbMin, aabbMax );
 		
-		ci::Vec3f min_aabb( aabbMin.x(), aabbMin.y(), aabbMin.z() );
-		ci::Vec3f max_aabb( aabbMax.x(), aabbMax.y(), aabbMax.z() );
+		ci::vec3 min_aabb( aabbMin.x(), aabbMin.y(), aabbMin.z() );
+		ci::vec3 max_aabb( aabbMax.x(), aabbMax.y(), aabbMax.z() );
 		
 		return ci::AxisAlignedBox3f( min_aabb, max_aabb );
 	}

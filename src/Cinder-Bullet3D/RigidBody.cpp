@@ -19,9 +19,8 @@ RigidBody::Format::Format()
 : mCollShape( nullptr ), mMotionState( nullptr ), mMass( 0.0f ),
 	mAddToWorld( false ), mFriction( btScalar(0.5) ),
 	mRestitution( btScalar(0.0) ), mCollisionGroup( -1 ), mCollisionMask( -1 ),
-	mInitialPosition( Vec3f::yAxis() ), mInitialScale( Vec3f::one() ),
-	mInitialRotation( Quatf::identity() ), mRigidBodyUserPtr( nullptr ),
-	mSetKinematic( false )
+	mInitialPosition( vec3( 0.0f, 1.0f, 0.0f ) ), mInitialScale( vec3( 1.0f ) ),
+	mRigidBodyUserPtr( nullptr ), mSetKinematic( false )
 {
 }
 	

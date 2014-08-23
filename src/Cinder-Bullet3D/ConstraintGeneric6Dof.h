@@ -45,13 +45,13 @@ public:
 	const btGeneric6DofConstraintRef getConstraintGeneric6Dof() const { return std::static_pointer_cast<btGeneric6DofConstraint>(mConstraint); }
 	
 	//! From the Bullet Wiki, For each axis, if lower limit = upper limit, The axis is locked. If lower limit < upper limit, the axis is limited between the specified values. If lower limit > upper limit, The axis is free and has no limits.
-	void setLinearLowerLimit( const ci::Vec3f &linearLower ) { getConstraintGeneric6Dof()->setLinearLowerLimit( toBullet( linearLower ) ); }
+	void setLinearLowerLimit( const ci::vec3 &linearLower ) { getConstraintGeneric6Dof()->setLinearLowerLimit( toBullet( linearLower ) ); }
 	//! From the Bullet Wiki, For each axis, if lower limit = upper limit, The axis is locked. If lower limit < upper limit, the axis is limited between the specified values. If lower limit > upper limit, The axis is free and has no limits.
-	void setLinearUpperLimit( const ci::Vec3f &linearUpper ) { getConstraintGeneric6Dof()->setLinearUpperLimit( toBullet( linearUpper ) ); }
+	void setLinearUpperLimit( const ci::vec3 &linearUpper ) { getConstraintGeneric6Dof()->setLinearUpperLimit( toBullet( linearUpper ) ); }
 	//! From the Bullet Wiki, For each axis, if lower limit = upper limit, The axis is locked. If lower limit < upper limit, the axis is limited between the specified values. If lower limit > upper limit, The axis is free and has no limits.
-	void setAngularLowerLimit( const ci::Vec3f &angularLower ) { getConstraintGeneric6Dof()->setAngularLowerLimit( toBullet( angularLower ) ); }
+	void setAngularLowerLimit( const ci::vec3 &angularLower ) { getConstraintGeneric6Dof()->setAngularLowerLimit( toBullet( angularLower ) ); }
 	//! From the Bullet Wiki, For each axis, if lower limit = upper limit, The axis is locked. If lower limit < upper limit, the axis is limited between the specified values. If lower limit > upper limit, The axis is free and has no limits.
-	void setAngularUpperLimit( const ci::Vec3f &angularUpper ) { getConstraintGeneric6Dof()->setAngularUpperLimit( toBullet( angularUpper ) ); }
+	void setAngularUpperLimit( const ci::vec3 &angularUpper ) { getConstraintGeneric6Dof()->setAngularUpperLimit( toBullet( angularUpper ) ); }
 	
 private:
 	ConstraintGeneric6Dof( const Format &format );

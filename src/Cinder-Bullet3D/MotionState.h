@@ -48,13 +48,13 @@ public:
 	virtual ~SimpleGlDynamicMotionState() {}
 	
 	//! Returns the cinder gl World transform from bullet after bullet has set the world transform
-	inline void getGLWorldTransform( ci::Matrix44f *transform )
+	inline void getGLWorldTransform( ci::mat4 *transform )
 	{
 		btTransform trans;
 		getWorldTransform(trans);
 		ATTRIBUTE_ALIGNED16(btScalar m[16]);
 		trans.getOpenGLMatrix( m );
-		transform->set(m);
+		*transform = ci::make_mat4( m );
 	}
 };
 	

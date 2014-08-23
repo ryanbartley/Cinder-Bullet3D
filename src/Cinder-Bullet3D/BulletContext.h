@@ -26,8 +26,8 @@ typedef std::function<void(btRigidBody*, btRigidBody*)>				CollisionFunc;
 	
 struct RayResult {
 	btRigidBody* pBody;
-	ci::Vec3f hitPoint;
-	ci::Vec3f hitNormal;
+	ci::vec3 hitPoint;
+	ci::vec3 hitNormal;
 };
 
 class Context {
@@ -56,7 +56,7 @@ public:
 		//! Sets whether BulletContext should draw debug. If you don't createDebugDraw this is a meaningless function. Defaults to false.
 		Format& drawDebug( bool drawDebug ) { mDrawDebug = drawDebug; return *this; }
 		//! Sets the gravity for the world.
-		Format& gravity( const ci::Vec3f &gravity ) { mGravity = gravity; return *this; }
+		Format& gravity( const ci::vec3 &gravity ) { mGravity = gravity; return *this; }
 		//! Sets the render mode for the debug drawer. Default is DrawContactPoints, DrawWireframe, DrawConstraints, DrawConstraintLimits. Modes combined by bitwise or ( | ) operator. You can find the other modes in btIDebugDraw.h.
 		Format& debugDrawMode( int mode ) { mDebugMode = mode; return *this; }
 		
@@ -68,7 +68,7 @@ public:
 		btBroadphaseInterface		*mBroadphase;
 		btConstraintSolver			*mSolver;
 		btCollisionConfiguration	*mConfiguration;
-		ci::Vec3f					mGravity;
+		ci::vec3					mGravity;
 		float						mStepVal;
 		int							mDebugMode;
 		bool						mCreateDebugRenderer, mDrawDebug;
@@ -107,8 +107,8 @@ public:
 	inline void removeConstraint( const btTypedConstraintRef &constraint ) { mWorld->removeConstraint( constraint.get() ); }
 	inline void removeConstraint( const ConstraintBaseRef &constraint ) { mWorld->removeConstraint( constraint->getTypedConstraint().get() ); }
 	
-	//! Set the Gravity of the world. Default is Vec3f( 0.0f, -9.8f, 0.0f ).
-	inline void setGravity( const ci::Vec3f &gravity ) { mWorld->setGravity( toBullet( gravity ) ); }
+	//! Set the Gravity of the world. Default is vec3( 0.0f, -9.8f, 0.0f ).
+	inline void setGravity( const ci::vec3 &gravity ) { mWorld->setGravity( toBullet( gravity ) ); }
 	//! Set the Time Increment Step Value of the world for each frame. Default is 1/60 for 60fps.
 	inline void setStepVal( float stepVal ) { mStepVal = stepVal; }
 	//! Returns the current stepVal.
@@ -124,7 +124,7 @@ public:
 	void toggleDebugDraw() { mDrawDebug = !mDrawDebug; }
 	
 	//! Generic RayCast function that returns the closest object it hits in \a RayResult
-	bool closestRayCast( const ci::Vec3f &startPosition, const ci::Vec3f &direction, RayResult &result );
+	bool closestRayCast( const ci::vec3 &startPosition, const ci::vec3 &direction, RayResult &result );
 	
 	btCollisionObjectArray& getCollisionObjects() { return mWorld->getCollisionObjectArray(); }
 	const btCollisionObjectArray& getCollisionObjects() const { return mWorld->getCollisionObjectArray(); }

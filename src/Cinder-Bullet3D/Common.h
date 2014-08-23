@@ -23,7 +23,7 @@ class btHeightfieldTerrainShape;
 
 
 using TriMeshRef = std::shared_ptr<ci::TriMesh>;
-using VboMeshRef = std::shared_ptr<ci::gl::VboMesh>;
+//using VboMeshRef = std::shared_ptr<ci::gl::VboMesh>;
 
 namespace bullet {
 
@@ -67,28 +67,28 @@ using RigidBodyRef = std::shared_ptr<class RigidBody>;
 // Pointer to the main Bullet Context
 Context* Context();
 	
-btBoxShapeRef createBoxShape( const ci::Vec3f &halfExtents );
+btBoxShapeRef createBoxShape( const ci::vec3 &halfExtents );
 btConeShapeRef createConeShape( btScalar radius, btScalar height );
 btCapsuleShapeRef createCapsuleShape( btScalar radius, btScalar height );
-btCylinderShapeRef createCylinderShape( const ci::Vec3f &halfExtents );
+btCylinderShapeRef createCylinderShape( const ci::vec3 &halfExtents );
 btSphereShapeRef createSphereShape( btScalar radius );
-btStaticPlaneShapeRef createStaticPlaneShape( const ci::Vec3f &normal, btScalar offset );
-btMultiSphereShapeRef createMultiSphereShape( const std::vector<ci::Vec3f> &positions, const std::vector<btScalar> &radii );
+btStaticPlaneShapeRef createStaticPlaneShape( const ci::vec3 &normal, btScalar offset );
+btMultiSphereShapeRef createMultiSphereShape( const std::vector<ci::vec3> &positions, const std::vector<btScalar> &radii );
 btMultiSphereShapeRef createMultiSphereShape( const std::vector<btVector3> &positions, const std::vector<btScalar> &radii );
 	
 using Offsets = std::vector<btTransform>;
 using ShapesAndOffsets = std::map<btCollisionShape*, Offsets>;
 btCompoundShapeRef createCompoundShape( const ShapesAndOffsets &shapesAndOffsets );
 btConvexHullShapeRef createConvexHull( const TriMeshRef &mesh );
-btHeightfieldTerrainShapeRef createHeightfieldShape( const ci::Channel32f *heightData, float maxHeight, float minHeight, ci::Vec3f scale );
-
+btHeightfieldTerrainShapeRef createHeightfieldShape( const ci::Channel32f *heightData,
+													float maxHeight,
+													float minHeight,
+													ci::vec3 scale = ci::vec3( 1.0f ) );
 	
 namespace drawableHelpers {
-	VboMeshRef getDrawableHeightfield( const ci::Channel32f *heightData );
+	ci::gl::VboMeshRef getDrawableHeightfield( const ci::Channel32f *heightData );
 }
-	
 
-	
 enum PhyObjType {
 	BOX = 0,
 	SPHERE,

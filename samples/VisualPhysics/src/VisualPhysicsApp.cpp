@@ -65,13 +65,13 @@ void VisualPhysicsApp::setup()
 	gl::enableDepthWrite();
 	
 	mCam.setPerspective( 60.0, getWindowAspectRatio(), .01f, 1000.0f );
-	mCam.lookAt( Vec3f( 0, 5, 20 ), Vec3f::zero() );
+	mCam.lookAt( vec3( 0, 5, 20 ), vec3( 0.0f ) );
 }
 
 void VisualPhysicsApp::createCube()
 {
 	using namespace bullet;
-	auto scale = Vec3f( 1, 1, 1 );
+	auto scale = vec3( 1, 1, 1 );
 	// We create a Cube batch. The cube's points are conveniently from 0, 0, 0 origin, with a scale of 1, 1, 1.
 	// I'm enabling the normals because of the Phong shader.
 	auto batch = gl::Batch::create( geom::Cube().enable( geom::Attrib::NORMAL ), mPhongShader );
@@ -79,7 +79,7 @@ void VisualPhysicsApp::createCube()
 	auto rigidBody = RigidBody::create( RigidBody::Format()
 									   .collisionShape( createBoxShape( scale ) )
 									   .mass( 1 )
-									   .initialPosition( Vec3f( 0, 10, 0 ) )
+									   .initialPosition( vec3( 0, 10, 0 ) )
 									   .addToWorld( true ) );
 	// Then put them together in the VisPhy object.
 	mVisualPhysicsObjs.emplace_back( batch, rigidBody );
@@ -97,7 +97,7 @@ void VisualPhysicsApp::createSphere()
 	auto rigidBody = RigidBody::create( RigidBody::Format()
 									   .collisionShape( createSphereShape( radius ) )
 									   .mass( 1 )
-									   .initialPosition( Vec3f( 0, 12, -.75 ) )
+									   .initialPosition( vec3( 0, 12, -.75 ) )
 									   .addToWorld( true ) );
 	
 	mVisualPhysicsObjs.emplace_back( batch, rigidBody );
@@ -114,15 +114,15 @@ void VisualPhysicsApp::createCone()
 								   .enable( geom::Attrib::NORMAL )
 								   .base( base )
 								   .height( height )
-								   .origin( Vec3f( 0, - (height / 2.0f), 0 ) ),
+								   .origin( vec3( 0, - (height / 2.0f), 0 ) ),
 								   mPhongShader );
 	
 	// Now we just create the bullet Cone Shape with almost the exact same arguments.
 	auto rigidBody = RigidBody::create( RigidBody::Format()
 									   .collisionShape( createConeShape( base, height ) )
 									   .mass( 1 )
-									   .initialPosition( Vec3f( 1, 10, 1 ) )
-									   .initialRotation( Quatf( Vec3f( 1, 1, 0 ), toRadians( 120.0f ) ) )
+									   .initialPosition( vec3( 1, 10, 1 ) )
+									   .initialRotation( quat( toRadians( 120.0f ), vec3( 1, 1, 0 ) ) )
 									   .addToWorld( true ) );
 	
 	mVisualPhysicsObjs.emplace_back( batch, rigidBody );
@@ -144,7 +144,7 @@ void VisualPhysicsApp::createTeapot()
 	auto rigidBody = RigidBody::create( RigidBody::Format()
 									   .collisionShape( teapotShape )
 									   .mass( 1 )
-									   .initialPosition( Vec3f( .9, 15, .9 ) )
+									   .initialPosition( vec3( .9, 15, .9 ) )
 									   .addToWorld( true ) );
 	
 	mVisualPhysicsObjs.emplace_back( batch, rigidBody );
@@ -163,8 +163,8 @@ void VisualPhysicsApp::setupGround()
 	// of zero I'd push the RigidBody to 0, 1, 0. Remember, that's not the normal, even though they're the same
 	// value. Same as if the offset were 50 and the normal were 0, 1, 0, the position would be 0, 50, 0, not 0, 51, 0
 	mPhyPlane = RigidBody::create( RigidBody::Format()
-								  .collisionShape( createStaticPlaneShape( Vec3f::yAxis(), 0 ) )
-								  .initialPosition( Vec3f( 0, 0, 0 ) )
+								  .collisionShape( createStaticPlaneShape( vec3( 0.0f, 1.0f, 0.0f ), 0 ) )
+								  .initialPosition( vec3( 0, 0, 0 ) )
 								  .addToWorld( true ) );
 }
 
@@ -214,7 +214,7 @@ void VisualPhysicsApp::draw()
 	// Now, we'll draw our plane first, by manipulating it's rotation. Since we know the plane's normal is up the yAxis
 	// all we need to do is rotate the plane backwards 90 degrees along the x axis. That'll create our floor.
 	gl::pushModelMatrix();
-	gl::multModelMatrix( Matrix44f::createRotation( Vec3f( 1, 0, 0 ), toRadians( -90.0f ) ) );
+	gl::multModelMatrix( rotate( toRadians( -90.0f ), vec3( 1, 0, 0 ) ) );
 		mVisPlane->draw();
 	gl::popModelMatrix();
 	

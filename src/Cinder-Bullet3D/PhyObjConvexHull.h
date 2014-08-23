@@ -26,10 +26,10 @@ public:
 		Format& collisionShape( const btCollisionShapeRef &shape ) { mCollShape = shape; return *this; }
 		//! Sets the mass of the object. Default is 0.0f or static object.
 		Format& mass( btScalar mass ) { mMass = mass; return *this; }
-		//! Sets the Vec3f for the initial position of the object. Default is Vec3f::yAxis() or Vec3f( 0.0f, 1.0f, 0.0f ).
-		Format& initialPosition( const ci::Vec3f &initialPosition ) { mInitialPosition = initialPosition; return *this; }
-		//! Sets the Vec3f for the initial scale of the object. Default is Vec3f( 1.0f, 1.0f, 1.0f ).
-		Format& initialScale( const ci::Vec3f &initialScale ) { mInitialScale = initialScale; return *this; }
+		//! Sets the vec3 for the initial position of the object. Default is vec3::yAxis() or vec3( 0.0f, 1.0f, 0.0f ).
+		Format& initialPosition( const ci::vec3 &initialPosition ) { mInitialPosition = initialPosition; return *this; }
+		//! Sets the vec3 for the initial scale of the object. Default is vec3( 1.0f, 1.0f, 1.0f ).
+		Format& initialScale( const ci::vec3 &initialScale ) { mInitialScale = initialScale; return *this; }
 		//! Sets the Quatf for the initial rotation of the object. Default is Quatf::identity()
 		Format& initialRotation( const ci::Quatf &initialRotation ) { mInitialRotation = initialRotation; return *this; }
 		//! Sets the friction of the object. Can set friction after construction too. Default is 0.5.

@@ -32,10 +32,10 @@ public:
 		const MotionStateRef& getMotionState() const { return mMotionState; }
 		//! Sets the mass of the object.
 		const btScalar getMass() const { return mMass; }
-		//! Sets the Vec3f for the initial position of the object.
-		const ci::Vec3f& getInitPosition() const { return mInitialPosition; }
-		//! Sets the Vec3f for the collision shapes local scaling.
-		const ci::Vec3f& getInitScale() const { return mInitialScale; }
+		//! Sets the vec3 for the initial position of the object.
+		const ci::vec3& getInitPosition() const { return mInitialPosition; }
+		//! Sets the vec3 for the collision shapes local scaling.
+		const ci::vec3& getInitScale() const { return mInitialScale; }
 		//! Sets the Quatf for the initial rotation of the object.
 		const ci::Quatf& getInitRotation() const { return mInitialRotation; }
 		//! Sets the friction of the object. Can set friction after construction too.
@@ -58,10 +58,10 @@ public:
 		void setMotionState( const MotionStateRef &motionState ) { mMotionState = motionState; }
 		//! Sets the mass of the object.
 		void setMass( btScalar mass ) { mMass = mass; }
-		//! Sets the Vec3f for the initial position of the object.
-		void setInitPosition( const ci::Vec3f &initialPosition ) { mInitialPosition = initialPosition; }
-		//! Sets the Vec3f for the collision shapes local scaling.
-		void setInitScale( const ci::Vec3f &initialScale ) { mInitialScale = initialScale; }
+		//! Sets the vec3 for the initial position of the object.
+		void setInitPosition( const ci::vec3 &initialPosition ) { mInitialPosition = initialPosition; }
+		//! Sets the vec3 for the collision shapes local scaling.
+		void setInitScale( const ci::vec3 &initialScale ) { mInitialScale = initialScale; }
 		//! Sets the Quatf for the initial rotation of the object.
 		void setInitRotation( const ci::Quatf &initialRotation ) { mInitialRotation = initialRotation; }
 		//! Sets the friction of the object. Can set friction after construction too.
@@ -85,10 +85,10 @@ public:
 		Format& motionState( const MotionStateRef &motionState ) { mMotionState = motionState; return *this; }
 		//! Sets the mass of the object. Default is 0.0f or static object.
 		Format& mass( btScalar mass ) { mMass = mass; return *this; }
-		//! Sets the Vec3f for the initial position of the object. Default is Vec3f::yAxis() or Vec3f( 0.0f, 1.0f, 0.0f ).
-		Format& initialPosition( const ci::Vec3f &initialPosition ) { mInitialPosition = initialPosition; return *this; }
-		//! Sets the Vec3f for the initial scale of the object. Default is Vec3f( 1.0f, 1.0f, 1.0f ).
-		Format& initialScale( const ci::Vec3f &initialScale ) { mInitialScale = initialScale; return *this; }
+		//! Sets the vec3 for the initial position of the object. Default is vec3::yAxis() or vec3( 0.0f, 1.0f, 0.0f ).
+		Format& initialPosition( const ci::vec3 &initialPosition ) { mInitialPosition = initialPosition; return *this; }
+		//! Sets the vec3 for the initial scale of the object. Default is vec3( 1.0f, 1.0f, 1.0f ).
+		Format& initialScale( const ci::vec3 &initialScale ) { mInitialScale = initialScale; return *this; }
 		//! Sets the Quatf for the initial rotation of the object. Default is Quatf::identity()
 		Format& initialRotation( const ci::Quatf &initialRotation ) { mInitialRotation = initialRotation; return *this; }
 		//! Sets the friction of the object. Can set friction after construction too. Default is 0.5.
@@ -111,8 +111,8 @@ public:
 		MotionStateRef	mMotionState;
 		btScalar				mMass, mFriction, mRestitution;
 		int16_t					mCollisionGroup, mCollisionMask;
-		ci::Vec3f				mInitialPosition;
-		ci::Vec3f				mInitialScale;
+		ci::vec3				mInitialPosition;
+		ci::vec3				mInitialScale;
 		ci::Quatf				mInitialRotation;
 		bool					mSetKinematic, mAddToWorld;
 		void				   *mRigidBodyUserPtr;
@@ -178,10 +178,10 @@ public:
 	
 	//! Returns the radius float from the current bounding sphere measure.
 	float				getBoundingSphereRadius() { return mBoundingSphereRadius; }
-	//! Returns the Vec3f center from the current bounding sphere measure.
-	ci::Vec3f&			getBoundingSphereCenter() { return mBoundingSphereCenter; }
-	//! Returns the const Vec3f center from the current bounding sphere measure.
-	const ci::Vec3f&	getBoundingSphereCenter() const { return mBoundingSphereCenter; }
+	//! Returns the vec3 center from the current bounding sphere measure.
+	ci::vec3&			getBoundingSphereCenter() { return mBoundingSphereCenter; }
+	//! Returns the const vec3 center from the current bounding sphere measure.
+	const ci::vec3&	getBoundingSphereCenter() const { return mBoundingSphereCenter; }
 	
 	bool isKinematic() { return mRigidBody->isKinematicObject(); }
 	bool isStatic() { return mRigidBody->isStaticObject(); }
@@ -219,43 +219,43 @@ public:
 	}
 	
 	//! Applies central force to the contained rigid body
-	inline void applyCentralForce( const ci::Vec3f &force )
+	inline void applyCentralForce( const ci::vec3 &force )
 	{
 		mRigidBody->applyCentralForce( toBullet( force ) );
 	}
 	
 	//! Applies torque to the contained rigid body
-	inline void applyTorque( const ci::Vec3f &torque )
+	inline void applyTorque( const ci::vec3 &torque )
 	{
 		mRigidBody->applyTorque( toBullet( torque ) );
 	}
 	
 	//! Applies an impulse to the center of the contained rigid body
-	inline void applyCentralImpulse( const ci::Vec3f &centralImpulse )
+	inline void applyCentralImpulse( const ci::vec3 &centralImpulse )
 	{
 		mRigidBody->applyCentralImpulse( toBullet( centralImpulse ) );
 	}
 	
 	//! Sets the linear velocity for the contained rigid body
-	inline void setLinearVelocity( const ci::Vec3f &linearVelocity )
+	inline void setLinearVelocity( const ci::vec3 &linearVelocity )
 	{
 		mRigidBody->setLinearVelocity( toBullet( linearVelocity ) );
 	}
 	
 	//! Sets the angular velocity for the contained rigid body
-	inline void setAngularVelocity( const ci::Vec3f &angularVelocity )
+	inline void setAngularVelocity( const ci::vec3 &angularVelocity )
 	{
 		mRigidBody->setAngularVelocity( toBullet( angularVelocity ) );
 	}
 	
 	//! Returns the current Linear Velocity of the contained Rigid Body
-	inline ci::Vec3f getLinearVelocity()
+	inline ci::vec3 getLinearVelocity()
 	{
 		return fromBullet( mRigidBody->getLinearVelocity() );
 	}
 	
 	//! Returns the current Angular Velocity of the contained Rigid Body
-	inline ci::Vec3f getAngularVelocity()
+	inline ci::vec3 getAngularVelocity()
 	{
 		return fromBullet( mRigidBody->getAngularVelocity() );
 	}
@@ -285,7 +285,7 @@ protected:
 	btCollisionShapeRef		mCollisionShape;
 	MotionStateRef			mMotionState;
 	
-	ci::Vec3f			mBoundingSphereCenter;
+	ci::vec3			mBoundingSphereCenter;
 	btScalar			mBoundingSphereRadius;
 	PhyObjType			mType;
 	bool				mAddedToWorld, mUpdatedScale;

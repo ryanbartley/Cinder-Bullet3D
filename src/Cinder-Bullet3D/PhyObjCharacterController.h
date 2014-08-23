@@ -41,7 +41,7 @@ public:
 		friend class PhyObjCharacterController;
 	};
 	
-	void setVelocity( const ci::Vec3f &v, float timeInterval );
+	void setVelocity( const ci::vec3 &v, float timeInterval );
 	void setLinearVelocity( float forward, float backward, float rightward, float leftward, float timeInterval );
 	
 	void debugDraw( btIDebugDraw* debugDrawer ) {}

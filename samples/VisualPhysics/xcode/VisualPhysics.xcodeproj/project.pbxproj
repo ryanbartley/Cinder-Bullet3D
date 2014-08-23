@@ -25,6 +25,8 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		A4AEE4EBF63B47B98A6134B9 /* PhyObjTriggerVol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46B392A3B5114A57A4C29B13 /* PhyObjTriggerVol.cpp */; };
 		B3315390198DF33A0015E081 /* VisPhy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B331538F198DF33A0015E081 /* VisPhy.cpp */; };
+		B3B6638319A85C700097005F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B6638219A85C700097005F /* AVFoundation.framework */; };
+		B3B6638519A85C760097005F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B6638419A85C760097005F /* CoreMedia.framework */; };
 		D9D80B6F4429403092B11693 /* ConstraintBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C637961F3FE84BBBB2D92A63 /* ConstraintBase.cpp */; };
 		FA573899BE704E59B63497B1 /* RigidBody.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 099145A9FA2F401286D59A98 /* RigidBody.cpp */; };
 /* End PBXBuildFile section */
@@ -289,6 +291,8 @@
 		B331538F198DF33A0015E081 /* VisPhy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VisPhy.cpp; path = ../src/VisPhy.cpp; sourceTree = "<group>"; };
 		B368E86AF00B48209BD12BEE /* btDiscreteCollisionDetectorInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = btDiscreteCollisionDetectorInterface.h; path = ../../../src/BulletPhysics/BulletCollision/NarrowPhaseCollision/btDiscreteCollisionDetectorInterface.h; sourceTree = "<group>"; };
 		B388FBEB1003401B89D76797 /* btSparseSDF.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = btSparseSDF.h; path = ../../../src/BulletPhysics/BulletSoftBody/btSparseSDF.h; sourceTree = "<group>"; };
+		B3B6638219A85C700097005F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B3B6638419A85C760097005F /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		B3DCFD7BF7F0420F96280906 /* btUniversalConstraint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = btUniversalConstraint.cpp; path = ../../../src/BulletPhysics/BulletDynamics/ConstraintSolver/btUniversalConstraint.cpp; sourceTree = "<group>"; };
 		B47CFE4BB6CB48018EEB5795 /* btBroadphaseProxy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = btBroadphaseProxy.cpp; path = ../../../src/BulletPhysics/BulletCollision/BroadPhaseCollision/btBroadphaseProxy.cpp; sourceTree = "<group>"; };
 		B4BA91B6B71A470EBDA9284D /* btPolyhedralContactClipping.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = btPolyhedralContactClipping.h; path = ../../../src/BulletPhysics/BulletCollision/NarrowPhaseCollision/btPolyhedralContactClipping.h; sourceTree = "<group>"; };
@@ -413,6 +417,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3B6638519A85C760097005F /* CoreMedia.framework in Frameworks */,
+				B3B6638319A85C700097005F /* AVFoundation.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				0091D8F90E81B9330029341E /* OpenGL.framework in Frameworks */,
 				5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */,
@@ -511,6 +517,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B3B6638419A85C760097005F /* CoreMedia.framework */,
+				B3B6638219A85C700097005F /* AVFoundation.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
@@ -1133,6 +1141,7 @@
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = x86_64;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
@@ -1164,6 +1173,7 @@
 		C01FCF4C08A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = x86_64;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";

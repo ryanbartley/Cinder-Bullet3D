@@ -55,18 +55,18 @@ void RagDollApp::setup()
 	mContext = bt::Context::create( format );
 	
 	// Next I'll create my initial rag doll.
-	mRagDolls.push_back( RagDoll::create( mContext, Vec3f( 1, .5, 0 ), mPhongShader ) );
+	mRagDolls.push_back( RagDoll::create( mContext, vec3( 1, .5, 0 ), mPhongShader ) );
 	
 	// Then I'll create my ground plane as normal
 	mPlane = bullet::RigidBody::create( bullet::RigidBody::Format()
-									   .collisionShape( bullet::createStaticPlaneShape( Vec3f( 0, 1, 0 ), -1 ) )
+									   .collisionShape( bullet::createStaticPlaneShape( vec3( 0, 1, 0 ), -1 ) )
 									   .mass( 0.0 )
 									   .addToWorld( true ) );
 	mVisPlane = gl::Batch::create( geom::Rect().scale( Vec2f( 1000, 1000 ) ), mPhongShader );
 	
 	// I'll create my camera so that I can see.
 	mCam.setPerspective( 60.0f, getWindowAspectRatio(), .01f, 1000.0 );
-	mCam.lookAt( Vec3f( 0, 5, 5 ), Vec3f::zero() );
+	mCam.lookAt( vec3( 0, 5, 5 ), vec3( 0.0f ) );
 	
 	gl::enableDepthRead();
 	gl::enableDepthWrite();
@@ -75,7 +75,7 @@ void RagDollApp::setup()
 void RagDollApp::mouseDown( MouseEvent event )
 {
 	// This is just so that I can see more ragdolls
-	mRagDolls.push_back( RagDoll::create( mContext, Vec3f( (rand() % 10) - 5 , .5, (rand() % 10) - 7 ), mPhongShader ) );
+	mRagDolls.push_back( RagDoll::create( mContext, vec3( (rand() % 10) - 5 , .5, (rand() % 10) - 7 ), mPhongShader ) );
 }
 
 void RagDollApp::keyDown( KeyEvent event )
@@ -99,7 +99,7 @@ void RagDollApp::draw()
 	
 	// Draw my plane
 	gl::pushModelMatrix();
-	gl::multModelMatrix( Matrix44f::createRotation( Vec3f( 1, 0, 0 ), toRadians( -90.0f ) ) );
+	gl::multModelMatrix( rotate( toRadians( -90.0f ), vec3( 1, 0, 0 ) ) );
 		mVisPlane->draw();
 	gl::popModelMatrix();
 	

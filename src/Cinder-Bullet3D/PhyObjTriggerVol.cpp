@@ -12,7 +12,7 @@
 
 namespace bullet {
 
-PhyObjTriggerVol::PhyObjTriggerVol( btCollisionShape *collShape, const ci::Vec3f &position )
+PhyObjTriggerVol::PhyObjTriggerVol( btCollisionShape *collShape, const ci::vec3 &position )
 {
 	initObject( collShape, position );
 }
@@ -25,7 +25,7 @@ PhyObjTriggerVol::~PhyObjTriggerVol()
 	delete mTrigger;
 }
 
-void PhyObjTriggerVol::initObject( btCollisionShape *collShape, const ci::Vec3f &position )
+void PhyObjTriggerVol::initObject( btCollisionShape *collShape, const ci::vec3 &position )
 {
 	mTrigger = new btCollisionObject();
 	

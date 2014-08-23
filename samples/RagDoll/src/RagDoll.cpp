@@ -19,7 +19,7 @@ using namespace bullet;
 using namespace std;
 using namespace ci;
 
-RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::Vec3f &positionOffset, const ci::gl::GlslProgRef &glsl  )
+RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::vec3 &positionOffset, const ci::gl::GlslProgRef &glsl  )
 : mOwner( context )
 {
 	
@@ -54,76 +54,76 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::Vec3f &positionO
 	format.addToWorld( true );
 	
 	// PELVIS
-	format.initialPosition( Vec3f( 0, 1, 0 ) ).mass( 1.0 ).collisionShape( mShapes[BODYPART_PELVIS] );
+	format.initialPosition( vec3( 0, 1, 0 ) ).mass( 1.0 ).collisionShape( mShapes[BODYPART_PELVIS] );
 	auto body = RigidBody::create( format );
 	mBodies.push_back( body );
 	mMotionStates.push_back( SimpleGlDynamicMotionStateRef( new SimpleGlDynamicMotionState( offset * body->getCenterOfMassTransform() ) ) );
 	mBodies.back()->setMotionState( mMotionStates.back() );
 	
 	// SPINE
-	format.initialPosition( Vec3f( 0, 1.2, 0 ) ).collisionShape( mShapes[BODYPART_SPINE] );
+	format.initialPosition( vec3( 0, 1.2, 0 ) ).collisionShape( mShapes[BODYPART_SPINE] );
 	body = RigidBody::create( format );
 	mBodies.push_back( body );
 	mMotionStates.push_back( SimpleGlDynamicMotionStateRef( new SimpleGlDynamicMotionState( offset * body->getCenterOfMassTransform() ) ) );
 	mBodies.back()->setMotionState( mMotionStates.back() );
 	
 	// HEAD
-	format.initialPosition( Vec3f( 0, 1.6, 0 ) ).collisionShape( mShapes[BODYPART_HEAD] );
+	format.initialPosition( vec3( 0, 1.6, 0 ) ).collisionShape( mShapes[BODYPART_HEAD] );
 	body = RigidBody::create( format );
 	mBodies.push_back( body );
 	mMotionStates.push_back( SimpleGlDynamicMotionStateRef( new SimpleGlDynamicMotionState( offset * body->getCenterOfMassTransform() ) ) );
 	mBodies.back()->setMotionState( mMotionStates.back() );
 	
 	// LEFT UPPER LEG
-	format.initialPosition( Vec3f( -0.18, 0.65, 0.0 ) ).collisionShape( mShapes[BODYPART_LEFT_UPPER_LEG] );
+	format.initialPosition( vec3( -0.18, 0.65, 0.0 ) ).collisionShape( mShapes[BODYPART_LEFT_UPPER_LEG] );
 	body = RigidBody::create( format );
 	mBodies.push_back( body );
 	mMotionStates.push_back( SimpleGlDynamicMotionStateRef( new SimpleGlDynamicMotionState( offset * body->getCenterOfMassTransform() ) ) );
 	mBodies.back()->setMotionState( mMotionStates.back() );
 	
 	// LEFT LOWER LEG
-	format.initialPosition( Vec3f( -0.18, 0.2, 0. ) ).collisionShape( mShapes[BODYPART_LEFT_LOWER_LEG] );
+	format.initialPosition( vec3( -0.18, 0.2, 0. ) ).collisionShape( mShapes[BODYPART_LEFT_LOWER_LEG] );
 	body = RigidBody::create( format );
 	mBodies.push_back( body );
 	mMotionStates.push_back( SimpleGlDynamicMotionStateRef( new SimpleGlDynamicMotionState( offset * body->getCenterOfMassTransform() ) ) );
 	mBodies.back()->setMotionState( mMotionStates.back() );
 	
 	// RIGHT UPPER LEG
-	format.initialPosition( Vec3f( 0.18, 0.65, 0. ) ).collisionShape( mShapes[BODYPART_RIGHT_UPPER_LEG] );
+	format.initialPosition( vec3( 0.18, 0.65, 0. ) ).collisionShape( mShapes[BODYPART_RIGHT_UPPER_LEG] );
 	body = RigidBody::create( format );
 	mBodies.push_back( body );
 	mMotionStates.push_back( SimpleGlDynamicMotionStateRef( new SimpleGlDynamicMotionState( offset * body->getCenterOfMassTransform() ) ) );
 	mBodies.back()->setMotionState( mMotionStates.back() );
 	
 	// RIGHT LOWER LEG
-	format.initialPosition( Vec3f( 0.18, 0.2, 0. ) ).collisionShape( mShapes[BODYPART_RIGHT_LOWER_LEG] );
+	format.initialPosition( vec3( 0.18, 0.2, 0. ) ).collisionShape( mShapes[BODYPART_RIGHT_LOWER_LEG] );
 	body = RigidBody::create( format );
 	mBodies.push_back( body );
 	mMotionStates.push_back( SimpleGlDynamicMotionStateRef( new SimpleGlDynamicMotionState( offset * body->getCenterOfMassTransform() ) ) );
 	mBodies.back()->setMotionState( mMotionStates.back() );
 	
 	// LEFT UPPER ARM
-	format.initialPosition( Vec3f( -0.35, 1.45, 0.0 ) ).initialRotation( Quatf( 0, 0, M_PI_2 ) ).collisionShape( mShapes[BODYPART_LEFT_UPPER_ARM] );
+	format.initialPosition( vec3( -0.35, 1.45, 0.0 ) ).initialRotation( quat( vec3( 0, 0, M_PI_2 ) ) ).collisionShape( mShapes[BODYPART_LEFT_UPPER_ARM] );
 	body = RigidBody::create( format );
 	mBodies.push_back( body );
 	mMotionStates.push_back( SimpleGlDynamicMotionStateRef( new SimpleGlDynamicMotionState( offset * body->getCenterOfMassTransform() ) ) );
 	mBodies.back()->setMotionState( mMotionStates.back() );
 	
 	// LEFT LOWER ARM
-	format.initialPosition( Vec3f( -0.7, 1.45, 0.0 ) ).initialRotation( Quatf( 0, 0, M_PI_2 ) ).collisionShape( mShapes[BODYPART_LEFT_LOWER_ARM] );
+	format.initialPosition( vec3( -0.7, 1.45, 0.0 ) ).initialRotation( quat( vec3( 0, 0, M_PI_2 ) ) ).collisionShape( mShapes[BODYPART_LEFT_LOWER_ARM] );
 	body = RigidBody::create( format );
 	mBodies.push_back( body );
 	mMotionStates.push_back( SimpleGlDynamicMotionStateRef( new SimpleGlDynamicMotionState( offset * body->getCenterOfMassTransform() ) ) );
 	mBodies.back()->setMotionState( mMotionStates.back() );
 	
-	format.initialPosition( Vec3f( 0.35, 1.45, 0.0 ) ).initialRotation( Quatf( 0, 0, -M_PI_2 ) ).collisionShape( mShapes[BODYPART_RIGHT_UPPER_ARM] );
+	format.initialPosition( vec3( 0.35, 1.45, 0.0 ) ).initialRotation( quat( vec3( 0, 0, -M_PI_2 ) ) ).collisionShape( mShapes[BODYPART_RIGHT_UPPER_ARM] );
 	body = RigidBody::create( format );
 	mBodies.push_back( body );
 	mMotionStates.push_back( SimpleGlDynamicMotionStateRef( new SimpleGlDynamicMotionState( offset * body->getCenterOfMassTransform() ) ) );
 	mBodies.back()->setMotionState( mMotionStates.back() );
 	
 	// RIGHT LOWER ARM
-	format.initialPosition( Vec3f( 0.7, 1.45, 0.0 ) ).initialRotation( Quatf( 0, 0, -M_PI_2 ) ).collisionShape( mShapes[BODYPART_RIGHT_LOWER_ARM] );
+	format.initialPosition( vec3( 0.7, 1.45, 0.0 ) ).initialRotation( quat( vec3( 0, 0, -M_PI_2 ) ) ).collisionShape( mShapes[BODYPART_RIGHT_LOWER_ARM] );
 	body = RigidBody::create( format );
 	mBodies.push_back( body );
 	mMotionStates.push_back( SimpleGlDynamicMotionStateRef( new SimpleGlDynamicMotionState( offset * body->getCenterOfMassTransform() ) ) );
@@ -145,8 +145,8 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::Vec3f &positionO
 	ConstraintHinge::Format hingeFormat;
 	ConstraintConeTwist::Format coneFormat;
 	
-	hingeFormat.localAOrigin( Vec3f( 0.0, 0.15, 0.0 ) ).localARot( 0,M_PI_2,0 ).objA( mBodies[BODYPART_PELVIS] )
-				.localBOrigin( Vec3f( 0.0, -0.15, 0.0 ) ).localBRot( 0,M_PI_2,0 ).objB( mBodies[BODYPART_SPINE] );
+	hingeFormat.localAOrigin( vec3( 0.0, 0.15, 0.0 ) ).localARot( 0,M_PI_2,0 ).objA( mBodies[BODYPART_PELVIS] )
+				.localBOrigin( vec3( 0.0, -0.15, 0.0 ) ).localBRot( 0,M_PI_2,0 ).objB( mBodies[BODYPART_SPINE] );
 	{
 		auto hinge = ConstraintHinge::create( hingeFormat );
 		hinge->setLimit( btScalar(-M_PI_4), btScalar(M_PI_2) );
@@ -154,8 +154,8 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::Vec3f &positionO
 		mConstraints.push_back( hinge );
 	}
 	
-	coneFormat.localAOrigin( Vec3f( 0.0, 0.30, 0.0 ) ).localARot( 0,0,M_PI_2 ).objA( mBodies[BODYPART_SPINE] )
-			  .localBOrigin( Vec3f( 0.0, -0.14, 0.0 ) ).localBRot( 0,0,M_PI_2 ).objB( mBodies[BODYPART_HEAD] );
+	coneFormat.localAOrigin( vec3( 0.0, 0.30, 0.0 ) ).localARot( 0,0,M_PI_2 ).objA( mBodies[BODYPART_SPINE] )
+			  .localBOrigin( vec3( 0.0, -0.14, 0.0 ) ).localBRot( 0,0,M_PI_2 ).objB( mBodies[BODYPART_HEAD] );
 	{
 		auto cone = ConstraintConeTwist::create( coneFormat );
 		cone->setLimit( M_PI_4, M_PI_4, M_PI_2 );
@@ -164,8 +164,8 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::Vec3f &positionO
 	}
 
 	// Something's going on with quaternions here
-	coneFormat.localAOrigin( Vec3f( -0.18, -0.10, 0.0 ) ).localARot( 0, 0, -M_PI_4*5 ).objA( mBodies[BODYPART_PELVIS] )
-			  .localBOrigin( Vec3f( 0.0, 0.225, 0.0 ) ).localARot( 0, 0, -M_PI_4*5 ).objB( mBodies[BODYPART_LEFT_UPPER_LEG] );
+	coneFormat.localAOrigin( vec3( -0.18, -0.10, 0.0 ) ).localARot( 0, 0, -M_PI_4*5 ).objA( mBodies[BODYPART_PELVIS] )
+			  .localBOrigin( vec3( 0.0, 0.225, 0.0 ) ).localARot( 0, 0, -M_PI_4*5 ).objB( mBodies[BODYPART_LEFT_UPPER_LEG] );
 	{
 		auto cone = ConstraintConeTwist::create( coneFormat );
 		cone->setLimit( M_PI_4, M_PI_4, 0 );
@@ -174,8 +174,8 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::Vec3f &positionO
 	}
 	
 
-	hingeFormat.localAOrigin( Vec3f( 0.0, -0.225, 0.0 ) ).localARot( 0,M_PI_2,0 ).objA( mBodies[BODYPART_LEFT_UPPER_LEG] )
-				.localBOrigin( Vec3f( 0.0, 0.185, 0.0 ) ).localBRot( 0,M_PI_2,0 ).objB( mBodies[BODYPART_LEFT_LOWER_LEG] );
+	hingeFormat.localAOrigin( vec3( 0.0, -0.225, 0.0 ) ).localARot( 0,M_PI_2,0 ).objA( mBodies[BODYPART_LEFT_UPPER_LEG] )
+				.localBOrigin( vec3( 0.0, 0.185, 0.0 ) ).localBRot( 0,M_PI_2,0 ).objB( mBodies[BODYPART_LEFT_LOWER_LEG] );
 	{
 		auto hinge = ConstraintHinge::create( hingeFormat );
 		hinge->setLimit( btScalar(0), btScalar(M_PI_2) );
@@ -183,8 +183,8 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::Vec3f &positionO
 		mConstraints.push_back( hinge );
 	}
 
-	coneFormat.localAOrigin( Vec3f( 0.18, -0.10, 0.0 ) ).localARot( 0, 0, M_PI_4 ).objA( mBodies[BODYPART_PELVIS] )
-			  .localBOrigin( Vec3f( 0.0, 0.225, 0.0 ) ).localBRot( 0, 0, M_PI_4 ).objB( mBodies[BODYPART_RIGHT_UPPER_LEG] );
+	coneFormat.localAOrigin( vec3( 0.18, -0.10, 0.0 ) ).localARot( 0, 0, M_PI_4 ).objA( mBodies[BODYPART_PELVIS] )
+			  .localBOrigin( vec3( 0.0, 0.225, 0.0 ) ).localBRot( 0, 0, M_PI_4 ).objB( mBodies[BODYPART_RIGHT_UPPER_LEG] );
 	{
 		auto cone = ConstraintConeTwist::create( coneFormat );
 		cone->setLimit( M_PI_4, M_PI_4, 0 );
@@ -192,8 +192,8 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::Vec3f &positionO
 		mConstraints.push_back( cone );
 	}
 
-	hingeFormat.localAOrigin( Vec3f( 0.0, -0.225, 0.0 ) ).localARot( 0,M_PI_2,0 ).objA( mBodies[BODYPART_RIGHT_UPPER_LEG] )
-			   .localBOrigin( Vec3f( 0.0, 0.185, 0.0 ) ).localBRot( 0,M_PI_2,0 ).objB( mBodies[BODYPART_RIGHT_LOWER_LEG] );
+	hingeFormat.localAOrigin( vec3( 0.0, -0.225, 0.0 ) ).localARot( 0,M_PI_2,0 ).objA( mBodies[BODYPART_RIGHT_UPPER_LEG] )
+			   .localBOrigin( vec3( 0.0, 0.185, 0.0 ) ).localBRot( 0,M_PI_2,0 ).objB( mBodies[BODYPART_RIGHT_LOWER_LEG] );
 	{
 		auto hinge = ConstraintHinge::create( hingeFormat );
 		hinge->setLimit( btScalar(0), btScalar(M_PI_2) );
@@ -201,8 +201,8 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::Vec3f &positionO
 		mConstraints.push_back( hinge );
 	}
 
-	coneFormat.localAOrigin( Vec3f( -0.2, 0.15, 0.0 ) ).localARot( 0,0,M_PI ).objA( mBodies[BODYPART_SPINE] )
-			  .localBOrigin( Vec3f( 0.0, -0.18, 0.0 ) ).localBRot( 0,0,M_PI_2 ).objB( mBodies[BODYPART_LEFT_UPPER_ARM] );
+	coneFormat.localAOrigin( vec3( -0.2, 0.15, 0.0 ) ).localARot( 0,0,M_PI ).objA( mBodies[BODYPART_SPINE] )
+			  .localBOrigin( vec3( 0.0, -0.18, 0.0 ) ).localBRot( 0,0,M_PI_2 ).objB( mBodies[BODYPART_LEFT_UPPER_ARM] );
 	{
 		auto cone = ConstraintConeTwist::create( coneFormat );
 		cone->setLimit( M_PI_2, M_PI_2, 0 );
@@ -210,8 +210,8 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::Vec3f &positionO
 		mConstraints.push_back( cone );
 	}
 
-	hingeFormat.localAOrigin( Vec3f( 0.0, 0.18, 0.0 ) ).localARot( 0,M_PI_2,0 ).objA( mBodies[BODYPART_LEFT_UPPER_ARM] )
-			   .localBOrigin( Vec3f( 0.0, -0.14, 0.0 ) ).localBRot( 0,M_PI_2,0 ).objB( mBodies[BODYPART_LEFT_LOWER_ARM] );
+	hingeFormat.localAOrigin( vec3( 0.0, 0.18, 0.0 ) ).localARot( 0,M_PI_2,0 ).objA( mBodies[BODYPART_LEFT_UPPER_ARM] )
+			   .localBOrigin( vec3( 0.0, -0.14, 0.0 ) ).localBRot( 0,M_PI_2,0 ).objB( mBodies[BODYPART_LEFT_LOWER_ARM] );
 	{
 		auto hinge = ConstraintHinge::create( hingeFormat );
 		hinge->setLimit( btScalar(0), btScalar(M_PI_2) );
@@ -219,8 +219,8 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::Vec3f &positionO
 		mConstraints.push_back( hinge );
 	}
 
-	coneFormat.localAOrigin( Vec3f( 0.2, 0.15, 0.0 ) ).localARot( 0,0,0 ).objA( mBodies[BODYPART_SPINE] )
-			  .localBOrigin( Vec3f( 0., -0.18, 0.0 ) ).localBRot( 0,0,M_PI_2 ).objB( mBodies[BODYPART_RIGHT_UPPER_ARM] );
+	coneFormat.localAOrigin( vec3( 0.2, 0.15, 0.0 ) ).localARot( 0,0,0 ).objA( mBodies[BODYPART_SPINE] )
+			  .localBOrigin( vec3( 0., -0.18, 0.0 ) ).localBRot( 0,0,M_PI_2 ).objB( mBodies[BODYPART_RIGHT_UPPER_ARM] );
 	{
 		auto cone = ConstraintConeTwist::create( coneFormat );
 		cone->setLimit( M_PI_2, M_PI_2, 0 );
@@ -228,8 +228,8 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::Vec3f &positionO
 		mConstraints.push_back( cone );
 	}
 
-	hingeFormat.localAOrigin( Vec3f( 0.0, 0.18, 0.0 ) ).localARot( 0,M_PI_2,0 ).objA( mBodies[BODYPART_RIGHT_UPPER_ARM] )
-			   .localBOrigin( Vec3f( 0.0, -0.14, 0.0 ) ).localBRot( 0,M_PI_2,0 ).objB( mBodies[BODYPART_RIGHT_LOWER_ARM] );
+	hingeFormat.localAOrigin( vec3( 0.0, 0.18, 0.0 ) ).localARot( 0,M_PI_2,0 ).objA( mBodies[BODYPART_RIGHT_UPPER_ARM] )
+			   .localBOrigin( vec3( 0.0, -0.14, 0.0 ) ).localBRot( 0,M_PI_2,0 ).objB( mBodies[BODYPART_RIGHT_LOWER_ARM] );
 	{
 		auto hinge = ConstraintHinge::create( hingeFormat );
 		hinge->setLimit( btScalar(0), btScalar(M_PI_2) );
@@ -246,7 +246,7 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::Vec3f &positionO
 	}
 }
 
-RagDollRef RagDoll::create( const bullet::ContextRef &context, const ci::Vec3f &positionOffset, const ci::gl::GlslProgRef &glsl  )
+RagDollRef RagDoll::create( const bullet::ContextRef &context, const ci::vec3 &positionOffset, const ci::gl::GlslProgRef &glsl  )
 {
 	return RagDollRef( new RagDoll( context, positionOffset, glsl ) );
 }

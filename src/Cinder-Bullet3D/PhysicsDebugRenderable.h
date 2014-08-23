@@ -44,8 +44,8 @@ private:
 	ci::gl::VaoRef			mVao;
 	ci::gl::VboRef			mPositionVbo;
 	ci::gl::TextureFontRef	mTextureFont;
-	std::vector<ci::Vec3f>	mPositionBuffer;
-	std::vector<std::pair<ci::Vec3f, std::string>> mText;
+	std::vector<ci::vec3>	mPositionBuffer;
+	std::vector<std::pair<ci::vec3, std::string>> mText;
 	int			mDebugMode;
 	bool		mNewInfo;
 	

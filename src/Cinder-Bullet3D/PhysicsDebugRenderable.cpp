@@ -59,7 +59,7 @@ void PhysicsDebugRenderable::initBuffers()
 	if( !mPositionVbo )
 		mPositionVbo = gl::Vbo::create( GL_ARRAY_BUFFER );
 	
-	mPositionVbo->bufferData( mPositionBuffer.size() * sizeof(Vec3f), mPositionBuffer.data(), GL_DYNAMIC_DRAW );
+	mPositionVbo->bufferData( mPositionBuffer.size() * sizeof(vec3), mPositionBuffer.data(), GL_DYNAMIC_DRAW );
 	
 	if( mVao ) return;
 	
@@ -69,10 +69,10 @@ void PhysicsDebugRenderable::initBuffers()
 	gl::ScopedBuffer mVboScope( mPositionVbo );
 	
 	gl::enableVertexAttribArray(0);
-	gl::vertexAttribPointer( 0, 3, GL_FLOAT, GL_FALSE, 2 * sizeof(Vec3f), 0 );
+	gl::vertexAttribPointer( 0, 3, GL_FLOAT, GL_FALSE, 2 * sizeof(vec3), 0 );
 	
 	gl::enableVertexAttribArray(1);
-	gl::vertexAttribPointer( 1, 3, GL_FLOAT, GL_FALSE, 2 * sizeof(Vec3f), (void*)sizeof(Vec3f) );
+	gl::vertexAttribPointer( 1, 3, GL_FLOAT, GL_FALSE, 2 * sizeof(vec3), (void*)sizeof(vec3) );
 }
 	
 void PhysicsDebugRenderable::draw3dText( const btVector3 &location, const char *textString )

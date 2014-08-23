@@ -18,7 +18,7 @@ using RagDollRef = std::shared_ptr<class RagDoll>;
 
 class RagDoll {
 public:
-	static RagDollRef create( const bullet::ContextRef &context, const ci::Vec3f &positionOffset, const ci::gl::GlslProgRef &glsl  );
+	static RagDollRef create( const bullet::ContextRef &context, const ci::vec3 &positionOffset, const ci::gl::GlslProgRef &glsl  );
 	
 	virtual ~RagDoll();
 	
@@ -64,7 +64,7 @@ public:
 	void draw();
 
 private:
-	RagDoll( const bullet::ContextRef &context, const ci::Vec3f &positionOffset, const ci::gl::GlslProgRef &glsl );
+	RagDoll( const bullet::ContextRef &context, const ci::vec3 &positionOffset, const ci::gl::GlslProgRef &glsl );
 	
 	bullet::ContextRef							mOwner;
 	std::vector<bullet::btCollisionShapeRef>	mShapes;

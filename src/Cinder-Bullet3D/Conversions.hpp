@@ -11,50 +11,48 @@
 namespace bullet {
 	
 // Beginning Conversion from type to type
-inline btQuaternion toBullet( const ci::Quatf & cinderQuat ) {
-	btQuaternion bulletQuat( cinderQuat.v.x, cinderQuat.v.y, cinderQuat.v.z, cinderQuat.w );
+inline btQuaternion toBullet( const ci::quat & cinderQuat ) {
+	btQuaternion bulletQuat( cinderQuat.x, cinderQuat.y, cinderQuat.z, cinderQuat.w );
 	return bulletQuat;
 }
-inline ci::Quatf fromBullet( const btQuaternion & bulletQuaternion ) {
-	ci::Quatf cinderQuat( bulletQuaternion.w(), bulletQuaternion.x(), bulletQuaternion.y(), bulletQuaternion.z() );
+inline ci::quat fromBullet( const btQuaternion & bulletQuaternion ) {
+	ci::quat cinderQuat( bulletQuaternion.w(), bulletQuaternion.x(), bulletQuaternion.y(), bulletQuaternion.z() );
 	return cinderQuat;
 }
 
-inline btVector3 toBullet( const ci::Vec3f & cinderVec ) {
+inline btVector3 toBullet( const ci::vec3 & cinderVec ) {
 	btVector3 bulletVec( cinderVec.x, cinderVec.y, cinderVec.z );
 	return bulletVec;
 }
-inline ci::Vec3f fromBullet( const btVector3 & bulletVec ) {
-	ci::Vec3f cinderVec( bulletVec.x(), bulletVec.y(), bulletVec.z() );
+inline ci::vec3 fromBullet( const btVector3 & bulletVec ) {
+	ci::vec3 cinderVec( bulletVec.x(), bulletVec.y(), bulletVec.z() );
 	return cinderVec;
 }
 
-inline ci::Matrix44f fromBullet( const btTransform &bulletTrans )
+inline ci::mat4 fromBullet( const btTransform &bulletTrans )
 {
-	ci::Matrix44f transform;
 	ATTRIBUTE_ALIGNED16(btScalar m[16]);
 	bulletTrans.getOpenGLMatrix( m );
-	transform.set(m);
-	return m;
+	return ci::make_mat4( m );
 }
-inline btTransform toBullet( const ci::Matrix44f &cinderMat4 )
+inline btTransform toBullet( const ci::mat4 &cinderMat4 )
 {
 	btTransform trans;
-	trans.setFromOpenGLMatrix( cinderMat4.m );
+	trans.setFromOpenGLMatrix( &cinderMat4[0][0] );
 	return trans;
 }
 	
-inline ci::Matrix33f fromBullet( const btMatrix3x3 &bulletMat3 )
+inline ci::mat3 fromBullet( const btMatrix3x3 &bulletMat3 )
 {
-	ci::Matrix33f m;
-	bulletMat3.getOpenGLSubMatrix( m.m );
-	return m;
+	ATTRIBUTE_ALIGNED16(btScalar m[12]);
+	bulletMat3.getOpenGLSubMatrix( m );
+	return ci::make_mat3( m );
 }
 	
-inline btMatrix3x3 toBullet( const ci::Matrix33f &cinderMat3 )
+inline btMatrix3x3 toBullet( const ci::mat3 &cinderMat3 )
 {
 	btMatrix3x3 trans;
-	trans.setFromOpenGLSubMatrix( cinderMat3.m );
+	trans.setFromOpenGLSubMatrix( &cinderMat3[0][0] );
 	return trans;
 }
 	
