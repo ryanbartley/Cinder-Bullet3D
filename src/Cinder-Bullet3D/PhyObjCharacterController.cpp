@@ -94,7 +94,7 @@ void PhyObjCharacterController::updateAction( btCollisionWorld *collisionWorld, 
 	setWorldTransform( mCollisionObject->getWorldTransform() );
 }
 	
-void PhyObjCharacterController::setRotation( const ci::Quatf &rotate )
+void PhyObjCharacterController::setRotation( const ci::quat &rotate )
 {
 	mCharacter->getGhostObject()->getWorldTransform().getBasis();
 }

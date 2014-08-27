@@ -46,7 +46,7 @@ public:
 	
 	void debugDraw( btIDebugDraw* debugDrawer ) {}
 	
-	void setRotation( const ci::Quatf &rotate );
+	void setRotation( const ci::quat &rotate );
 	
 	void jump();
 	

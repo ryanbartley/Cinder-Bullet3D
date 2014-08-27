@@ -104,7 +104,7 @@ void PhysicsDebugRenderable::draw()
 		while( textIt != end ) {
 			gl::pushModelMatrix();
 			gl::translate( (*textIt).first );
-			mTextureFont->drawString( (*textIt).second, Vec2f( 0, 0 ) );
+			mTextureFont->drawString( (*textIt).second, vec2( 0.0f ) );
 			gl::popModelMatrix();
 			++textIt;
 		}

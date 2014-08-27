@@ -156,7 +156,7 @@ void VisualPhysicsApp::setupGround()
 	// Dealing with floors like this is a bit hard. Basically, the Static Plane Shape doesn't really have
 	// the data we need. For instance, when I make this rect at a scale of 1000, 1000, it doesn't know about
 	// Normal and Offset, the two arguments to make a plane shape.
-	mVisPlane = gl::Batch::create( geom::Rect().scale( Vec2f( 1000, 1000 ) ), mPhongShader );
+	mVisPlane = gl::Batch::create( geom::Rect().scale( vec2( 1000, 1000 ) ), mPhongShader );
 	
 	// Therefore, we cache these in our program to draw seperately. Now I know that I want the plane's normal
 	// to be the yaxis and the offset means what distance on the normal I'd like to shift this. If I put 1 insted

@@ -26,6 +26,6 @@ private:
 	ci::gl::BatchRef						mVisObj;
 	bullet::RigidBodyRef					mPhyObj;
 	bullet::SimpleGlDynamicMotionStateRef	mMotionState;
-	ci::Matrix44f							mModelMatrix;
+	ci::mat4								mModelMatrix;
 };
 

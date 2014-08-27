@@ -80,7 +80,7 @@ inline void RagDoll::draw()
 	auto endBat = mBatches.end();
 	auto motionIt = mMotionStates.begin();
 	auto endMot = mMotionStates.end();
-	ci::Matrix44f model;
+	ci::mat4 model;
 	while( batchIt != endBat && motionIt != endMot ) {
 		
 		(*motionIt)->getGLWorldTransform( &model );

@@ -96,8 +96,11 @@ public:
 	inline void setWorldTransform( const btTransform &worldTransform ) override
 	{
 		T* transform = static_cast<T*>(m_userPointer);
-		transform->setGlobalTranslation( fromBullet( worldTransform.getOrigin() ) );
-		transform->setGlobalRotation( fromBullet( worldTransform.getRotation() ) );
+		auto origin = fromBullet( worldTransform.getOrigin() );
+		auto rotation = fromBullet( worldTransform.getRotation() );
+//		std::cout << origin << " " << rotation << std::endl;
+		transform->setGlobalTranslation( origin );
+		transform->setGlobalRotation( rotation );
 	}
 };
 

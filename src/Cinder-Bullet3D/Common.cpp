@@ -127,7 +127,7 @@ namespace drawableHelpers {
 struct HeightfieldData {
 	ci::vec3 mPosition;
 	ci::vec3 mNormal = ci::vec3( 0.0f );
-	ci::Vec2f mTexCoord;
+	ci::vec2 mTexCoord;
 };
 	
 ci::gl::VboMeshRef getDrawableHeightfield( const Channel32f *heightData )
@@ -148,7 +148,7 @@ ci::gl::VboMeshRef getDrawableHeightfield( const Channel32f *heightData )
 		cout << "-------------------------------------------" << endl;
 		for ( int32_t x = 0; x < width; x++ ) {
 			cout << endl;
-			float value = heightData->getValue( Vec2i( x, y ) );
+			float value = heightData->getValue( ivec2( x, y ) );
 			
 			vertIt->mPosition = vec3( (float)x - halfWidth, value, (float)y - halfHeight );
 			vertIt->mTexCoord = vec2( (float)x / (float)width, (float)y / (float)height );

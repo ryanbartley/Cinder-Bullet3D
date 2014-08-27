@@ -37,7 +37,7 @@ public:
 		//! Sets the vec3 for the collision shapes local scaling.
 		const ci::vec3& getInitScale() const { return mInitialScale; }
 		//! Sets the Quatf for the initial rotation of the object.
-		const ci::Quatf& getInitRotation() const { return mInitialRotation; }
+		const ci::quat& getInitRotation() const { return mInitialRotation; }
 		//! Sets the friction of the object. Can set friction after construction too.
 		const btScalar getFriction() const { return mFriction; }
 		//! Returns the Restitution of the object. Can set restitution after construction too.
@@ -63,7 +63,7 @@ public:
 		//! Sets the vec3 for the collision shapes local scaling.
 		void setInitScale( const ci::vec3 &initialScale ) { mInitialScale = initialScale; }
 		//! Sets the Quatf for the initial rotation of the object.
-		void setInitRotation( const ci::Quatf &initialRotation ) { mInitialRotation = initialRotation; }
+		void setInitRotation( const ci::quat &initialRotation ) { mInitialRotation = initialRotation; }
 		//! Sets the friction of the object. Can set friction after construction too.
 		void setFriction( btScalar friction ) { mFriction = friction; }
 		//! Sets the Restitution of the object. Can set restitution after construction too.
@@ -90,7 +90,7 @@ public:
 		//! Sets the vec3 for the initial scale of the object. Default is vec3( 1.0f, 1.0f, 1.0f ).
 		Format& initialScale( const ci::vec3 &initialScale ) { mInitialScale = initialScale; return *this; }
 		//! Sets the Quatf for the initial rotation of the object. Default is Quatf::identity()
-		Format& initialRotation( const ci::Quatf &initialRotation ) { mInitialRotation = initialRotation; return *this; }
+		Format& initialRotation( const ci::quat &initialRotation ) { mInitialRotation = initialRotation; return *this; }
 		//! Sets the friction of the object. Can set friction after construction too. Default is 0.5.
 		Format& friction( btScalar friction ) { mFriction = friction; return *this; }
 		//! Sets the Restitution of the object. Can set restitution after construction too. Default is 0.0.
@@ -113,7 +113,7 @@ public:
 		int16_t					mCollisionGroup, mCollisionMask;
 		ci::vec3				mInitialPosition;
 		ci::vec3				mInitialScale;
-		ci::Quatf				mInitialRotation;
+		ci::quat				mInitialRotation;
 		bool					mSetKinematic, mAddToWorld;
 		void				   *mRigidBodyUserPtr;
 		
