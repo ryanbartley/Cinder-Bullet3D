@@ -73,7 +73,7 @@ MultiSphereShapeRef createMultiSphereShape( const std::vector<btVector3> &positi
 	return MultiSphereShapeRef( new btMultiSphereShape( positions.data(), radii.data(), positions.size() ) );
 }
 	
-CompoundShapeRef createCompoundShapeRef( const ShapesAndOffsets &shapesAndOffsets )
+CompoundShapeRef createCompoundShape( const ShapesAndOffsets &shapesAndOffsets )
 {
 	CompoundShapeRef pCompound( new btCompoundShape() );
 	

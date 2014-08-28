@@ -22,12 +22,18 @@ ConstraintHinge::Format::Format()
 	
 ConstraintHinge::ConstraintHinge( const Format &format )
 {
-	mConstraint = make_shared<btHingeConstraint>( *format.mObjA->getRigidBody().get(),
+	if( format.mObjB ) {
+		mConstraint = make_shared<btHingeConstraint>( *format.mObjA->getRigidBody().get(),
 												 *format.mObjB->getRigidBody().get(),
 												 format.mLocalA,
 												 format.mLocalB,
 												 format.mUseReferenceFrameA );
-	mConstraint->setBreakingImpulseThreshold( 1000.0 );
+	}
+	else {
+		mConstraint = make_shared<btHingeConstraint>( *format.mObjA->getRigidBody().get(),
+													 format.mLocalA,
+													 format.mUseReferenceFrameA );
+	}
 }
 
 ConstraintHingeRef ConstraintHinge::create( const Format &format )

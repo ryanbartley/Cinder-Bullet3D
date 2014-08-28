@@ -94,7 +94,6 @@ void Context::setupDebugRenderer( int mode )
 	if( mWorld ) {
 		mWorld->setDebugDrawer( mDebugRenderer.get() );
 		mDebugRenderer->setDebugMode( mode );
-
 	}
 }
 	
