@@ -32,10 +32,10 @@ using DefaultDrawableGutsRef = std::shared_ptr<DefaultDrawableGuts>;
 DefaultDrawableGutsRef getDrawableHeightField( const Channel32f *heightData )
 {
 	DefaultDrawableGutsRef sHeightFieldDrawableGuts = DefaultDrawableGutsRef( new DefaultDrawableGuts );
-	std::vector<Vec3f>		mPositions;
-	std::vector<Vec3f>		mNormals;
+	std::vector<vec3>		mPositions;
+	std::vector<vec3>		mNormals;
 	std::vector<uint32_t>	mIndices;
-	std::vector<Vec2f>		mTexCoords;
+	std::vector<vec2>		mTexCoords;
 	
 	
 	int32_t height	= heightData->getHeight();
@@ -43,7 +43,7 @@ DefaultDrawableGutsRef getDrawableHeightField( const Channel32f *heightData )
 	
 	for ( int32_t y = 0; y < height; y++ ) {
 		for ( int32_t x = 0; x < width; x++ ) {
-			mTexCoords.push_back( Vec2f( (float)x / (float)width, (float)y / (float)height ) );
+			mTexCoords.push_back( vec2( (float)x / (float)width, (float)y / (float)height ) );
 			
 			int32_t xn = x + 1 >= width ? 0 : 1;
 			int32_t yn = y + 1 >= height ? 0 : 1;
@@ -64,21 +64,21 @@ DefaultDrawableGutsRef getDrawableHeightField( const Channel32f *heightData )
 	
 	for ( int32_t y = 0; y < height; y++ ) {
 		for ( int32_t x = 0; x < width; x++ ) {
-			float value = heightData->getValue( Vec2i( x, y ) );
+			float value = heightData->getValue( ivec2( x, y ) );
 			
-			Vec3f position( (float)x - halfWidth, value, (float)y - halfHeight );
+			vec3 position( (float)x - halfWidth, value, (float)y - halfHeight );
 			mPositions.push_back( position );
 			
-			mNormals.push_back( Vec3f::zero() );
+			mNormals.push_back( vec3( 0.0f ) );
 		}
 	}
 	
 	for ( int32_t y = 0; y < height - 1; y++ ) {
 		for ( int32_t x = 0; x < width - 1; x++ ) {
-			Vec3f vert0 = mPositions[ mIndices[ ( x + height * y ) * 6 ] ];
-			Vec3f vert1 = mPositions[ mIndices[ ( ( x + 1 ) + height * y ) * 6 ] ];
-			Vec3f vert2 = mPositions[ mIndices[ ( ( x + 1 ) + height * ( y + 1 ) ) * 6 ] ];
-			mNormals[ x + height * y ] = Vec3f( ( vert1 - vert0 ).cross( vert1 - vert2 ).normalized() );
+			vec3 vert0 = mPositions[ mIndices[ ( x + height * y ) * 6 ] ];
+			vec3 vert1 = mPositions[ mIndices[ ( ( x + 1 ) + height * y ) * 6 ] ];
+			vec3 vert2 = mPositions[ mIndices[ ( ( x + 1 ) + height * ( y + 1 ) ) * 6 ] ];
+			mNormals[ x + height * y ] = vec3( normalize( cross( ( vert1 - vert0 ), ( vert1 - vert2 ) ) ) );
 		}
 	}
 	
@@ -155,7 +155,7 @@ void HeightfieldTerrainApp::setup()
 	mContext->addRigidBody( mPhysicsHeightfield );
 	
 	mCam.setPerspective( 60.0f, getWindowAspectRatio(), 0.01f, 1000.0f );
-	mCam.lookAt( Vec3f( 0, 5, 10 ), Vec3f::zero() );
+	mCam.lookAt( vec3( 0, 5, 10 ), vec3( 0.0f ) );
 }
 
 void HeightfieldTerrainApp::setupShader()
@@ -178,12 +178,12 @@ void HeightfieldTerrainApp::setupHeightfield()
 	for( int y = 0; y < Depth; ++y ) {
 		for( int x = 0; x < Width; ++x ) {
 			float height = ci::randFloat(-1, 1);
-			mHeightfieldMap.setValue( Vec2i( x, y ), height );
+			mHeightfieldMap.setValue( ivec2( x, y ), height );
 		}
 	}
 	
 	mPhysicsHeightfield = bt::RigidBody::create( bt::RigidBody::Format()
-												.collisionShape( bt::createHeightfieldShape( &mHeightfieldMap, 1.0f, -1.0f, Vec3f( 1, 1, 1 ) ) ) );
+												.collisionShape( bt::createHeightfieldShape( &mHeightfieldMap, 1.0f, -1.0f, vec3( 1, 1, 1 ) ) ) );
 	auto heightField = mPhysicsHeightfield->getCollisionShape();
 	mDrawable = getDrawableHeightField( &mHeightfieldMap );
 	mDrawableHeightfield = bt::drawableHelpers::getDrawableHeightfield( &mHeightfieldMap );
@@ -205,7 +205,7 @@ void HeightfieldTerrainApp::draw()
 	// clear out the window with black
 	gl::clear( Color( 0, 0, 0 ) );
 	gl::setMatrices( mCam );
-	gl::multModelMatrix( ci::Matrix44f::createRotation( Vec3f::yAxis(), toRadians( rotation += 0.1 ) ) );
+	gl::multModelMatrix( rotate( toRadians( rotation += 0.1 ), vec3( 0.0f, 1.0f, 0.0f ) ) );
 	
 //	gl::ScopedVao scopeVao( mBatch->getVao() );
 //	gl::ScopedBuffer scopeVbo( mDrawableHeightfield->getIndexVbo() );

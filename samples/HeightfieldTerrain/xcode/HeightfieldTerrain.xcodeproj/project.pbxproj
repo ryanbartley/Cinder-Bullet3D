@@ -30,6 +30,8 @@
 		B3AC833619A3039B00B29ABF /* Phong.vert in Resources */ = {isa = PBXBuildFile; fileRef = B3AC833219A3039B00B29ABF /* Phong.vert */; };
 		B3AC833819A30C2500B29ABF /* basic.vert in Resources */ = {isa = PBXBuildFile; fileRef = B3AC833719A30C2500B29ABF /* basic.vert */; };
 		B3AC833A19A30C3A00B29ABF /* basic.frag in Resources */ = {isa = PBXBuildFile; fileRef = B3AC833919A30C3A00B29ABF /* basic.frag */; };
+		B3B6641D19AF8B090097005F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B6641C19AF8B090097005F /* CoreMedia.framework */; };
+		B3B6641F19AF8B120097005F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B6641E19AF8B120097005F /* AVFoundation.framework */; };
 		CD2619402D4B4E228A954A69 /* BulletContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB8CA9E3DE6B41D0A8041F2F /* BulletContext.cpp */; };
 		D8619A0AF852430C834599F4 /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3428E7E885DE4E8E8FEA13BE /* Common.cpp */; };
 		F47432797F744A04B4A93C11 /* PhysicsDebugRenderable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B494B014C4704FC19A098324 /* PhysicsDebugRenderable.cpp */; };
@@ -312,6 +314,8 @@
 		B3AC833219A3039B00B29ABF /* Phong.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = Phong.vert; path = ../assets/Phong.vert; sourceTree = "<group>"; };
 		B3AC833719A30C2500B29ABF /* basic.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = basic.vert; path = ../assets/basic.vert; sourceTree = "<group>"; };
 		B3AC833919A30C3A00B29ABF /* basic.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = basic.frag; path = ../assets/basic.frag; sourceTree = "<group>"; };
+		B3B6641C19AF8B090097005F /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		B3B6641E19AF8B120097005F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		B494B014C4704FC19A098324 /* PhysicsDebugRenderable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = PhysicsDebugRenderable.cpp; path = "../../../../Cinder-Bullet3D/src/Cinder-Bullet3D/PhysicsDebugRenderable.cpp"; sourceTree = "<group>"; };
 		B4C66C6D8C1E490E8D4FF9FA /* btSphereTriangleCollisionAlgorithm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = btSphereTriangleCollisionAlgorithm.h; path = "../../../../Cinder-Bullet3D/src/BulletPhysics/BulletCollision/CollisionDispatch/btSphereTriangleCollisionAlgorithm.h"; sourceTree = "<group>"; };
 		B5CE2F1A3C494EFEAAFDF54C /* btConvexPenetrationDepthSolver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = btConvexPenetrationDepthSolver.h; path = "../../../../Cinder-Bullet3D/src/BulletPhysics/BulletCollision/NarrowPhaseCollision/btConvexPenetrationDepthSolver.h"; sourceTree = "<group>"; };
@@ -428,6 +432,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3B6641F19AF8B120097005F /* AVFoundation.framework in Frameworks */,
+				B3B6641D19AF8B090097005F /* CoreMedia.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				0091D8F90E81B9330029341E /* OpenGL.framework in Frameworks */,
 				5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */,
@@ -675,6 +681,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B3B6641E19AF8B120097005F /* AVFoundation.framework */,
+				B3B6641C19AF8B090097005F /* CoreMedia.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
@@ -1163,6 +1171,7 @@
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = x86_64;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
@@ -1180,10 +1189,10 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
 					"\"$(CINDER_PATH)/lib/libcinder_d.a\"",
-					"\"../../../../Cinder-Bullet3D/lib/macosx/libBulletCollision_x32.a\"",
-					"\"../../../../Cinder-Bullet3D/lib/macosx/libBulletDynamics_x32.a\"",
-					"\"../../../../Cinder-Bullet3D/lib/macosx/libBulletSoftBody_x32.a\"",
-					"\"../../../../Cinder-Bullet3D/lib/macosx/libLinearMath_x32.a\"",
+					"\"../../../../Cinder-Bullet3D/lib/macosx/libBulletCollision_x64_debug.a\"",
+					"\"../../../../Cinder-Bullet3D/lib/macosx/libBulletDynamics_x64_debug.a\"",
+					"\"../../../../Cinder-Bullet3D/lib/macosx/libBulletSoftBody_x64_debug.a\"",
+					"\"../../../../Cinder-Bullet3D/lib/macosx/libLinearMath_x64_debug.a\"",
 				);
 				PRODUCT_NAME = HeightfieldTerrain;
 				SYMROOT = ./build;
@@ -1194,6 +1203,7 @@
 		C01FCF4C08A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = x86_64;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1208,10 +1218,10 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
 					"\"$(CINDER_PATH)/lib/libcinder.a\"",
-					"\"../../../../Cinder-Bullet3D/lib/macosx/libBulletCollision_x32.a\"",
-					"\"../../../../Cinder-Bullet3D/lib/macosx/libBulletDynamics_x32.a\"",
-					"\"../../../../Cinder-Bullet3D/lib/macosx/libBulletSoftBody_x32.a\"",
-					"\"../../../../Cinder-Bullet3D/lib/macosx/libLinearMath_x32.a\"",
+					"\"../../../../Cinder-Bullet3D/lib/macosx/libBulletCollision_x64_release.a\"",
+					"\"../../../../Cinder-Bullet3D/lib/macosx/libBulletDynamics_x64_release.a\"",
+					"\"../../../../Cinder-Bullet3D/lib/macosx/libBulletSoftBody_x64_release.a\"",
+					"\"../../../../Cinder-Bullet3D/lib/macosx/libLinearMath_x64_release.a\"",
 				);
 				PRODUCT_NAME = HeightfieldTerrain;
 				STRIP_INSTALLED_PRODUCT = YES;

@@ -66,10 +66,18 @@
 		</platform>
 	</platform>
 	<platform os="macosx">
-		<staticLibrary>lib/macosx/libBulletCollision_x32.a</staticLibrary>
-		<staticLibrary>lib/macosx/libBulletDynamics_x32.a</staticLibrary>
-		<staticLibrary>lib/macosx/libBulletSoftBody_x32.a</staticLibrary>
-		<staticLibrary>lib/macosx/libLinearMath_x32.a</staticLibrary>
+		<platform config="Debug">
+			<staticLibrary>lib/macosx/libBulletCollision_x64_debug.a</staticLibrary>
+			<staticLibrary>lib/macosx/libBulletDynamics_x64_debug.a</staticLibrary>
+			<staticLibrary>lib/macosx/libBulletSoftBody_x64_debug.a</staticLibrary>
+			<staticLibrary>lib/macosx/libLinearMath_x64_debug.a</staticLibrary>
+		</platform>
+		<platform config="Release">
+			<staticLibrary>lib/macosx/libBulletCollision_x64_release.a</staticLibrary>
+			<staticLibrary>lib/macosx/libBulletDynamics_x64_release.a</staticLibrary>
+			<staticLibrary>lib/macosx/libBulletSoftBody_x64_release.a</staticLibrary>
+			<staticLibrary>lib/macosx/libLinearMath_x64_release.a</staticLibrary>
+		</platform>
 	</platform>
 	<platform os="msw">
 		<platform config="Debug">

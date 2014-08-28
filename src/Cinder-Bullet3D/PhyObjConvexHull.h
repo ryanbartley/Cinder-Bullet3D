@@ -63,8 +63,8 @@ public:
 	
 	~PhyObjConvexHull();
 	
-	btConvexHullShapeRef getConvexHullShape() { return std::dynamic_pointer_cast<btConvexHullShape>(mCollisionShape); }
-	const btConvexHullShapeRef getConvexHullShape() const { return std::dynamic_pointer_cast<btConvexHullShape>(mCollisionShape); }
+	ConvexHullShapeRef getConvexHullShape() { return std::dynamic_pointer_cast<btConvexHullShape>(mCollisionShape); }
+	const ConvexHullShapeRef getConvexHullShape() const { return std::dynamic_pointer_cast<btConvexHullShape>(mCollisionShape); }
 	
 private:
 	PhyObjConvexHull( const Format &format );

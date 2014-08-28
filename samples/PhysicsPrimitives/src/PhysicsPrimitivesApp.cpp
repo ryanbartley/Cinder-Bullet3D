@@ -45,11 +45,11 @@ void PhysicsPrimitivesApp::setup()
 	// Here we're creating the primitives for our physics world. These
 	// are helpers on the Primitive shapes that ship with bullet. We
 	// store a Reference to them in our application.
-	mBox = RigidBody::create( RigidBody::Format().collisionShape( createBoxShape( Vec3f( 1, 1, 1 ) ) ).initialPosition( Vec3f( 0, 10, 0 ) ).mass( 1 ) );
-	mCapsule = RigidBody::create( RigidBody::Format().collisionShape( createCapsuleShape( 2, 5 ) ).initialPosition( Vec3f( 3, 10, 0 ) ).mass( 1 ) );
-	mSphere = RigidBody::create( RigidBody::Format().collisionShape( createSphereShape( 1 ) ).initialPosition( Vec3f( 0.5, 20, 0 ) ).mass( 1 ) );
-	mCone = RigidBody::create( RigidBody::Format().collisionShape( createConeShape( 1, 2 ) ).initialPosition( Vec3f( -0.5, 20, 0 ) ).mass( 1 ) );
-	mCylinder = RigidBody::create( RigidBody::Format().collisionShape( createCylinderShape( Vec3f( 1, 5, 1 ) ) ).initialPosition( Vec3f( -0.5, 20, 0 ) ).mass( 1 ) );
+	mBox = RigidBody::create( RigidBody::Format().collisionShape( createBoxShape( vec3( 1, 1, 1 ) ) ).initialPosition( vec3( 0, 10, 0 ) ).mass( 1 ) );
+	mCapsule = RigidBody::create( RigidBody::Format().collisionShape( createCapsuleShape( 2, 5 ) ).initialPosition( vec3( 3, 10, 0 ) ).mass( 1 ) );
+	mSphere = RigidBody::create( RigidBody::Format().collisionShape( createSphereShape( 1 ) ).initialPosition( vec3( 0.5, 20, 0 ) ).mass( 1 ) );
+	mCone = RigidBody::create( RigidBody::Format().collisionShape( createConeShape( 1, 2 ) ).initialPosition( vec3( -0.5, 20, 0 ) ).mass( 1 ) );
+	mCylinder = RigidBody::create( RigidBody::Format().collisionShape( createCylinderShape( vec3( 1, 5, 1 ) ) ).initialPosition( vec3( -0.5, 20, 0 ) ).mass( 1 ) );
 	
 	// Static Plane is the only interesting one really. It's infinite,
 	// So you give it a Normal first (Vec3f(0, 1, 0), is pointing up)
@@ -57,12 +57,12 @@ void PhysicsPrimitivesApp::setup()
 	// therefore we don't need to add a mass to it. The default
 	// RigidBody::Format value for mass is 0, which makes the rigidbody
 	// static, meaning not moving.
-	mPlane = RigidBody::create( RigidBody::Format().collisionShape( createStaticPlaneShape( Vec3f( 0, 1, 0 ), 0 ) ) );
+	mPlane = RigidBody::create( RigidBody::Format().collisionShape( createStaticPlaneShape( vec3( 0, 1, 0 ), 0 ) ) );
 
-	std::vector<ci::Vec3f> positions = {
-		Vec3f( 1, 0, 0 ),
-		Vec3f( 0, 0, 0 ),
-		Vec3f( -1, 0, 0 )
+	std::vector<ci::vec3> positions = {
+		vec3( 1, 0, 0 ),
+		vec3( 0, 0, 0 ),
+		vec3( -1, 0, 0 )
 	};
 	std::vector<btScalar> radii = {
 		1,
@@ -88,7 +88,7 @@ void PhysicsPrimitivesApp::setup()
 	// For this example we'll make a simple camera to represent
 	// the physics object
 	mCam.setPerspective( 75.0f, getWindowAspectRatio(), .01f, 1000.0f );
-	mCam.lookAt( Vec3f( 0, 5, 20 ), vec3( 0.0f ) );
+	mCam.lookAt( vec3( 0, 5, 20 ), vec3( 0.0f ) );
 }
 
 void PhysicsPrimitivesApp::collisionBegin( btRigidBody *rigid0, btRigidBody *rigid1 )

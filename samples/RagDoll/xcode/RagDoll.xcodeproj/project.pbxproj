@@ -1171,10 +1171,10 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
 					"\"$(CINDER_PATH)/lib/libcinder_d.a\"",
-					../../../lib/macosx/libBulletCollision_x32.a,
-					../../../lib/macosx/libBulletDynamics_x32.a,
-					../../../lib/macosx/libBulletSoftBody_x32.a,
-					../../../lib/macosx/libLinearMath_x32.a,
+					../../../lib/macosx/libBulletCollision_x64_debug.a,
+					../../../lib/macosx/libBulletDynamics_x64_debug.a,
+					../../../lib/macosx/libBulletSoftBody_x64_debug.a,
+					../../../lib/macosx/libLinearMath_x64_debug.a,
 				);
 				PRODUCT_NAME = RagDoll;
 				SYMROOT = ./build;
@@ -1200,10 +1200,10 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
 					"\"$(CINDER_PATH)/lib/libcinder.a\"",
-					../../../lib/macosx/libBulletCollision_x32.a,
-					../../../lib/macosx/libBulletDynamics_x32.a,
-					../../../lib/macosx/libBulletSoftBody_x32.a,
-					../../../lib/macosx/libLinearMath_x32.a,
+					../../../lib/macosx/libBulletCollision_x64_release.a,
+					../../../lib/macosx/libBulletDynamics_x64_release.a,
+					../../../lib/macosx/libBulletSoftBody_x64_release.a,
+					../../../lib/macosx/libLinearMath_x64_release.a,
 				);
 				PRODUCT_NAME = RagDoll;
 				STRIP_INSTALLED_PRODUCT = YES;

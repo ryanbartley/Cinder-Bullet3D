@@ -269,6 +269,9 @@ public:
 	//! Sets the Motion State User Pointer. This pointer will be used to set and get back the transform for this object.
 	inline void setUserPointerMotionState( void *ptr ) { mMotionState->setUserPointer( ptr ); }
 	
+	inline void setLinearFactor( const ci::vec3 &factor ) { mRigidBody->setLinearFactor( toBullet( factor ) ); }
+	inline void setAngularFactor( const ci::vec3 &factor ) { mRigidBody->setAngularFactor( toBullet( factor ) ); }
+	
 protected:
 	//! Base Class for a Physics Object.
 	RigidBody( const Format &format );

@@ -23,7 +23,6 @@ class btHeightfieldTerrainShape;
 
 
 using TriMeshRef = std::shared_ptr<ci::TriMesh>;
-//using VboMeshRef = std::shared_ptr<ci::gl::VboMesh>;
 
 namespace bullet {
 
@@ -50,16 +49,16 @@ using ConstraintGeneric6DofRef = std::shared_ptr<class ConstraintGeneric6Dof>;
 using btGeneric6DofConstraintRef = std::shared_ptr<class btGeneric6DofConstraint>;
 	
 
-using btBoxShapeRef = std::shared_ptr<btBoxShape>;
-using btConeShapeRef = std::shared_ptr<btConeShape>;
-using btCapsuleShapeRef = std::shared_ptr<btCapsuleShape>;
-using btCylinderShapeRef = std::shared_ptr<btCylinderShape>;
-using btSphereShapeRef = std::shared_ptr<btSphereShape>;
-using btStaticPlaneShapeRef = std::shared_ptr<btStaticPlaneShape>;
-using btMultiSphereShapeRef = std::shared_ptr<btMultiSphereShape>;
-using btCompoundShapeRef = std::shared_ptr<btCompoundShape>;
-using btConvexHullShapeRef = std::shared_ptr<btConvexHullShape>;
-using btHeightfieldTerrainShapeRef = std::shared_ptr<btHeightfieldTerrainShape>;
+using BoxShapeRef = std::shared_ptr<btBoxShape>;
+using ConeShapeRef = std::shared_ptr<btConeShape>;
+using CapsuleShapeRef = std::shared_ptr<btCapsuleShape>;
+using CylinderShapeRef = std::shared_ptr<btCylinderShape>;
+using SphereShapeRef = std::shared_ptr<btSphereShape>;
+using StaticPlaneShapeRef = std::shared_ptr<btStaticPlaneShape>;
+using MultiSphereShapeRef = std::shared_ptr<btMultiSphereShape>;
+using CompoundShapeRef = std::shared_ptr<btCompoundShape>;
+using ConvexHullShapeRef = std::shared_ptr<btConvexHullShape>;
+using HeightfieldTerrainShapeRef = std::shared_ptr<btHeightfieldTerrainShape>;
 	
 using DebugRendererRef = std::shared_ptr<class PhysicsDebugRenderable>;
 using RigidBodyRef = std::shared_ptr<class RigidBody>;
@@ -67,20 +66,19 @@ using RigidBodyRef = std::shared_ptr<class RigidBody>;
 // Pointer to the main Bullet Context
 Context* Context();
 	
-btBoxShapeRef createBoxShape( const ci::vec3 &halfExtents );
-btConeShapeRef createConeShape( btScalar radius, btScalar height );
-btCapsuleShapeRef createCapsuleShape( btScalar radius, btScalar height );
-btCylinderShapeRef createCylinderShape( const ci::vec3 &halfExtents );
-btSphereShapeRef createSphereShape( btScalar radius );
-btStaticPlaneShapeRef createStaticPlaneShape( const ci::vec3 &normal, btScalar offset );
-btMultiSphereShapeRef createMultiSphereShape( const std::vector<ci::vec3> &positions, const std::vector<btScalar> &radii );
-btMultiSphereShapeRef createMultiSphereShape( const std::vector<btVector3> &positions, const std::vector<btScalar> &radii );
+BoxShapeRef createBoxShape( const ci::vec3 &halfExtents );
+ConeShapeRef createConeShape( btScalar radius, btScalar height );
+CapsuleShapeRef createCapsuleShape( btScalar radius, btScalar height );
+CylinderShapeRef createCylinderShape( const ci::vec3 &halfExtents );
+SphereShapeRef createSphereShape( btScalar radius );
+StaticPlaneShapeRef createStaticPlaneShape( const ci::vec3 &normal, btScalar offset );
+MultiSphereShapeRef createMultiSphereShape( const std::vector<ci::vec3> &positions, const std::vector<btScalar> &radii );
+MultiSphereShapeRef createMultiSphereShape( const std::vector<btVector3> &positions, const std::vector<btScalar> &radii );
 	
-using Offsets = std::vector<btTransform>;
-using ShapesAndOffsets = std::map<btCollisionShape*, Offsets>;
-btCompoundShapeRef createCompoundShape( const ShapesAndOffsets &shapesAndOffsets );
-btConvexHullShapeRef createConvexHull( const TriMeshRef &mesh );
-btHeightfieldTerrainShapeRef createHeightfieldShape( const ci::Channel32f *heightData,
+using ShapesAndOffsets = std::map<btCollisionShapeRef, btTransform>;
+CompoundShapeRef createCompoundShape( const ShapesAndOffsets &shapesAndOffsets );
+ConvexHullShapeRef createConvexHull( const TriMeshRef &mesh );
+HeightfieldTerrainShapeRef createHeightfieldShape( const ci::Channel32f *heightData,
 													float maxHeight,
 													float minHeight,
 													ci::vec3 scale = ci::vec3( 1.0f ) );
