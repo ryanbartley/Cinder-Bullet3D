@@ -127,66 +127,19 @@ struct HeightfieldData {
 	
 ci::gl::VboMeshRef getDrawableHeightfield( const Channel32f *heightData )
 {
-	std::vector<uint32_t>	cIndices;
-	
-	int32_t height	= heightData->getHeight();
+	int32_t depth	= heightData->getHeight();
 	int32_t width	= heightData->getWidth();
 	
-	std::vector<HeightfieldData> cVertices( height * width );
+	auto plane = TriMesh::create( geom::Plane().subdivisions( ivec2( width - 1, depth - 1 ) ).size( vec2( width - 1, depth - 1 ) ) );
 	
-	float halfHeight	= (float)height * 0.5f - 0.5f;
-	float halfWidth		= (float)width * 0.5f - 0.5f;
-	
-	auto vertIt = cVertices.begin();
-
-	for ( int32_t y = 0; y < height; y++ ) {
-		cout << "-------------------------------------------" << endl;
-		for ( int32_t x = 0; x < width; x++ ) {
-			cout << endl;
-			float value = heightData->getValue( ivec2( x, y ) );
-			
-			vertIt->mPosition = vec3( (float)x - halfWidth, value, (float)y - halfHeight );
-			vertIt->mTexCoord = vec2( (float)x / (float)width, (float)y / (float)height );
-			
-			int32_t xn = x + 1 >= width ? 0 : 1;
-			int32_t yn = y + 1 >= height ? 0 : 1;
-			//  0-----3
-			//  |     |
-			//  |     |
-			//	1_____2
-			cIndices.push_back( x + width * y );
-			cIndices.push_back( ( x + xn ) + width * y );
-			cIndices.push_back( ( x ) + width * ( y + yn ) );
-			
-			cIndices.push_back( x + width * y );
-			cIndices.push_back( x + width * ( y + yn ) );
-			cIndices.push_back( ( x + xn ) + width * ( y + yn ) );
-			
-			++vertIt;
+	for( int z = 0; z < depth; ++z ) {
+		for( int x = 0; x < width; ++x ) {
+			auto & vert = plane->getVertices<3>()[z + depth * x];
+			vert.y = heightData->getValue( ivec2( x, z ) );
 		}
 	}
 	
-	for ( int32_t y = 0; y < height - 1; y++ ) {
-		for ( int32_t x = 0; x < width - 1; x++ ) {
-			vec3 vert0 = cVertices[ cIndices[ ( x + height * y ) * 6 ] ].mPosition;
-			vec3 vert1 = cVertices[ cIndices[ ( ( x + 1 ) + height * y ) * 6 ] ].mPosition;
-			vec3 vert2 = cVertices[ cIndices[ ( ( x + 1 ) + height * ( y + 1 ) ) * 6 ] ].mPosition;
-			cVertices[ x + height * y ].mNormal = normalize( cross( ( vert1 - vert0 ), ( vert1 - vert2 ) ) );
-		}
-	}
-	
-	auto gVertices  = gl::Vbo::create( GL_ARRAY_BUFFER, cVertices.size() * sizeof(HeightfieldData), cVertices.data(), GL_STATIC_DRAW );
-	auto gIndices	= gl::Vbo::create( GL_ELEMENT_ARRAY_BUFFER, cIndices.size() * sizeof(uint32_t), cIndices.data(), GL_STATIC_DRAW );
-	
-	geom::BufferLayout bufferLayout;
-	bufferLayout.append( geom::Attrib::POSITION,	geom::DataType::FLOAT, 3, sizeof(HeightfieldData), 0 );
-	bufferLayout.append( geom::Attrib::NORMAL,		geom::DataType::FLOAT, 3, sizeof(HeightfieldData), 3 );
-	bufferLayout.append( geom::Attrib::TEX_COORD_0, geom::DataType::FLOAT, 2, sizeof(HeightfieldData), 6 );
-	
-	auto pair = std::make_pair( bufferLayout, gVertices );
-	
-	auto ret = gl::VboMesh::create( cVertices.size(), GL_LINES, { pair }, cIndices.size(), GL_UNSIGNED_INT, gIndices );
-	cout << ret->getGlPrimitive();
+	auto ret = gl::VboMesh::create( *plane );
 	return ret;
 }
 	
