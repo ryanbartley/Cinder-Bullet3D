@@ -46,8 +46,10 @@ public:
 		Format& broadphase( btBroadphaseInterface *broadphase ) { mBroadphase = broadphase; return *this; }
 		//! Sets the constraint solver. (Only use this if you know what you're doing)
 		Format& constraintSolver( btConstraintSolver *solver ) { mSolver = solver; return *this; }
+		//! Sets the soft body solver. NOTE: Only use when making a btSoftRigidBodyWorld.
+		Format& softBodySolver( btSoftBodySolver *solver ) { mSoftBodySolver = solver; return *this; }
 		//! Sets the world. (Only use this if you know what you're doing.)
-		Format& world( btDynamicsWorld *world ) { mWorld = world; return *this; }
+		Format& world( btDynamicsWorld *world ) { if( world->getWorldType() == BT_SOFT_RIGID_DYNAMICS_WORLD ) mCreateSoftRigidWorld = true; mWorld = world; return *this; }
 		
 		//! Sets the step simulation value. Defaults to 1.0f / 60.0f.
 		Format& setStepVal( float stepVal ) { mStepVal = stepVal; return *this; }
@@ -59,19 +61,37 @@ public:
 		Format& gravity( const ci::vec3 &gravity ) { mGravity = gravity; return *this; }
 		//! Sets the render mode for the debug drawer. Default is DrawContactPoints, DrawWireframe, DrawConstraints, DrawConstraintLimits. Modes combined by bitwise or ( | ) operator. You can find the other modes in btIDebugDraw.h.
 		Format& debugDrawMode( int mode ) { mDebugMode = mode; return *this; }
+		//! Sets the world to create to SoftRigidDynamicsWorld. Experimental.
+		Format& createSoftRigidWorld( bool create ) { mCreateSoftRigidWorld = create; return *this; }
 		
-		bool getDrawDebug() const { return mDrawDebug; }
+		const btDynamicsWorld*			getDynamicsWorld() const { return mWorld; }
+		const btCollisionDispatcher*	getCollisionDispatcher() const { return mCollisionDispatcher; }
+		const btBroadphaseInterface*	getBroadphaseInterface() const { return mBroadphase; }
+		const btConstraintSolver*		getConstraintSolver() const { return mSolver; }
+		const btSoftBodySolver*			getSoftBodySolver() const { return mSoftBodySolver; }
+		const btCollisionConfiguration* getCollisionConfiguration() const { return mConfiguration; }
+		
+		const ci::vec3& getGravity() { return mGravity; }
+		float			getStepVal() { return mStepVal; }
+		int				getDebugMode() { return mDebugMode; }
+		bool			getCreateDebugRenderer() { return mCreateDebugRenderer; }
+		bool			getDrawDebug() { return mDrawDebug; }
+		bool			getCreateSoftRigidWorld() { return mCreateSoftRigidWorld; }
+		
+		bool			getDrawDebug() const { return mDrawDebug; }
 		
 	private:
 		btDynamicsWorld				*mWorld;
 		btCollisionDispatcher		*mCollisionDispatcher;
 		btBroadphaseInterface		*mBroadphase;
 		btConstraintSolver			*mSolver;
+		btSoftBodySolver			*mSoftBodySolver;
 		btCollisionConfiguration	*mConfiguration;
 		ci::vec3					mGravity;
 		float						mStepVal;
 		int							mDebugMode;
-		bool						mCreateDebugRenderer, mDrawDebug;
+		bool						mCreateDebugRenderer, mDrawDebug,
+									mCreateSoftRigidWorld;
 		
 		friend class Context;
 	};
@@ -88,9 +108,11 @@ public:
 	inline void addRigidBody( btRigidBody *body ) { addRigidBody( body, -1, -1 ); }
 	//! Add a rigid body to the world with a Collision group and mask.
 	inline void addRigidBody( btRigidBody *body, int16_t group, int16_t mask ) { mWorld->addRigidBody( body, group, mask ); }
+	//! Adds a rigid body to the world. You must keep a reference to phyObj.
 	void addRigidBody( const RigidBodyRef &phyObj );
 	//! Remove a rigid body from the world.
 	inline void removeRigidBody( btRigidBody *body ){ mWorld->removeRigidBody( body ); }
+	//! Removes a rigid body from the world. You must keep a reference to phyObj.
 	void removeRigidBody( const RigidBodyRef &phyObj );
 	//! Add a collision Object to the world.
 	inline void addCollisionObject( btCollisionObject *collObj ) { mWorld->addCollisionObject( collObj ); }
@@ -113,8 +135,8 @@ public:
 	inline void setStepVal( float stepVal ) { mStepVal = stepVal; }
 	//! Returns the current stepVal.
 	float getStepVal() { return mStepVal; }
-	//! Set the internal Tick Call Back for the world
-	void setInternalTickCallBack( btInternalTickCallback tickCallback, void* worldUserInfo = nullptr, bool preTick = false ) { mWorld->setInternalTickCallback( tickCallback, worldUserInfo, preTick ); }
+	//! Set the internal Tick Call Back for the world with \a tickCallback. Optional \a worldUserInfo void*, defaults to nullptr, and \a preTick boolean, defaults to false.
+	inline void setInternalTickCallBack( btInternalTickCallback tickCallback, void* worldUserInfo = nullptr, bool preTick = false ) { mWorld->setInternalTickCallback( tickCallback, worldUserInfo, preTick ); }
 	
 	//! Updates the world. Used normally in the update loop. It also fires the Collision Checker and handles sending data to and updating the Debug Drawer, if Debug Drawer is enabled.
 	void update();
@@ -125,6 +147,8 @@ public:
 	
 	//! Generic RayCast function that returns the closest object it hits in \a RayResult
 	bool closestRayCast( const ci::vec3 &startPosition, const ci::vec3 &direction, RayResult &result );
+	
+	bool allHitsRayResult( const ci::vec3 &startPosition, const ci::vec3 &direction, RayResult &result );
 	
 	btCollisionObjectArray& getCollisionObjects() { return mWorld->getCollisionObjectArray(); }
 	const btCollisionObjectArray& getCollisionObjects() const { return mWorld->getCollisionObjectArray(); }
@@ -152,14 +176,53 @@ public:
 	//! Returns a const pointer to the constraint solver.
 	const btConstraintSolver*		getConstraintSolver() const { return mSolver; }
 	
+	DebugRendererRef	getDebugRenderer() { return mDebugRenderer; }
+	
 	//! Returns the current world type.
-	btDynamicsWorldType getWorldType() { return mWorld->getWorldType(); }
+	btDynamicsWorldType getWorldType() const { return mWorld->getWorldType(); }
 	
 	//! Sets up the debug renderer. Returns if already setup.
 	void setupDebugRenderer( int mode );
 	
 	//! Returns the current collision pairs. 
 	CollisionPairs& getCurrentCollisionPairs() { return mPairs; }
+	
+	// SOFT RIGID BODY WORLD FUNCTIONS - Functions below assert that \a mWorld is a soft body
+	
+	//! Adds a softbody, \a body, to the world. Asserts that the type of world is a btSoftRigidDynamicsWorld.
+	void addSoftBody( btSoftBody *body, int16_t collisionGroup = -1, int16_t collisionMask = -1 );
+	void addSoftBody( const SoftBodyRef &body );
+	//! Removes a softbody, \a body, from the world. Asserts that the type of world is a btSoftRigidDynamicsWorld.
+	void removeSoftBody( btSoftBody *body );
+	//! Returns the Soft Body World Info. Asserts that mWorld is a BT_SOFT_RIGID_DYNAMICS_WORLD.
+	inline btSoftBodyWorldInfo& getSoftBodyWorldInfo()
+	{
+		CI_ASSERT(getWorldType() == BT_SOFT_RIGID_DYNAMICS_WORLD);
+		btSoftRigidDynamicsWorld* world = static_cast<btSoftRigidDynamicsWorld*>(mWorld);
+		return world->getWorldInfo();
+	}
+	
+	//! Returns the Soft Body World Info. Asserts that mWorld is a BT_SOFT_RIGID_DYNAMICS_WORLD.
+	inline const btSoftBodyWorldInfo& getSoftBodyWorldInfo() const
+	{
+		CI_ASSERT(getWorldType() == BT_SOFT_RIGID_DYNAMICS_WORLD);
+		btSoftRigidDynamicsWorld* world = static_cast<btSoftRigidDynamicsWorld*>(mWorld);
+		return world->getWorldInfo();
+	}
+	
+	inline btSoftBodyArray& getSoftBodies()
+	{
+		CI_ASSERT(getWorldType() == BT_SOFT_RIGID_DYNAMICS_WORLD);
+		btSoftRigidDynamicsWorld* world = static_cast<btSoftRigidDynamicsWorld*>(mWorld);
+		return world->getSoftBodyArray();
+	}
+	
+	inline const btSoftBodyArray& getSoftBodies() const
+	{
+		CI_ASSERT(getWorldType() == BT_SOFT_RIGID_DYNAMICS_WORLD);
+		btSoftRigidDynamicsWorld* world = static_cast<btSoftRigidDynamicsWorld*>(mWorld);
+		return world->getSoftBodyArray();
+	}
 	
 private:
 	//! Initializes the world and creates the Debug Renderer if \a debugRenderer is true. Also sets the static pointer to BulletContext for use with getCurrent().

@@ -35,7 +35,8 @@ class HeightfieldTerrainApp : public AppNative {
 	gl::BatchRef		mBatch;
 	gl::VaoRef			mVao;
 	gl::VboMeshRef		mDrawableHeightfield;
-	bt::RigidBodyRef	mPhysicsHeightfield, box;
+	std::vector<bt::RigidBodyRef>	mRigidBodies;
+	bt::RigidBodyRef	mHeightfieldTerrain;
 	Channel32f			mHeightfieldMap;
 	CameraPersp			mCam;
 };
@@ -47,9 +48,9 @@ void HeightfieldTerrainApp::setup()
 	setupShader();
 	setupHeightfield();
 	
-	mContext->addRigidBody( mPhysicsHeightfield );
-	box = bt::RigidBody::create( bt::RigidBody::Format().collisionShape( bt::createBoxShape( vec3( 1.0f ) ) ).initialPosition( vec3( 0, 4, 0 ) ).mass( 1.0f ) );
-	mContext->addRigidBody( box );
+	
+	mRigidBodies.push_back( bt::RigidBody::create( bt::RigidBody::Format().collisionShape( bt::createBoxShape( vec3( 1.0f ) ) ).initialPosition( vec3( 0, 4, 0 ) ).mass( 1.0f ) ) );
+	mContext->addRigidBody( mRigidBodies.back() );
 	
 	mCam.setPerspective( 60.0f, getWindowAspectRatio(), 0.01f, 1000.0f );
 	mCam.lookAt( vec3( 0, 5, 10 ), vec3( 0.0f ) );
@@ -78,7 +79,7 @@ void HeightfieldTerrainApp::setupHeightfield()
 	
 	for( int y = 0; y < Depth; ++y ) {
 		for( int x = 0; x < Width; ++x ) {
-			mHeightfieldMap.setValue( ivec2( x, y ), randFloat( -1.0f, 1.0f ) );
+			mHeightfieldMap.setValue( ivec2( x, y ), 0 );
 		}
 	}
 	
@@ -91,13 +92,18 @@ void HeightfieldTerrainApp::setupHeightfield()
 	mBatch = gl::Batch::create( bt::drawableHelpers::getDrawableHeightfield( &mHeightfieldMap ), mPhongShader );
 	
 	
-	mPhysicsHeightfield = bt::RigidBody::create( bt::RigidBody::Format()
-												.collisionShape( bt::createHeightfieldShape( &mHeightfieldMap, 1.0f, -1.0f, vec3( 1, 1, 1 ) ) ) );
+	mRigidBodies.push_back( bt::RigidBody::create( bt::RigidBody::Format()
+												.collisionShape( bt::createHeightfieldShape( &mHeightfieldMap, 1.0f, -1.0f, vec3( 1, 1, 1 ) ) ) ) );
+	mContext->addRigidBody( mRigidBodies.back() );
+	
+	mHeightfieldTerrain = mRigidBodies.back();
 	
 }
 
 void HeightfieldTerrainApp::mouseDown( MouseEvent event )
 {
+	mRigidBodies.push_back( bt::RigidBody::create( bt::RigidBody::Format().collisionShape( bt::createBoxShape( vec3( 1.0f ) ) ).initialPosition( vec3( randFloat( -10, 10 ), 10, 0 ) ).mass( 1.0f ) ) );
+	mContext->addRigidBody( mRigidBodies.back() );
 }
 
 void HeightfieldTerrainApp::update()
@@ -115,7 +121,7 @@ void HeightfieldTerrainApp::draw()
 	{
 		gl::ScopedModelMatrix scope;
 		// Transform it with the physics heightfield
-		gl::multModelMatrix( translate( bt::fromBullet( mPhysicsHeightfield->getRigidBody()->getWorldTransform().getOrigin() ) ) );
+		gl::multModelMatrix( translate( bt::fromBullet( mHeightfieldTerrain->getRigidBody()->getWorldTransform().getOrigin() ) ) );
 		mBatch->draw();
 	}
 	mContext->debugDraw();

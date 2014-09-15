@@ -153,17 +153,19 @@ void VisualPhysicsApp::createTeapot()
 void VisualPhysicsApp::setupGround()
 {
 	using namespace bullet;
+	
+	auto plane = createStaticPlaneShape( vec3( 0.0f, 1.0f, 0.0f ), 0 );
 	// Dealing with floors like this is a bit hard. Basically, the Static Plane Shape doesn't really have
-	// the data we need. For instance, when I make this rect at a scale of 1000, 1000, it doesn't know about
-	// Normal and Offset, the two arguments to make a plane shape.
-	mVisPlane = gl::Batch::create( geom::Rect().scale( vec2( 1000, 1000 ) ), mPhongShader );
+	// a motion state, it's infinite across a normal. Because of this, I'll use this drawableHelper to get
+	// a vbomesh.
+	mVisPlane = gl::Batch::create( bt::drawableHelpers::getDrawablePlane( plane ), mPhongShader );
 	
 	// Therefore, we cache these in our program to draw seperately. Now I know that I want the plane's normal
 	// to be the yaxis and the offset means what distance on the normal I'd like to shift this. If I put 1 insted
 	// of zero I'd push the RigidBody to 0, 1, 0. Remember, that's not the normal, even though they're the same
 	// value. Same as if the offset were 50 and the normal were 0, 1, 0, the position would be 0, 50, 0, not 0, 51, 0
 	mPhyPlane = RigidBody::create( RigidBody::Format()
-								  .collisionShape( createStaticPlaneShape( vec3( 0.0f, 1.0f, 0.0f ), 0 ) )
+								  .collisionShape( plane )
 								  .initialPosition( vec3( 0, 0, 0 ) )
 								  .addToWorld( true ) );
 }
@@ -213,10 +215,7 @@ void VisualPhysicsApp::draw()
 	
 	// Now, we'll draw our plane first, by manipulating it's rotation. Since we know the plane's normal is up the yAxis
 	// all we need to do is rotate the plane backwards 90 degrees along the x axis. That'll create our floor.
-	gl::pushModelMatrix();
-	gl::multModelMatrix( rotate( toRadians( -90.0f ), vec3( 1, 0, 0 ) ) );
-		mVisPlane->draw();
-	gl::popModelMatrix();
+	mVisPlane->draw();
 	
 	// Then all we have to do is cycle through and draw the objects.
 	gl::pushModelMatrix();

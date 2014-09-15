@@ -32,6 +32,7 @@ using ContextRef = std::shared_ptr<Context>;
 using btCollisionShapeRef = std::shared_ptr<btCollisionShape>;
 using OpenGLMotionStateRef = std::shared_ptr<class OpenGLMotionState>;
 using btRigidBodyRef = std::shared_ptr<btRigidBody>;
+using btSoftBodyRef = std::shared_ptr<class btSoftBody>;
 using btDiscreteDynamicsWorldRef = std::shared_ptr<btDiscreteDynamicsWorld>;
 using btDynamicsWorldRef = std::shared_ptr<btDynamicsWorld>;
 using btCollisionObjectRef = std::shared_ptr<btCollisionObject>;
@@ -48,7 +49,6 @@ using btPoint2PointConstraintRef = std::shared_ptr<class btPoint2PointConstraint
 using ConstraintGeneric6DofRef = std::shared_ptr<class ConstraintGeneric6Dof>;
 using btGeneric6DofConstraintRef = std::shared_ptr<class btGeneric6DofConstraint>;
 	
-
 using BoxShapeRef = std::shared_ptr<btBoxShape>;
 using ConeShapeRef = std::shared_ptr<btConeShape>;
 using CapsuleShapeRef = std::shared_ptr<btCapsuleShape>;
@@ -59,9 +59,11 @@ using MultiSphereShapeRef = std::shared_ptr<btMultiSphereShape>;
 using CompoundShapeRef = std::shared_ptr<btCompoundShape>;
 using ConvexHullShapeRef = std::shared_ptr<btConvexHullShape>;
 using HeightfieldTerrainShapeRef = std::shared_ptr<btHeightfieldTerrainShape>;
+using UniformScalingShapeRef = std::shared_ptr<btUniformScalingShape>;
 	
 using DebugRendererRef = std::shared_ptr<class PhysicsDebugRenderable>;
 using RigidBodyRef = std::shared_ptr<class RigidBody>;
+using SoftBodyRef = std::shared_ptr<class SoftBody>;
 	
 // Pointer to the main Bullet Context
 Context* Context();
@@ -82,9 +84,24 @@ HeightfieldTerrainShapeRef createHeightfieldShape( const ci::Channel32f *heightD
 													float maxHeight,
 													float minHeight,
 													ci::vec3 scale = ci::vec3( 1.0f ) );
+UniformScalingShapeRef createUniformScalingShape( const btCollisionShapeRef &shape, float uniformScalingFactor );
 	
 namespace drawableHelpers {
-	ci::gl::VboMeshRef getDrawableHeightfield( const ci::Channel32f *heightData );
+	
+enum class SoftBodyDrawType {
+	POINTS,
+	LINES,
+	TRIANGLES
+};
+ci::gl::VboMeshRef getDrawableHeightfield( const ci::Channel32f *heightData );
+ci::gl::VboMeshRef getDrawablePlane( const StaticPlaneShapeRef &plane );
+//! Creates a VboMesh from a SoftBody. Attaches an index, position (geom::Attrib::POSITION) and normal(geom::Attrib::NORMAL) buffer interleaved based on the value of \a interleaved, which defaults to false.
+ci::gl::VboMeshRef getDrawableSoftBody( const SoftBodyRef &softBody, bool interleaved = true );
+//! Updates a VboMesh's Positions and Normals with the values from the softBody. Expects that Positions will be contained in the buffer associated with geom::Attrib::POSITION and Normals will be contained in the buffer associated with geom::Attrib::NORMALS. Also, expects that you're using an Index Vbo.
+void updateVboMesh( ci::gl::VboMeshRef &mesh, const SoftBodyRef &softBody );
+//! Draws
+void drawSoftBody( const SoftBodyRef &softBody, SoftBodyDrawType type = SoftBodyDrawType::TRIANGLES );
+	
 }
 
 enum PhyObjType {
@@ -100,6 +117,7 @@ enum PhyObjType {
 	HEIGHTFIELD,
 	STATIC_PLANE,
 	COMPOUND_SHAPE,
+	UNIFORM_SCALING_SHAPE,
 	NO_SHAPE
 };
 	
@@ -141,6 +159,9 @@ static PhyObjType getPhyObjType( const char * name )
 	else if( strcmp( name, "Compound" ) == 0 ) {
 		return PhyObjType::COMPOUND_SHAPE;
 	}
+	else if( strcmp( name, "UniformScalingShape") == 0 ) {
+		return PhyObjType::UNIFORM_SCALING_SHAPE;
+	}
 	else {
 		CI_LOG_W("getPhyObjType found no shape");
 		return PhyObjType::NO_SHAPE;
@@ -174,6 +195,8 @@ static const char * getPhyObjType( PhyObjType type )
 			return "STATICPLANE";
 		case PhyObjType::COMPOUND_SHAPE:
 			return "Compound";
+		case PhyObjType::UNIFORM_SCALING_SHAPE:
+			return "UniformScalingShape";
 		default: {
 			CI_LOG_W("getPhyObjType found no shape");
 			return "";

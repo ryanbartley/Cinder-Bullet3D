@@ -8,8 +8,12 @@
 
 #include "Cinder-Bullet3D/BulletContext.h"
 #include "Cinder-Bullet3D/PhysicsDebugRenderable.h"
+#include "BulletPhysics/BulletSoftBody/btSoftBodyRigidBodyCollisionConfiguration.h"
+//#include "BulletMultiThreaded/GpuSoftBodySolvers/OpenCL/btSoftBodySolver_OpenCL.h"
+#include "Cinder-Bullet3D/SoftBody.h"
 
 using namespace ci;
+using namespace std;
 
 namespace bullet {
 
@@ -19,10 +23,15 @@ static bool sBulletContextInitialized = false;
 	
 Context::Format::Format()
 : mWorld( nullptr ), mCollisionDispatcher( nullptr ),
-	mBroadphase( nullptr ), mSolver( nullptr ),
+	mBroadphase( nullptr ), mSolver( nullptr ), mSoftBodySolver( nullptr ),
 	mConfiguration( nullptr ), mCreateDebugRenderer( false ),
-	mDrawDebug( false ), mStepVal( 1.0f / 60.0f), mGravity( ci::vec3( 0.0f, -9.8f, 0.0f ) ),
-	mDebugMode(  btIDebugDraw::DBG_DrawWireframe | btIDebugDraw::DBG_DrawContactPoints | btIDebugDraw::DBG_DrawConstraints | btIDebugDraw::DBG_DrawConstraintLimits )
+	mDrawDebug( false ), mStepVal( 1.0f / 60.0f),
+	mCreateSoftRigidWorld( false ),
+	mGravity( ci::vec3( 0.0f, -9.8f, 0.0f ) ),
+	mDebugMode(  btIDebugDraw::DBG_DrawWireframe |
+			   btIDebugDraw::DBG_DrawContactPoints |
+			   btIDebugDraw::DBG_DrawConstraints |
+			   btIDebugDraw::DBG_DrawConstraintLimits )
 {
 	
 }
@@ -45,11 +54,17 @@ Context::Context( const Format &format )
 	
 void Context::init( const Format &format )
 {
-	mCollisionConfiguration = format.mConfiguration ? format.mConfiguration : new btDefaultCollisionConfiguration();
+	
+	mCollisionConfiguration = format.mConfiguration ? format.mConfiguration :
+		!format.mCreateSoftRigidWorld ? new btDefaultCollisionConfiguration() : new btSoftBodyRigidBodyCollisionConfiguration();
+	
 	mCollisionDispatcher = format.mCollisionDispatcher ? format.mCollisionDispatcher : new btCollisionDispatcher(mCollisionConfiguration);
 	mBroadPhase = format.mBroadphase ? format.mBroadphase : new btDbvtBroadphase();
 	mSolver = format.mSolver ? format.mSolver : new btSequentialImpulseConstraintSolver();
-	mWorld = format.mWorld ? format.mWorld : new btDiscreteDynamicsWorld( mCollisionDispatcher, mBroadPhase, mSolver, mCollisionConfiguration );
+	
+	mWorld = format.mWorld ? format.mWorld :
+		!format.mCreateSoftRigidWorld ? new btDiscreteDynamicsWorld( mCollisionDispatcher, mBroadPhase, mSolver, mCollisionConfiguration ) :
+										new btSoftRigidDynamicsWorld( mCollisionDispatcher, mBroadPhase, mSolver, mCollisionConfiguration, format.mSoftBodySolver );
 	
 	// If we want to setup the debug renderer
 	if( format.mCreateDebugRenderer ) {
@@ -62,7 +77,11 @@ void Context::init( const Format &format )
 	
 	mWorld->setWorldUserInfo( this );
 	mWorld->setGravity( toBullet( format.mGravity ) );
-	
+	if( format.mCreateSoftRigidWorld ) {
+		auto worldInfo = getSoftBodyWorldInfo();
+		worldInfo.m_gravity = toBullet( format.mGravity );
+		// Add other world_info settings here from format.
+	}
 }
 	
 Context::~Context()
@@ -108,6 +127,27 @@ void Context::removeRigidBody( const RigidBodyRef &phyObj )
 	removeRigidBody( phyObj->getRigidBody().get() );
 }
 	
+void Context::addSoftBody( btSoftBody *body, int16_t collisionGroup, int16_t collisionMask )
+{
+	CI_ASSERT(mWorld->getWorldType() == BT_SOFT_RIGID_DYNAMICS_WORLD);
+	btSoftRigidDynamicsWorld* softWorld = static_cast<btSoftRigidDynamicsWorld*>(mWorld);
+	if( softWorld )
+		softWorld->addSoftBody( body, collisionGroup, collisionMask );
+}
+	
+void Context::addSoftBody( const SoftBodyRef &body )
+{
+	addSoftBody( body->getSoftBody().get(), body->getCollisionGroup(), body->getCollisionMask() );
+}
+	
+void Context::removeSoftBody( btSoftBody *body )
+{
+	CI_ASSERT(mWorld->getWorldType() == BT_SOFT_RIGID_DYNAMICS_WORLD);
+	btSoftRigidDynamicsWorld* softWorld = static_cast<btSoftRigidDynamicsWorld*>(mWorld);
+	if( softWorld )
+		softWorld->removeSoftBody( body );
+}
+	
 void Context::update()
 {
 	mWorld->stepSimulation(mStepVal);
@@ -143,6 +183,26 @@ bool Context::closestRayCast( const ci::vec3 &startPosition, const ci::vec3 &dir
 		result.hitNormal = fromBullet( rayCallback.m_hitNormalWorld );
 		
 		return true;
+	}
+	
+	return false;
+}
+	
+bool Context::allHitsRayResult( const ci::vec3 &startPosition, const ci::vec3 &direction, RayResult &result )
+{
+	
+	btVector3 rayTo = toBullet( direction * 1000.0f );
+	btVector3 rayFrom = toBullet( startPosition );
+	
+	btCollisionWorld::AllHitsRayResultCallback allHitsCallback( rayFrom, rayTo );
+	
+	world()->rayTest( rayFrom, rayTo, allHitsCallback );
+	
+	if( allHitsCallback.hasHit() ) {
+		auto bodies = std::move( allHitsCallback.m_collisionObjects );
+		
+		if( bodies.size() <= 0 )
+			return false;
 	}
 	
 	return false;

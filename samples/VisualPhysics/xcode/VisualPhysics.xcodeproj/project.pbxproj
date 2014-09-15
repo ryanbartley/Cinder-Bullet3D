@@ -123,7 +123,6 @@
 		38862F9939964ED492E197D6 /* btSphereShape.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = btSphereShape.cpp; path = ../../../src/BulletPhysics/BulletCollision/CollisionShapes/btSphereShape.cpp; sourceTree = "<group>"; };
 		38D3DA3C8BB54674A40B3B68 /* btCollisionShape.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = btCollisionShape.h; path = ../../../src/BulletPhysics/BulletCollision/CollisionShapes/btCollisionShape.h; sourceTree = "<group>"; };
 		3A65355633A84F49A58EE989 /* btCompoundFromGimpact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = btCompoundFromGimpact.h; path = ../../../src/BulletPhysics/BulletCollision/GImpact/btCompoundFromGimpact.h; sourceTree = "<group>"; };
-		3B928F0C682C4641BE24C994 /* PhyObjConvexHull.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PhyObjConvexHull.h; path = "../../../src/Cinder-Bullet3D/PhyObjConvexHull.h"; sourceTree = "<group>"; };
 		3C9CC37A30414695B9E4FFB8 /* btGjkConvexCast.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = btGjkConvexCast.cpp; path = ../../../src/BulletPhysics/BulletCollision/NarrowPhaseCollision/btGjkConvexCast.cpp; sourceTree = "<group>"; };
 		3DAA451823BC4F808A06B919 /* ConstraintHinge.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = ConstraintHinge.cpp; path = "../../../src/Cinder-Bullet3D/ConstraintHinge.cpp"; sourceTree = "<group>"; };
 		3E27D86FC2B64BEA94A57A82 /* btEmptyCollisionAlgorithm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = btEmptyCollisionAlgorithm.h; path = ../../../src/BulletPhysics/BulletCollision/CollisionDispatch/btEmptyCollisionAlgorithm.h; sourceTree = "<group>"; };
@@ -666,27 +665,27 @@
 		87854BEDA0C84327B30321BF /* BulletSoftBody */ = {
 			isa = PBXGroup;
 			children = (
+				D52878383210482A9BD0B4A4 /* btDefaultSoftBodySolver.cpp */,
 				D912EC06AA0F46EA91EAAAB1 /* btDefaultSoftBodySolver.h */,
+				99F3CC46C6A34FF093B1433C /* btSoftBody.cpp */,
 				37135E8EE59E47D0A4216121 /* btSoftBody.h */,
+				B1EE2FE919D44640AD94A23B /* btSoftBodyConcaveCollisionAlgorithm.cpp */,
 				4CDBCC74B22C4D6CBE1A159F /* btSoftBodyConcaveCollisionAlgorithm.h */,
 				3633B737530F4992ADFCC86C /* btSoftBodyData.h */,
+				299DFA916C1D409DA54F42ED /* btSoftBodyHelpers.cpp */,
 				530959EF3BC24507A9CEC6AD /* btSoftBodyHelpers.h */,
 				28DF2CA12E0D4E9FBC5F3412 /* btSoftBodyInternals.h */,
+				C089A08B360540D2970DA8C5 /* btSoftBodyRigidBodyCollisionConfiguration.cpp */,
 				49CFF714CF214C7D9BAED8A7 /* btSoftBodyRigidBodyCollisionConfiguration.h */,
 				BFF54FDC9B904DC2A0662833 /* btSoftBodySolvers.h */,
 				8DD6453638614B63BCB05538 /* btSoftBodySolverVertexBuffer.h */,
+				5028E2D23A5E49DC9802DA8B /* btSoftRigidCollisionAlgorithm.cpp */,
 				EBB5FAAB084C4E2C906EF96F /* btSoftRigidCollisionAlgorithm.h */,
+				F0A060EA659F4F8BAA767EEB /* btSoftRigidDynamicsWorld.cpp */,
 				0291A21A36594167B17C9FAE /* btSoftRigidDynamicsWorld.h */,
+				326BC461A58A46E19C107D4B /* btSoftSoftCollisionAlgorithm.cpp */,
 				9B14654E1D9C401C845F9147 /* btSoftSoftCollisionAlgorithm.h */,
 				B388FBEB1003401B89D76797 /* btSparseSDF.h */,
-				D52878383210482A9BD0B4A4 /* btDefaultSoftBodySolver.cpp */,
-				99F3CC46C6A34FF093B1433C /* btSoftBody.cpp */,
-				B1EE2FE919D44640AD94A23B /* btSoftBodyConcaveCollisionAlgorithm.cpp */,
-				299DFA916C1D409DA54F42ED /* btSoftBodyHelpers.cpp */,
-				C089A08B360540D2970DA8C5 /* btSoftBodyRigidBodyCollisionConfiguration.cpp */,
-				5028E2D23A5E49DC9802DA8B /* btSoftRigidCollisionAlgorithm.cpp */,
-				F0A060EA659F4F8BAA767EEB /* btSoftRigidDynamicsWorld.cpp */,
-				326BC461A58A46E19C107D4B /* btSoftSoftCollisionAlgorithm.cpp */,
 			);
 			name = BulletSoftBody;
 			sourceTree = "<group>";
@@ -817,7 +816,6 @@
 				E13E7F12ECF74AB18BFC8F82 /* MotionState.h */,
 				BD9650B52C9E46DFB81B4FAA /* PhyObjCharacterController.cpp */,
 				27FCFB91A7D34BFDA95E42F3 /* PhyObjCharacterController.h */,
-				3B928F0C682C4641BE24C994 /* PhyObjConvexHull.h */,
 				46B392A3B5114A57A4C29B13 /* PhyObjTriggerVol.cpp */,
 				679EE811197F482BABE2E0AD /* PhyObjTriggerVol.h */,
 				0EB5687742FE41AFB8FA279A /* PhysicsDebugRenderable.cpp */,

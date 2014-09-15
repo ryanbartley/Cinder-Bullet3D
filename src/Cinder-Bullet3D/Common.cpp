@@ -8,11 +8,17 @@
 
 #include "Cinder-Bullet3D/Common.h"
 #include "Cinder-Bullet3D/BulletContext.h"
+#include "Cinder-Bullet3D/SoftBody.h"
 #include "cinder/TriMesh.h"
 #include "cinder/gl/Vbo.h"
 #include "cinder/gl/VboMesh.h"
+#include "cinder/GeomIo.h"
 
 #include "btHeightfieldTerrainShape.h"
+#include "btConvexShape.h"
+#include "btCollisionShape.h"
+#include "btSoftBody.h"
+
 
 using namespace ci;
 using namespace std;
@@ -117,13 +123,12 @@ HeightfieldTerrainShapeRef createHeightfieldShape( const ci::Channel32f *heightD
 	return shape;
 }
 	
-namespace drawableHelpers {
+UniformScalingShapeRef createUniformScalingShape( const btCollisionShapeRef &shape, float uniformScalingFactor )
+{
+	return UniformScalingShapeRef( new btUniformScalingShape( (btConvexShape*)shape.get(), uniformScalingFactor ) );
+}
 	
-struct HeightfieldData {
-	ci::vec3 mPosition;
-	ci::vec3 mNormal = ci::vec3( 0.0f );
-	ci::vec2 mTexCoord;
-};
+namespace drawableHelpers {
 	
 ci::gl::VboMeshRef getDrawableHeightfield( const Channel32f *heightData )
 {
@@ -141,6 +146,165 @@ ci::gl::VboMeshRef getDrawableHeightfield( const Channel32f *heightData )
 	
 	auto ret = gl::VboMesh::create( *plane );
 	return ret;
+}
+	
+ci::gl::VboMeshRef getDrawablePlane( const StaticPlaneShapeRef &plane )
+{
+	// TODO: Test this.
+	auto normal = fromBullet( plane->getPlaneNormal() );
+	auto constant = plane->getPlaneConstant();
+	auto geomPlane = geom::Plane().subdivisions( ivec2( 1, 1 ) )
+								.size( vec2( 1000, 1000 ) )
+								.normal( normal )
+								.origin( normal * constant );
+	
+	return ci::gl::VboMesh::create( geomPlane );
+	
+}
+	
+ci::gl::VboMeshRef getDrawableSoftBody( const SoftBodyRef &softBody, bool interleaved )
+{
+	if( interleaved ) {
+		auto& softNodes = softBody->getNodes();
+		std::vector<vec3> verts( softNodes.size() * 2 );
+		auto vertIt = verts.begin();
+		for( auto i = 0; i < softNodes.size(); ++i ) {
+			*vertIt++ = fromBullet( softNodes[i].m_x );
+			*vertIt++ = fromBullet( softNodes[i].m_n );
+		}
+		auto vbo = gl::Vbo::create( GL_ARRAY_BUFFER, verts.size() * sizeof(vec3), verts.data(), GL_DYNAMIC_DRAW );
+		geom::BufferLayout layout;
+		layout.append( geom::Attrib::POSITION, geom::DataType::FLOAT, 3, 2 * sizeof(vec3), 0 );
+		layout.append( geom::Attrib::NORMAL, geom::DataType::FLOAT, 3, 2 * sizeof(vec3), 0 );
+		auto& softFaces = softBody->getFaces();
+		std::vector<uint32_t> indices( softFaces.size() * 3 );
+		auto indexIt = indices.begin();
+		for( int i = 0; i < softFaces.size(); ++i ) {
+			auto node_0 = softFaces[i].m_n[0];
+			auto node_1 = softFaces[i].m_n[1];
+			auto node_2 = softFaces[i].m_n[2];
+			*indexIt++ = uint32_t(node_0 - &softNodes[0]);
+			*indexIt++ = uint32_t(node_1 - &softNodes[0]);
+			*indexIt++ = uint32_t(node_2 - &softNodes[0]);
+		}
+		auto indexVbo = gl::Vbo::create( GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(uint32_t), indices.data(), GL_STATIC_DRAW );
+		auto vboMesh = gl::VboMesh::create( verts.size(), GL_TRIANGLES, { make_pair( layout, vbo ) }, indices.size(), GL_UNSIGNED_INT, indexVbo );
+		return vboMesh;
+	}
+	else {
+		auto& softNodes = softBody->getNodes();
+		std::vector<vec3> pos( softNodes.size() );
+		std::vector<vec3> norm( softNodes.size() );
+		auto posIt = pos.begin();
+		auto normIt = norm.begin();
+		for( auto i = 0; i < softNodes.size(); ++i ) {
+			*posIt++ = fromBullet( softNodes[i].m_x );
+			*normIt++ = fromBullet( softNodes[i].m_n );
+		}
+		auto posVbo = gl::Vbo::create( GL_ARRAY_BUFFER, pos.size() * sizeof(vec3), pos.data(), GL_DYNAMIC_DRAW );
+		auto normVbo = gl::Vbo::create( GL_ARRAY_BUFFER, norm.size() * sizeof(vec3), norm.data(), GL_DYNAMIC_DRAW );
+		geom::BufferLayout posLayout;
+		posLayout.append( geom::Attrib::POSITION, geom::DataType::FLOAT, 3, 2 * sizeof(vec3), 0 );
+		geom::BufferLayout normLayout;
+		normLayout.append( geom::Attrib::NORMAL, geom::DataType::FLOAT, 3, 2 * sizeof(vec3), 0 );
+		auto& softFaces = softBody->getFaces();
+		std::vector<uint32_t> indices( softFaces.size() * 3 );
+		auto indexIt = indices.begin();
+		for( int i = 0; i < softFaces.size(); ++i ) {
+			auto node_0 = softFaces[i].m_n[0];
+			auto node_1 = softFaces[i].m_n[1];
+			auto node_2 = softFaces[i].m_n[2];
+			*indexIt++ = uint32_t(node_0 - &softNodes[0]);
+			*indexIt++ = uint32_t(node_1 - &softNodes[0]);
+			*indexIt++ = uint32_t(node_2 - &softNodes[0]);
+		}
+		auto indexVbo = gl::Vbo::create( GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(uint32_t), indices.data(), GL_STATIC_DRAW );
+		auto vboMesh = gl::VboMesh::create( pos.size(), GL_TRIANGLES, { make_pair( posLayout, posVbo ), make_pair( normLayout, normVbo ) }, indices.size(), GL_UNSIGNED_INT, indexVbo );
+		return vboMesh;
+	}
+}
+	
+void updateVboMesh( ci::gl::VboMeshRef &mesh, const SoftBodyRef &softBody )
+{
+	auto meshPos = mesh->mapAttrib3f( geom::POSITION );
+	auto meshNorm = mesh->mapAttrib3f( geom::NORMAL );
+	auto& softPos = softBody->getNodes();
+	for( auto i = 0; i < softPos.size(); ++i ) {
+		meshPos[i] = fromBullet( softPos[i].m_x );
+		meshNorm[i] = fromBullet( softPos[i].m_n );
+	}
+	meshPos.unmap();
+	meshNorm.unmap();
+}
+	
+void drawSoftBodyLineImpl( const SoftBodyRef &softBody )
+{
+	auto links = softBody->getLinks();
+	
+	gl::begin( GL_LINES );
+	for(int j = 0; j < links.size(); ++j )
+	{
+		auto node_0 = links[j].m_n[0];
+		auto node_1 = links[j].m_n[1];
+		gl::vertex( bt::fromBullet( node_0->m_x ) );
+		gl::vertex( bt::fromBullet( node_1->m_x ) );
+		
+		/* Or if you need indices...      */
+		//			const int indices[]={   int(node_0-&nodes[0]),
+		//				int(node_1-&nodes[0])};
+	}
+	gl::end();
+}
+	
+void drawSoftBodyTriImpl( const SoftBodyRef &softBody )
+{
+	auto faces = softBody->getFaces();
+	gl::begin( GL_TRIANGLES );
+	for(int j=0;j<faces.size();++j)
+	{
+		auto node_0 = faces[j].m_n[0];
+		auto node_1 = faces[j].m_n[1];
+		auto node_2 = faces[j].m_n[2];
+		gl::vertex( bt::fromBullet( node_0->m_x ) );
+		gl::vertex( bt::fromBullet( node_1->m_x ) );
+		gl::vertex( bt::fromBullet( node_2->m_x ) );
+	
+		/* Or if you need indices...      */
+		//			const int indices[]={   int(node_0-&nodes[0]),
+		//				int(node_1-&nodes[0]),
+		//				int(node_2-&nodes[0])};
+	}
+	gl::end();
+}
+	
+void drawSoftBodyPointImpl( const SoftBodyRef &softBody )
+{
+	auto nodes = softBody->getNodes();
+	/* Then, you can draw vertices...      */
+	/* Node::m_x => position            */
+	/* Node::m_n => normal (if meaningful)   */
+	gl::begin( GL_POINTS );
+	for(int j = 0; j < nodes.size(); ++j ) {
+		gl::vertex( bt::fromBullet( nodes[j].m_x ) );
+	}
+	gl::end();
+}
+	
+void drawSoftBody( const SoftBodyRef &softBody, SoftBodyDrawType type )
+{
+	switch ( type ) {
+		case SoftBodyDrawType::POINTS:
+			drawSoftBodyPointImpl( softBody );
+		break;
+		case SoftBodyDrawType::LINES:
+			drawSoftBodyLineImpl( softBody );
+			break;
+		case SoftBodyDrawType::TRIANGLES:
+			drawSoftBodyTriImpl( softBody );
+		break;
+		default:
+		break;
+	}
 }
 	
 } // namespace drawableHelpers

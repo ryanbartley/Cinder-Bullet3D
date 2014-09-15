@@ -1,10 +1,9 @@
-#version 150
+#version 330 core
 
-uniform mat4	ciModelViewProjection;
+uniform mat4	ciProjectionMatrix;
 uniform mat4	ciModelView;
 uniform mat4	ciViewMatrix;
 uniform mat3	ciNormalMatrix;
-uniform mat4	ciModelMatrix;
 
 uniform mat4	uShadowMvp;
 uniform vec4	uLightPos;
@@ -15,9 +14,10 @@ uniform float	uRadius2;
 uniform vec3	uGlowPos1;
 uniform vec3	uGlowPos2;
 
-in vec4         ciPosition;
-in vec3         ciNormal;
-in vec2			ciTexCoord0;
+layout (location = 0) in vec4       ciPosition;
+layout (location = 1) in vec3       ciNormal;
+layout (location = 2) in vec2		ciTexCoord0;
+layout (location = 3) in mat4		model_matrix;
 
 out vec4		Position;
 out vec3		Normal;
@@ -49,8 +49,9 @@ float getDistFromLight( vec3 pos, vec4 lightPos, float size )
 void main()
 {
 	TexCoord			= ciTexCoord0;
-	Normal				= ciNormalMatrix * ciNormal;
-	Position			= ciModelView * ciPosition;
+	mat3 normalMatrix	= mat3( ciViewMatrix * model_matrix );
+	Normal				= normalMatrix * ciNormal;
+	Position			= ciViewMatrix * model_matrix * ciPosition;
 	
 	EyeDir				= normalize( -Position.xyz );
 	LightPos			= vec3( ciViewMatrix * uLightPos );
@@ -61,6 +62,6 @@ void main()
 	DistPer1			= getDistFromLight( Position.xyz, GlowPos1, uRadius1 );
 	DistPer2			= getDistFromLight( Position.xyz, GlowPos2, uRadius2 );
 	
-	gl_Position			= ciModelViewProjection * ciPosition;
-	ShadowCoord			= (biasMat * uShadowMvp * ciModelMatrix) * ciPosition;
+	gl_Position			= ciProjectionMatrix * ciViewMatrix * model_matrix * ciPosition;
+	ShadowCoord			= (biasMat * uShadowMvp * model_matrix) * ciPosition;
 }

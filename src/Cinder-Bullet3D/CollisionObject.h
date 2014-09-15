@@ -1,4 +1,12 @@
 //
+//  CollisionObject.h
+//  SoftBodyDemo
+//
+//  Created by Ryan Bartley on 9/7/14.
+//
+//
+
+//
 //  DefaultPhysicsObject.h
 //  BulletTestChapter1
 //
@@ -19,7 +27,7 @@ namespace bullet {
 	
 typedef std::shared_ptr<class RigidBody> RigidBodyRef;
 
-class RigidBody : public std::enable_shared_from_this<RigidBody> {
+class CollisionObject {
 public:
 	
 	struct Format {
@@ -117,18 +125,10 @@ public:
 		bool					mSetKinematic, mAddToWorld;
 		void				   *mRigidBodyUserPtr;
 		
-		friend class RigidBody;
+		friend class CollisionObject;
 	};
 	
-	//! Returns a shared_ptr of RigidBody created from \a format
-	static RigidBodyRef create( const Format &format );
-	
-	RigidBody( const RigidBody &other ) = delete;
-	RigidBody( RigidBody &&other ) = delete;
-	RigidBody& operator=( const RigidBody &other ) = delete;
-	RigidBody& operator=( RigidBody &&other ) = delete;
-	
-	virtual ~RigidBody();
+	virtual ~CollisionObject();
 	
 	//! Returns the const char* name assigned to the Collision Shape.
 	const char* getCollShapeName() const { return mCollisionShape->getName(); }
@@ -143,37 +143,21 @@ public:
 	//! Returns the const pointer to the collision shape of this Object.
 	const btCollisionShapeRef&	getCollisionShape() const { return mCollisionShape; }
 	
-	//! Sets Collision flags for the rigid body
-	void setFlag( int flag ) { mRigidBody->setFlags( mRigidBody->getFlags() | flag ); }
-	//! Removes Collision flags from the rigid body
-	void removeFlag( int flag ) { mRigidBody->setFlags( mRigidBody->getFlags() | ~(flag) ); }
-	//! Returns the current Collision flags
-	int getFlags() { return mRigidBody->getFlags(); }
-	
 	//! Sets the activation state of this rigid body. Normal Choices are DISABLE_DEACTIVATION or ACTIVE_TAG.
 	void setActivationState( int state ) { mRigidBody->setActivationState( state ); }
 	
 	//! Returns the pointer to the Rigid Body of this object.
-	btRigidBodyRef&					getRigidBody() { return mRigidBody; }
+	btCollisionObjectRef&			getCollisionObject() { return mRigidBody; }
 	//! Returns the const pointer to the Rigid Body of this object.
-	const btRigidBodyRef&			getRigidBody() const { return mRigidBody; }
-	//! Returns the pointer to the Motion State of this object.
-	MotionStateRef&			getMotionState() { return mMotionState; }
-	//! Returns the const pointer to the Motion State of this object.
-	const MotionStateRef&		getMotionState() const { return mMotionState; }
-	
-	void setMotionState( const MotionStateRef &motionState )
+	const btCollisionObjectRef&			getCollisionObject() const { return mRigidBody; }
+
+	const btTransform& getWorldTransform() const
 	{
-		mMotionState = motionState;
-		mRigidBody->setMotionState( mMotionState.get() );
+		return mRigidBody->getWorldTransform();
 	}
-	const btTransform& getCenterOfMassTransform() const
+	const btVector3& getWorldTransformPoint() const
 	{
-		return mRigidBody->getCenterOfMassTransform();
-	}
-	const btVector3& getCenterOfMassPoint() const
-	{
-		return mRigidBody->getCenterOfMassPosition();
+		return mRigidBody->getWorldTransform().getOrigin();
 	}
 	
 	void setCollisionGroup( int16_t collGroup );
@@ -194,76 +178,9 @@ public:
 	
 	bool isCollisionShapeScaled() { return mUpdatedScale; }
 	
-	inline void setDamping( float linear, float angular )
-	{
-		mRigidBody->setDamping( linear, angular );
-	}
-	
 	inline void setDeactivationTime( float time )
 	{
 		mRigidBody->setDeactivationTime( time );
-	}
-	
-	inline void setSleepingThresholds( btScalar linear, btScalar angular )
-	{
-		mRigidBody->setSleepingThresholds( linear, angular );
-	}
-	
-	//! Returns the collision shapes bounding sphere for quick culling purposes
-	inline void getBoundingSphere( ci::Sphere &sphere )
-	{
-		sphere.setCenter( fromBullet( mMotionState->m_graphicsWorldTrans.getOrigin() ) );
-		sphere.setRadius( getBoundingSphereRadius() );
-	}
-	
-	//! Returns the collision shapes axis aligned bounding box for culling purposes
-	inline void getAabb( ci::AxisAlignedBox3f &box )
-	{
-		btVector3 min; btVector3 max;
-		mCollisionShape->getAabb( mMotionState->m_graphicsWorldTrans, min, max );
-		box = ci::AxisAlignedBox3f( fromBullet( min ), fromBullet( max ) );
-	}
-	
-	//! Applies central force to the contained rigid body
-	inline void applyCentralForce( const ci::vec3 &force )
-	{
-		mRigidBody->applyCentralForce( toBullet( force ) );
-	}
-	
-	//! Applies torque to the contained rigid body
-	inline void applyTorque( const ci::vec3 &torque )
-	{
-		mRigidBody->applyTorque( toBullet( torque ) );
-	}
-	
-	//! Applies an impulse to the center of the contained rigid body
-	inline void applyCentralImpulse( const ci::vec3 &centralImpulse )
-	{
-		mRigidBody->applyCentralImpulse( toBullet( centralImpulse ) );
-	}
-	
-	//! Sets the linear velocity for the contained rigid body
-	inline void setLinearVelocity( const ci::vec3 &linearVelocity )
-	{
-		mRigidBody->setLinearVelocity( toBullet( linearVelocity ) );
-	}
-	
-	//! Sets the angular velocity for the contained rigid body
-	inline void setAngularVelocity( const ci::vec3 &angularVelocity )
-	{
-		mRigidBody->setAngularVelocity( toBullet( angularVelocity ) );
-	}
-	
-	//! Returns the current Linear Velocity of the contained Rigid Body
-	inline ci::vec3 getLinearVelocity()
-	{
-		return fromBullet( mRigidBody->getLinearVelocity() );
-	}
-	
-	//! Returns the current Angular Velocity of the contained Rigid Body
-	inline ci::vec3 getAngularVelocity()
-	{
-		return fromBullet( mRigidBody->getAngularVelocity() );
 	}
 	
 	//! Sets the Rigid Body User Pointer.
@@ -272,15 +189,9 @@ public:
 	//! Sets the Collision Shape User Pointer.
 	inline void setUserPointerCollisionShape( void *ptr ) { mCollisionShape->setUserPointer( ptr ); }
 	
-	//! Sets the Motion State User Pointer. This pointer will be used to set and get back the transform for this object.
-	inline void setUserPointerMotionState( void *ptr ) { mMotionState->setUserPointer( ptr ); }
-	
-	inline void setLinearFactor( const ci::vec3 &factor ) { mRigidBody->setLinearFactor( toBullet( factor ) ); }
-	inline void setAngularFactor( const ci::vec3 &factor ) { mRigidBody->setAngularFactor( toBullet( factor ) ); }
-	
 protected:
 	//! Base Class for a Physics Object.
-	RigidBody( const Format &format );
+	CollisionObject( const Format &format );
 	
 	//! Initializes this object.
 	virtual void init( const Format &format );
@@ -290,9 +201,8 @@ protected:
 	//! Sets whether this object has been added to the world. This is called internally, don't mess with it unless you know what you're doing.
 	void setIsAddedToWorld( bool addedToWorld ) { mAddedToWorld = addedToWorld; }
 	
-	btRigidBodyRef			mRigidBody;
+	btCollisionObjectRef	mRigidBody;
 	btCollisionShapeRef		mCollisionShape;
-	MotionStateRef			mMotionState;
 	
 	ci::vec3			mBoundingSphereCenter;
 	btScalar			mBoundingSphereRadius;
@@ -302,5 +212,5 @@ protected:
 	
 	friend class Context;
 };
-		
+	
 }
