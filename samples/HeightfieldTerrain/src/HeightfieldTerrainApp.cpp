@@ -12,6 +12,11 @@
 #include "cinder/gl/GlslProg.h"
 #include "cinder/gl/Batch.h"
 
+// This sample exemplifies the use of the btHeightfieldTerrainShape and
+// the opengl helpers that accompany it. You don't have to use these
+// helpers but there are a couple of gotcha's that are worked out in
+// the helpers that you can look at.
+
 using namespace ci;
 using namespace ci::app;
 using namespace std;
@@ -29,6 +34,8 @@ class HeightfieldTerrainApp : public AppNative {
 	void setupHeightfield();
 	void setupShader();
 	
+	void addBox();
+	
 	bt::ContextRef		mContext;
 	
 	gl::GlslProgRef		mPhongShader;
@@ -43,14 +50,17 @@ class HeightfieldTerrainApp : public AppNative {
 
 void HeightfieldTerrainApp::setup()
 {
+	// Create a regular context as in the PhysicsPrimitives example.
 	mContext = bt::Context::create( bt::Context::Format().drawDebug( true ).createDebugRenderer( true ) );
 	
+	// First we setup our shaders so that they can be used in our
+	// heightfield batch.
 	setupShader();
+	// Next we setup the heightfield.
 	setupHeightfield();
 	
-	
-	mRigidBodies.push_back( bt::RigidBody::create( bt::RigidBody::Format().collisionShape( bt::createBoxShape( vec3( 1.0f ) ) ).initialPosition( vec3( 0, 4, 0 ) ).mass( 1.0f ) ) );
-	mContext->addRigidBody( mRigidBodies.back() );
+	// Next let's test our heightfield by adding a box to the environment
+	addBox();
 	
 	mCam.setPerspective( 60.0f, getWindowAspectRatio(), 0.01f, 1000.0f );
 	mCam.lookAt( vec3( 0, 5, 10 ), vec3( 0.0f ) );
@@ -74,40 +84,58 @@ void HeightfieldTerrainApp::setupShader()
 
 void HeightfieldTerrainApp::setupHeightfield()
 {
-	Perlin perlin( 5, 1 );
 	mHeightfieldMap = Channel32f( Width, Depth );
 	
+	auto minHeight = -1.0f;
+	auto maxHeight = 1.0f;
+	
+	// Now we'll give our Map some Height values.
 	for( int y = 0; y < Depth; ++y ) {
 		for( int x = 0; x < Width; ++x ) {
-			mHeightfieldMap.setValue( ivec2( x, y ), 0 );
+			// Now create our heightfield, which is just a two-dimensional array that has
+			// a value, height. Instead of this you could easily use Perline to get smoother
+			// values or create a black and white image.
+			mHeightfieldMap.setValue( ivec2( x, y ), randFloat( minHeight, maxHeight ) );
 		}
 	}
 	
-	auto glsl = gl::GlslProg::create( gl::GlslProg::Format()
-											.vertex( loadAsset( "basic.vert" ) )
-											.fragment( loadAsset( "basic.frag" ) )
-											.attrib( geom::POSITION, "position" )
-											.attribLocation( geom::POSITION, 0 ) );
+	// Create our heightfieldShape with our heightfieldMap and maxHeight and minHeight
+	auto heightField = bt::createHeightfieldShape( &mHeightfieldMap, maxHeight, minHeight );
 	
-	mBatch = gl::Batch::create( bt::drawableHelpers::getDrawableHeightfield( &mHeightfieldMap ), mPhongShader );
-	
-	
-	mRigidBodies.push_back( bt::RigidBody::create( bt::RigidBody::Format()
-												.collisionShape( bt::createHeightfieldShape( &mHeightfieldMap, 1.0f, -1.0f, vec3( 1, 1, 1 ) ) ) ) );
+	// Make our rigidbody out of this collision shape.
+	mRigidBodies.push_back( bt::RigidBody::create( bt::RigidBody::Format().collisionShape( heightField ) ) );
+	// And add that rigidbody to the world.
 	mContext->addRigidBody( mRigidBodies.back() );
 	
+	// also I'm going to take a reference to the mHeightfieldTerrain
 	mHeightfieldTerrain = mRigidBodies.back();
 	
+	// Now we can create a batch using the draw helper from bullet which passes back a vboMesh based on our map.
+	mBatch = gl::Batch::create( bt::drawableHelpers::getDrawableHeightfield( &mHeightfieldMap ), mPhongShader );
+}
+
+void HeightfieldTerrainApp::addBox()
+{
+	// This is just a simple function to add some box shapes to our world. We're not
+	// creating a corresponding visual object so you'll only be able to see them if
+	// you have debug draw working.
+	auto box = bt::createBoxShape( vec3( 1.0f ) );
+	mRigidBodies.push_back( bt::RigidBody::create( bt::RigidBody::Format()
+												  .collisionShape( box )
+												  .initialPosition( vec3( randFloat(-5, 5), 10, randFloat(-5, 5) ) )
+												  .mass( 1.0f ) ) );
+	mContext->addRigidBody( mRigidBodies.back() );
 }
 
 void HeightfieldTerrainApp::mouseDown( MouseEvent event )
 {
-	mRigidBodies.push_back( bt::RigidBody::create( bt::RigidBody::Format().collisionShape( bt::createBoxShape( vec3( 1.0f ) ) ).initialPosition( vec3( randFloat( -10, 10 ), 10, 0 ) ).mass( 1.0f ) ) );
-	mContext->addRigidBody( mRigidBodies.back() );
+	// anytime we click we'll get a box.
+	addBox();
 }
 
 void HeightfieldTerrainApp::update()
 {
+	// must update the world.
 	mContext->update();
 }
 
@@ -116,14 +144,20 @@ void HeightfieldTerrainApp::draw()
 	static float rotation = 0.0f;
 	// clear out the window with black
 	gl::clear( Color( 0, 0, 0 ) );
+	// set our camera
 	gl::setMatrices( mCam );
-	gl::multModelMatrix( rotate( toRadians( rotation += 0.1 ), vec3( 0.0f, 1.0f, 0.0f ) ) );
+	// rotate the camera position
+	gl::multViewMatrix( rotate( toRadians( rotation += 0.1 ), vec3( 0.0f, 1.0f, 0.0f ) ) );
 	{
 		gl::ScopedModelMatrix scope;
 		// Transform it with the physics heightfield
 		gl::multModelMatrix( translate( bt::fromBullet( mHeightfieldTerrain->getRigidBody()->getWorldTransform().getOrigin() ) ) );
 		mBatch->draw();
 	}
+	// If we want to draw the debug we can set this and just toggle on and off using...
+	//
+	// mContext->toggleDebugDraw()
+	//
 	mContext->debugDraw();
 }
 

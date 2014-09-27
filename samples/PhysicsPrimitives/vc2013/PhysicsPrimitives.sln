@@ -1,0 +1,20 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PhysicsPrimitives", "PhysicsPrimitives.vcxproj", "{1DD5CA4C-4C14-4744-9E5E-93B2F2F1EBCC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1DD5CA4C-4C14-4744-9E5E-93B2F2F1EBCC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1DD5CA4C-4C14-4744-9E5E-93B2F2F1EBCC}.Debug|Win32.Build.0 = Debug|Win32
+		{1DD5CA4C-4C14-4744-9E5E-93B2F2F1EBCC}.Release|Win32.ActiveCfg = Release|Win32
+		{1DD5CA4C-4C14-4744-9E5E-93B2F2F1EBCC}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

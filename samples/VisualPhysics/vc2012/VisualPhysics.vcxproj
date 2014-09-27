@@ -10,7 +10,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{47E0A14B-A6D1-46D0-BA23-42CB685D6692}</ProjectGuid>
+    <ProjectGuid>{75A25EEB-8E48-49DF-9ADB-FCEF5AFB692A}</ProjectGuid>
     <RootNamespace>VisualPhysics</RootNamespace>
     <Keyword>Win32Proj</Keyword>
   </PropertyGroup>
@@ -63,7 +63,7 @@
       <AdditionalIncludeDirectories>"..\..\..\..\..\\include";..\include</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>cinder-$(PlatformToolset)_d.lib;%(AdditionalDependencies);OpenGL32.lib;..\..\..\lib\msw\x86\BulletCollision-v110_d.lib;..\..\..\lib\msw\x86\BulletDynamics-v110_d.lib;..\..\..\lib\msw\x86\BulletSoftBody-v110_d.lib;..\..\..\lib\msw\x86\LinearMath-v110_d.lib</AdditionalDependencies>
+      <AdditionalDependencies>cinder-$(PlatformToolset)_d.lib;%(AdditionalDependencies);..\..\..\lib\msw\x86\BulletCollision-v110_d.lib;..\..\..\lib\msw\x86\BulletDynamics-v110_d.lib;..\..\..\lib\msw\x86\BulletSoftBody-v110_d.lib;..\..\..\lib\msw\x86\LinearMath-v110_d.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>"..\..\..\..\..\\lib\msw\$(PlatformTarget)"</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -90,7 +90,7 @@
       <AdditionalIncludeDirectories>"..\..\..\..\..\\include";..\include</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>cinder-$(PlatformToolset).lib;%(AdditionalDependencies);OpenGL32.lib;..\..\..\lib\msw\x86\BulletCollision-v110.lib;..\..\..\lib\msw\x86\BulletDynamics-v110.lib;..\..\..\lib\msw\x86\BulletSoftBody-v110.lib;..\..\..\lib\msw\x86\LinearMath-v110.lib</AdditionalDependencies>
+      <AdditionalDependencies>cinder-$(PlatformToolset).lib;%(AdditionalDependencies);..\..\..\lib\msw\x86\BulletCollision-v110.lib;..\..\..\lib\msw\x86\BulletDynamics-v110.lib;..\..\..\lib\msw\x86\BulletSoftBody-v110.lib;..\..\..\lib\msw\x86\LinearMath-v110.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>"..\..\..\..\..\\lib\msw\$(PlatformTarget)"</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <GenerateMapFile>true</GenerateMapFile>
@@ -108,14 +108,18 @@
   <ItemGroup>
     <ClCompile Include="..\src\VisualPhysicsApp.cpp" />
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\BulletContext.cpp" />
+    <ClCompile Include="..\..\..\src\Cinder-Bullet3D\CollisionObject.cpp" />
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\Common.cpp" />
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\ConstraintBase.cpp" />
+    <ClCompile Include="..\..\..\src\Cinder-Bullet3D\ConstraintConeTwist.cpp" />
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\ConstraintGeneric6Dof.cpp" />
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\ConstraintHinge.cpp" />
+    <ClCompile Include="..\..\..\src\Cinder-Bullet3D\ConstraintPoint2Point.cpp" />
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\PhyObjCharacterController.cpp" />
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\PhyObjTriggerVol.cpp" />
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\PhysicsDebugRenderable.cpp" />
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\RigidBody.cpp" />
+    <ClCompile Include="..\..\..\src\Cinder-Bullet3D\SoftBody.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Resources.h" />
@@ -326,16 +330,19 @@
     <ClInclude Include="..\..\..\src\BulletPhysics\vectormath\sse\vectormath_aos.h" />
     <ClInclude Include="..\..\..\src\BulletPhysics\vectormath\vmInclude.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\BulletContext.h" />
+    <ClInclude Include="..\..\..\src\Cinder-Bullet3D\CollisionObject.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\Common.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\ConstraintBase.h" />
+    <ClInclude Include="..\..\..\src\Cinder-Bullet3D\ConstraintConeTwist.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\ConstraintGeneric6Dof.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\ConstraintHinge.h" />
+    <ClInclude Include="..\..\..\src\Cinder-Bullet3D\ConstraintPoint2Point.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\MotionState.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\PhyObjCharacterController.h" />
-    <ClInclude Include="..\..\..\src\Cinder-Bullet3D\PhyObjConvexHull.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\PhyObjTriggerVol.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\PhysicsDebugRenderable.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\RigidBody.h" />
+    <ClInclude Include="..\..\..\src\Cinder-Bullet3D\SoftBody.h" />
     <ClInclude Include="..\..\..\src\BulletPhysics\BulletCollision\BroadPhaseCollision\btAxisSweep3.cpp" />
     <ClInclude Include="..\..\..\src\BulletPhysics\BulletCollision\BroadPhaseCollision\btBroadphaseProxy.cpp" />
     <ClInclude Include="..\..\..\src\BulletPhysics\BulletCollision\BroadPhaseCollision\btCollisionAlgorithm.cpp" />

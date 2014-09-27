@@ -47,7 +47,7 @@ btSoftBodyRef createFromTriMesh( btSoftBodyWorldInfo& worldInfo, const btScalar*
 	int i, j, ni;
 	
 	for( i=0, ni = ntriangles * 3; i < ni; ++i ) {
-		maxidx = ci::max( triangles[i], maxidx );
+		maxidx = glm::max( triangles[i], maxidx );
 	}
 	++maxidx;
 	btAlignedObjectArray<bool>		chks;

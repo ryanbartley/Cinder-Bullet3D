@@ -22,11 +22,12 @@ using namespace ci;
 RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::vec3 &positionOffset, const ci::gl::GlslProgRef &glsl  )
 : mOwner( context )
 {
-	
 	// Setup the geometry
 	mShapes.push_back( createCapsuleShape( 0.15, 0.20 ) );
+	
 	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.15 ).length( 0.20 ).enable( geom::Attrib::NORMAL ), glsl ) );
 	mShapes.push_back( createCapsuleShape( 0.15, 0.28 ) );
+	
 	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.15 ).length( 0.28 ).enable( geom::Attrib::NORMAL ), glsl ) );
 	mShapes.push_back( createCapsuleShape( 0.10, 0.05 ) );
 	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.10 ).length( 0.05 ).enable( geom::Attrib::NORMAL ), glsl ) );
@@ -34,11 +35,13 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::vec3 &positionOf
 	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.07 ).length( 0.45 ).enable( geom::Attrib::NORMAL ), glsl ) );
 	mShapes.push_back( createCapsuleShape( 0.05, 0.37 ) );
 	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.05 ).length( 0.37 ).enable( geom::Attrib::NORMAL ), glsl ) );
+	
 	mShapes.push_back( createCapsuleShape( 0.07, 0.45 ) );
 	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.07 ).length( 0.45 ).enable( geom::Attrib::NORMAL ), glsl ) );
 	mShapes.push_back( createCapsuleShape( 0.05, 0.37 ) );
 	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.05 ).length( 0.37 ).enable( geom::Attrib::NORMAL ), glsl ) );
 	mShapes.push_back( createCapsuleShape( 0.05, 0.33 ) );
+	
 	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.05 ).length( 0.33 ).enable( geom::Attrib::NORMAL ), glsl ) );
 	mShapes.push_back( createCapsuleShape( 0.04, 0.25 ) );
 	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.04 ).length( 0.25 ).enable( geom::Attrib::NORMAL ), glsl ) );
@@ -129,6 +132,8 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::vec3 &positionOf
 	mMotionStates.push_back( SimpleGlDynamicMotionStateRef( new SimpleGlDynamicMotionState( offset * body->getCenterOfMassTransform() ) ) );
 	mBodies.back()->setMotionState( mMotionStates.back() );
 	
+	
+	
 	{
 		// Setup some damping on the mBodies
 		auto bodyIt = mBodies.begin();
@@ -141,7 +146,7 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::vec3 &positionOf
 			(*bodyIt)->setSleepingThresholds(4, 4);
 		}
 	}
-	
+	cout << "Hello" << endl;
 	ConstraintHinge::Format hingeFormat;
 	ConstraintConeTwist::Format coneFormat;
 	
@@ -153,7 +158,7 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::vec3 &positionOf
 		hinge->setDebugDrawSize( CONSTRAINT_DEBUG_SIZE );
 		mConstraints.push_back( hinge );
 	}
-	
+	cout << "Hello" << endl;
 	coneFormat.localAOrigin( vec3( 0.0, 0.30, 0.0 ) ).localARot( 0,0,M_PI_2 ).objA( mBodies[BODYPART_SPINE] )
 			  .localBOrigin( vec3( 0.0, -0.14, 0.0 ) ).localBRot( 0,0,M_PI_2 ).objB( mBodies[BODYPART_HEAD] );
 	{
@@ -173,7 +178,7 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::vec3 &positionOf
 		mConstraints.push_back( cone );
 	}
 	
-
+cout << "Hello" << endl;
 	hingeFormat.localAOrigin( vec3( 0.0, -0.225, 0.0 ) ).localARot( 0,M_PI_2,0 ).objA( mBodies[BODYPART_LEFT_UPPER_LEG] )
 				.localBOrigin( vec3( 0.0, 0.185, 0.0 ) ).localBRot( 0,M_PI_2,0 ).objB( mBodies[BODYPART_LEFT_LOWER_LEG] );
 	{
@@ -182,7 +187,7 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::vec3 &positionOf
 		hinge->setDebugDrawSize( CONSTRAINT_DEBUG_SIZE );
 		mConstraints.push_back( hinge );
 	}
-
+cout << "Hello" << endl;
 	coneFormat.localAOrigin( vec3( 0.18, -0.10, 0.0 ) ).localARot( 0, 0, M_PI_4 ).objA( mBodies[BODYPART_PELVIS] )
 			  .localBOrigin( vec3( 0.0, 0.225, 0.0 ) ).localBRot( 0, 0, M_PI_4 ).objB( mBodies[BODYPART_RIGHT_UPPER_LEG] );
 	{
@@ -236,7 +241,7 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::vec3 &positionOf
 		hinge->setDebugDrawSize( CONSTRAINT_DEBUG_SIZE );
 		mConstraints.push_back( hinge );
 	}
-	
+	cout << "Hello" << endl;
 	{
 		auto jointIt = mConstraints.begin();
 		auto end = mConstraints.end();
@@ -244,6 +249,7 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::vec3 &positionOf
 			mOwner->addConstraint( (*jointIt)->getTypedConstraint(), true );
 		}
 	}
+	cout << "End" << endl;
 }
 
 RagDollRef RagDoll::create( const bullet::ContextRef &context, const ci::vec3 &positionOffset, const ci::gl::GlslProgRef &glsl  )

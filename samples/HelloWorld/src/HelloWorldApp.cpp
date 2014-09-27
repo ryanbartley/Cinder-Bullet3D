@@ -5,6 +5,11 @@
 #include "btBulletDynamicsCommon.h"
 #include "btBulletCollisionCommon.h"
 
+// This project is the HelloWorld from bullet. It shows that
+// you can just pull bullet directly in or use the block.
+// You can see the original here...
+// http://www.bulletphysics.org/mediawiki-1.5.8/index.php/Hello_World
+
 using namespace ci;
 using namespace ci::app;
 using namespace std;

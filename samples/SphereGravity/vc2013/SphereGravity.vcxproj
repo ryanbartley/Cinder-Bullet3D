@@ -10,7 +10,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{5F295FBF-664C-4340-A8C2-D127634E6E56}</ProjectGuid>
+    <ProjectGuid>{8626B303-D582-4C5D-888B-ACFAB8BAE610}</ProjectGuid>
     <RootNamespace>SphereGravity</RootNamespace>
     <Keyword>Win32Proj</Keyword>
   </PropertyGroup>
@@ -108,6 +108,7 @@
   <ItemGroup>
     <ClCompile Include="..\src\SphereGravityApp.cpp" />
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\BulletContext.cpp" />
+    <ClCompile Include="..\..\..\src\Cinder-Bullet3D\CollisionObject.cpp" />
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\Common.cpp" />
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\ConstraintBase.cpp" />
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\ConstraintConeTwist.cpp" />
@@ -118,6 +119,7 @@
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\PhyObjTriggerVol.cpp" />
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\PhysicsDebugRenderable.cpp" />
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\RigidBody.cpp" />
+    <ClCompile Include="..\..\..\src\Cinder-Bullet3D\SoftBody.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Resources.h" />
@@ -328,6 +330,7 @@
     <ClInclude Include="..\..\..\src\BulletPhysics\vectormath\sse\vectormath_aos.h" />
     <ClInclude Include="..\..\..\src\BulletPhysics\vectormath\vmInclude.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\BulletContext.h" />
+    <ClInclude Include="..\..\..\src\Cinder-Bullet3D\CollisionObject.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\Common.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\ConstraintBase.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\ConstraintConeTwist.h" />
@@ -336,10 +339,10 @@
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\ConstraintPoint2Point.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\MotionState.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\PhyObjCharacterController.h" />
-    <ClInclude Include="..\..\..\src\Cinder-Bullet3D\PhyObjConvexHull.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\PhyObjTriggerVol.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\PhysicsDebugRenderable.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\RigidBody.h" />
+    <ClInclude Include="..\..\..\src\Cinder-Bullet3D\SoftBody.h" />
     <ClInclude Include="..\..\..\src\BulletPhysics\BulletCollision\BroadPhaseCollision\btAxisSweep3.cpp" />
     <ClInclude Include="..\..\..\src\BulletPhysics\BulletCollision\BroadPhaseCollision\btBroadphaseProxy.cpp" />
     <ClInclude Include="..\..\..\src\BulletPhysics\BulletCollision\BroadPhaseCollision\btCollisionAlgorithm.cpp" />

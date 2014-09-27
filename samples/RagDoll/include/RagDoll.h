@@ -66,12 +66,12 @@ public:
 private:
 	RagDoll( const bullet::ContextRef &context, const ci::vec3 &positionOffset, const ci::gl::GlslProgRef &glsl );
 	
-	bullet::ContextRef							mOwner;
-	std::vector<bullet::btCollisionShapeRef>	mShapes;
+	bullet::ContextRef				mOwner;
+	std::vector<bullet::btCollisionShapeRef>		mShapes;
 	std::vector<bullet::RigidBodyRef>			mBodies;
 	std::vector<bullet::SimpleGlDynamicMotionStateRef>	mMotionStates;
 	std::vector<bullet::ConstraintBaseRef>		mConstraints;
-	std::vector<ci::gl::BatchRef>				mBatches;
+	std::vector<ci::gl::BatchRef>			mBatches;
 };
 
 inline void RagDoll::draw()

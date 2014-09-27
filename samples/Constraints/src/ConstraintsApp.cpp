@@ -7,6 +7,8 @@
 #include "Cinder-Bullet3D/Common.h"
 #include "Cinder-Bullet3D/ConstraintHinge.h"
 
+// NOTE: This sample is not finished. It is experimental as I'm trying to figure out
+// how best to wrap the constraints. Use constraints at your own risk.
 
 using namespace ci;
 using namespace ci::app;

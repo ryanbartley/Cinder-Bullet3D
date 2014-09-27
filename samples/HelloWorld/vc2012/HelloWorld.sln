@@ -1,7 +1,7 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloWorld", "HelloWorld.vcxproj", "{74202EDD-91D2-4D2A-B0B6-355CEB16E6BE}"
+# Visual Studio Express 2012 for Windows Desktop
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloWorld", "HelloWorld.vcxproj", "{A469562A-9E75-4DD6-87D7-48CDC0AE9BCD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{74202EDD-91D2-4D2A-B0B6-355CEB16E6BE}.Debug|Win32.ActiveCfg = Debug|Win32
-		{74202EDD-91D2-4D2A-B0B6-355CEB16E6BE}.Debug|Win32.Build.0 = Debug|Win32
-		{74202EDD-91D2-4D2A-B0B6-355CEB16E6BE}.Release|Win32.ActiveCfg = Release|Win32
-		{74202EDD-91D2-4D2A-B0B6-355CEB16E6BE}.Release|Win32.Build.0 = Release|Win32
+		{A469562A-9E75-4DD6-87D7-48CDC0AE9BCD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A469562A-9E75-4DD6-87D7-48CDC0AE9BCD}.Debug|Win32.Build.0 = Debug|Win32
+		{A469562A-9E75-4DD6-87D7-48CDC0AE9BCD}.Release|Win32.ActiveCfg = Release|Win32
+		{A469562A-9E75-4DD6-87D7-48CDC0AE9BCD}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

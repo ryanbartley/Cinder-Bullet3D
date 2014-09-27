@@ -100,7 +100,7 @@ void PhysicsPrimitivesApp::collisionBegin( btRigidBody *rigid0, btRigidBody *rig
 	RigidBody *phyObj0 = static_cast<RigidBody*>( rigid0->getUserPointer() );
 	RigidBody *phyObj1 = static_cast<RigidBody*>( rigid1->getUserPointer() );
 	
-	std::cout << "PhyObj0 shape: " << phyObj0->getName() << " PhyObj1 shape: " << phyObj1->getName() << std::endl;
+	std::cout << "PhyObj0 shape: " << phyObj0->getCollShapeName() << " PhyObj1 shape: " << phyObj1->getCollShapeName() << std::endl;
 }
 
 void PhysicsPrimitivesApp::collisionEnd( btRigidBody *rigid0, btRigidBody *rigid1 )
@@ -112,7 +112,7 @@ void PhysicsPrimitivesApp::collisionEnd( btRigidBody *rigid0, btRigidBody *rigid
 	RigidBody *phyObj0 = static_cast<RigidBody*>( rigid0->getUserPointer() );
 	RigidBody *phyObj1 = static_cast<RigidBody*>( rigid1->getUserPointer() );
 	
-	std::cout << "PhyObj0 shape: " << phyObj0->getName() << " PhyObj1 shape: " << phyObj1->getName() << std::endl;
+	std::cout << "PhyObj0 shape: " << phyObj0->getCollShapeName() << " PhyObj1 shape: " << phyObj1->getCollShapeName() << std::endl;
 }
 
 void PhysicsPrimitivesApp::mouseDown( MouseEvent event )

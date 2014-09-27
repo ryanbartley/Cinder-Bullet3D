@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SphereGravity", "SphereGravity.vcxproj", "{5F295FBF-664C-4340-A8C2-D127634E6E56}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SphereGravity", "SphereGravity.vcxproj", "{8626B303-D582-4C5D-888B-ACFAB8BAE610}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5F295FBF-664C-4340-A8C2-D127634E6E56}.Debug|Win32.ActiveCfg = Debug|Win32
-		{5F295FBF-664C-4340-A8C2-D127634E6E56}.Debug|Win32.Build.0 = Debug|Win32
-		{5F295FBF-664C-4340-A8C2-D127634E6E56}.Release|Win32.ActiveCfg = Release|Win32
-		{5F295FBF-664C-4340-A8C2-D127634E6E56}.Release|Win32.Build.0 = Release|Win32
+		{8626B303-D582-4C5D-888B-ACFAB8BAE610}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8626B303-D582-4C5D-888B-ACFAB8BAE610}.Debug|Win32.Build.0 = Debug|Win32
+		{8626B303-D582-4C5D-888B-ACFAB8BAE610}.Release|Win32.ActiveCfg = Release|Win32
+		{8626B303-D582-4C5D-888B-ACFAB8BAE610}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -54,7 +54,7 @@ public:
 		getWorldTransform(trans);
 		ATTRIBUTE_ALIGNED16(btScalar m[16]);
 		trans.getOpenGLMatrix( m );
-		*transform = ci::make_mat4( m );
+		*transform = glm::make_mat4( m );
 	}
 };
 	

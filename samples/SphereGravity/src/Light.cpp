@@ -19,7 +19,7 @@ Light::Light( const vec4 &pos, size_t shadowMapSize )
 	mCam = CameraPersp();
 	mCam.setPerspective( 70.0f, 1.0f, 10.0f, 500.0f );
 	
-	mBatch			= gl::Batch::create( geom::Sphere().segments( 20 ).radius( 2.0f ), getStockShader( gl::ShaderDef().color() ) );
+	mBatch			= gl::Batch::create( geom::Sphere().subdivisions( 20 ).radius( 2.0f ), getStockShader( gl::ShaderDef().color() ) );
 	
 	// From Eríc Renault Houde's ShadowMapping sample
 	gl::Texture2d::Format depthFormat;

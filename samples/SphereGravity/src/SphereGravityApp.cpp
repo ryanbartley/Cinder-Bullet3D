@@ -18,7 +18,7 @@ using namespace std;
 
 int NUM_GLOWS = 2;
 
-const int NUM_PARTICLES = 1500;
+const int NUM_PARTICLES = 1000;
 
 float getMassFromRadius( float r ){
 	return ( ( r * r * r ) * (float)M_PI * 4.0f ) * 0.33333f;
@@ -34,6 +34,9 @@ public:
 	void update();
 	void draw();
 	void drawToDepthFbo();
+	void createPhysics();
+	void createBuffers();
+	void createGl();
 	void createSphere( int index, const vec3 &pos, float radius );
 	void createBigSphere( int index, const vec3 &pos, float radius, gl::GlslProgRef shader );
 	
@@ -62,15 +65,9 @@ public:
 	
 	// glow colors
 	vector<Color>			mGlowColors;	// colors for the larger spheres
-	gl::BatchRef			mMainSphere;
 	gl::VboRef				mMatrices, mPositions, mNormals, mTexCoords, mElements;
-	gl::VboMeshRef			mVboMesh;
 	gl::VaoRef				mVao;
-	
-	bool					mFirstTime = true;
-	
-	std::shared_future<void> mFuture;
-	std::vector<double>		mRender, mPhysicsUpdate, mBodyUpdate, mShadowRender;
+	TriMeshRef				mTrimesh;
 };
 
 void BulletSpheresApp::setup()
@@ -80,19 +77,18 @@ void BulletSpheresApp::setup()
 	mTimeElapsed		= 0.0f;
 	mTimeDelta			= 0.0f;
 	
-	// camera
 	mCam = CameraPersp();
 	mCam.lookAt( vec3( 0, 0, 100 ), vec3( 0 ) );
 	
-	// shaders
 	try{
 		mShadowsGlsl	= gl::GlslProg::create( gl::GlslProg::Format()
-											   .vertex( loadAsset( "shadows.vert" ) )
-											   .fragment( loadAsset( "shadows.frag" ) ) );
-		mTestGlsl = gl::GlslProg::create( gl::GlslProg::Format().vertex( loadAsset( "Test.vert" ) ).fragment( loadAsset( "Test.frag" ) )
+											   .vertex( loadAsset( "render.vert" ) )
+											   .fragment( loadAsset( "render.frag" ) ) );
+		mTestGlsl = gl::GlslProg::create( gl::GlslProg::Format().vertex( loadAsset( "depth.vert" ) ).fragment( loadAsset( "depth.frag" ) )
 										 .attribLocation( geom::POSITION, 0 )
 										 .attribLocation( geom::NORMAL, 1 )
 										 .attribLocation( geom::TEX_COORD_0, 2 )
+										 .attrib( geom::CUSTOM_0, "model_view" )
 										 .attribLocation( geom::CUSTOM_0, 3 )
 										 .attribLocation( geom::CUSTOM_1, 4 )
 										 .attribLocation( geom::CUSTOM_2, 5 )
@@ -107,48 +103,55 @@ void BulletSpheresApp::setup()
 		quit();
 	}
 	
+	createPhysics();
+	
+	createGl();
+}
+
+void BulletSpheresApp::resize()
+{
+	mCam.setPerspective( 70.0f, getWindowAspectRatio(), 1.0f, 1000.0f );
+}
+
+void BulletSpheresApp::keyDown( KeyEvent event )
+{
+	switch( event.getChar() ){
+		case 'f': setFullScreen( ! isFullScreen() );	break;
+		case 'd': mContext->toggleDebugDraw();			break;
+		default : break;
+	}
+}
+
+void BulletSpheresApp::createGl()
+{
 	// textures
 	mStripeTex			= gl::Texture::create( loadImage( loadAsset( "stripe.png" ) ) );
-	
-	btVector3 worldAabbMin(-10000,-10000,-10000);
-	btVector3 worldAabbMax(10000,10000,10000);
-	// bullet
-	mContext = bullet::Context::create( bullet::Context::Format().drawDebug( false ).createDebugRenderer( true ).broadphase( new btAxisSweep3 (worldAabbMin, worldAabbMax) ) );
-	createBigSphere( 0, vec3(  40.0f, 0, 0 ), 15.0f, mGlowGlsl );
-	createBigSphere( 1, vec3( -40.0f, 0, 0 ), 15.0f, mGlowGlsl );
-	for( int i=0; i< NUM_PARTICLES; i++ ){
-		vec3 randPos		= Rand::randVec3f() * randFloat( 40.0f, 60.0f );
-		float randRadius	= randFloat( 0.5, 3.0f );
-		if( randFloat() < 0.03f ) randRadius = randFloat( 5.0f, 8.0f );
-		createSphere( i + 2, randPos, randRadius );
-	}
 	
 	// light source
 	auto shadowMapSize		= 1024;
 	mLight					= Light::create( vec4( 100.0f, 150.0f, 70.0f, 1.0f ), shadowMapSize );
-//
-//	// glow colors
+	
 	mGlowColors.push_back( Color( 1, 0, 0 ) );
 	mGlowColors.push_back( Color( 0, 0, 1 ) );
 	
-	auto trimesh = TriMesh::create( geom::Sphere().segments( 16 ).enable( geom::Attrib::NORMAL ).enable( geom::TEX_COORD_0 ) );
-	mPositions = gl::Vbo::create( GL_ARRAY_BUFFER, trimesh->getNumVertices() * sizeof(vec3), trimesh->getVertices<3>(), GL_STATIC_DRAW );
-	mNormals = gl::Vbo::create( GL_ARRAY_BUFFER, trimesh->getNumVertices() * sizeof(vec3), trimesh->getNormals().data(), GL_STATIC_DRAW );
-	mTexCoords = gl::Vbo::create( GL_ARRAY_BUFFER, trimesh->getNumVertices() * sizeof(vec2), trimesh->getTexCoords().data(), GL_STATIC_DRAW );
-	mElements = gl::Vbo::create( GL_ELEMENT_ARRAY_BUFFER, trimesh->getNumIndices() * sizeof(uint32_t), trimesh->getIndices().data(), GL_STATIC_DRAW );
+	gl::enableAlphaBlending();
+	gl::enableDepthRead();
+	gl::enableDepthWrite();
 	
-	mVboMesh = gl::VboMesh::create( geom::Sphere().segments( 16 ).enable( geom::Attrib::NORMAL ).enable( geom::TEX_COORD_0 ) );
-	cout << mVboMesh->getVertexArrayLayoutVbos().size() << endl;
-	auto bufferLayout = geom::BufferLayout();
-	bufferLayout.append( geom::Attrib::CUSTOM_0, 4, 16*sizeof(float), 0, 1 );
-	bufferLayout.append( geom::Attrib::CUSTOM_1, 4, 16*sizeof(float), 4*sizeof(float), 1 );
-	bufferLayout.append( geom::Attrib::CUSTOM_2, 4, 16*sizeof(float), 8*sizeof(float), 1 );
-	bufferLayout.append( geom::Attrib::CUSTOM_3, 4, 16*sizeof(float), 12*sizeof(float), 1 );
+	createBuffers();
+}
+
+void BulletSpheresApp::createBuffers()
+{
+	mTrimesh = TriMesh::create( geom::Sphere().subdivisions( 16 ).enable( geom::Attrib::NORMAL ).enable( geom::TEX_COORD_0 ) );
+	mPositions = gl::Vbo::create( GL_ARRAY_BUFFER, mTrimesh->getNumVertices() * sizeof(vec3), mTrimesh->getPositions<3>(), GL_STATIC_DRAW );
+	mNormals = gl::Vbo::create( GL_ARRAY_BUFFER, mTrimesh->getNumVertices() * sizeof(vec3), mTrimesh->getNormals().data(), GL_STATIC_DRAW );
+	mTexCoords = gl::Vbo::create( GL_ARRAY_BUFFER, mTrimesh->getNumVertices() * sizeof(vec2), mTrimesh->getTexCoords0<2>(), GL_STATIC_DRAW );
+	mElements = gl::Vbo::create( GL_ELEMENT_ARRAY_BUFFER, mTrimesh->getNumIndices() * sizeof(uint32_t), mTrimesh->getIndices().data(), GL_STATIC_DRAW );
+	
 	mMatrices = gl::Vbo::create( GL_ARRAY_BUFFER, (NUM_PARTICLES-2)*sizeof(mat4) );
-	mVboMesh->appendVbo( bufferLayout, mMatrices );
-//	mMainSphere = gl::Batch::create( mainspherevbomesh, mTestGlsl );
-	mVao = gl::Vao::create();
 	
+	mVao = gl::Vao::create();
 	{
 		gl::ScopedVao scopeVao( mVao );
 		{
@@ -186,25 +189,24 @@ void BulletSpheresApp::setup()
 			glVertexAttribDivisor( 6, 1 );
 		}
 	}
-	
-	
-	// set gl state
-	gl::enableAlphaBlending();
-	gl::enableDepthRead();
-	gl::enableDepthWrite();
+
 }
 
-void BulletSpheresApp::resize()
+void BulletSpheresApp::createPhysics()
 {
-	mCam.setPerspective( 70.0f, getWindowAspectRatio(), 1.0f, 1000.0f );
-}
-
-void BulletSpheresApp::keyDown( KeyEvent event )
-{
-	switch( event.getChar() ){
-		case 'f': setFullScreen( ! isFullScreen() );	break;
-		case 'd': mContext->toggleDebugDraw();			break;
-		default : break;
+	btVector3 worldAabbMin(-10000,-10000,-10000);
+	btVector3 worldAabbMax(10000,10000,10000);
+	// bullet
+	mContext = bullet::Context::create( bullet::Context::Format().drawDebug( false ).createDebugRenderer( true ).broadphase( new btAxisSweep3 (worldAabbMin, worldAabbMax) ) );
+	
+	createBigSphere( 0, vec3(  40.0f, 0, 0 ), 15.0f, mGlowGlsl );
+	createBigSphere( 1, vec3( -40.0f, 0, 0 ), 15.0f, mGlowGlsl );
+	
+	for( int i=0; i< NUM_PARTICLES; i++ ){
+		vec3 randPos		= Rand::randVec3f() * randFloat( 40.0f, 60.0f );
+		float randRadius	= randFloat( 0.5, 3.0f );
+		if( randFloat() < 0.03f ) randRadius = randFloat( 5.0f, 8.0f );
+		createSphere( i + 2, randPos, randRadius );
 	}
 }
 
@@ -215,13 +217,13 @@ void BulletSpheresApp::createSphere( int index, const vec3 &pos, float radius )
 											.collisionShape( bt::createUniformScalingShape( shape, radius ) )
 											.mass( getMassFromRadius( radius ) + 10.0f )
 											.initialPosition( pos )
-											.addToWorld( true ) );
+											.addToWorld( true ).restitution( 1.0f ) );
 	mRigidBodies.emplace_back( index, radius, rigidBody );
 }
 
 void BulletSpheresApp::createBigSphere( int index, const vec3 &pos, float radius, gl::GlslProgRef shader )
 {
-	auto batch		= gl::Batch::create( geom::Sphere().enable( geom::Attrib::NORMAL ).radius( radius ).segments( 64 ), shader );
+	auto batch		= gl::Batch::create( geom::Sphere().enable( geom::Attrib::NORMAL ).radius( radius ).subdivisions( 64 ), shader );
 	auto rigidBody	= bt::RigidBody::create( bt::RigidBody::Format()
 											.collisionShape( bt::createSphereShape( radius ) )
 											.initialPosition( pos )
@@ -242,26 +244,13 @@ void BulletSpheresApp::updateTime()
 void BulletSpheresApp::update()
 {
 	// update time
-	updateTime();
-	ci::Timer time;
 	// update bullet context
-	if( ! mFirstTime ) {
-		time.start();
-		mFuture.get();
-		time.stop();
-	}
-	mFirstTime = false;
+	updateTime();
 	
-	
-//	mContext->setStepVal( mTimeDelta );
-//	mContext->setGravity( vec3( 0 ) );
-//
-//	mContext->update();
-//
-	mPhysicsUpdate.push_back( time.getSeconds() );
+	mContext->setGravity( vec3( 0 ) );
+	mContext->update();
 	
 	// add attractive force
-	time.start();
 	mat4 * matrices = (mat4*)mMatrices->map( GL_WRITE_ONLY );
 	for( auto &body : mRigidBodies ){
 		body.update( mTimeElapsed );
@@ -280,26 +269,12 @@ void BulletSpheresApp::update()
 		}
 	}
 	mMatrices->unmap();
-	time.stop();
-	
-	mBodyUpdate.push_back( time.getSeconds() );
-	
-	mFuture = std::async( std::launch::async, [&]() {
-		mContext->setStepVal( mTimeDelta );
-		mContext->setGravity( vec3( 0 ) );
-		mContext->update();
-	});
-	
-	// update light (unnecessary since light is stationary)
-//	mLight->update( mTimeDelta );
 }
 
 
 
 void BulletSpheresApp::drawToDepthFbo()
 {
-	ci::Timer time;
-	time.start();
 	// draw into the depth fbo for shadow casting
 	gl::ScopedFramebuffer bindFbo( mLight->getFbo() );
 	gl::clear();
@@ -313,20 +288,17 @@ void BulletSpheresApp::drawToDepthFbo()
 	
 	gl::ScopedVao scopeVao( mVao );
 	gl::ScopedGlslProg scopeGlsl( mTestGlsl );
-	gl::ScopedBuffer scopeIndex( mVboMesh->getIndexVbo() );
+	gl::ScopedBuffer scopeIndex( mElements );
 	
 	gl::setDefaultShaderVars();
 	
-	glDrawElementsInstanced( GL_TRIANGLES, mVboMesh->getNumIndices(), GL_UNSIGNED_INT, 0, NUM_PARTICLES-2 );
-	time.stop();
-	mShadowRender.push_back(time.getSeconds());
+	glDrawElementsInstanced( GL_TRIANGLES, mTrimesh->getNumIndices(), GL_UNSIGNED_INT, 0, NUM_PARTICLES-2 );
 }
 
 void BulletSpheresApp::draw()
 {
 	drawToDepthFbo();
-	ci::Timer time;
-	time.start();
+	
 	gl::clear( Color( 0.1f, 0.1f, 0.1f ) );
 	gl::setMatrices( mCam );
 	gl::viewport( vec2( 0 ), getWindowSize() );
@@ -335,7 +307,7 @@ void BulletSpheresApp::draw()
 	{
 		gl::ScopedVao scopeVao( mVao );
 		gl::ScopedGlslProg scopeGlsl( mShadowsGlsl );
-		gl::ScopedBuffer scopeIndex( mVboMesh->getIndexVbo() );
+		gl::ScopedBuffer scopeIndex( mElements );
 		gl::ScopedTextureBind scopeTex0( mLight->getFbo()->getDepthTexture(), 0 );
 		gl::ScopedTextureBind scopeTex1( mStripeTex, 1 );
 		
@@ -351,7 +323,7 @@ void BulletSpheresApp::draw()
 		
 		gl::setDefaultShaderVars();
 	
-		glDrawElementsInstanced( GL_TRIANGLES, mVboMesh->getNumIndices(), GL_UNSIGNED_INT, 0, NUM_PARTICLES-2 );
+		glDrawElementsInstanced( GL_TRIANGLES, mTrimesh->getNumIndices(), GL_UNSIGNED_INT, 0, NUM_PARTICLES-2 );
 	}
 	
 	// Draw big spheres
@@ -370,25 +342,6 @@ void BulletSpheresApp::draw()
 		mLight->draw();
 	
 	mContext->debugDraw();
-	
-//	if( getElapsedFrames()%60 == 0 ) std::cout << getAverageFps() << std::endl;
-//	time.stop();
-	mRender.push_back( time.getSeconds() );
-	
-//	if( getElapsedFrames() == 1000 ) {
-//		double updateBodyAccum = 0.0f;
-//		double updatePhysicsAccum = 0.0f;
-//		double renderAccum = 0.0f;
-//		double renderShadowAccum = 0.0f;
-//		for( int i = 0; i < 1000; ++i ) {
-//			updatePhysicsAccum += mPhysicsUpdate[i];
-//			updateBodyAccum += mBodyUpdate[i];
-//			renderAccum += mRender[i];
-//			renderShadowAccum += mShadowRender[i];
-//		}
-//		cout << "UPDATE PHYSICS: " << updatePhysicsAccum / 1000.0 << "\nUPDATE BODY: " << updateBodyAccum / 1000.0 << "\nRENDER SHADOW: " << renderShadowAccum / 1000.0 << "\nRENDER: " << renderAccum / 1000.0 << endl;
-//		quit();
-//	}
 }
 
 CINDER_APP_NATIVE( BulletSpheresApp, RendererGl )

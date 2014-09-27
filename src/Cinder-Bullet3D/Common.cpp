@@ -95,7 +95,7 @@ CompoundShapeRef createCompoundShape( const ShapesAndOffsets &shapesAndOffsets )
 	
 ConvexHullShapeRef createConvexHull( const ci::TriMeshRef &mesh )
 {
-	auto mMesh = mesh->getVertices<3>();
+	auto mMesh = mesh->getPositions<3>();
 	std::vector<btVector3> mBulletMesh( mesh->getNumVertices() );
 	
 	auto bulletIt = mBulletMesh.begin();
@@ -139,7 +139,7 @@ ci::gl::VboMeshRef getDrawableHeightfield( const Channel32f *heightData )
 	
 	for( int z = 0; z < depth; ++z ) {
 		for( int x = 0; x < width; ++x ) {
-			auto & vert = plane->getVertices<3>()[z + depth * x];
+			auto & vert = plane->getPositions<3>()[z + depth * x];
 			vert.y = heightData->getValue( ivec2( x, z ) );
 		}
 	}

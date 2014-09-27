@@ -33,7 +33,7 @@ inline ci::mat4 fromBullet( const btTransform &bulletTrans )
 {
 	ATTRIBUTE_ALIGNED16(btScalar m[16]);
 	bulletTrans.getOpenGLMatrix( m );
-	return ci::make_mat4( m );
+	return glm::make_mat4( m );
 }
 inline btTransform toBullet( const ci::mat4 &cinderMat4 )
 {
@@ -46,7 +46,7 @@ inline ci::mat3 fromBullet( const btMatrix3x3 &bulletMat3 )
 {
 	ATTRIBUTE_ALIGNED16(btScalar m[12]);
 	bulletMat3.getOpenGLSubMatrix( m );
-	return ci::make_mat3( m );
+	return glm::make_mat3( m );
 }
 	
 inline btMatrix3x3 toBullet( const ci::mat3 &cinderMat3 )

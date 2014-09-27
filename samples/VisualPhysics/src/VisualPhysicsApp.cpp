@@ -131,7 +131,7 @@ void VisualPhysicsApp::createCone()
 void VisualPhysicsApp::createTeapot()
 {
 	using namespace bullet;
-	// Here's a cool example of more complicated geometry.
+	// Here's an example of more complicated geometry.
 	auto teapot = geom::Teapot();
 	
 	// We create the teapot in any way we like.

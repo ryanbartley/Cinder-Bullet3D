@@ -79,7 +79,7 @@ void SoftBodyDemoApp::setup()
 		btTransform		trs;
 		btQuaternion	rot;
 		btVector3		ra= bt::toBullet( randVec3f() * 0.1f );
-		btVector3		rp= bt::toBullet( randVec3f() * 15.0f + vec3( 0, 20, 0 ) );
+		btVector3		rp= bt::toBullet( randVec3f() * 15.0f + vec3( 0, 5, 0 ) );
 		rot.setEuler(SIMD_PI/8+ra.x(),-SIMD_PI/7+ra.y(),ra.z());
 		trs.setIdentity();
 		trs.setOrigin(rp);
@@ -99,9 +99,9 @@ void SoftBodyDemoApp::setup()
 	mSoftBodyWorldInfo.m_dispatcher = mContext->getCollisionDispatcher();
 	mSoftBodyWorldInfo.m_sparsesdf.Initialize();
 	
-//	mSb = bt::SoftBody::createFromConvexHull( mSoftBodyWorldInfo, bt::createConvexHull( TriMesh::create( geom::Capsule() ) ) );
+	mSb = bt::SoftBody::createFromConvexHull( mSoftBodyWorldInfo, bt::createConvexHull( TriMesh::create( geom::Capsule() ) ) );
 //	mSb = bt::SoftBody::createPatch( mSoftBodyWorldInfo, vec3( 0 ), vec3( 0, 1, 0 ), vec3( 1, 0, 0 ), vec3( 1, 1, 0 ), 3, 3, 0, true );
-	//bt::SoftBody::createEllipsoid( mSoftBodyWorldInfo, vec3( 0 ), vec3( 1, 1, 1 ), 128 );
+//	mSb = bt::SoftBody::createEllipsoid( mSoftBodyWorldInfo, vec3( 0 ), vec3( 1, 1, 1 ), 128 );
 	mSb->getConfig().kVC = mKVC = 1.0f;
 	mSb->getMaterial( 0 )->m_kLST = kLST = 1.0;
 	mSb->setTotalMass( 1.0 );
@@ -116,7 +116,7 @@ void SoftBodyDemoApp::setup()
 	mSoftBodyMesh = bt::drawableHelpers::getDrawableSoftBody( mSb );
 	
 	mCam.setPerspective( 60.0f, getWindowAspectRatio(), .01, 1000.0f );
-	mCam.lookAt( vec3( 0, 10, 40 ), vec3( 0, 0, 0 ) );
+	mCam.lookAt( vec3( 0, 10, 10 ), vec3( 0, 0, 0 ) );
 	
 	mParams = params::InterfaceGl::create( "something", ivec2( 50, 100 ) );
 	mParams->addParam("mKVC", &mKVC );
