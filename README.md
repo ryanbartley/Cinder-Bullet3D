@@ -1,9 +1,9 @@
-This is a very simple made to order block that easily gets you up and running with the Bullet Physics library and Cinder.
+Warning: Master Branch using new glNext branch of Cinder. In other words, you won't be able to use it with Cinder 0.8.6 and below. To use with those versions, checkout preGlNext branch. Also, samples haven't been tested on Visual Studio. 
 
-Working platform supports Windows, iOS, and MacOSX for Cinder 0.8.5. (note: simulator not built for debug, if using simulator you need to switch your scheme to release, debug working on all device and macosx)
+Working platforms support iOS, and MacOSX for glNext branch of Cinder, found [here](https://github.com/cinder/Cinder/tree/glNext). 
 
-One included sample just shows Hello World program from http://www.bulletphysics.org/mediawiki-1.5.8/index.php/Hello_World
+Multiple samples in the samples folder.
+
+
 
 You can find out more about bullet at http://bulletphysics.org/wordpress/
-
-Warning: Dev Branch using new cinder, which won't work with cinder 0.8.5.
