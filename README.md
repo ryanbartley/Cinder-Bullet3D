@@ -28,6 +28,6 @@ The implicit order of samples is as follows...
 ![SphereGravity](https://lh6.googleusercontent.com/rZOklk0V8gf9KN3WNWyDUQHits3wQF6MkeLyGJR2Tj0v5FVG9aVk4aAEeLRh31ee_w_aD23msP0=w1570-h885)
 7. SoftBodyDemo (when finished)
 	- This will model the Bullet SoftBodyDemo.
-![SoftBodyDemo](https://lh3.googleusercontent.com/pOpAVjBHQ586OANkii4LoyUwNk3uC2sa7Xrvr4PPbbOtELsodqCzEHken99o0cj7ose5LjU0VFY=w1570-h885)
+![SoftBodyDemo](https://lh3.googleusercontent.com/pOpAVjBHQ586OANkii4LoyUwNk3uC2sa7Xrvr4PPbbOtELsodqCzEHken99o0cj7ose5LjU0VFY=w1570-h885) 
 
 You can find out more about bullet at http://bulletphysics.org/wordpress/
