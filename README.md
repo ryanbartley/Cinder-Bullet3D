@@ -11,13 +11,16 @@ The implicit order of samples is as follows...
 	- This is simply the HelloWorld bullet tutorial running in cinder. This is raw Bullet and shows a lot of what is going on under the hood.
 2. PhysicsPrimitives
 	- This shows creating different primitives and adding them to your context and world.
-![PhysicsPrimitives](https://lh4.googleusercontent.com/vD8NjzIsitawGHe6ikWLnTvFvOYLY7-oBRYTkCmYWCWr9DUu_Z08xmGOKXcBt_-YAU6_Tn3eisE=w1570-h885)
+![PhysicsPrimitives](https://cloud.githubusercontent.com/assets/2651863/4435552/83cc9fb6-474a-11e4-878c-e56ee0ec2fdd.png)
 3. VisualPhysics
 	- This shows wrapping a Visual (gl) object with a Physics (bullet) object, which isn't necessarily intuitive. Hopefully, this will help you out.
-![VisualPhysics](https://lh4.googleusercontent.com/G_wgBt6BgKpaDHk3-t6jXd60sVJOBPPlPuqFzzKpELSN33JZOX3mvcs_ddzUzs7QD1H3FTlgDfg=w1570-h885)
+![VisualPhysics](https://cloud.githubusercontent.com/assets/2651863/4435557/83dbbd16-474a-11e4-8171-a41c3bdd2084.png)
 4. HeightfieldTerrain
 	- This shows creating a heightfield and the helpers for gl that are associated with them.
-![HeightfieldTerrain](https://lh4.googleusercontent.com/EQddfgY3poqMprRIupM3QvZSK92r2hx4rdnS8BI4hhjv_R46OH9KYc_qwOmqBFETYlSLcY9k8HI=w1570-h885)
+![HeightfieldTerrain](https://cloud.githubusercontent.com/assets/2651863/4435556/83dabd80-474a-11e4-95e3-050a7b174048.png)
+6. RagDoll 
+	- Shows the constraints you'd use to create a ragdoll. (Converted from Bullet Sample)
+![RagDoll](https://cloud.githubusercontent.com/assets/2651863/4435553/83d6824c-474a-11e4-9a86-9090dc63039a.png)
 5. Constraints (when finished)
 	- This will be where I represent using constraints with Cinder-Bullet3D. 
 	- The sample will be modeled from the Bullet Constraint demo. 
@@ -26,9 +29,9 @@ The implicit order of samples is as follows...
 	- Contributed by [Robert Hodgin](http://roberthodgin.com/). Thanks Robert!
 	- This is an advanced case, showing many optimizations using Bullet and gl. 
 	- Uses instancing, UniformScaleShape ( to use the same shape with different uniform scales )
-![SphereGravity](https://lh6.googleusercontent.com/rZOklk0V8gf9KN3WNWyDUQHits3wQF6MkeLyGJR2Tj0v5FVG9aVk4aAEeLRh31ee_w_aD23msP0=w1570-h885)
+![SphereGravity](https://cloud.githubusercontent.com/assets/2651863/4435555/83da7578-474a-11e4-838c-90e4ca4d366f.png)
 7. SoftBodyDemo (when finished)
 	- This will model the Bullet SoftBodyDemo.
-![SoftBodyDemo](https://lh3.googleusercontent.com/pOpAVjBHQ586OANkii4LoyUwNk3uC2sa7Xrvr4PPbbOtELsodqCzEHken99o0cj7ose5LjU0VFY=w1570-h885) 
+![SoftBodyDemo](https://cloud.githubusercontent.com/assets/2651863/4435554/83d6cb8a-474a-11e4-8849-2c329edbae37.png) 
 
 You can find out more about bullet at http://bulletphysics.org/wordpress/
