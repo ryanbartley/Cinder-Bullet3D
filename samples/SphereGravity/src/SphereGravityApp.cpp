@@ -245,7 +245,7 @@ void BulletSpheresApp::update()
 {
 	// update time
 	// update bullet context
-	updateTime();
+	updateTime(); 
 	
 	mContext->setGravity( vec3( 0 ) );
 	mContext->update();
