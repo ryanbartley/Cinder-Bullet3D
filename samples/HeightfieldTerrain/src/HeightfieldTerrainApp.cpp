@@ -27,6 +27,7 @@ const uint32_t Depth = 50;
 class HeightfieldTerrainApp : public AppNative {
   public:
 	void setup();
+	void prepareSettings( Settings *settings ) { settings->enableMultiTouch( false ); }
 	void mouseDown( MouseEvent event );	
 	void update();
 	void draw();

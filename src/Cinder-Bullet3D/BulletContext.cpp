@@ -9,7 +9,6 @@
 #include "Cinder-Bullet3D/BulletContext.h"
 #include "Cinder-Bullet3D/PhysicsDebugRenderable.h"
 #include "BulletPhysics/BulletSoftBody/btSoftBodyRigidBodyCollisionConfiguration.h"
-//#include "BulletMultiThreaded/GpuSoftBodySolvers/OpenCL/btSoftBodySolver_OpenCL.h"
 #include "Cinder-Bullet3D/SoftBody.h"
 
 using namespace ci;

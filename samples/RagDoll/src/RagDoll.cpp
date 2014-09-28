@@ -140,13 +140,12 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::vec3 &positionOf
 		auto end = mBodies.end();
 		for ( ; bodyIt != end; ++bodyIt )
 		{
-			cout << "adding damping" << endl;
 			(*bodyIt)->setDamping(0.5, 0.85);
 			(*bodyIt)->setDeactivationTime(0.8);
 			(*bodyIt)->setSleepingThresholds(4, 4);
 		}
 	}
-	cout << "Hello" << endl;
+	
 	ConstraintHinge::Format hingeFormat;
 	ConstraintConeTwist::Format coneFormat;
 	
@@ -158,7 +157,7 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::vec3 &positionOf
 		hinge->setDebugDrawSize( CONSTRAINT_DEBUG_SIZE );
 		mConstraints.push_back( hinge );
 	}
-	cout << "Hello" << endl;
+	
 	coneFormat.localAOrigin( vec3( 0.0, 0.30, 0.0 ) ).localARot( 0,0,M_PI_2 ).objA( mBodies[BODYPART_SPINE] )
 			  .localBOrigin( vec3( 0.0, -0.14, 0.0 ) ).localBRot( 0,0,M_PI_2 ).objB( mBodies[BODYPART_HEAD] );
 	{
@@ -178,7 +177,6 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::vec3 &positionOf
 		mConstraints.push_back( cone );
 	}
 	
-cout << "Hello" << endl;
 	hingeFormat.localAOrigin( vec3( 0.0, -0.225, 0.0 ) ).localARot( 0,M_PI_2,0 ).objA( mBodies[BODYPART_LEFT_UPPER_LEG] )
 				.localBOrigin( vec3( 0.0, 0.185, 0.0 ) ).localBRot( 0,M_PI_2,0 ).objB( mBodies[BODYPART_LEFT_LOWER_LEG] );
 	{
@@ -187,7 +185,7 @@ cout << "Hello" << endl;
 		hinge->setDebugDrawSize( CONSTRAINT_DEBUG_SIZE );
 		mConstraints.push_back( hinge );
 	}
-cout << "Hello" << endl;
+	
 	coneFormat.localAOrigin( vec3( 0.18, -0.10, 0.0 ) ).localARot( 0, 0, M_PI_4 ).objA( mBodies[BODYPART_PELVIS] )
 			  .localBOrigin( vec3( 0.0, 0.225, 0.0 ) ).localBRot( 0, 0, M_PI_4 ).objB( mBodies[BODYPART_RIGHT_UPPER_LEG] );
 	{
@@ -241,7 +239,7 @@ cout << "Hello" << endl;
 		hinge->setDebugDrawSize( CONSTRAINT_DEBUG_SIZE );
 		mConstraints.push_back( hinge );
 	}
-	cout << "Hello" << endl;
+	
 	{
 		auto jointIt = mConstraints.begin();
 		auto end = mConstraints.end();
@@ -249,7 +247,6 @@ cout << "Hello" << endl;
 			mOwner->addConstraint( (*jointIt)->getTypedConstraint(), true );
 		}
 	}
-	cout << "End" << endl;
 }
 
 RagDollRef RagDoll::create( const bullet::ContextRef &context, const ci::vec3 &positionOffset, const ci::gl::GlslProgRef &glsl  )

@@ -14,6 +14,7 @@ using namespace std;
 class RagDollApp : public AppNative {
   public:
 	void setup();
+	void prepareSettings( Settings *settings ) { settings->enableMultiTouch( false ); }
 	void mouseDown( MouseEvent event );
 	void keyDown( KeyEvent event );
 	void update();
@@ -102,7 +103,7 @@ void RagDollApp::draw()
 	gl::multModelMatrix( rotate( toRadians( -90.0f ), vec3( 1, 0, 0 ) ) );
 		mVisPlane->draw();
 	gl::popModelMatrix();
-	cout << "I'm before" << endl;
+	
 	// Draw the ragdolls
 	gl::pushModelMatrix();
 	auto ragIt = mRagDolls.begin();
@@ -111,7 +112,7 @@ void RagDollApp::draw()
 		(*ragIt++)->draw();
 	}
 	gl::popModelMatrix();
-	cout << "I'm past" << endl;
+	
 	// If activated I'll draw the debug
 	mContext->debugDraw();
 }

@@ -32,7 +32,6 @@ class SoftBodyDemoApp : public AppNative {
 	bullet::RigidBodyRef	mPhyPlane;
 	bt::SoftBodyRef			mSb;
 	btSoftBodyWorldInfo mSoftBodyWorldInfo;
-	params::InterfaceGlRef mParams;
 	float				mKVC, kLST;
 	gl::VboMeshRef		mSoftBodyMesh;
 };
@@ -99,9 +98,9 @@ void SoftBodyDemoApp::setup()
 	mSoftBodyWorldInfo.m_dispatcher = mContext->getCollisionDispatcher();
 	mSoftBodyWorldInfo.m_sparsesdf.Initialize();
 	
-	mSb = bt::SoftBody::createFromConvexHull( mSoftBodyWorldInfo, bt::createConvexHull( TriMesh::create( geom::Capsule() ) ) );
+//	mSb = bt::SoftBody::createFromConvexHull( mSoftBodyWorldInfo, bt::createConvexHull( TriMesh::create( geom::Capsule() ) ) );
 //	mSb = bt::SoftBody::createPatch( mSoftBodyWorldInfo, vec3( 0 ), vec3( 0, 1, 0 ), vec3( 1, 0, 0 ), vec3( 1, 1, 0 ), 3, 3, 0, true );
-//	mSb = bt::SoftBody::createEllipsoid( mSoftBodyWorldInfo, vec3( 0 ), vec3( 1, 1, 1 ), 128 );
+	mSb = bt::SoftBody::createEllipsoid( mSoftBodyWorldInfo, vec3( 0 ), vec3( 1, 1, 1 ), 128 );
 	mSb->getConfig().kVC = mKVC = 1.0f;
 	mSb->getMaterial( 0 )->m_kLST = kLST = 1.0;
 	mSb->setTotalMass( 1.0 );
@@ -118,9 +117,6 @@ void SoftBodyDemoApp::setup()
 	mCam.setPerspective( 60.0f, getWindowAspectRatio(), .01, 1000.0f );
 	mCam.lookAt( vec3( 0, 10, 10 ), vec3( 0, 0, 0 ) );
 	
-	mParams = params::InterfaceGl::create( "something", ivec2( 50, 100 ) );
-	mParams->addParam("mKVC", &mKVC );
-	mParams->addParam( "kLST", &kLST );
 }
 
 void SoftBodyDemoApp::mouseDown( MouseEvent event )
@@ -146,7 +142,6 @@ void SoftBodyDemoApp::draw()
 	bt::drawableHelpers::drawSoftBody( mSb, bt::drawableHelpers::SoftBodyDrawType::LINES );
 //	gl::draw( mSoftBodyMesh );
 	mContext->debugDraw();
-	mParams->draw();
 }
 
 CINDER_APP_NATIVE( SoftBodyDemoApp, RendererGl )
