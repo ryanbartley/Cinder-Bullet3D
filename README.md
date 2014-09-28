@@ -10,7 +10,7 @@ The implicit order of samples is as follows...
 	- This is simply the HelloWorld bullet tutorial running in cinder. This is raw Bullet and shows a lot of what is going on under the hood.
 2. PhysicsPrimitives
 	- This shows creating different primitives and adding them to your context and world.
-![PhysicsPrimitives](https://lh6.googleusercontent.com/xnZ5PQrTibgAM0LVY2iq4YKL467NAwk1Sy22KEgXyAqoZWCd29FBt-dTBObRB3rBYebWUhYIOp0=w1570-h885)
+![PhysicsPrimitives](https://lh4.googleusercontent.com/vD8NjzIsitawGHe6ikWLnTvFvOYLY7-oBRYTkCmYWCWr9DUu_Z08xmGOKXcBt_-YAU6_Tn3eisE=w1570-h885)
 3. VisualPhysics
 	- This shows wrapping a Visual (gl) object with a Physics (bullet) object, which isn't necessarily intuitive. Hopefully, this will help you out.
 ![VisualPhysics](https://lh4.googleusercontent.com/G_wgBt6BgKpaDHk3-t6jXd60sVJOBPPlPuqFzzKpELSN33JZOX3mvcs_ddzUzs7QD1H3FTlgDfg=w1570-h885)
