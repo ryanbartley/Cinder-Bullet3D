@@ -14,13 +14,13 @@ The implicit order of samples is as follows...
 ![PhysicsPrimitives](https://cloud.githubusercontent.com/assets/2651863/4435552/83cc9fb6-474a-11e4-878c-e56ee0ec2fdd.png)
 3. VisualPhysics
 	- This shows wrapping a Visual (gl) object with a Physics (bullet) object, which isn't necessarily intuitive. Hopefully, this will help you out.
-![VisualPhysics](https://cloud.githubusercontent.com/assets/2651863/4435557/83dbbd16-474a-11e4-8171-a41c3bdd2084.png)
+![VisualPhysics](https://cloud.githubusercontent.com/assets/2651863/4435553/83d6824c-474a-11e4-9a86-9090dc63039a.png)
 4. HeightfieldTerrain
 	- This shows creating a heightfield and the helpers for gl that are associated with them.
-![HeightfieldTerrain](https://cloud.githubusercontent.com/assets/2651863/4435556/83dabd80-474a-11e4-95e3-050a7b174048.png)
+![HeightfieldTerrain](https://cloud.githubusercontent.com/assets/2651863/4435557/83dbbd16-474a-11e4-8171-a41c3bdd2084.png)
 6. RagDoll 
 	- Shows the constraints you'd use to create a ragdoll. (Converted from Bullet Sample)
-![RagDoll](https://cloud.githubusercontent.com/assets/2651863/4435553/83d6824c-474a-11e4-9a86-9090dc63039a.png)
+![RagDoll](https://cloud.githubusercontent.com/assets/2651863/4435556/83dabd80-474a-11e4-95e3-050a7b174048.png)
 5. Constraints (when finished)
 	- This will be where I represent using constraints with Cinder-Bullet3D. 
 	- The sample will be modeled from the Bullet Constraint demo. 
