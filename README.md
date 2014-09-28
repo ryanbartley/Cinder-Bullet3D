@@ -1,9 +1,11 @@
 Working platforms support iOS, and MacOSX for glNext branch of Cinder, found [here](https://github.com/cinder/Cinder/tree/glNext). 
 
 Warning:
-Master Branch using new glNext branch of Cinder. In other words, you won't be able to use it with Cinder 0.8.6 and below. To use with those versions, checkout preGlNext branch. Also, samples haven't been tested on Visual Studio. 
+Master Branch using new glNext branch of Cinder. In other words, you won't be able to use it with Cinder 0.8.6 and below. To use with those versions, checkout preGlNext branch. Also, samples haven't been tested on Visual Studio.
 
-Multiple samples in the samples folder (SoftBodyDemo, Constraints and SphereGravity demos are working but not commented and experimental). 
+Samples
+=======
+(Note: SoftBodyDemo, Constraints and SphereGravity demos are working but not commented and experimental). 
 
 The implicit order of samples is as follows...
 
