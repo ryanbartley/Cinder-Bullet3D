@@ -11,6 +11,7 @@
 #include "cinder/Rand.h"
 #include "cinder/gl/GlslProg.h"
 #include "cinder/gl/Batch.h"
+#include "cinder/AxisAlignedBox.h"
 
 // This sample exemplifies the use of the btHeightfieldTerrainShape and
 // the opengl helpers that accompany it. You don't have to use these
@@ -28,7 +29,8 @@ class HeightfieldTerrainApp : public AppNative {
   public:
 	void setup();
 	void prepareSettings( Settings *settings ) { settings->enableMultiTouch( false ); }
-	void mouseDown( MouseEvent event );	
+	void mouseDown( MouseEvent event );
+	void mouseDrag( MouseEvent event );
 	void update();
 	void draw();
 	
@@ -41,12 +43,11 @@ class HeightfieldTerrainApp : public AppNative {
 	
 	gl::GlslProgRef		mPhongShader;
 	gl::BatchRef		mBatch;
-	gl::VaoRef			mVao;
-	gl::VboMeshRef		mDrawableHeightfield;
 	std::vector<bt::RigidBodyRef>	mRigidBodies;
 	bt::RigidBodyRef	mHeightfieldTerrain;
 	Channel32f			mHeightfieldMap;
 	CameraPersp			mCam;
+	float				mCamHeight;
 };
 
 void HeightfieldTerrainApp::setup()
@@ -64,7 +65,7 @@ void HeightfieldTerrainApp::setup()
 	addBox();
 	
 	mCam.setPerspective( 60.0f, getWindowAspectRatio(), 0.01f, 1000.0f );
-	mCam.lookAt( vec3( 0, 5, 10 ), vec3( 0.0f ) );
+	mCam.lookAt( vec3( 0, 5, 10 ), vec3( 1.0f ) );
 	
 	gl::enableDepthRead();
 	gl::enableDepthWrite();
@@ -85,10 +86,12 @@ void HeightfieldTerrainApp::setupShader()
 
 void HeightfieldTerrainApp::setupHeightfield()
 {
+//	mHeightfieldMap = Channel32f( loadImage( loadAsset( "heightfield.jpg" ) ) );
+	Perlin perlin( 4, 12 );
 	mHeightfieldMap = Channel32f( Width, Depth );
 	
-	auto minHeight = -1.0f;
-	auto maxHeight = 1.0f;
+	auto minHeight = 0.0f;
+	auto maxHeight = 0.0f;
 	
 	// Now we'll give our Map some Height values.
 	for( int y = 0; y < Depth; ++y ) {
@@ -96,20 +99,28 @@ void HeightfieldTerrainApp::setupHeightfield()
 			// Now create our heightfield, which is just a two-dimensional array that has
 			// a value, height. Instead of this you could easily use Perline to get smoother
 			// values or create a black and white image.
-			mHeightfieldMap.setValue( ivec2( x, y ), randFloat( minHeight, maxHeight ) );
+			auto val = 25.0f * perlin.fBm( x/float(Depth), y/float(Width) );
+			if( val > maxHeight ) maxHeight = val;
+			else if ( val < minHeight ) minHeight = val;
+			mHeightfieldMap.setValue( ivec2( x, y ), val );
 		}
 	}
 	
 	// Create our heightfieldShape with our heightfieldMap and maxHeight and minHeight
-	auto heightField = bt::createHeightfieldShape( &mHeightfieldMap, maxHeight, minHeight );
+	auto heightField = bt::createHeightfieldShape( &mHeightfieldMap, maxHeight, minHeight, vec3( 10 ) );
+	heightField->setLocalScaling( bt::toBullet( vec3( 100 ) ) );
 	
 	// Make our rigidbody out of this collision shape.
-	mRigidBodies.push_back( bt::RigidBody::create( bt::RigidBody::Format().collisionShape( heightField ) ) );
-	// And add that rigidbody to the world.
-	mContext->addRigidBody( mRigidBodies.back() );
+	mHeightfieldTerrain = bt::RigidBody::create( bt::RigidBody::Format().collisionShape( heightField ) );
+	ci::AxisAlignedBox3f box;
+	mHeightfieldTerrain->getAabb( box );
 	
-	// also I'm going to take a reference to the mHeightfieldTerrain
-	mHeightfieldTerrain = mRigidBodies.back();
+	cout << box.getCenter() << endl;
+	
+	// Collect it in my vector
+	mRigidBodies.push_back( mHeightfieldTerrain );
+	// And add that rigidbody to the world.
+	mContext->addRigidBody( mHeightfieldTerrain );
 	
 	// Now we can create a batch using the draw helper from bullet which passes back a vboMesh based on our map.
 	mBatch = gl::Batch::create( bt::drawableHelpers::getDrawableHeightfield( &mHeightfieldMap ), mPhongShader );
@@ -134,10 +145,17 @@ void HeightfieldTerrainApp::mouseDown( MouseEvent event )
 	addBox();
 }
 
+void HeightfieldTerrainApp::mouseDrag( cinder::app::MouseEvent event )
+{
+	auto norm = (float(event.getY()) / float(getWindowHeight())) * 2.0f - 1.0f;
+	mCamHeight = norm * 10;
+}
+
 void HeightfieldTerrainApp::update()
 {
 	// must update the world.
 	mContext->update();
+	mCam.setEyePoint( vec3(mCam.getEyePoint().x, mCamHeight, mCam.getEyePoint().z ) );
 }
 
 void HeightfieldTerrainApp::draw()

@@ -29,6 +29,10 @@ struct RayResult {
 	ci::vec3 hitPoint;
 	ci::vec3 hitNormal;
 };
+	
+struct AllHitsRayResult {
+	btAlignedObjectArray<const btCollisionObject*> m_bodies;
+};
 
 class Context {
 public:

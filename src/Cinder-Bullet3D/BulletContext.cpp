@@ -152,7 +152,6 @@ void Context::update()
 	mWorld->stepSimulation(mStepVal);
 	checkForCollisions();
 	if( mDrawDebug ) {
-		mDebugRenderer->update();
 		mWorld->debugDrawWorld();
 	}
 }
@@ -189,7 +188,6 @@ bool Context::closestRayCast( const ci::vec3 &startPosition, const ci::vec3 &dir
 	
 bool Context::allHitsRayResult( const ci::vec3 &startPosition, const ci::vec3 &direction, RayResult &result )
 {
-	
 	btVector3 rayTo = toBullet( direction * 1000.0f );
 	btVector3 rayFrom = toBullet( startPosition );
 	
@@ -202,6 +200,8 @@ bool Context::allHitsRayResult( const ci::vec3 &startPosition, const ci::vec3 &d
 		
 		if( bodies.size() <= 0 )
 			return false;
+		
+		 
 	}
 	
 	return false;

@@ -80,12 +80,6 @@ void PhysicsDebugRenderable::draw3dText( const btVector3 &location, const char *
 	mText.push_back( std::make_pair( fromBullet( location ), textString ) );
 }
 	
-void PhysicsDebugRenderable::update()
-{
-	mPositionBuffer.clear();
-	mText.clear();
-}
-	
 void PhysicsDebugRenderable::draw()
 {
 	initBuffers();
@@ -112,6 +106,8 @@ void PhysicsDebugRenderable::draw()
 	}
 	
 	mNewInfo = false;
+	mPositionBuffer.clear();
+	mText.clear();
 }
 	
 	

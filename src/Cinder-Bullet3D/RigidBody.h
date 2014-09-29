@@ -220,7 +220,7 @@ public:
 	inline void getAabb( ci::AxisAlignedBox3f &box )
 	{
 		btVector3 min; btVector3 max;
-		mCollisionShape->getAabb( mMotionState->m_graphicsWorldTrans, min, max );
+		mRigidBody->getAabb( min, max );
 		box = ci::AxisAlignedBox3f( fromBullet( min ), fromBullet( max ) );
 	}
 	

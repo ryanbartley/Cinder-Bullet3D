@@ -81,8 +81,8 @@ using ShapesAndOffsets = std::map<btCollisionShapeRef, btTransform>;
 CompoundShapeRef createCompoundShape( const ShapesAndOffsets &shapesAndOffsets );
 ConvexHullShapeRef createConvexHull( const TriMeshRef &mesh );
 HeightfieldTerrainShapeRef createHeightfieldShape( const ci::Channel32f *heightData,
-													float maxHeight,
 													float minHeight,
+													float maxHeight,
 													ci::vec3 scale = ci::vec3( 1.0f ) );
 UniformScalingShapeRef createUniformScalingShape( const btCollisionShapeRef &shape, float uniformScalingFactor );
 	

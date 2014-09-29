@@ -18,7 +18,6 @@
 		5C611478551842AD95CD464F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FE9ED656EC1C4BCD8201C3E3 /* Default-568h@2x.png */; };
 		A3ED8F6B638B4C11AE41C1DC /* CinderApp_ios.png in Resources */ = {isa = PBXBuildFile; fileRef = E68905BB6916422991CED110 /* CinderApp_ios.png */; };
 		B3D9764219C34FED00189DFC /* BulletContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3D9762619C34FED00189DFC /* BulletContext.cpp */; };
-		B3D9764319C34FED00189DFC /* CollisionObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3D9762819C34FED00189DFC /* CollisionObject.cpp */; };
 		B3D9764419C34FED00189DFC /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3D9762A19C34FED00189DFC /* Common.cpp */; };
 		B3D9764519C34FED00189DFC /* ConstraintBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3D9762C19C34FED00189DFC /* ConstraintBase.cpp */; };
 		B3D9764619C34FED00189DFC /* ConstraintConeTwist.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3D9762E19C34FED00189DFC /* ConstraintConeTwist.cpp */; };
@@ -281,8 +280,6 @@
 		B0666D3CA3334E9B86A81732 /* btConvex2dConvex2dAlgorithm.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = btConvex2dConvex2dAlgorithm.cpp; path = ../../../src/BulletPhysics/BulletCollision/CollisionDispatch/btConvex2dConvex2dAlgorithm.cpp; sourceTree = "<group>"; };
 		B3D9762619C34FED00189DFC /* BulletContext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BulletContext.cpp; sourceTree = "<group>"; };
 		B3D9762719C34FED00189DFC /* BulletContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletContext.h; sourceTree = "<group>"; };
-		B3D9762819C34FED00189DFC /* CollisionObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionObject.cpp; sourceTree = "<group>"; };
-		B3D9762919C34FED00189DFC /* CollisionObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionObject.h; sourceTree = "<group>"; };
 		B3D9762A19C34FED00189DFC /* Common.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Common.cpp; sourceTree = "<group>"; };
 		B3D9762B19C34FED00189DFC /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		B3D9762C19C34FED00189DFC /* ConstraintBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConstraintBase.cpp; sourceTree = "<group>"; };
@@ -940,8 +937,6 @@
 			children = (
 				B3D9762619C34FED00189DFC /* BulletContext.cpp */,
 				B3D9762719C34FED00189DFC /* BulletContext.h */,
-				B3D9762819C34FED00189DFC /* CollisionObject.cpp */,
-				B3D9762919C34FED00189DFC /* CollisionObject.h */,
 				B3D9762A19C34FED00189DFC /* Common.cpp */,
 				B3D9762B19C34FED00189DFC /* Common.h */,
 				B3D9762C19C34FED00189DFC /* ConstraintBase.cpp */,
@@ -1145,7 +1140,6 @@
 				B3D9764E19C34FED00189DFC /* SoftBody.cpp in Sources */,
 				B3D9764219C34FED00189DFC /* BulletContext.cpp in Sources */,
 				B3D9764A19C34FED00189DFC /* PhyObjCharacterController.cpp in Sources */,
-				B3D9764319C34FED00189DFC /* CollisionObject.cpp in Sources */,
 				B3D9764919C34FED00189DFC /* ConstraintPoint2Point.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

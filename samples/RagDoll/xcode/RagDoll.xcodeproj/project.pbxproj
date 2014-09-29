@@ -22,7 +22,6 @@
 		4BC76091AF704392902E0E63 /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98C7C88D9C794C4D83C6A1C2 /* Common.cpp */; };
 		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
 		5323E6B60EAFCA7E003A9687 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
-		5683157B5CCF4B23A8487E8B /* CollisionObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4BCFBC55BF94D40842441F4 /* CollisionObject.cpp */; };
 		5878049C6F6F484892EBC912 /* SoftBody.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93621B9AFAE840439052AD9B /* SoftBody.cpp */; };
 		591F26E60855416EB40B148C /* ConstraintBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B691382C3EF4BC69AB7F943 /* ConstraintBase.cpp */; };
 		59D1E8E5C4A245B196B31423 /* ConstraintHinge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5A87FA97D5F426BBE4A8622 /* ConstraintHinge.cpp */; };
@@ -385,7 +384,6 @@
 		E136D1AE75F9453D98F0900B /* btConcaveShape.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = btConcaveShape.h; path = ../../../src/BulletPhysics/BulletCollision/CollisionShapes/btConcaveShape.h; sourceTree = "<group>"; };
 		E2719C5B2C4B49BF8BA1E660 /* btMultiBodyDynamicsWorld.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = btMultiBodyDynamicsWorld.cpp; path = ../../../src/BulletPhysics/BulletDynamics/FeatherStone/btMultiBodyDynamicsWorld.cpp; sourceTree = "<group>"; };
 		E3EC44039CF84560B962A3AF /* btSimplexSolverInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = btSimplexSolverInterface.h; path = ../../../src/BulletPhysics/BulletCollision/NarrowPhaseCollision/btSimplexSolverInterface.h; sourceTree = "<group>"; };
-		E4BCFBC55BF94D40842441F4 /* CollisionObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = CollisionObject.cpp; path = "../../../src/Cinder-Bullet3D/CollisionObject.cpp"; sourceTree = "<group>"; };
 		E53736EBD45F45ABAD37D744 /* btSphereTriangleCollisionAlgorithm.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = btSphereTriangleCollisionAlgorithm.cpp; path = ../../../src/BulletPhysics/BulletCollision/CollisionDispatch/btSphereTriangleCollisionAlgorithm.cpp; sourceTree = "<group>"; };
 		E67E7C9672934E35B9A9963C /* btCollisionMargin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = btCollisionMargin.h; path = ../../../src/BulletPhysics/BulletCollision/CollisionShapes/btCollisionMargin.h; sourceTree = "<group>"; };
 		E67FAFC1AA7A4194B719E986 /* btDbvtBroadphase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = btDbvtBroadphase.h; path = ../../../src/BulletPhysics/BulletCollision/BroadPhaseCollision/btDbvtBroadphase.h; sourceTree = "<group>"; };
@@ -410,7 +408,6 @@
 		EFDF92FAE1A74B2B91653C73 /* RagDoll_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = RagDoll_Prefix.pch; sourceTree = "<group>"; };
 		F04DDEEB850C44CABEAC8836 /* btCompoundCollisionAlgorithm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = btCompoundCollisionAlgorithm.h; path = ../../../src/BulletPhysics/BulletCollision/CollisionDispatch/btCompoundCollisionAlgorithm.h; sourceTree = "<group>"; };
 		F121855773B6444F80D695C9 /* btConvexConvexAlgorithm.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = btConvexConvexAlgorithm.cpp; path = ../../../src/BulletPhysics/BulletCollision/CollisionDispatch/btConvexConvexAlgorithm.cpp; sourceTree = "<group>"; };
-		F343875730FB4384BE9A2B43 /* CollisionObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CollisionObject.h; path = "../../../src/Cinder-Bullet3D/CollisionObject.h"; sourceTree = "<group>"; };
 		F34EBCBAB3BB43BCBC7A0294 /* btMultiBodyJointLimitConstraint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = btMultiBodyJointLimitConstraint.h; path = ../../../src/BulletPhysics/BulletDynamics/FeatherStone/btMultiBodyJointLimitConstraint.h; sourceTree = "<group>"; };
 		F3E34777F9534ED289A57C20 /* gim_hash_table.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = gim_hash_table.h; path = ../../../src/BulletPhysics/BulletCollision/GImpact/gim_hash_table.h; sourceTree = "<group>"; };
 		F451ED76C5F843E9BFA8733F /* btEmptyCollisionAlgorithm.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = btEmptyCollisionAlgorithm.cpp; path = ../../../src/BulletPhysics/BulletCollision/CollisionDispatch/btEmptyCollisionAlgorithm.cpp; sourceTree = "<group>"; };
@@ -1007,7 +1004,6 @@
 			isa = PBXGroup;
 			children = (
 				E7CE85EEDEE446E797AC9721 /* BulletContext.h */,
-				F343875730FB4384BE9A2B43 /* CollisionObject.h */,
 				0DD6526CA7C74CE294F71FEF /* Common.h */,
 				EC77E57754A94E9093056362 /* ConstraintBase.h */,
 				5D9BFEBDE8164E0FB26E4A9D /* ConstraintConeTwist.h */,
@@ -1021,7 +1017,6 @@
 				1A27E9FF2F4E4DF7AAD1B20E /* RigidBody.h */,
 				5C03005EB7314920B0B75A6C /* SoftBody.h */,
 				337D011951644312895461FF /* BulletContext.cpp */,
-				E4BCFBC55BF94D40842441F4 /* CollisionObject.cpp */,
 				98C7C88D9C794C4D83C6A1C2 /* Common.cpp */,
 				2B691382C3EF4BC69AB7F943 /* ConstraintBase.cpp */,
 				CFD1CC6C3D444A4AB800DD1F /* ConstraintConeTwist.cpp */,
@@ -1158,7 +1153,6 @@
 				4B97A33EFDAF4473A54CE28B /* RagDollApp.cpp in Sources */,
 				6B69889E2B4A4A6EBE591593 /* BulletContext.cpp in Sources */,
 				B3B9C51A19D6FC5A005BAE1F /* RagDoll.cpp in Sources */,
-				5683157B5CCF4B23A8487E8B /* CollisionObject.cpp in Sources */,
 				4BC76091AF704392902E0E63 /* Common.cpp in Sources */,
 				591F26E60855416EB40B148C /* ConstraintBase.cpp in Sources */,
 				F6585B95EF4A492FB3F20AE9 /* ConstraintConeTwist.cpp in Sources */,

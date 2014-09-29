@@ -21,7 +21,6 @@ public:
 	
 	void initObject( btCollisionShape *collShape, const ci::vec3 &position );
 	
-	operator btCollisionObject*() { return mTrigger; }
 	btCollisionObject* getCollisionObject() { return mTrigger; }
 	
 private:

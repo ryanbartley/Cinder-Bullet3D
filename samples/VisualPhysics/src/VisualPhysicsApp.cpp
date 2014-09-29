@@ -199,7 +199,7 @@ void VisualPhysicsApp::keyDown( KeyEvent event )
 
 void VisualPhysicsApp::update()
 {
-	
+	mContext->setGravity( MotionManager::getGravityDirection() );
 	mContext->update();
 	// We'll update our Physics objects which will cash our Model Matrices.
 	for( auto objIt = mVisualPhysicsObjs.begin(); objIt != mVisualPhysicsObjs.end(); ++objIt )
