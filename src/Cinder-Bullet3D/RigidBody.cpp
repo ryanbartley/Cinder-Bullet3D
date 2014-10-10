@@ -9,7 +9,7 @@
 #include "Cinder-Bullet3D/RigidBody.h"
 #include "Cinder-Bullet3D/Common.h"
 #include "Cinder-Bullet3D/BulletContext.h"
-#include "btCollisionObject.h"
+#include "BulletCollision/CollisionDispatch/btCollisionObject.h"
 
 using namespace ci;
 
