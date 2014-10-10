@@ -10,7 +10,10 @@
 
 #include "btBulletCollisionCommon.h"
 #include "btBulletDynamicsCommon.h"
-#include "btSoftRigidDynamicsWorld.h"
+#include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
+#include <map>
+#include "cinder/Channel.h"
+#include "cinder/gl/VboMesh.h"
 
 #include "cinder/Log.h"
 

@@ -14,10 +14,10 @@
 #include "cinder/gl/VboMesh.h"
 #include "cinder/GeomIo.h"
 
-#include "btHeightfieldTerrainShape.h"
-#include "btConvexShape.h"
-#include "btCollisionShape.h"
-#include "btSoftBody.h"
+#include "BulletCollision/CollisionShapes/btHeightfieldTerrainShape.h"
+#include "BulletCollision/CollisionShapes/btConvexShape.h"
+#include "BulletCollision/CollisionShapes/btCollisionShape.h"
+#include "BulletSoftBody/btSoftBody.h"
 
 
 using namespace ci;

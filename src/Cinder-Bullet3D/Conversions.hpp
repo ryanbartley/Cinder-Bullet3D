@@ -8,6 +8,11 @@
 
 #pragma once
 
+#include "cinder/Quaternion.h"
+#include "cinder/Vector.h"
+#include "cinder/Matrix.h"
+#include "cinder/TriMesh.h"
+
 namespace bullet {
 	
 // Beginning Conversion from type to type
