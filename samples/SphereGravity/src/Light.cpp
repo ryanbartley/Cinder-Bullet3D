@@ -27,8 +27,7 @@ Light::Light( const vec4 &pos, size_t shadowMapSize )
 	depthFormat.setMagFilter( GL_LINEAR );
 	depthFormat.setMinFilter( GL_LINEAR );
 	depthFormat.setWrap( GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE );
-	depthFormat.setPixelDataFormat( GL_DEPTH_COMPONENT );
-	depthFormat.setPixelDataType( GL_FLOAT );
+	depthFormat.setDataType( GL_FLOAT );
 	depthFormat.setCompareMode( GL_COMPARE_REF_TO_TEXTURE );
 	depthFormat.setCompareFunc( GL_LEQUAL );
 	mShadowMapTex = gl::Texture2d::create( shadowMapSize, shadowMapSize, depthFormat );
