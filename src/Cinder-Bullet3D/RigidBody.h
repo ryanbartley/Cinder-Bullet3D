@@ -143,12 +143,16 @@ public:
 	//! Returns the const pointer to the collision shape of this Object.
 	const btCollisionShapeRef&	getCollisionShape() const { return mCollisionShape; }
 	
-	//! Sets Collision flags for the rigid body
 	void setFlag( int flag ) { mRigidBody->setFlags( mRigidBody->getFlags() | flag ); }
-	//! Removes Collision flags from the rigid body
 	void removeFlag( int flag ) { mRigidBody->setFlags( mRigidBody->getFlags() | ~(flag) ); }
-	//! Returns the current Collision flags
 	int getFlags() { return mRigidBody->getFlags(); }
+	
+	//! Sets Collision flags for the rigid body
+	void setCollisionFlags( int collisionFlag ) { mRigidBody->setCollisionFlags( mRigidBody->getCollisionFlags() | collisionFlag ); }
+	//! Removes Collision flags from the rigid body
+	void removeCollisionFlags( int collisionFlag ) { mRigidBody->setCollisionFlags( mRigidBody->getCollisionFlags() | ~(collisionFlag) ); }
+	//! Returns the current Collision flags
+	int getCollisionFlags() { return mRigidBody->getCollisionFlags(); }
 	
 	//! Sets the activation state of this rigid body. Normal Choices are DISABLE_DEACTIVATION or ACTIVE_TAG.
 	void setActivationState( int state ) { mRigidBody->setActivationState( state ); }
