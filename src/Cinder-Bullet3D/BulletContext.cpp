@@ -166,7 +166,6 @@ bool Context::closestRayCast( const ci::vec3 &startPosition, const ci::vec3 &dir
 	
 	btCollisionWorld::ClosestRayResultCallback rayCallback( rayFrom, rayTo );
 	
-	
 	world()->rayTest( rayFrom, rayTo, rayCallback );
 	
 	if( rayCallback.hasHit() ) {

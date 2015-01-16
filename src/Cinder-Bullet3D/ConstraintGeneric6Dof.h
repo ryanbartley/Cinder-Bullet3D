@@ -14,6 +14,11 @@
 
 namespace bullet {
 	
+	///////////////////////////////////////////////////////////////////////
+	// This is not useable at this point and needs more tuning and testing,
+	// use at your own risk
+	///////////////////////////////////////////////////////////////////////
+	
 class ConstraintGeneric6Dof : public ConstraintBase {
 public:
 	
