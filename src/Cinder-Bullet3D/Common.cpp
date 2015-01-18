@@ -14,10 +14,10 @@
 #include "cinder/gl/VboMesh.h"
 #include "cinder/GeomIo.h"
 
-#include "btHeightfieldTerrainShape.h"
-#include "btConvexShape.h"
-#include "btCollisionShape.h"
-#include "btSoftBody.h"
+#include "BulletCollision/CollisionShapes/btHeightfieldTerrainShape.h"
+#include "BulletCollision/CollisionShapes/btConvexShape.h"
+#include "BulletCollision/CollisionShapes/btCollisionShape.h"
+#include "BulletSoftBody/btSoftBody.h"
 
 
 using namespace ci;
@@ -28,6 +28,59 @@ namespace bullet {
 class Context* Context() {
 	return Context::getCurrent();
 }
+
+btQuaternion toBullet( const ci::quat & cinderQuat )
+{
+	btQuaternion bulletQuat( cinderQuat.x, cinderQuat.y, cinderQuat.z, cinderQuat.w );
+	return bulletQuat;
+}
+
+ci::quat fromBullet( const btQuaternion & bulletQuaternion )
+{
+	ci::quat cinderQuat( bulletQuaternion.w(), bulletQuaternion.x(), bulletQuaternion.y(), bulletQuaternion.z() );
+	return cinderQuat;
+}
+
+btVector3 toBullet( const ci::vec3 & cinderVec )
+{
+	btVector3 bulletVec( cinderVec.x, cinderVec.y, cinderVec.z );
+	return bulletVec;
+}
+
+ci::vec3 fromBullet( const btVector3 & bulletVec )
+{
+	ci::vec3 cinderVec( bulletVec.x(), bulletVec.y(), bulletVec.z() );
+	return cinderVec;
+}
+
+ci::mat4 fromBullet( const btTransform &bulletTrans )
+{
+	ATTRIBUTE_ALIGNED16( btScalar m[16] );
+	bulletTrans.getOpenGLMatrix( m );
+	return glm::make_mat4( m );
+}
+
+btTransform toBullet( const ci::mat4 &cinderMat4 )
+{
+	btTransform trans;
+	trans.setFromOpenGLMatrix( &cinderMat4[0][0] );
+	return trans;
+}
+
+ci::mat3 fromBullet( const btMatrix3x3 &bulletMat3 )
+{
+	ATTRIBUTE_ALIGNED16( btScalar m[12] );
+	bulletMat3.getOpenGLSubMatrix( m );
+	return glm::make_mat3( m );
+}
+
+btMatrix3x3 toBullet( const ci::mat3 &cinderMat3 )
+{
+	btMatrix3x3 trans;
+	trans.setFromOpenGLSubMatrix( &cinderMat3[0][0] );
+	return trans;
+}
+
 	
 BoxShapeRef createBoxShape( const ci::vec3 &halfExtents )
 {
@@ -219,7 +272,10 @@ ci::gl::VboMeshRef getDrawableSoftBody( const SoftBodyRef &softBody, bool interl
 			*indexIt++ = uint32_t(node_2 - &softNodes[0]);
 		}
 		auto indexVbo = gl::Vbo::create( GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(uint32_t), indices.data(), GL_STATIC_DRAW );
-		auto vboMesh = gl::VboMesh::create( pos.size(), GL_TRIANGLES, { make_pair( posLayout, posVbo ), make_pair( normLayout, normVbo ) }, indices.size(), GL_UNSIGNED_INT, indexVbo );
+		std::vector<std::pair<cinder::geom::BufferLayout, cinder::gl::VboRef>> layout;
+		layout.push_back( make_pair( posLayout, posVbo ) );
+		layout.push_back( make_pair( normLayout, normVbo ) );
+		auto vboMesh = gl::VboMesh::create( pos.size(), GL_TRIANGLES, layout, indices.size(), GL_UNSIGNED_INT, indexVbo );
 		return vboMesh;
 	}
 }

@@ -6,11 +6,15 @@
 //
 //
 
+#define _USE_MATH_DEFINES
+#include <cmath>
+
 #include "RagDoll.h"
 #include "Cinder-Bullet3D/ConstraintHinge.h"
 #include "Cinder-Bullet3D/ConstraintConeTwist.h"
 
 #include "cinder/gl/GlslProg.h"
+#include "cinder/app/App.h"
 
 #define CONSTRAINT_DEBUG_SIZE 0.2f
 
@@ -23,32 +27,32 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::vec3 &positionOf
 : mOwner( context )
 {
 	// Setup the geometry
-	mShapes.push_back( createCapsuleShape( 0.15, 0.20 ) );
+	mShapes.push_back( createCapsuleShape( 0.15f, 0.20f ) );
 	
-	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.15 ).length( 0.20 ).enable( geom::Attrib::NORMAL ), glsl ) );
-	mShapes.push_back( createCapsuleShape( 0.15, 0.28 ) );
+	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.15f ).length( 0.20f ), glsl ) );
+	mShapes.push_back( createCapsuleShape( 0.15f, 0.28f ) );
 	
-	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.15 ).length( 0.28 ).enable( geom::Attrib::NORMAL ), glsl ) );
-	mShapes.push_back( createCapsuleShape( 0.10, 0.05 ) );
-	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.10 ).length( 0.05 ).enable( geom::Attrib::NORMAL ), glsl ) );
-	mShapes.push_back( createCapsuleShape( 0.07, 0.45 ) );
-	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.07 ).length( 0.45 ).enable( geom::Attrib::NORMAL ), glsl ) );
-	mShapes.push_back( createCapsuleShape( 0.05, 0.37 ) );
-	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.05 ).length( 0.37 ).enable( geom::Attrib::NORMAL ), glsl ) );
+	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.15f ).length( 0.28f ), glsl ) );
+	mShapes.push_back( createCapsuleShape( 0.10f, 0.05f ) );
+	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.10f ).length( 0.05f ), glsl ) );
+	mShapes.push_back( createCapsuleShape( 0.07f, 0.45f ) );
+	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.07f ).length( 0.45f ), glsl ) );
+	mShapes.push_back( createCapsuleShape( 0.05f, 0.37f ) );
+	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.05f ).length( 0.37f ), glsl ) );
 	
-	mShapes.push_back( createCapsuleShape( 0.07, 0.45 ) );
-	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.07 ).length( 0.45 ).enable( geom::Attrib::NORMAL ), glsl ) );
-	mShapes.push_back( createCapsuleShape( 0.05, 0.37 ) );
-	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.05 ).length( 0.37 ).enable( geom::Attrib::NORMAL ), glsl ) );
-	mShapes.push_back( createCapsuleShape( 0.05, 0.33 ) );
+	mShapes.push_back( createCapsuleShape( 0.07f, 0.45f ) );
+	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.07f ).length( 0.45f ), glsl ) );
+	mShapes.push_back( createCapsuleShape( 0.05f, 0.37f ) );
+	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.05f ).length( 0.37f ), glsl ) );
+	mShapes.push_back( createCapsuleShape( 0.05f, 0.33f ) );
 	
-	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.05 ).length( 0.33 ).enable( geom::Attrib::NORMAL ), glsl ) );
-	mShapes.push_back( createCapsuleShape( 0.04, 0.25 ) );
-	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.04 ).length( 0.25 ).enable( geom::Attrib::NORMAL ), glsl ) );
-	mShapes.push_back( createCapsuleShape( 0.05, 0.33 ) );
-	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.05 ).length( 0.33 ).enable( geom::Attrib::NORMAL ), glsl ) );
-	mShapes.push_back( createCapsuleShape( 0.04, 0.25 ) );
-	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.04 ).length( 0.25 ).enable( geom::Attrib::NORMAL ), glsl ) );
+	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.05f ).length( 0.33f ), glsl ) );
+	mShapes.push_back( createCapsuleShape( 0.04f, 0.25f ) );
+	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.04f ).length( 0.25f ), glsl ) );
+	mShapes.push_back( createCapsuleShape( 0.05f, 0.33f ) );
+	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.05f ).length( 0.33f ), glsl ) );
+	mShapes.push_back( createCapsuleShape( 0.04f, 0.25f ) );
+	mBatches.push_back( gl::Batch::create( geom::Capsule().radius( 0.04f ).length( 0.25f ), glsl ) );
 	
 	btTransform offset; offset.setIdentity();
 	offset.setOrigin( toBullet( positionOffset ) );

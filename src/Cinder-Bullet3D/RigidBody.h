@@ -49,7 +49,7 @@ public:
 		//! Returns whether to auto add to the world. Default is true.
 		const bool getAddToWorld() const { return mAddToWorld; }
 		//! Returns Collision Shape User Pointer. Defaults to nullptr.
-		const bool getCSUserPointer() const { return mRigidBodyUserPtr; }
+		void* getCSUserPointer() const { return mRigidBodyUserPtr; }
 		//! Returns the object to kinematic and zeros the mass on construction and sets the appropriate flags.
 		const bool isKinematic() const { return mSetKinematic; }
 		//! Sets the Collision shape of the object.

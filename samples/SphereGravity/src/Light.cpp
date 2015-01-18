@@ -8,6 +8,7 @@
 
 #include "cinder/gl/Shader.h"
 #include "cinder/gl/Context.h"
+#include "cinder/app/App.h"
 #include "Light.h"
 
 using namespace ci;

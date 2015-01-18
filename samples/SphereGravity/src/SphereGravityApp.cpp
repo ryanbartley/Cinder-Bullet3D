@@ -177,7 +177,7 @@ void BulletSpheresApp::createBuffers()
 			glVertexAttribDivisor( 3, 1 );
 			
 			gl::enableVertexAttribArray( 4 );
-			gl::vertexAttribPointer( 4, 4, GL_FLOAT, GL_FALSE, sizeof(mat4), (GLvoid*) (sizeof(vec4) ) );
+			gl::vertexAttribPointer( 4, 4, GL_FLOAT, GL_FALSE, sizeof(mat4), (GLvoid*) ( sizeof(vec4) ) );
 			glVertexAttribDivisor( 4, 1 );
 			
 			gl::enableVertexAttribArray( 5 );
