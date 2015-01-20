@@ -1,7 +1,7 @@
-Working platforms support iOS, and MacOSX for glNext branch of Cinder, found [here](https://github.com/cinder/Cinder/tree/glNext). 
+Working platforms support iOS, MacOSX, and Windows on the glNext branch of Cinder, found [here](https://github.com/cinder/Cinder/tree/glNext). 
 
 Warning:
-Master Branch using new glNext branch of Cinder. In other words, you won't be able to use it with Cinder 0.8.6 and below. To use with those versions, checkout preGlNext branch. Also, samples haven't been tested on Visual Studio.
+Master Branch using new glNext branch of Cinder. In other words, you won't be able to use it with Cinder 0.8.6 and below.
 
 Samples
 =======
@@ -18,22 +18,27 @@ The implicit order of samples is as follows...
 	- This shows wrapping a Visual (gl) object with a Physics (bullet) object, which isn't necessarily intuitive. Hopefully, this will help you out.
 ![VisualPhysics](https://cloud.githubusercontent.com/assets/2651863/4435553/83d6824c-474a-11e4-9a86-9090dc63039a.png)
 4. HeightfieldTerrain
-	- This shows creating a heightfield and the helpers for gl that are associated with them.
+	- This shows creating a heightfield and the helpers for gl that are associated with them. Right now there's a disconnect between the visual object of 
 ![HeightfieldTerrain](https://cloud.githubusercontent.com/assets/2651863/4435557/83dbbd16-474a-11e4-8171-a41c3bdd2084.png)
-6. RagDoll 
+5. RayCasting
+	- Shows the operation of raycasting into the bullet context (the world), selecting an object and the ability to manipulate that object in bullet or in your own program. It also shows the use of a simple constraint.
+6. TriggerVolume
+	- Shows the operation of creating a trigger and adding that to the world. Triggers are great for explosions, or knowing when something passes an obstacle, etc. It doesn't cause a physical effect in the world but it will issue a collision to your collision listener. You can use this with logic to "trigger" effects.
+7. RagDoll 
 	- Shows the constraints you'd use to create a ragdoll. (Converted from Bullet Sample)
 ![RagDoll](https://cloud.githubusercontent.com/assets/2651863/4435556/83dabd80-474a-11e4-95e3-050a7b174048.png)
-5. Constraints (when finished)
+8. Constraints (when finished)
 	- This will be where I represent using constraints with Cinder-Bullet3D. 
 	- The sample will be modeled from the Bullet Constraint demo. 
 	- Still working out how to use Constraints within my system because I don't want to wrap all of them. :)
-6. SphereGravity (almost finished)
+9. SphereGravity (almost finished)
 	- Contributed by [Robert Hodgin](http://roberthodgin.com/). Thanks Robert!
 	- This is an advanced case, showing many optimizations using Bullet and gl. 
 	- Uses instancing, UniformScaleShape ( to use the same shape with different uniform scales )
 ![SphereGravity](https://cloud.githubusercontent.com/assets/2651863/4435555/83da7578-474a-11e4-838c-90e4ca4d366f.png)
-7. SoftBodyDemo (when finished)
+10. SoftBodyDemo (when finished)
 	- This will model the Bullet SoftBodyDemo.
+	- Note: assertion happening on debug. Run in Release at your own risk! 
 ![SoftBodyDemo](https://cloud.githubusercontent.com/assets/2651863/4435554/83d6cb8a-474a-11e4-8849-2c329edbae37.png) 
 
 You can find out more about bullet at http://bulletphysics.org/wordpress/

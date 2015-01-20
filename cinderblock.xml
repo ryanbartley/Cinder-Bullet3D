@@ -4,7 +4,7 @@
 	name="Bullet 3D Physics"
 	id="org.libcinder.bullet"
 	author="Ryan Bartley"
-	version="2.82"
+	version="3.0"
 	>
 	<supports os="ios" />
 	<supports os="macosx" />
