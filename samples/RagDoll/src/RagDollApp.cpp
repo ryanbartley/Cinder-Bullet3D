@@ -63,7 +63,7 @@ void RagDollApp::setup()
 									   .collisionShape( bullet::createStaticPlaneShape( vec3( 0, 1, 0 ), -1 ) )
 									   .mass( 0.0 )
 									   .addToWorld( true ) );
-	mVisPlane = gl::Batch::create( geom::Rect().scale( vec2( 1000, 1000 ) ), mPhongShader );
+	mVisPlane = gl::Batch::create( geom::Plane().size( vec2( 1000, 1000 ) ).normal( vec3( 0, 1, 0 ) ).subdivisions( vec2( 1000, 1000 ) ), mPhongShader );
 	
 	// I'll create my camera so that I can see.
 	mCam.setPerspective( 60.0f, getWindowAspectRatio(), .01f, 1000.0 );
@@ -99,10 +99,7 @@ void RagDollApp::draw()
 	gl::setMatrices( mCam );
 	
 	// Draw my plane
-	gl::pushModelMatrix();
-	gl::multModelMatrix( rotate( toRadians( -90.0f ), vec3( 1, 0, 0 ) ) );
-		mVisPlane->draw();
-	gl::popModelMatrix();
+	mVisPlane->draw();
 	
 	// Draw the ragdolls
 	gl::pushModelMatrix();

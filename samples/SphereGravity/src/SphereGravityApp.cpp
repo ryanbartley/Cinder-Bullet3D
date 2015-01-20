@@ -143,7 +143,7 @@ void BulletSpheresApp::createGl()
 
 void BulletSpheresApp::createBuffers()
 {
-	mTrimesh = TriMesh::create( geom::Sphere().subdivisions( 16 ).enable( geom::Attrib::NORMAL ).enable( geom::TEX_COORD_0 ) );
+	mTrimesh = TriMesh::create( geom::Sphere().subdivisions( 16 ) );
 	mPositions = gl::Vbo::create( GL_ARRAY_BUFFER, mTrimesh->getNumVertices() * sizeof(vec3), mTrimesh->getPositions<3>(), GL_STATIC_DRAW );
 	mNormals = gl::Vbo::create( GL_ARRAY_BUFFER, mTrimesh->getNumVertices() * sizeof(vec3), mTrimesh->getNormals().data(), GL_STATIC_DRAW );
 	mTexCoords = gl::Vbo::create( GL_ARRAY_BUFFER, mTrimesh->getNumVertices() * sizeof(vec2), mTrimesh->getTexCoords0<2>(), GL_STATIC_DRAW );
@@ -177,7 +177,7 @@ void BulletSpheresApp::createBuffers()
 			glVertexAttribDivisor( 3, 1 );
 			
 			gl::enableVertexAttribArray( 4 );
-			gl::vertexAttribPointer( 4, 4, GL_FLOAT, GL_FALSE, sizeof(mat4), (GLvoid*) (sizeof(vec4) ) );
+			gl::vertexAttribPointer( 4, 4, GL_FLOAT, GL_FALSE, sizeof(mat4), (GLvoid*) ( sizeof(vec4) ) );
 			glVertexAttribDivisor( 4, 1 );
 			
 			gl::enableVertexAttribArray( 5 );
@@ -223,7 +223,7 @@ void BulletSpheresApp::createSphere( int index, const vec3 &pos, float radius )
 
 void BulletSpheresApp::createBigSphere( int index, const vec3 &pos, float radius, gl::GlslProgRef shader )
 {
-	auto batch		= gl::Batch::create( geom::Sphere().enable( geom::Attrib::NORMAL ).radius( radius ).subdivisions( 64 ), shader );
+	auto batch		= gl::Batch::create( geom::Sphere().radius( radius ).subdivisions( 64 ), shader );
 	auto rigidBody	= bt::RigidBody::create( bt::RigidBody::Format()
 											.collisionShape( bt::createSphereShape( radius ) )
 											.initialPosition( pos )

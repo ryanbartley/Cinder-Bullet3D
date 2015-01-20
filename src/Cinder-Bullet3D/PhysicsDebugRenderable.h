@@ -35,7 +35,7 @@ public:
 	void draw3dText( const btVector3& location, const char* textString );
 	
 	//! Sets what to draw in the Debug Renderer
-	void setDebugMode( const int debugMode ) { mDebugMode = debugMode; }
+	void setDebugMode( int debugMode ) override { mDebugMode = debugMode; }
 	//! Returns the Current Debug Renderer Mode.
 	int	 getDebugMode() const { return mDebugMode; }
 	//! This will simply toggle a specific debug flag.

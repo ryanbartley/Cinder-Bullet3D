@@ -8,21 +8,21 @@
 
 #pragma once
 
+#include <map>
+
 #include "btBulletCollisionCommon.h"
 #include "btBulletDynamicsCommon.h"
-#include "btSoftRigidDynamicsWorld.h"
+#include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
 
 #include "cinder/Log.h"
-
-#include "Cinder-Bullet3D/Conversions.hpp"
+#include "cinder/Channel.h"
+#include "cinder/TriMesh.h"
+#include "cinder/gl/gl.h"
 
 //! Useful for creating collision groups and Masks
 #define BIT(x) (1<<(x))
 
 class btHeightfieldTerrainShape;
-
-
-using TriMeshRef = std::shared_ptr<ci::TriMesh>;
 
 namespace bullet {
 
@@ -67,6 +67,15 @@ using SoftBodyRef = std::shared_ptr<class SoftBody>;
 	
 // Pointer to the main Bullet Context
 Context* Context();
+
+btQuaternion toBullet( const ci::quat & cinderQuat );
+ci::quat fromBullet( const btQuaternion & bulletQuaternion );
+btVector3 toBullet( const ci::vec3 & cinderVec );
+ci::vec3 fromBullet( const btVector3 & bulletVec );
+ci::mat4 fromBullet( const btTransform &bulletTrans );
+btTransform toBullet( const ci::mat4 &cinderMat4 );
+ci::mat3 fromBullet( const btMatrix3x3 &bulletMat3 );
+btMatrix3x3 toBullet( const ci::mat3 &cinderMat3 );
 	
 BoxShapeRef createBoxShape( const ci::vec3 &halfExtents );
 ConeShapeRef createConeShape( btScalar radius, btScalar height );
@@ -79,7 +88,7 @@ MultiSphereShapeRef createMultiSphereShape( const std::vector<btVector3> &positi
 	
 using ShapesAndOffsets = std::map<btCollisionShapeRef, btTransform>;
 CompoundShapeRef createCompoundShape( const ShapesAndOffsets &shapesAndOffsets );
-ConvexHullShapeRef createConvexHull( const TriMeshRef &mesh );
+ConvexHullShapeRef createConvexHull( const ci::TriMeshRef &mesh );
 HeightfieldTerrainShapeRef createHeightfieldShape( const ci::Channel32f *heightData,
 													float minHeight,
 													float maxHeight,

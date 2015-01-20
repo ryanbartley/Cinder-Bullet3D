@@ -74,7 +74,7 @@ void VisualPhysicsApp::createCube()
 	auto scale = vec3( 1, 1, 1 );
 	// We create a Cube batch. The cube's points are conveniently from 0, 0, 0 origin, with a scale of 1, 1, 1.
 	// I'm enabling the normals because of the Phong shader.
-	auto batch = gl::Batch::create( geom::Cube().enable( geom::Attrib::NORMAL ), mPhongShader );
+	auto batch = gl::Batch::create( geom::Cube(), mPhongShader );
 	// All I need to do is create a Box Shape at a scale of 1, 1, 1.
 	auto rigidBody = RigidBody::create( RigidBody::Format()
 									   .collisionShape( createBoxShape( scale ) )
@@ -91,7 +91,7 @@ void VisualPhysicsApp::createSphere()
 	auto radius = 1.0f;
 	// We create a Sphere batch. The sphere's points are also conveniently from 0, 0, 0 origin, and I set the radius
 	// to 1. I'm enabling normals because of the Phong shader.
-	auto batch = gl::Batch::create( geom::Sphere().enable( geom::Attrib::NORMAL ).radius( radius ), mPhongShader );
+	auto batch = gl::Batch::create( geom::Sphere().radius( radius ), mPhongShader );
 	
 	// All I need to do is create the sphere with radius 1.
 	auto rigidBody = RigidBody::create( RigidBody::Format()
@@ -111,7 +111,6 @@ void VisualPhysicsApp::createCone()
 	// This is a little different. The cone geometry's origin is at the base of the mesh. However, we can easily
 	// shift the origin into the middle of the object, so that it'll be in line with bullet's origin.
 	auto batch = gl::Batch::create( geom::Cone()
-								   .enable( geom::Attrib::NORMAL )
 								   .base( base )
 								   .height( height )
 								   .origin( vec3( 0, - (height / 2.0f), 0 ) ),
@@ -135,12 +134,12 @@ void VisualPhysicsApp::createTeapot()
 	auto teapot = geom::Teapot();
 	
 	// We create the teapot in any way we like.
-	auto batch = gl::Batch::create( teapot.enable( geom::Attrib::NORMAL ), mPhongShader );
+	auto batch = gl::Batch::create( teapot, mPhongShader );
 	
 	// Then we just pass the geom::Source and create a trimesh and it'll create the convex hull from the points in
 	// the trimesh. We also, cache the trimesh data because as long as we don't need to change the shape at all, we
 	// can use this convexHullShape over and over.
-	static auto teapotShape = createConvexHull( ci::TriMesh::create( teapot.disable( geom::Attrib::NORMAL ) ) );
+	static auto teapotShape = createConvexHull( ci::TriMesh::create( teapot ) );
 	auto rigidBody = RigidBody::create( RigidBody::Format()
 									   .collisionShape( teapotShape )
 									   .mass( 1 )
@@ -199,7 +198,6 @@ void VisualPhysicsApp::keyDown( KeyEvent event )
 
 void VisualPhysicsApp::update()
 {
-	mContext->setGravity( MotionManager::getGravityDirection() );
 	mContext->update();
 	// We'll update our Physics objects which will cash our Model Matrices.
 	for( auto objIt = mVisualPhysicsObjs.begin(); objIt != mVisualPhysicsObjs.end(); ++objIt )

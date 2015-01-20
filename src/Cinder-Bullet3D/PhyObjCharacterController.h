@@ -18,6 +18,11 @@ class btPairCachingGhostObject;
 class btKinematicCharacterController;
 class btTriangleMesh;
 
+///////////////////////////////////////////////////////////////////////
+// This is not useable at this point and needs more tuning and testing,
+// use at your own risk
+///////////////////////////////////////////////////////////////////////
+
 namespace bullet {
 	
 class PhyObjCharacterController : public btActionInterface {

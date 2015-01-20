@@ -47,8 +47,9 @@
 	<headerPattern>src/BulletPhysics/vectormath/scalar/*.cpp</headerPattern>
 	<headerPattern>src/BulletPhysics/vectormath/sse/*.cpp</headerPattern>
 	<sourcePattern>src/Cinder-Bullet3D/*.cpp</sourcePattern>
-	
+
 	<includePath>src/</includePath>
+	<includePath>src/Cinder-Bullet3D/</includePath>
 	<includePath>src/BulletPhysics/</includePath>
 	
 	<platform os="ios">
@@ -80,17 +81,18 @@
 		</platform>
 	</platform>
 	<platform os="msw">
+
 		<platform config="Debug">
-			<staticLibrary>lib/msw/x86/BulletCollision-v110_d.lib</staticLibrary>
-			<staticLibrary>lib/msw/x86/BulletDynamics-v110_d.lib</staticLibrary>
-			<staticLibrary>lib/msw/x86/BulletSoftBody-v110_d.lib</staticLibrary>
-			<staticLibrary>lib/msw/x86/LinearMath-v110_d.lib</staticLibrary>
+			<staticLibrary>lib/msw/x64/BulletCollision_vs2010_x64_debug.lib</staticLibrary>
+			<staticLibrary>lib/msw/x64/BulletDynamics_vs2010_x64_debug.lib</staticLibrary>
+			<staticLibrary>lib/msw/x64/BulletSoftBody_vs2010_x64_debug.lib</staticLibrary>
+			<staticLibrary>lib/msw/x64/LinearMath_vs2010_x64_debug.lib</staticLibrary>
 		</platform>
 		<platform config="Release">
-			<staticLibrary>lib/msw/x86/BulletCollision-v110.lib</staticLibrary>
-			<staticLibrary>lib/msw/x86/BulletDynamics-v110.lib</staticLibrary>
-			<staticLibrary>lib/msw/x86/BulletSoftBody-v110.lib</staticLibrary>
-			<staticLibrary>lib/msw/x86/LinearMath-v110.lib</staticLibrary>
+			<staticLibrary>lib/msw/x64/BulletCollision_vs2010_x64_release.lib</staticLibrary>
+			<staticLibrary>lib/msw/x64/BulletDynamics_vs2010_x64_release.lib</staticLibrary>
+			<staticLibrary>lib/msw/x64/BulletSoftBody_vs2010_x64_release.lib</staticLibrary>
+			<staticLibrary>lib/msw/x64/LinearMath_vs2010_x64_release.lib</staticLibrary>
 		</platform>
 	</platform>	
 </block>

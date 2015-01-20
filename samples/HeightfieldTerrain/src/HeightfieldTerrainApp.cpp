@@ -2,12 +2,14 @@
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
 
+#include "BulletCollision/CollisionShapes/btHeightfieldTerrainShape.h"
+
 #include "Cinder-Bullet3D/BulletContext.h"
 #include "Cinder-Bullet3D/RigidBody.h"
 #include "Cinder-Bullet3D/Common.h"
+
 #include "cinder/gl/VboMesh.h"
 #include "cinder/Perlin.h"
-#include "btHeightfieldTerrainShape.h"
 #include "cinder/Rand.h"
 #include "cinder/gl/GlslProg.h"
 #include "cinder/gl/Batch.h"
