@@ -54,16 +54,16 @@
 	
 	<platform os="ios">
 		<platform config="Debug">
-			<staticLibrary>lib/ios/libBulletCollision_debug.a</staticLibrary>
-			<staticLibrary>lib/ios/libBulletDynamics_debug.a</staticLibrary>
-			<staticLibrary>lib/ios/libBulletSoftBody_debug.a</staticLibrary>
-			<staticLibrary>lib/ios/libLinearMath_debug.a</staticLibrary>
+			<staticLibrary>lib/ios/libBulletCollision_xcode4_x64_debug.a</staticLibrary>
+			<staticLibrary>lib/ios/libBulletDynamics_xcode4_x64_debug.a</staticLibrary>
+			<staticLibrary>lib/ios/libBulletSoftBody_xcode4_x64_debug.a</staticLibrary>
+			<staticLibrary>lib/ios/libLinearMath_xcode4_x64_debug.a</staticLibrary>
 		</platform>
 		<platform config="Release">
-			<staticLibrary>lib/ios/libBulletCollision.a</staticLibrary>
-			<staticLibrary>lib/ios/libBulletDynamics.a</staticLibrary>
-			<staticLibrary>lib/ios/libBulletSoftBody.a</staticLibrary>
-			<staticLibrary>lib/ios/libLinearMath.a</staticLibrary>
+			<staticLibrary>lib/ios/libBulletCollision_xcode4_x64_release.a</staticLibrary>
+			<staticLibrary>lib/ios/libBulletDynamics_xcode4_x64_release.a</staticLibrary>
+			<staticLibrary>lib/ios/libBulletSoftBody_xcode4_x64_release.a</staticLibrary>
+			<staticLibrary>lib/ios/libLinearMath_xcode4_x64_release.a</staticLibrary>
 		</platform>
 	</platform>
 	<platform os="macosx">

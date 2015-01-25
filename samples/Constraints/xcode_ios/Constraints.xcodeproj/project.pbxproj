@@ -1169,18 +1169,18 @@
 				"OTHER_LDFLAGS[sdk=iphoneos*][arch=*]" = (
 					"\"$(CINDER_PATH)/lib/libcinder-iphone_d.a\"",
 					"-lz",
-					../../../lib/ios/libBulletCollision_debug.a,
-					../../../lib/ios/libBulletDynamics_debug.a,
-					../../../lib/ios/libBulletSoftBody_debug.a,
-					../../../lib/ios/libLinearMath_debug.a,
+					../../../lib/ios/libBulletCollision_xcode4_x64_debug.a,
+					../../../lib/ios/libBulletDynamics_xcode4_x64_debug.a,
+					../../../lib/ios/libBulletSoftBody_xcode4_x64_debug.a,
+					../../../lib/ios/libLinearMath_xcode4_x64_debug.a,
 				);
 				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=*]" = (
 					"\"$(CINDER_PATH)/lib/libcinder-iphone-sim_d.a\"",
 					"-lz",
-					../../../lib/ios/libBulletCollision_debug.a,
-					../../../lib/ios/libBulletDynamics_debug.a,
-					../../../lib/ios/libBulletSoftBody_debug.a,
-					../../../lib/ios/libLinearMath_debug.a,
+					../../../lib/ios/libBulletCollision_xcode4_x64_debug.a,
+					../../../lib/ios/libBulletDynamics_xcode4_x64_debug.a,
+					../../../lib/ios/libBulletSoftBody_xcode4_x64_debug.a,
+					../../../lib/ios/libLinearMath_xcode4_x64_debug.a,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1196,18 +1196,18 @@
 				"OTHER_LDFLAGS[sdk=iphoneos*][arch=*]" = (
 					"\"$(CINDER_PATH)/lib/libcinder-iphone.a\"",
 					"-lz",
-					../../../lib/ios/libBulletCollision.a,
-					../../../lib/ios/libBulletDynamics.a,
-					../../../lib/ios/libBulletSoftBody.a,
-					../../../lib/ios/libLinearMath.a,
+					../../../lib/ios/libBulletCollision_xcode4_x64_release.a,
+					../../../lib/ios/libBulletDynamics_xcode4_x64_release.a,
+					../../../lib/ios/libBulletSoftBody_xcode4_x64_release.a,
+					../../../lib/ios/libLinearMath_xcode4_x64_release.a,
 				);
 				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=*]" = (
 					"\"$(CINDER_PATH)/lib/libcinder-iphone-sim.a\"",
 					"-lz",
-					../../../lib/ios/libBulletCollision.a,
-					../../../lib/ios/libBulletDynamics.a,
-					../../../lib/ios/libBulletSoftBody.a,
-					../../../lib/ios/libLinearMath.a,
+					../../../lib/ios/libBulletCollision_xcode4_x64_release.a,
+					../../../lib/ios/libBulletDynamics_xcode4_x64_release.a,
+					../../../lib/ios/libBulletSoftBody_xcode4_x64_release.a,
+					../../../lib/ios/libLinearMath_xcode4_x64_release.a,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

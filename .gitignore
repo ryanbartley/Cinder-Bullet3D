@@ -1,3 +1,7 @@
+# Bullet specific
+lib/
+_lib/
+
 # Mac OS X cruft
 *.pbxuser
 *.mode1v3
