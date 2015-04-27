@@ -17,7 +17,7 @@ uniform vec3	uGlowPos2;
 layout (location = 0) in vec4       ciPosition;
 layout (location = 1) in vec3       ciNormal;
 layout (location = 2) in vec2		ciTexCoord0;
-layout (location = 3) in mat4		model_matrix;
+layout (location = 3) in mat4		uModelMatrix;
 
 out vec4		Position;
 out vec3		Normal;
@@ -34,9 +34,9 @@ out vec4		GlowPos2;
 /* Bias matrix alters the clip coordinates so that x & y
  * lie between 0.0 and 1.0 for texture sampling. */
 const mat4 biasMat  = mat4(	0.5, 0.0, 0.0, 0.0,
-						   0.0, 0.5, 0.0, 0.0,
-						   0.0, 0.0, 0.5, 0.0,
-						   0.5, 0.5, 0.5, 1.0 );
+						    0.0, 0.5, 0.0, 0.0,
+						    0.0, 0.0, 0.5, 0.0,
+						    0.5, 0.5, 0.5, 1.0 );
 
 float getDistFromLight( vec3 pos, vec4 lightPos, float size )
 {
@@ -49,9 +49,9 @@ float getDistFromLight( vec3 pos, vec4 lightPos, float size )
 void main()
 {
 	TexCoord			= ciTexCoord0;
-	mat3 normalMatrix	= mat3( ciViewMatrix * model_matrix );
+	mat3 normalMatrix	= mat3( ciViewMatrix * uModelMatrix );
 	Normal				= normalMatrix * ciNormal;
-	Position			= ciViewMatrix * model_matrix * ciPosition;
+	Position			= ciViewMatrix * uModelMatrix * ciPosition;
 	
 	EyeDir				= normalize( -Position.xyz );
 	LightPos			= vec3( ciViewMatrix * uLightPos );
@@ -62,6 +62,6 @@ void main()
 	DistPer1			= getDistFromLight( Position.xyz, GlowPos1, uRadius1 );
 	DistPer2			= getDistFromLight( Position.xyz, GlowPos2, uRadius2 );
 	
-	gl_Position			= ciProjectionMatrix * ciViewMatrix * model_matrix * ciPosition;
-	ShadowCoord			= (biasMat * uShadowMvp * model_matrix) * ciPosition;
+	gl_Position			= ciProjectionMatrix * ciViewMatrix * uModelMatrix * ciPosition;
+	ShadowCoord			= (biasMat * uShadowMvp) * uModelMatrix * ciPosition;
 }

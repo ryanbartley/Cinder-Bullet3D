@@ -1,4 +1,4 @@
-#include "cinder/app/AppNative.h"
+#include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
 
@@ -12,7 +12,7 @@ using namespace ci;
 using namespace ci::app;
 using namespace std;
 
-class PhysicsPrimitivesApp : public AppNative {
+class PhysicsPrimitivesApp : public App {
   public:
 	void setup();
 	void mouseDown( MouseEvent event );
@@ -138,4 +138,4 @@ void PhysicsPrimitivesApp::draw()
 	mContext->debugDraw();
 }
 
-CINDER_APP_NATIVE( PhysicsPrimitivesApp, RendererGl )
+CINDER_APP( PhysicsPrimitivesApp, RendererGl )

@@ -1,4 +1,4 @@
-#include "cinder/app/AppNative.h"
+#include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
 
@@ -12,12 +12,11 @@ using namespace ci;
 using namespace ci::app;
 using namespace std;
 
-class VisualPhysicsApp : public AppNative {
+class VisualPhysicsApp : public App {
   public:
 	void setup();
 	void mouseDown( MouseEvent event );
 	void keyDown( KeyEvent event );
-	void prepareSettings( Settings * settings ) { settings->enableMultiTouch( false ); }
 	void update();
 	void draw();
 	void createCube();
@@ -225,4 +224,6 @@ void VisualPhysicsApp::draw()
 	mContext->debugDraw();
 }
 
-CINDER_APP_NATIVE( VisualPhysicsApp, RendererGl )
+void prepareSettings( App::Settings * settings ) { settings->setMultiTouchEnabled( false ); }
+
+CINDER_APP( VisualPhysicsApp, RendererGl, &prepareSettings )

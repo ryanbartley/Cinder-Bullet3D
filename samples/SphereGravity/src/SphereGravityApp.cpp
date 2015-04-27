@@ -1,4 +1,4 @@
-#include "cinder/app/AppNative.h"
+#include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
 #include "cinder/gl/Fbo.h"
@@ -24,15 +24,14 @@ float getMassFromRadius( float r ){
 	return ( ( r * r * r ) * (float)M_PI * 4.0f ) * 0.33333f;
 }
 
-class BulletSpheresApp : public AppNative {
+class BulletSpheresApp : public ci::app::App {
 public:
-	void prepareSettings( Settings *settings ){ settings->setWindowSize( 1280, 720 ); };
-	void resize();
-	void setup();
-	void keyDown( KeyEvent event );
+	void resize() override;
+	void setup() override;
+	void keyDown( KeyEvent event ) override;
 	void updateTime();
-	void update();
-	void draw();
+	void update() override;
+	void draw() override;
 	void drawToDepthFbo();
 	void createPhysics();
 	void createBuffers();
@@ -49,8 +48,8 @@ public:
 	CameraPersp				mCam;
 	
 	// shaders
-	gl::GlslProgRef			mShadowsGlsl;	// shader for the smaller spheres (includes cast shadows)
-	gl::GlslProgRef			mTestGlsl;
+	gl::GlslProgRef			mRenderGlsl;	// shader for the smaller spheres (includes cast shadows)
+	gl::GlslProgRef			mShadowGlsl;
 	gl::GlslProgRef			mGlowGlsl;		// shader for the larger spheres
 	
 	// textures
@@ -65,9 +64,9 @@ public:
 	
 	// glow colors
 	vector<Color>			mGlowColors;	// colors for the larger spheres
-	gl::VboRef				mMatrices, mPositions, mNormals, mTexCoords, mElements;
-	gl::VaoRef				mVao;
-	TriMeshRef				mTrimesh;
+	gl::VboRef				mMatrices;
+	gl::VboMeshRef			mAttributes;
+	gl::BatchRef			mRenderSphere, mShadowSphere;
 };
 
 void BulletSpheresApp::setup()
@@ -81,30 +80,25 @@ void BulletSpheresApp::setup()
 	mCam.lookAt( vec3( 0, 0, 100 ), vec3( 0 ) );
 	
 	try{
-		mShadowsGlsl	= gl::GlslProg::create( gl::GlslProg::Format()
+		mRenderGlsl	= gl::GlslProg::create( gl::GlslProg::Format()
 											   .vertex( loadAsset( "render.vert" ) )
-											   .fragment( loadAsset( "render.frag" ) ) );
-		mTestGlsl = gl::GlslProg::create( gl::GlslProg::Format().vertex( loadAsset( "depth.vert" ) ).fragment( loadAsset( "depth.frag" ) )
+											   .fragment( loadAsset( "render.frag" ) )
+											   .attribLocation( geom::POSITION, 0 )
+											   .attribLocation( geom::NORMAL, 1 )
+											   .attribLocation( geom::TEX_COORD_0, 2 )
+											   .attrib( geom::CUSTOM_0, "uModelMatrix" )  );
+		mShadowGlsl = gl::GlslProg::create( gl::GlslProg::Format()
+										 .vertex( loadAsset( "depth.vert" ) )
+										 .fragment( loadAsset( "depth.frag" ) )
 										 .attribLocation( geom::POSITION, 0 )
-										 .attribLocation( geom::NORMAL, 1 )
-										 .attribLocation( geom::TEX_COORD_0, 2 )
-										 .attrib( geom::CUSTOM_0, "model_view" )
-										 .attribLocation( geom::CUSTOM_0, 3 )
-										 .attribLocation( geom::CUSTOM_1, 4 )
-										 .attribLocation( geom::CUSTOM_2, 5 )
-										 .attribLocation( geom::CUSTOM_3, 6 ) );
-		auto attrType = mShadowsGlsl->getActiveAttribTypes();
-		for( auto attrIt = attrType.begin(); attrIt != attrType.end(); ++attrIt ) {
-			cout << attrIt->first << " " << attrIt->second << endl;
-		}
-		mGlowGlsl		= gl::GlslProg::create( loadAsset( "glow.vert" ), loadAsset( "glow.frag" ) );
-	} catch( gl::GlslProgCompileExc e ){
+										 .attrib( geom::CUSTOM_0, "uModelMatrix" ) );
+		mGlowGlsl = gl::GlslProg::create( loadAsset( "glow.vert" ), loadAsset( "glow.frag" ) );
+	} catch( gl::GlslProgCompileExc e ) {
 		std::cout << e.what() << std::endl;
 		quit();
 	}
 	
 	createPhysics();
-	
 	createGl();
 }
 
@@ -143,53 +137,19 @@ void BulletSpheresApp::createGl()
 
 void BulletSpheresApp::createBuffers()
 {
-	mTrimesh = TriMesh::create( geom::Sphere().subdivisions( 16 ) );
-	mPositions = gl::Vbo::create( GL_ARRAY_BUFFER, mTrimesh->getNumVertices() * sizeof(vec3), mTrimesh->getPositions<3>(), GL_STATIC_DRAW );
-	mNormals = gl::Vbo::create( GL_ARRAY_BUFFER, mTrimesh->getNumVertices() * sizeof(vec3), mTrimesh->getNormals().data(), GL_STATIC_DRAW );
-	mTexCoords = gl::Vbo::create( GL_ARRAY_BUFFER, mTrimesh->getNumVertices() * sizeof(vec2), mTrimesh->getTexCoords0<2>(), GL_STATIC_DRAW );
-	mElements = gl::Vbo::create( GL_ELEMENT_ARRAY_BUFFER, mTrimesh->getNumIndices() * sizeof(uint32_t), mTrimesh->getIndices().data(), GL_STATIC_DRAW );
+	gl::VboMesh::Layout layout;
+	layout.attrib( geom::POSITION, 4 ).attrib( geom::NORMAL, 3 ).attrib( geom::TEX_COORD_0, 2 );
+	mAttributes = gl::VboMesh::create( geom::Sphere().subdivisions( 16 ), {{ layout, nullptr }} );
 	
 	mMatrices = gl::Vbo::create( GL_ARRAY_BUFFER, (NUM_PARTICLES-2)*sizeof(mat4) );
 	
-	mVao = gl::Vao::create();
-	{
-		gl::ScopedVao scopeVao( mVao );
-		{
-			
-			gl::ScopedBuffer scopeBuffer( mPositions );
-			gl::enableVertexAttribArray( 0 );
-			gl::vertexAttribPointer( 0, 3, GL_FLOAT, GL_FALSE, 0, 0 );
-		}
-		{
-			gl::ScopedBuffer scopeBuffer( mNormals );
-			gl::enableVertexAttribArray( 1 );
-			gl::vertexAttribPointer( 1, 3, GL_FLOAT, GL_FALSE, 0, 0 );
-		}
-		{
-			gl::ScopedBuffer scopeBuffer( mTexCoords );
-			gl::enableVertexAttribArray( 2 );
-			gl::vertexAttribPointer( 2, 2, GL_FLOAT, GL_FALSE, 0, 0 );
-		}
-		{
-			gl::ScopedBuffer scopeBuffer( mMatrices );
-			gl::enableVertexAttribArray( 3 );
-			gl::vertexAttribPointer( 3, 4, GL_FLOAT, GL_FALSE, sizeof(mat4), (GLvoid*)0 );
-			glVertexAttribDivisor( 3, 1 );
-			
-			gl::enableVertexAttribArray( 4 );
-			gl::vertexAttribPointer( 4, 4, GL_FLOAT, GL_FALSE, sizeof(mat4), (GLvoid*) ( sizeof(vec4) ) );
-			glVertexAttribDivisor( 4, 1 );
-			
-			gl::enableVertexAttribArray( 5 );
-			gl::vertexAttribPointer( 5, 4, GL_FLOAT, GL_FALSE, sizeof(mat4), (GLvoid*) (sizeof(vec4) * 2) );
-			glVertexAttribDivisor( 5, 1 );
-			
-			gl::enableVertexAttribArray( 6 );
-			gl::vertexAttribPointer( 6, 4, GL_FLOAT, GL_FALSE, sizeof(mat4), (GLvoid*) (sizeof(vec4) * 3 ) );
-			glVertexAttribDivisor( 6, 1 );
-		}
-	}
-
+	auto bufferLayout = geom::BufferLayout();
+	bufferLayout.append( geom::CUSTOM_0, geom::FLOAT, 16, sizeof(mat4), 0, 1 );
+	
+	mAttributes->appendVbo( bufferLayout , mMatrices );
+	  
+	mRenderSphere = gl::Batch::create( mAttributes, mRenderGlsl );
+	mShadowSphere = gl::Batch::create( mAttributes, mShadowGlsl );
 }
 
 void BulletSpheresApp::createPhysics()
@@ -249,7 +209,7 @@ void BulletSpheresApp::update()
 	
 	mContext->setGravity( vec3( 0 ) );
 	mContext->update();
-	
+
 	// add attractive force
 	mat4 * matrices = (mat4*)mMatrices->map( GL_WRITE_ONLY );
 	for( auto &body : mRigidBodies ){
@@ -280,50 +240,38 @@ void BulletSpheresApp::drawToDepthFbo()
 	gl::clear();
 
 	gl::ScopedState scopeCull( GL_CULL_FACE, true );
-	glCullFace( GL_FRONT );
+	gl::cullFace( GL_FRONT );
 	
 	gl::ScopedMatrices scopeMat;
 	gl::setMatrices( mLight->getCam() );
 	gl::viewport( mLight->getFbo()->getSize() );
-	
-	gl::ScopedVao scopeVao( mVao );
-	gl::ScopedGlslProg scopeGlsl( mTestGlsl );
-	gl::ScopedBuffer scopeIndex( mElements );
-	
-	gl::setDefaultShaderVars();
-	
-	glDrawElementsInstanced( GL_TRIANGLES, mTrimesh->getNumIndices(), GL_UNSIGNED_INT, 0, NUM_PARTICLES-2 );
+
+	mShadowSphere->drawInstanced( NUM_PARTICLES-2 );
 }
 
 void BulletSpheresApp::draw()
 {
 	drawToDepthFbo();
-	
 	gl::clear( Color( 0.1f, 0.1f, 0.1f ) );
 	gl::setMatrices( mCam );
 	gl::viewport( vec2( 0 ), getWindowSize() );
 	
 	// Draw small spheres
 	{
-		gl::ScopedVao scopeVao( mVao );
-		gl::ScopedGlslProg scopeGlsl( mShadowsGlsl );
-		gl::ScopedBuffer scopeIndex( mElements );
 		gl::ScopedTextureBind scopeTex0( mLight->getFbo()->getDepthTexture(), 0 );
 		gl::ScopedTextureBind scopeTex1( mStripeTex, 1 );
 		
-		mShadowsGlsl->uniform( "uShadowMap",	0 );
-		mShadowsGlsl->uniform( "uStripeTex",	1 );
-		mShadowsGlsl->uniform( "uLightPos",		mLight->getPos() );
-		mShadowsGlsl->uniform( "uDepthBias",	mLight->getDepthBias() );
-		mShadowsGlsl->uniform( "uLightPos1",	mRigidBodies[0].getPos() );
-		mShadowsGlsl->uniform( "uLightPos2",	mRigidBodies[1].getPos() );
-		mShadowsGlsl->uniform( "uRadius1",		mRigidBodies[0].getSize() );
-		mShadowsGlsl->uniform( "uRadius2",		mRigidBodies[1].getSize() );
-		mShadowsGlsl->uniform( "uShadowMvp",	mLight->getViewProjection() );
+		mRenderGlsl->uniform( "uShadowMap",	0 );
+		mRenderGlsl->uniform( "uStripeTex",	1 );
+		mRenderGlsl->uniform( "uLightPos",		mLight->getPos() );
+		mRenderGlsl->uniform( "uDepthBias",	mLight->getDepthBias() );
+		mRenderGlsl->uniform( "uLightPos1",	mRigidBodies[0].getPos() );
+		mRenderGlsl->uniform( "uLightPos2",	mRigidBodies[1].getPos() );
+		mRenderGlsl->uniform( "uRadius1",		mRigidBodies[0].getSize() );
+		mRenderGlsl->uniform( "uRadius2",		mRigidBodies[1].getSize() );
+		mRenderGlsl->uniform( "uShadowMvp",	mLight->getViewProjection() );
 		
-		gl::setDefaultShaderVars();
-	
-		glDrawElementsInstanced( GL_TRIANGLES, mTrimesh->getNumIndices(), GL_UNSIGNED_INT, 0, NUM_PARTICLES-2 );
+		mRenderSphere->drawInstanced( NUM_PARTICLES - 2 );
 	}
 	
 	// Draw big spheres
@@ -344,4 +292,9 @@ void BulletSpheresApp::draw()
 	mContext->debugDraw();
 }
 
-CINDER_APP_NATIVE( BulletSpheresApp, RendererGl )
+CINDER_APP( BulletSpheresApp, RendererGl( RendererGl::Options().msaa( 0 ).coreProfile( true ).version( 3, 3 ) ),
+		   []( App::Settings* settings )
+{
+	settings->disableFrameRate();
+	settings->setWindowSize( 1280, 720 );
+} )

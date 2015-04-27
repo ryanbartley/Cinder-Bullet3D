@@ -1,4 +1,4 @@
-#include "cinder/app/AppNative.h"
+#include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
 
@@ -18,7 +18,7 @@ using namespace ci;
 using namespace ci::app;
 using namespace std;
 
-class SoftBodyApp : public AppNative {
+class SoftBodyApp : public App {
   public:
 	void setup() override;
 	void mouseDown( MouseEvent event ) override;
@@ -144,4 +144,4 @@ void SoftBodyApp::draw()
 	mContext->debugDraw();
 }
 
-CINDER_APP_NATIVE( SoftBodyApp, RendererGl )
+CINDER_APP( SoftBodyApp, RendererGl )

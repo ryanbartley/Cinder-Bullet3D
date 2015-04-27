@@ -1,4 +1,4 @@
-#include "cinder/app/AppNative.h"
+#include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
 
@@ -11,10 +11,9 @@ using namespace ci;
 using namespace ci::app;
 using namespace std;
 
-class RagDollApp : public AppNative {
+class RagDollApp : public App {
   public:
 	void setup();
-	void prepareSettings( Settings *settings ) { settings->enableMultiTouch( false ); }
 	void mouseDown( MouseEvent event );
 	void keyDown( KeyEvent event );
 	void update();
@@ -114,4 +113,6 @@ void RagDollApp::draw()
 	mContext->debugDraw();
 }
 
-CINDER_APP_NATIVE( RagDollApp, RendererGl )
+void prepareSettings( App::Settings *settings ) { settings->setMultiTouchEnabled( false ); }
+
+CINDER_APP( RagDollApp, RendererGl, &prepareSettings )

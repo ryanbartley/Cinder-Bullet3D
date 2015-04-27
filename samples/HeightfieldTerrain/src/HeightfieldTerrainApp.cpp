@@ -1,4 +1,4 @@
-#include "cinder/app/AppNative.h"
+#include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
 
@@ -27,10 +27,9 @@ using namespace std;
 const uint32_t Width = 50;
 const uint32_t Depth = 50;
 
-class HeightfieldTerrainApp : public AppNative {
+class HeightfieldTerrainApp : public App {
   public:
 	void setup();
-	void prepareSettings( Settings *settings ) { settings->enableMultiTouch( false ); }
 	void mouseDown( MouseEvent event );
 	void mouseDrag( MouseEvent event );
 	void update();
@@ -183,4 +182,6 @@ void HeightfieldTerrainApp::draw()
 }
 
 
-CINDER_APP_NATIVE( HeightfieldTerrainApp, RendererGl )
+void prepareSettings( App::Settings *settings ) { settings->setMultiTouchEnabled( false ); }
+
+CINDER_APP( HeightfieldTerrainApp, RendererGl, &prepareSettings )

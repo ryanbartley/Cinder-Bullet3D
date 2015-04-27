@@ -1,4 +1,4 @@
-#include "cinder/app/AppNative.h"
+#include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
 #include "cinder/Rand.h"
@@ -12,7 +12,7 @@ using namespace std;
 
 const float EXPLOSION_STRENGTH = 50.0f;
 
-class TriggerVolumeApp : public AppNative {
+class TriggerVolumeApp : public App {
 public:
 	void setup() override;
 	void keyDown( KeyEvent event ) override;
@@ -178,4 +178,4 @@ void TriggerVolumeApp::draw()
 	mContext->debugDraw();
 }
 
-CINDER_APP_NATIVE( TriggerVolumeApp, RendererGl )
+CINDER_APP( TriggerVolumeApp, RendererGl )

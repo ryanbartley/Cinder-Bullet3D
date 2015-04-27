@@ -1,4 +1,4 @@
-#include "cinder/app/AppNative.h"
+#include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
 #include "cinder/Rand.h"
@@ -19,10 +19,9 @@ struct null_deleter
 	}
 };
 
-class RayCastingApp : public AppNative {
+class RayCastingApp : public App {
 public:
 	void setup() override;
-	void prepareSettings( Settings *settings ) { settings->enableMultiTouch( false ); }
 	void keyDown( KeyEvent event ) override;
 	void mouseDown( MouseEvent event ) override;
 	void mouseDrag( MouseEvent event ) override;
@@ -241,4 +240,6 @@ void RayCastingApp::draw()
 	mContext->debugDraw();
 }
 
-CINDER_APP_NATIVE( RayCastingApp, RendererGl )
+void prepareSettings( App::Settings *settings ) { settings->setMultiTouchEnabled( false ); }
+
+CINDER_APP( RayCastingApp, RendererGl, &prepareSettings )

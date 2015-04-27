@@ -30,6 +30,12 @@
 		A07274C3AB7148F9BE4EB8AF /* ConstraintGeneric6Dof.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BF2DD915EF44D186F85AC3 /* ConstraintGeneric6Dof.cpp */; };
 		A27B484318D240C18FFC693E /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D95E211A76D42CD8D4A999A /* Common.cpp */; };
 		B3C1C6011A6E1A6C0092897D /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3C1C6001A6E1A6C0092897D /* Light.cpp */; };
+		B3E68E781AB9347F00005D76 /* depth.frag in Resources */ = {isa = PBXBuildFile; fileRef = B3E68E721AB9347F00005D76 /* depth.frag */; };
+		B3E68E791AB9347F00005D76 /* depth.vert in Resources */ = {isa = PBXBuildFile; fileRef = B3E68E731AB9347F00005D76 /* depth.vert */; };
+		B3E68E7A1AB9347F00005D76 /* glow.frag in Resources */ = {isa = PBXBuildFile; fileRef = B3E68E741AB9347F00005D76 /* glow.frag */; };
+		B3E68E7B1AB9347F00005D76 /* glow.vert in Resources */ = {isa = PBXBuildFile; fileRef = B3E68E751AB9347F00005D76 /* glow.vert */; };
+		B3E68E7C1AB9347F00005D76 /* render.frag in Resources */ = {isa = PBXBuildFile; fileRef = B3E68E761AB9347F00005D76 /* render.frag */; };
+		B3E68E7D1AB9347F00005D76 /* render.vert in Resources */ = {isa = PBXBuildFile; fileRef = B3E68E771AB9347F00005D76 /* render.vert */; };
 		BA8D2F6F726040BC99102652 /* SoftBody.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB28FC015AB7495B9313D3E1 /* SoftBody.cpp */; };
 		F5821B125D7E4008B282C257 /* RigidBody.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24FB1FDFB8604CD18DC85EC3 /* RigidBody.cpp */; };
 /* End PBXBuildFile section */
@@ -299,6 +305,12 @@
 		B3C1C5FE1A6E1A610092897D /* Body.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Body.h; path = ../include/Body.h; sourceTree = "<group>"; };
 		B3C1C5FF1A6E1A610092897D /* Light.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Light.h; path = ../include/Light.h; sourceTree = "<group>"; };
 		B3C1C6001A6E1A6C0092897D /* Light.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Light.cpp; path = ../src/Light.cpp; sourceTree = "<group>"; };
+		B3E68E721AB9347F00005D76 /* depth.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = depth.frag; path = ../assets/depth.frag; sourceTree = "<group>"; };
+		B3E68E731AB9347F00005D76 /* depth.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = depth.vert; path = ../assets/depth.vert; sourceTree = "<group>"; };
+		B3E68E741AB9347F00005D76 /* glow.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = glow.frag; path = ../assets/glow.frag; sourceTree = "<group>"; };
+		B3E68E751AB9347F00005D76 /* glow.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = glow.vert; path = ../assets/glow.vert; sourceTree = "<group>"; };
+		B3E68E761AB9347F00005D76 /* render.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = render.frag; path = ../assets/render.frag; sourceTree = "<group>"; };
+		B3E68E771AB9347F00005D76 /* render.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = render.vert; path = ../assets/render.vert; sourceTree = "<group>"; };
 		B5A8DCDC5E07452D9CBBACB9 /* btCollisionObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = btCollisionObject.h; path = ../../../src/BulletPhysics/BulletCollision/CollisionDispatch/btCollisionObject.h; sourceTree = "<group>"; };
 		B5C6271B9818407EB89072FD /* PhysicsDebugRenderable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PhysicsDebugRenderable.h; path = "../../../src/Cinder-Bullet3D/PhysicsDebugRenderable.h"; sourceTree = "<group>"; };
 		B68B80F52A15473D8B756C1E /* btBoxShape.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = btBoxShape.h; path = ../../../src/BulletPhysics/BulletCollision/CollisionShapes/btBoxShape.h; sourceTree = "<group>"; };
@@ -526,6 +538,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B3E68E721AB9347F00005D76 /* depth.frag */,
+				B3E68E731AB9347F00005D76 /* depth.vert */,
+				B3E68E741AB9347F00005D76 /* glow.frag */,
+				B3E68E751AB9347F00005D76 /* glow.vert */,
+				B3E68E761AB9347F00005D76 /* render.frag */,
+				B3E68E771AB9347F00005D76 /* render.vert */,
 				16E28A64A1514B61AEF01EB9 /* CinderApp.icns */,
 				6C7712A9BCA04B3990F0C47A /* Info.plist */,
 			);
@@ -1075,7 +1093,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3E68E7D1AB9347F00005D76 /* render.vert in Resources */,
+				B3E68E7A1AB9347F00005D76 /* glow.frag in Resources */,
+				B3E68E791AB9347F00005D76 /* depth.vert in Resources */,
 				15AB4E00B20742B499B62F1B /* CinderApp.icns in Resources */,
+				B3E68E781AB9347F00005D76 /* depth.frag in Resources */,
+				B3E68E7B1AB9347F00005D76 /* glow.vert in Resources */,
+				B3E68E7C1AB9347F00005D76 /* render.frag in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,4 +1,4 @@
-#include "cinder/app/AppNative.h"
+#include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
 
@@ -14,7 +14,7 @@ using namespace ci;
 using namespace ci::app;
 using namespace std;
 
-class ConstraintsApp : public AppNative {
+class ConstraintsApp : public App {
   public:
 	void setup() override;
 	void mouseDown( MouseEvent event ) override;
@@ -130,4 +130,4 @@ void ConstraintsApp::setupGearConstraint()
 
 
 
-CINDER_APP_NATIVE( ConstraintsApp, RendererGl )
+CINDER_APP( ConstraintsApp, RendererGl )
