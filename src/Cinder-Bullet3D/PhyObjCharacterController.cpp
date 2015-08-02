@@ -6,7 +6,7 @@
 //
 //
 
-#include "Cinder-Bullet3D/PhyObjCharacterController.h"
+#include "PhyObjCharacterController.h"
 #include "Cinder-Bullet3D/BulletContext.h"
 
 #include "BulletDynamics/Character/btKinematicCharacterController.h"
@@ -104,7 +104,7 @@ void PhyObjCharacterController::setGravity( float gravity )
 	mCharacter->setGravity( gravity );
 }
 	
-ci::AxisAlignedBox3f PhyObjCharacterController::getAabb()
+ci::AxisAlignedBox PhyObjCharacterController::getAabb()
 {
 	if ( mCollisionObject ) {
 		btVector3 aabbMin;
@@ -115,10 +115,10 @@ ci::AxisAlignedBox3f PhyObjCharacterController::getAabb()
 		ci::vec3 min_aabb( aabbMin.x(), aabbMin.y(), aabbMin.z() );
 		ci::vec3 max_aabb( aabbMax.x(), aabbMax.y(), aabbMax.z() );
 		
-		return ci::AxisAlignedBox3f( min_aabb, max_aabb );
+		return ci::AxisAlignedBox( min_aabb, max_aabb );
 	}
 	
-	return ci::AxisAlignedBox3f();
+	return ci::AxisAlignedBox();
 }
 	
 btPairCachingGhostObject* PhyObjCharacterController::getGhostObject()

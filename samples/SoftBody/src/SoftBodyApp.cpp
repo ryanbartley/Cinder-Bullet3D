@@ -77,8 +77,8 @@ void SoftBodyApp::setup()
 		psb->m_cfg.aeromodel	=	btSoftBody::eAeroModel::V_TwoSided;
 		btTransform		trs;
 		btQuaternion	rot;
-		btVector3		ra= bt::toBullet( randVec3f() * 0.1f );
-		btVector3		rp= bt::toBullet( randVec3f() * 15.0f + vec3( 0, 5, 0 ) );
+		btVector3		ra= bt::toBullet( randVec3() * 0.1f );
+		btVector3		rp= bt::toBullet( randVec3() * 15.0f + vec3( 0, 5, 0 ) );
 		rot.setEuler(SIMD_PI/8+ra.x(),-SIMD_PI/7+ra.y(),ra.z());
 		trs.setIdentity();
 		trs.setOrigin(rp);

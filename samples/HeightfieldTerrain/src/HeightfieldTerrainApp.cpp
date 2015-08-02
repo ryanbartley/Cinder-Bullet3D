@@ -113,7 +113,7 @@ void HeightfieldTerrainApp::setupHeightfield()
 	
 	// Make our rigidbody out of this collision shape.
 	mHeightfieldTerrain = bt::RigidBody::create( bt::RigidBody::Format().collisionShape( heightField ) );
-	ci::AxisAlignedBox3f box;
+	ci::AxisAlignedBox box;
 	mHeightfieldTerrain->getAabb( box );
 	
 	cout << box.getCenter() << endl;

@@ -63,7 +63,7 @@ public:
 	
 	void updateAction( btCollisionWorld* collisionWorld, float deltaTime );
 	
-	ci::AxisAlignedBox3f getAabb();
+	ci::AxisAlignedBox getAabb();
 	
 	btPairCachingGhostObject* getGhostObject();
 	btKinematicCharacterController* getKinematicCharacterController();

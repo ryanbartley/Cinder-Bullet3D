@@ -30,6 +30,8 @@
 		8EAB585B87824A8C96C7F595 /* ConstraintBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 759D6925DB2142CAA9834A19 /* ConstraintBase.cpp */; };
 		9829DA3298304AA29BF19CD5 /* ConstraintGeneric6Dof.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3F662C91FCD4B14B97730E3 /* ConstraintGeneric6Dof.cpp */; };
 		A8886D963E0D4738BEDAC6B8 /* PhyObjCharacterController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 522318B81DC443D7A57C636D /* PhyObjCharacterController.cpp */; };
+		B39FB13D1B6E9B34001A5547 /* IOSurface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B39FB13C1B6E9B34001A5547 /* IOSurface.framework */; };
+		B39FB13F1B6E9B3C001A5547 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B39FB13E1B6E9B3C001A5547 /* IOKit.framework */; };
 		B3C1C5FD1A6E19500092897D /* RagDoll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3C1C5FC1A6E19500092897D /* RagDoll.cpp */; };
 		B81A6B830D11468FB8CE45DE /* RagDollApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F9663DAC9D24408B3D07CD5 /* RagDollApp.cpp */; };
 /* End PBXBuildFile section */
@@ -298,6 +300,8 @@
 		B30D1B9BB2954E2AB40BA0CE /* btConvexCast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = btConvexCast.h; path = ../../../src/BulletPhysics/BulletCollision/NarrowPhaseCollision/btConvexCast.h; sourceTree = "<group>"; };
 		B373AE43CA2B4C81B146BA6F /* btGjkPairDetector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = btGjkPairDetector.h; path = ../../../src/BulletPhysics/BulletCollision/NarrowPhaseCollision/btGjkPairDetector.h; sourceTree = "<group>"; };
 		B38381311C4A4646A42A3050 /* btGjkConvexCast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = btGjkConvexCast.h; path = ../../../src/BulletPhysics/BulletCollision/NarrowPhaseCollision/btGjkConvexCast.h; sourceTree = "<group>"; };
+		B39FB13C1B6E9B34001A5547 /* IOSurface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOSurface.framework; path = System/Library/Frameworks/IOSurface.framework; sourceTree = SDKROOT; };
+		B39FB13E1B6E9B3C001A5547 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		B3C1C5FB1A6E19450092897D /* RagDoll.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RagDoll.h; path = ../include/RagDoll.h; sourceTree = "<group>"; };
 		B3C1C5FC1A6E19500092897D /* RagDoll.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RagDoll.cpp; path = ../src/RagDoll.cpp; sourceTree = "<group>"; };
 		B3ED1DCEEA2A4F24A8BCD925 /* btHeightfieldTerrainShape.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = btHeightfieldTerrainShape.cpp; path = ../../../src/BulletPhysics/BulletCollision/CollisionShapes/btHeightfieldTerrainShape.cpp; sourceTree = "<group>"; };
@@ -416,6 +420,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B39FB13F1B6E9B3C001A5547 /* IOKit.framework in Frameworks */,
+				B39FB13D1B6E9B34001A5547 /* IOSurface.framework in Frameworks */,
 				006D720419952D00008149E2 /* AVFoundation.framework in Frameworks */,
 				006D720519952D00008149E2 /* CoreMedia.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
@@ -567,6 +573,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B39FB13E1B6E9B3C001A5547 /* IOKit.framework */,
+				B39FB13C1B6E9B34001A5547 /* IOSurface.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
@@ -1120,6 +1128,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\"";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
@@ -1152,6 +1161,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\"";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (

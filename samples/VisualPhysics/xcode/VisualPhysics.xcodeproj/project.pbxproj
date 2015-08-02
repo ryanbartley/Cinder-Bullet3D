@@ -28,6 +28,8 @@
 		91E76094A88C416599F4A57B /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 016BDDE5FE4A4372AE8A5664 /* CinderApp.icns */; };
 		A3646831476B40E3B9B7ED09 /* ConstraintPoint2Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD9D21AA271D4960B54DBC77 /* ConstraintPoint2Point.cpp */; };
 		A68BF787FD644645910A8F86 /* ConstraintGeneric6Dof.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAED88603D474FA793F2A5 /* ConstraintGeneric6Dof.cpp */; };
+		B39FB14D1B6E9D84001A5547 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B39FB14C1B6E9D84001A5547 /* IOKit.framework */; };
+		B39FB14F1B6E9D89001A5547 /* IOSurface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B39FB14E1B6E9D89001A5547 /* IOSurface.framework */; };
 		B3C1C6041A6E1AD50092897D /* VisPhy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3C1C6031A6E1AD50092897D /* VisPhy.cpp */; };
 		C3F8796748274461B39AE756 /* RigidBody.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C297E0A30E444F83B64475CF /* RigidBody.cpp */; };
 		E1DB6B17AA4049718D6E5A36 /* PhysicsDebugRenderable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB4D8B15A5E147EDA8F10AF1 /* PhysicsDebugRenderable.cpp */; };
@@ -298,6 +300,8 @@
 		AF7449CFA3FE4C89B2DEB43C /* btSoftRigidCollisionAlgorithm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = btSoftRigidCollisionAlgorithm.h; path = ../../../src/BulletPhysics/BulletSoftBody/btSoftRigidCollisionAlgorithm.h; sourceTree = "<group>"; };
 		AF813D1A081B47DDAD8FB04A /* btBroadphaseProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = btBroadphaseProxy.h; path = ../../../src/BulletPhysics/BulletCollision/BroadPhaseCollision/btBroadphaseProxy.h; sourceTree = "<group>"; };
 		B0D92BB83A37411CB4752CBA /* btInternalEdgeUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = btInternalEdgeUtility.h; path = ../../../src/BulletPhysics/BulletCollision/CollisionDispatch/btInternalEdgeUtility.h; sourceTree = "<group>"; };
+		B39FB14C1B6E9D84001A5547 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		B39FB14E1B6E9D89001A5547 /* IOSurface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOSurface.framework; path = System/Library/Frameworks/IOSurface.framework; sourceTree = SDKROOT; };
 		B3C1C6021A6E1AC80092897D /* VisPhy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = VisPhy.h; path = ../include/VisPhy.h; sourceTree = "<group>"; };
 		B3C1C6031A6E1AD50092897D /* VisPhy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VisPhy.cpp; path = ../src/VisPhy.cpp; sourceTree = "<group>"; };
 		B4FC21BBDEB24928BAE232A7 /* btMultiBodyConstraintSolver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = btMultiBodyConstraintSolver.cpp; path = ../../../src/BulletPhysics/BulletDynamics/FeatherStone/btMultiBodyConstraintSolver.cpp; sourceTree = "<group>"; };
@@ -416,6 +420,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B39FB14F1B6E9D89001A5547 /* IOSurface.framework in Frameworks */,
+				B39FB14D1B6E9D84001A5547 /* IOKit.framework in Frameworks */,
 				006D720419952D00008149E2 /* AVFoundation.framework in Frameworks */,
 				006D720519952D00008149E2 /* CoreMedia.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
@@ -668,6 +674,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B39FB14E1B6E9D89001A5547 /* IOSurface.framework */,
+				B39FB14C1B6E9D84001A5547 /* IOKit.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
@@ -1120,6 +1128,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\"";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
@@ -1152,6 +1161,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\"";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (

@@ -70,11 +70,11 @@ void VisualPhysicsApp::setup()
 void VisualPhysicsApp::createCube()
 {
 	using namespace bullet;
-	auto scale = vec3( 1, 1, 1 );
-	// We create a Cube batch. The cube's points are conveniently from 0, 0, 0 origin, with a scale of 1, 1, 1.
+	auto scale = vec3( 0.5f, 0.5f, 0.5f );
+	// We create a Cube batch. The cube's points are conveniently from 0, 0, 0 origin, with half extents .5, .5, .5
 	// I'm enabling the normals because of the Phong shader.
 	auto batch = gl::Batch::create( geom::Cube(), mPhongShader );
-	// All I need to do is create a Box Shape at a scale of 1, 1, 1.
+	// All I need to do is create a Box Shape at a half extents of .5, .5, .5.
 	auto rigidBody = RigidBody::create( RigidBody::Format()
 									   .collisionShape( createBoxShape( scale ) )
 									   .mass( 1 )

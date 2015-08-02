@@ -163,7 +163,7 @@ void BulletSpheresApp::createPhysics()
 	createBigSphere( 1, vec3( -40.0f, 0, 0 ), 15.0f, mGlowGlsl );
 	
 	for( int i=0; i< NUM_PARTICLES; i++ ){
-		vec3 randPos		= Rand::randVec3f() * randFloat( 40.0f, 60.0f );
+		vec3 randPos		= Rand::randVec3() * randFloat( 40.0f, 60.0f );
 		float randRadius	= randFloat( 0.5, 3.0f );
 		if( randFloat() < 0.03f ) randRadius = randFloat( 5.0f, 8.0f );
 		createSphere( i + 2, randPos, randRadius );

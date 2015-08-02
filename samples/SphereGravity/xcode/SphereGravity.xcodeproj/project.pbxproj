@@ -29,6 +29,8 @@
 		99FD3301A77F4DB681313C2D /* SphereGravityApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B30BA0CA3F6B465BA431ED8E /* SphereGravityApp.cpp */; };
 		A07274C3AB7148F9BE4EB8AF /* ConstraintGeneric6Dof.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BF2DD915EF44D186F85AC3 /* ConstraintGeneric6Dof.cpp */; };
 		A27B484318D240C18FFC693E /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D95E211A76D42CD8D4A999A /* Common.cpp */; };
+		B39FB1451B6E9CCA001A5547 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B39FB1441B6E9CCA001A5547 /* IOKit.framework */; };
+		B39FB1471B6E9CCF001A5547 /* IOSurface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B39FB1461B6E9CCF001A5547 /* IOSurface.framework */; };
 		B3C1C6011A6E1A6C0092897D /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3C1C6001A6E1A6C0092897D /* Light.cpp */; };
 		B3E68E781AB9347F00005D76 /* depth.frag in Resources */ = {isa = PBXBuildFile; fileRef = B3E68E721AB9347F00005D76 /* depth.frag */; };
 		B3E68E791AB9347F00005D76 /* depth.vert in Resources */ = {isa = PBXBuildFile; fileRef = B3E68E731AB9347F00005D76 /* depth.vert */; };
@@ -302,6 +304,8 @@
 		B30BA0CA3F6B465BA431ED8E /* SphereGravityApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = SphereGravityApp.cpp; path = ../src/SphereGravityApp.cpp; sourceTree = "<group>"; };
 		B329850093194D6F8C20D780 /* ConstraintBase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = ConstraintBase.cpp; path = "../../../src/Cinder-Bullet3D/ConstraintBase.cpp"; sourceTree = "<group>"; };
 		B35CA8B99DF243C48410BA06 /* btGenericPoolAllocator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = btGenericPoolAllocator.h; path = ../../../src/BulletPhysics/BulletCollision/GImpact/btGenericPoolAllocator.h; sourceTree = "<group>"; };
+		B39FB1441B6E9CCA001A5547 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		B39FB1461B6E9CCF001A5547 /* IOSurface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOSurface.framework; path = System/Library/Frameworks/IOSurface.framework; sourceTree = SDKROOT; };
 		B3C1C5FE1A6E1A610092897D /* Body.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Body.h; path = ../include/Body.h; sourceTree = "<group>"; };
 		B3C1C5FF1A6E1A610092897D /* Light.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Light.h; path = ../include/Light.h; sourceTree = "<group>"; };
 		B3C1C6001A6E1A6C0092897D /* Light.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Light.cpp; path = ../src/Light.cpp; sourceTree = "<group>"; };
@@ -429,6 +433,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B39FB1471B6E9CCF001A5547 /* IOSurface.framework in Frameworks */,
+				B39FB1451B6E9CCA001A5547 /* IOKit.framework in Frameworks */,
 				006D720419952D00008149E2 /* AVFoundation.framework in Frameworks */,
 				006D720519952D00008149E2 /* CoreMedia.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
@@ -553,6 +559,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B39FB1461B6E9CCF001A5547 /* IOSurface.framework */,
+				B39FB1441B6E9CCA001A5547 /* IOKit.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
@@ -1146,6 +1154,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\"";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
@@ -1178,6 +1187,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\"";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (

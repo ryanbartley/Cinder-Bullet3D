@@ -78,67 +78,10 @@ public:
 	{
 		worldTrans = mPosition;
 	}
-	
-protected:
-
-};
-
-template<typename T>
-class DynamicMotionState : public MotionState {
-public:
-	//! Used for Dynamic objects that bullet controls.
-	DynamicMotionState( const btTransform &initialPosition )
-	: MotionState( initialPosition, true )
-	{ mPosition = initialPosition; }
-
-	virtual ~DynamicMotionState() {}
-	
-	inline void setWorldTransform( const btTransform &worldTransform ) override
-	{
-		T* transform = static_cast<T*>(m_userPointer);
-		auto origin = fromBullet( worldTransform.getOrigin() );
-		auto rotation = fromBullet( worldTransform.getRotation() );
-//		std::cout << origin << " " << rotation << std::endl;
-		transform->setGlobalTranslation( origin );
-		transform->setGlobalRotation( rotation );
-	}
-};
-
-template<typename T>
-class KinematicMotionState : public MotionState {
-public:
-	
-	//! Used for a kinematic object, Bullet will query the world transform for each step simulation. Implemented from http://www.bulletphysics.org/mediawiki-1.5.8/index.php/MotionStates.
-	KinematicMotionState( const btTransform &initialPosition )
-	: MotionState( initialPosition, false )
-	{ mPosition = initialPosition; }
-	
-	virtual ~KinematicMotionState() {}
-	
-	//! Sets the position for kinematic objects, controlling the where the object is for bullet.
-	void setKinematicPos( const btTransform &trans ) { mPosition = trans; }
-	
-	//! Do not use this as it's empty because because we're setting the transform from kinematic position
-	virtual void setWorldTransform( const btTransform &worldTrans ) {}
-	
-	//! Returns the Bullet World Transform. Used internally by Bullet when updating the step simulation.
-	inline void getWorldTransform( btTransform& centerOfMassWorldTrans ) const override
-	{
-		T* transform = static_cast<T*>(m_userPointer);
-		centerOfMassWorldTrans.setOrigin( toBullet( transform->getGlobalTranslation() ) );
-		centerOfMassWorldTrans.setRotation( toBullet( transform->getGlobalRotation() ) );
-	}
-	
-protected:
 };
 
 using SimpleGlDynamicMotionStateRef = std::shared_ptr<SimpleGlDynamicMotionState>;
 using SimpleGlKinematicMotionStateRef = std::shared_ptr<SimpleGlKinematicMotionState>;
-	
-template<typename T>
-using DynamicMotionStateRef = std::shared_ptr<DynamicMotionState<T>>;
-template<typename T>
-using KinematicMotionStateRef = std::shared_ptr<KinematicMotionState<T>>;
 
 
 }

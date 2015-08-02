@@ -42,9 +42,9 @@ public:
 		const btScalar getFriction() const { return mFriction; }
 		//! Returns the Restitution of the object. Can set restitution after construction too.
 		const btScalar getRestitution() const { return mRestitution; }
-		//! Returns the Collision Group that this object is in. This is used for bitwise operations against CollMask. Helper in Common.h #define BIT(). Other things with this bit in their mask will collide with this object. Default will collide with everything.
+		//! Returns the Collision Group that this object is in. This is used for bitwise operations against CollMask. Helper in system/Common.h #define BIT(). Other things with this bit in their mask will collide with this object. Default will collide with everything.
 		const int16_t getCollGroup() const { return mCollisionGroup; }
-		//! Returns the Collision Mask of this object. This is used for bitwise operations against CollGroup. Helper in Common.h #define BIT(). Other things with this bit in their mask will collide with this object. Default will collide with everything.
+		//! Returns the Collision Mask of this object. This is used for bitwise operations against CollGroup. Helper in system/Common.h #define BIT(). Other things with this bit in their mask will collide with this object. Default will collide with everything.
 		const int16_t getCollMask() const { return mCollisionMask; }
 		//! Returns whether to auto add to the world. Default is true.
 		const bool getAddToWorld() const { return mAddToWorld; }
@@ -68,9 +68,9 @@ public:
 		void setFriction( btScalar friction ) { mFriction = friction; }
 		//! Sets the Restitution of the object. Can set restitution after construction too.
 		void setRestitution( btScalar restitution ) { mRestitution = restitution; }
-		//! Sets the Collision Group that this object is in. This is used for bitwise operations against CollMask. Helper in Common.h #define BIT(). Other things with this bit in their mask will collide with this object. Default will collide with everything.
+		//! Sets the Collision Group that this object is in. This is used for bitwise operations against CollMask. Helper in system/Common.h #define BIT(). Other things with this bit in their mask will collide with this object. Default will collide with everything.
 		void setCollGroup( int16_t collGroup ) { mCollisionGroup = collGroup; }
-		//! Sets the Collision Mask of this object. This is used for bitwise operations against CollGroup. Helper in Common.h #define BIT(). Other things with this bit in their mask will collide with this object. Default will collide with everything.
+		//! Sets the Collision Mask of this object. This is used for bitwise operations against CollGroup. Helper in system/Common.h #define BIT(). Other things with this bit in their mask will collide with this object. Default will collide with everything.
 		void setCollMask( int16_t collMask ) { mCollisionMask = collMask; }
 		//! Sets whether to auto add to the world. Default is true.
 		void setAddToWorld( bool addToWorld = true ) { mAddToWorld = addToWorld; }
@@ -95,9 +95,9 @@ public:
 		Format& friction( btScalar friction ) { mFriction = friction; return *this; }
 		//! Sets the Restitution of the object. Can set restitution after construction too. Default is 0.0.
 		Format& restitution( btScalar restitution ) { mRestitution = restitution; return *this; }
-		//! Sets the Collision Group that this object is in. This is used for bitwise operations against CollMask. Helper in Common.h #define BIT(). Other things with this bit in their mask will collide with this object. Default is -1 or all bits set.
+		//! Sets the Collision Group that this object is in. This is used for bitwise operations against CollMask. Helper in system/Common.h #define BIT(). Other things with this bit in their mask will collide with this object. Default is -1 or all bits set.
 		Format& collGroup( int16_t collGroup ) { mCollisionGroup = collGroup; return *this; }
-		//! Sets the Collision Mask of this object. This is used for bitwise operations against CollGroup. Helper in Common.h #define BIT(). Other things with this bit in their mask will collide with this object. Default is -1 or all bits set.
+		//! Sets the Collision Mask of this object. This is used for bitwise operations against CollGroup. Helper in system/Common.h #define BIT(). Other things with this bit in their mask will collide with this object. Default is -1 or all bits set.
 		Format& collMask( int16_t collMask ) { mCollisionMask = collMask; return *this; }
 		//! Sets whether to auto add to the world. Default is true.
 		Format& addToWorld( bool addToWorld ) { mAddToWorld = addToWorld; return *this; }
@@ -221,11 +221,11 @@ public:
 	}
 	
 	//! Returns the collision shapes axis aligned bounding box for culling purposes
-	inline void getAabb( ci::AxisAlignedBox3f &box )
+	inline void getAabb( ci::AxisAlignedBox &box )
 	{
 		btVector3 min; btVector3 max;
 		mRigidBody->getAabb( min, max );
-		box = ci::AxisAlignedBox3f( fromBullet( min ), fromBullet( max ) );
+		box = ci::AxisAlignedBox( fromBullet( min ), fromBullet( max ) );
 	}
 	
 	//! Applies central force to the contained rigid body
