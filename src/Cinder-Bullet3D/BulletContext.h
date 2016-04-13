@@ -13,8 +13,6 @@
 #include "Cinder-Bullet3D/Common.h"
 #include "Cinder-Bullet3D/RigidBody.h"
 
-#include "Cinder-Bullet3D/ConstraintBase.h"
-
 namespace bullet {
 	
 typedef std::shared_ptr<class Context>								ContextRef;
@@ -115,28 +113,28 @@ public:
 	//! Adds a rigid body to the world. You must keep a reference to phyObj.
 	void addRigidBody( const RigidBodyRef &phyObj );
 	//! Remove a rigid body from the world.
-	inline void removeRigidBody( btRigidBody *body ){ mWorld->removeRigidBody( body ); }
+	void removeRigidBody( btRigidBody *body ){ mWorld->removeRigidBody( body ); }
 	//! Removes a rigid body from the world. You must keep a reference to phyObj.
 	void removeRigidBody( const RigidBodyRef &phyObj );
 	//! Add a collision Object to the world.
-	inline void addCollisionObject( btCollisionObject *collObj ) { mWorld->addCollisionObject( collObj ); }
+	void addCollisionObject( btCollisionObject *collObj ) { mWorld->addCollisionObject( collObj ); }
 	//! Removes a Collision Object from the world.
-	inline void removeCollisionObject( btCollisionObject *collObj ) { mWorld->removeCollisionObject( collObj ); }
+	void removeCollisionObject( btCollisionObject *collObj ) { mWorld->removeCollisionObject( collObj ); }
 	//! Adds an Action to the world.
-	inline void addAction( btActionInterface *action ) { mWorld->addAction( action ); }
+	void addAction( btActionInterface *action ) { mWorld->addAction( action ); }
 	//! Removes a constraint from the world.
-	inline void removeAction( btActionInterface *action ){ mWorld->removeAction( action ); }
+	void removeAction( btActionInterface *action ){ mWorld->removeAction( action ); }
 	//! Adds a constraint to the world.
-	inline void addConstraint( const btTypedConstraintRef &constraint, bool disableCollisionsBetweenLinkedBodies = false ) { mWorld->addConstraint( constraint.get(), disableCollisionsBetweenLinkedBodies ); }
-	inline void addConstraint( const ConstraintBaseRef &constraint, bool disableCollisionsBetweenLinkedBodies = false ) { mWorld->addConstraint( constraint->getTypedConstraint().get(), disableCollisionsBetweenLinkedBodies ); }
+	void addConstraint( const btTypedConstraintRef &constraint, bool disableCollisionsBetweenLinkedBodies = false ) { mWorld->addConstraint( constraint.get(), disableCollisionsBetweenLinkedBodies ); }
+	void addConstraint( btTypedConstraint *constraint, bool disableCollisionsBetweenLinkedBodies = false  ) { mWorld->addConstraint( constraint, disableCollisionsBetweenLinkedBodies ); }
 	//! Removes a constraint from the world.
-	inline void removeConstraint( const btTypedConstraintRef &constraint ) { mWorld->removeConstraint( constraint.get() ); }
-	inline void removeConstraint( const ConstraintBaseRef &constraint ) { mWorld->removeConstraint( constraint->getTypedConstraint().get() ); }
+	void removeConstraint( const btTypedConstraintRef &constraint ) { mWorld->removeConstraint( constraint.get() ); }
+	void removeConstraint( btTypedConstraint *constraint ) { mWorld->removeConstraint( constraint ); }
 	
 	//! Set the Gravity of the world. Default is vec3( 0.0f, -9.8f, 0.0f ).
-	inline void setGravity( const ci::vec3 &gravity ) { mWorld->setGravity( toBullet( gravity ) ); }
+	void setGravity( const ci::vec3 &gravity ) { mWorld->setGravity( toBullet( gravity ) ); }
 	//! Set the Time Increment Step Value of the world for each frame. Default is 1/60 for 60fps.
-	inline void setStepVal( float stepVal ) { mStepVal = stepVal; }
+	void setStepVal( float stepVal ) { mStepVal = stepVal; }
 	//! Returns the current stepVal.
 	float getStepVal() { return mStepVal; }
 	//! Set the internal Tick Call Back for the world with \a tickCallback. Optional \a worldUserInfo void*, defaults to nullptr, and \a preTick boolean, defaults to false.

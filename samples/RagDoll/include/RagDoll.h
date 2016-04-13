@@ -9,7 +9,6 @@
 #pragma once
 
 #include "Cinder-Bullet3D/Common.h"
-#include "Cinder-Bullet3D/ConstraintBase.h"
 #include "Cinder-Bullet3D/BulletContext.h"
 
 #include "cinder/gl/Batch.h"

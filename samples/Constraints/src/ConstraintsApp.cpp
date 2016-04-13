@@ -7,8 +7,7 @@
 #include "Cinder-Bullet3D/Common.h"
 #include "Cinder-Bullet3D/ConstraintHinge.h"
 
-// NOTE: This sample is not finished. It is experimental as I'm trying to figure out
-// how best to wrap the constraints. Use constraints at your own risk.
+// NOTE: This sample does not work as the constraints have been removed.
 
 using namespace ci;
 using namespace ci::app;
@@ -33,8 +32,9 @@ class ConstraintsApp : public App {
 
 void ConstraintsApp::setup()
 {
+	CI_ASSERT_MSG( false, "This sample doesn't work" );
 	mBulletContext = bt::Context::create( bt::Context::Format().drawDebug( true ).createDebugRenderer( true ) );
-	setupGearConstraint();
+//	setupGearConstraint();
 	mCam.setPerspective( 60.0f, getWindowAspectRatio(), .01, 1000 );
 	mCam.lookAt( vec3( -8, 1, 0 ), vec3( -8, 1, -8 ) );
 }
@@ -67,65 +67,65 @@ void ConstraintsApp::setupGearConstraint()
 	using namespace bt;
 	
 	
-	{
-		auto cylA = make_pair( createCylinderShape( vec3(0.2,0.25,0.2) ), btTransform::getIdentity() );
-		auto cylB = make_pair( createCylinderShape( vec3(L_1,0.025,L_1) ), btTransform::getIdentity() );
-		auto cyl0 = createCompoundShape( { cylA, cylB } );
-		
-		mShapes.push_back( cylA.first );
-		mShapes.push_back( cylB.first );
-		mShapes.push_back( cyl0 );
-		
-		auto body = RigidBody::create( RigidBody::Format()
-									  .mass( 6.28 )
-									  .initialPosition( vec3( -8, 1, -8 ) )
-									  .collisionShape( cyl0 ) );
-		
-		mBulletContext->addRigidBody(body);
-		
-		body->setLinearFactor( vec3( 0, 0, 0 ) );
-		body->setAngularFactor( vec3( 0, 1, 0 ) );
-		mBodyA = body;
-	}
-	
-	{
-		auto cylA = make_pair( createCylinderShape( vec3( 0.2, 0.26, 0.2 ) ), btTransform::getIdentity() );
-		auto cylB = make_pair( createCylinderShape( vec3( L_2, 0.025, L_2 ) ), btTransform::getIdentity() );
-		auto cyl0 = createCompoundShape( { cylA, cylB } );
-		
-		mShapes.push_back( cylA.first );
-		mShapes.push_back( cylB.first );
-		mShapes.push_back( cyl0 );
-		
-		auto body = RigidBody::create( RigidBody::Format()
-									  .mass( 6.28 )
-									  .initialPosition( vec3( -10, 2, -8 ) )
-									  .initialRotation( quat( -THETA, vec3( 0, 0, 1 ) ) )
-									  .collisionShape( cyl0 ) );
-		
-		body->setLinearFactor( vec3( 0 ) );
-	
-		mHinge = ConstraintHinge::create( ConstraintHinge::Format()
-											 .objA( body )
-											 .localAOrigin( vec3(0,0,0) )
-											 .localARot( 0, 1, 0 )
-											 .useReferenceFrameA( true ) );
-		mBulletContext->addConstraint( mHinge );
-		
-		mBodyB = body;
-		body->setAngularVelocity( vec3( 0, 3, 0 ) );
-		
-		mBulletContext->addRigidBody(body);
-	}
-
-	btVector3	axisA(0,1,0);
-	btVector3	axisB(0,1,0);
-	btQuaternion orn(btVector3(0,0,1),-THETA);
-	btMatrix3x3 mat(orn);
-	axisB = mat.getRow(1);
-
-	mGear =  btTypedConstraintRef( new btGearConstraint(*( mBodyA.get()->getRigidBody()),*( mBodyB.get()->getRigidBody()), axisA,axisB,RATIO) );
-	mBulletContext->addConstraint( mGear, true );
+//	{
+//		auto cylA = make_pair( createCylinderShape( vec3(0.2,0.25,0.2) ), btTransform::getIdentity() );
+//		auto cylB = make_pair( createCylinderShape( vec3(L_1,0.025,L_1) ), btTransform::getIdentity() );
+//		auto cyl0 = createCompoundShape( { cylA, cylB } );
+//		
+//		mShapes.push_back( cylA.first );
+//		mShapes.push_back( cylB.first );
+//		mShapes.push_back( cyl0 );
+//		
+//		auto body = RigidBody::create( RigidBody::Format()
+//									  .mass( 6.28 )
+//									  .initialPosition( vec3( -8, 1, -8 ) )
+//									  .collisionShape( cyl0 ) );
+//		
+//		mBulletContext->addRigidBody(body);
+//		
+//		body->setLinearFactor( vec3( 0, 0, 0 ) );
+//		body->setAngularFactor( vec3( 0, 1, 0 ) );
+//		mBodyA = body;
+//	}
+//	
+//	{
+//		auto cylA = make_pair( createCylinderShape( vec3( 0.2, 0.26, 0.2 ) ), btTransform::getIdentity() );
+//		auto cylB = make_pair( createCylinderShape( vec3( L_2, 0.025, L_2 ) ), btTransform::getIdentity() );
+//		auto cyl0 = createCompoundShape( { cylA, cylB } );
+//		
+//		mShapes.push_back( cylA.first );
+//		mShapes.push_back( cylB.first );
+//		mShapes.push_back( cyl0 );
+//		
+//		auto body = RigidBody::create( RigidBody::Format()
+//									  .mass( 6.28 )
+//									  .initialPosition( vec3( -10, 2, -8 ) )
+//									  .initialRotation( quat( -THETA, vec3( 0, 0, 1 ) ) )
+//									  .collisionShape( cyl0 ) );
+//		
+//		body->setLinearFactor( vec3( 0 ) );
+//	
+//		mHinge = ConstraintHinge::create( ConstraintHinge::Format()
+//											 .objA( body )
+//											 .localAOrigin( vec3(0,0,0) )
+//											 .localARot( 0, 1, 0 )
+//											 .useReferenceFrameA( true ) );
+//		mBulletContext->addConstraint( mHinge );
+//		
+//		mBodyB = body;
+//		body->setAngularVelocity( vec3( 0, 3, 0 ) );
+//		
+//		mBulletContext->addRigidBody(body);
+//	}
+//
+//	btVector3	axisA(0,1,0);
+//	btVector3	axisB(0,1,0);
+//	btQuaternion orn(btVector3(0,0,1),-THETA);
+//	btMatrix3x3 mat(orn);
+//	axisB = mat.getRow(1);
+//
+//	mGear =  btTypedConstraintRef( new btGearConstraint(*( mBodyA.get()->getRigidBody()),*( mBodyB.get()->getRigidBody()), axisA,axisB,RATIO) );
+//	mBulletContext->addConstraint( mGear, true );
 }
 
 

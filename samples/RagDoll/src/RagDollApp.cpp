@@ -7,6 +7,8 @@
 
 #include "cinder/gl/GlslProg.h"
 
+// Note: This sample is out of order because I've removed Constraints.
+
 using namespace ci;
 using namespace ci::app;
 using namespace std;

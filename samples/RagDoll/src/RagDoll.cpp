@@ -10,8 +10,6 @@
 #include <cmath>
 
 #include "RagDoll.h"
-#include "Cinder-Bullet3D/ConstraintHinge.h"
-#include "Cinder-Bullet3D/ConstraintConeTwist.h"
 
 #include "cinder/gl/GlslProg.h"
 #include "cinder/app/App.h"
