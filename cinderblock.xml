@@ -5,6 +5,7 @@
 	id="org.libcinder.bullet"
 	author="Ryan Bartley"
 	version="3.0"
+	git="https://github.com/ryanbartley/Cinder-Bullet3D.git"
 	>
 	<supports os="ios" />
 	<supports os="macosx" />
