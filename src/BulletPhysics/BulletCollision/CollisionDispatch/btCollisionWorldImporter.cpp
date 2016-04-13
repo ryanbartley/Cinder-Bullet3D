@@ -14,7 +14,7 @@ subject to the following restrictions:
 */
 
 #include "btCollisionWorldImporter.h"
-#include "btBulletCollisionsystem/Common.h"
+#include "btBulletCollisionCommon.h"
 #include "LinearMath/btSerializer.h" //for btBulletSerializedArrays definition
 
 #ifdef SUPPORT_GIMPACT_SHAPE_IMPORT
