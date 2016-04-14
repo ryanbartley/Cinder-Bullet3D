@@ -23,6 +23,10 @@
 	<headerPattern>src/BulletPhysics/BulletDynamics/FeatherStone/*.h</headerPattern>
 	<headerPattern>src/BulletPhysics/BulletDynamics/MLCPSolvers/*.h</headerPattern>
 	<headerPattern>src/BulletPhysics/BulletDynamics/Vehicle/*.h</headerPattern>
+  <headerPattern>src/BulletPhysics/BulletInverseDynamics/*.h</headerPattern>
+  <headerPattern>src/BulletPhysics/BulletInverseDynamics/details/*.h</headerPattern>
+  <headerPattern>src/BulletPhysics/InverseDynamics/*.h</headerPattern>
+  <headerPattern>src/BulletPhysics/ConvexDecomposition/*.h</headerPattern>
 	<headerPattern>src/BulletPhysics/BulletSoftBody/*.h</headerPattern>
 	<headerPattern>src/BulletPhysics/BulletLinearMath/*.h</headerPattern>
 	<headerPattern>src/BulletPhysics/vectormath/neon/*.h</headerPattern>
@@ -42,6 +46,10 @@
 	<headerPattern>src/BulletPhysics/BulletDynamics/FeatherStone/*.cpp</headerPattern>
 	<headerPattern>src/BulletPhysics/BulletDynamics/MLCPSolvers/*.cpp</headerPattern>
 	<headerPattern>src/BulletPhysics/BulletDynamics/Vehicle/*.cpp</headerPattern>
+  <headerPattern>src/BulletPhysics/BulletInverseDynamics/*.cpp</headerPattern>
+  <headerPattern>src/BulletPhysics/BulletInverseDynamics/details/*.cpp</headerPattern>
+  <headerPattern>src/BulletPhysics/InverseDynamics/*.cpp</headerPattern>
+  <headerPattern>src/BulletPhysics/ConvexDecomposition/*.cpp</headerPattern>
 	<headerPattern>src/BulletPhysics/BulletSoftBody/*.cpp</headerPattern>
 	<headerPattern>src/BulletPhysics/BulletLinearMath/*.cpp</headerPattern>
 	<headerPattern>src/BulletPhysics/vectormath/neon/*.cpp</headerPattern>
@@ -55,16 +63,22 @@
 	
 	<platform os="ios">
 		<platform config="Debug">
-			<staticLibrary>lib/ios/libBulletCollision_xcode4_x64_debug.a</staticLibrary>
-			<staticLibrary>lib/ios/libBulletDynamics_xcode4_x64_debug.a</staticLibrary>
-			<staticLibrary>lib/ios/libBulletSoftBody_xcode4_x64_debug.a</staticLibrary>
-			<staticLibrary>lib/ios/libLinearMath_xcode4_x64_debug.a</staticLibrary>
+			<staticLibrary>lib/ios/libBulletCollision_x64_debug.a</staticLibrary>
+			<staticLibrary>lib/ios/libBulletDynamics_x64_debug.a</staticLibrary>
+			<staticLibrary>lib/ios/libBulletSoftBody_x64_debug.a</staticLibrary>
+			<staticLibrary>lib/ios/libLinearMath_x64_debug.a</staticLibrary>
+      <staticLibrary>lib/ios/BulletInverseDynamics_x64_debug.a</staticLibrary>
+      <staticLibrary>lib/ios/BulletInverseDynamicsUtils_x64_debug.a</staticLibrary>
+      <staticLibrary>lib/ios/ConvexDecomposition_x64_debug.a</staticLibrary>
 		</platform>
 		<platform config="Release">
-			<staticLibrary>lib/ios/libBulletCollision_xcode4_x64_release.a</staticLibrary>
-			<staticLibrary>lib/ios/libBulletDynamics_xcode4_x64_release.a</staticLibrary>
-			<staticLibrary>lib/ios/libBulletSoftBody_xcode4_x64_release.a</staticLibrary>
-			<staticLibrary>lib/ios/libLinearMath_xcode4_x64_release.a</staticLibrary>
+			<staticLibrary>lib/ios/libBulletCollision_x64_release.a</staticLibrary>
+			<staticLibrary>lib/ios/libBulletDynamics_x64_release.a</staticLibrary>
+			<staticLibrary>lib/ios/libBulletSoftBody_x64_release.a</staticLibrary>
+			<staticLibrary>lib/ios/libLinearMath_x64_release.a</staticLibrary>
+      <staticLibrary>lib/ios/BulletInverseDynamics_x64_release.a</staticLibrary>
+      <staticLibrary>lib/ios/BulletInverseDynamicsUtils_x64_release.a</staticLibrary>
+      <staticLibrary>lib/ios/ConvexDecomposition_x64_release.a</staticLibrary>
 		</platform>
 	</platform>
 	<platform os="macosx">
@@ -73,27 +87,38 @@
 			<staticLibrary>lib/macosx/libBulletDynamics_x64_debug.a</staticLibrary>
 			<staticLibrary>lib/macosx/libBulletSoftBody_x64_debug.a</staticLibrary>
 			<staticLibrary>lib/macosx/libLinearMath_x64_debug.a</staticLibrary>
+      <staticLibrary>lib/macosx/BulletInverseDynamics_x64_debug.a</staticLibrary>
+      <staticLibrary>lib/macosx/BulletInverseDynamicsUtils_x64_debug.a</staticLibrary>
+      <staticLibrary>lib/macosx/ConvexDecomposition_x64_debug.a</staticLibrary>
 		</platform>
 		<platform config="Release">
 			<staticLibrary>lib/macosx/libBulletCollision_x64_release.a</staticLibrary>
 			<staticLibrary>lib/macosx/libBulletDynamics_x64_release.a</staticLibrary>
 			<staticLibrary>lib/macosx/libBulletSoftBody_x64_release.a</staticLibrary>
 			<staticLibrary>lib/macosx/libLinearMath_x64_release.a</staticLibrary>
+      <staticLibrary>lib/macosx/BulletInverseDynamics_x64_release.a</staticLibrary>
+      <staticLibrary>lib/macosx/BulletInverseDynamicsUtils_x64_release.a</staticLibrary>
+      <staticLibrary>lib/macosx/ConvexDecomposition_x64_release.a</staticLibrary>
 		</platform>
 	</platform>
 	<platform os="msw">
-
 		<platform config="Debug">
-			<staticLibrary>lib/msw/x64/BulletCollision_vs2010_x64_debug.lib</staticLibrary>
-			<staticLibrary>lib/msw/x64/BulletDynamics_vs2010_x64_debug.lib</staticLibrary>
-			<staticLibrary>lib/msw/x64/BulletSoftBody_vs2010_x64_debug.lib</staticLibrary>
-			<staticLibrary>lib/msw/x64/LinearMath_vs2010_x64_debug.lib</staticLibrary>
+			<staticLibrary>lib/msw/BulletCollision_x64_debug.lib</staticLibrary>
+			<staticLibrary>lib/msw/BulletDynamics_x64_debug.lib</staticLibrary>
+			<staticLibrary>lib/msw/BulletSoftBody_x64_debug.lib</staticLibrary>
+			<staticLibrary>lib/msw/LinearMath_x64_debug.lib</staticLibrary>
+      <staticLibrary>lib/msw/BulletInverseDynamics_x64_debug.lib</staticLibrary>
+      <staticLibrary>lib/msw/BulletInverseDynamicsUtils_x64_debug.lib</staticLibrary>
+      <staticLibrary>lib/msw/ConvexDecomposition_x64_debug.lib</staticLibrary>
 		</platform>
 		<platform config="Release">
-			<staticLibrary>lib/msw/x64/BulletCollision_vs2010_x64_release.lib</staticLibrary>
-			<staticLibrary>lib/msw/x64/BulletDynamics_vs2010_x64_release.lib</staticLibrary>
-			<staticLibrary>lib/msw/x64/BulletSoftBody_vs2010_x64_release.lib</staticLibrary>
-			<staticLibrary>lib/msw/x64/LinearMath_vs2010_x64_release.lib</staticLibrary>
+			<staticLibrary>lib/msw/BulletCollision_x64_release.lib</staticLibrary>
+			<staticLibrary>lib/msw/BulletDynamics_x64_release.lib</staticLibrary>
+			<staticLibrary>lib/msw/BulletSoftBody_x64_release.lib</staticLibrary>
+			<staticLibrary>lib/msw/LinearMath_x64_release.lib</staticLibrary>
+      <staticLibrary>lib/msw/BulletInverseDynamics_x64_release.lib</staticLibrary>
+      <staticLibrary>lib/msw/BulletInverseDynamicsUtils_x64_release.lib</staticLibrary>
+      <staticLibrary>lib/msw/ConvexDecomposition_x64_release.lib</staticLibrary>
 		</platform>
 	</platform>	
 </block>
