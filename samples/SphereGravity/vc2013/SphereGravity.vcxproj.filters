@@ -1254,7 +1254,7 @@
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\SoftBody.cpp">
       <Filter>Blocks\Bullet 3D Physics\src\Cinder-Bullet3D</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\SphereGravity_\src\Light.cpp">
+    <ClCompile Include="..\src\Light.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1262,10 +1262,10 @@
     <ClInclude Include="..\include\Resources.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\SphereGravity_\include\Body.h">
+    <ClInclude Include="..\include\Body.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\SphereGravity_\include\Light.h">
+    <ClInclude Include="..\include\Light.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
