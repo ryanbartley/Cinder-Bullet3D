@@ -5,7 +5,6 @@
 #include "Cinder-Bullet3D/BulletContext.h"
 #include "Cinder-Bullet3D/RigidBody.h"
 #include "Cinder-Bullet3D/Common.h"
-#include "Cinder-Bullet3D/ConstraintHinge.h"
 
 // NOTE: This sample does not work as the constraints have been removed.
 
