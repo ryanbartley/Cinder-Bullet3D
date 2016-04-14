@@ -1,8 +1,7 @@
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RayCasting", "RayCasting.vcxproj", "{D73674AD-688A-47AC-81C9-6EC2B2F8CB60}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RayCasting", "RayCasting.vcxproj", "{F56DF621-A4B4-4D58-81C3-8C9587EA45CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,10 +9,10 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D73674AD-688A-47AC-81C9-6EC2B2F8CB60}.Debug|x64.ActiveCfg = Debug|x64
-		{D73674AD-688A-47AC-81C9-6EC2B2F8CB60}.Debug|x64.Build.0 = Debug|x64
-		{D73674AD-688A-47AC-81C9-6EC2B2F8CB60}.Release|x64.ActiveCfg = Release|x64
-		{D73674AD-688A-47AC-81C9-6EC2B2F8CB60}.Release|x64.Build.0 = Release|x64
+		{F56DF621-A4B4-4D58-81C3-8C9587EA45CC}.Debug|x64.ActiveCfg = Debug|x64
+		{F56DF621-A4B4-4D58-81C3-8C9587EA45CC}.Debug|x64.Build.0 = Debug|x64
+		{F56DF621-A4B4-4D58-81C3-8C9587EA45CC}.Release|x64.ActiveCfg = Release|x64
+		{F56DF621-A4B4-4D58-81C3-8C9587EA45CC}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
