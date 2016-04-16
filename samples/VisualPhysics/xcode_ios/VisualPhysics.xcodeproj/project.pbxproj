@@ -1665,9 +1665,9 @@
 					../../../lib/ios/libBulletDynamics_x64_debug.a,
 					../../../lib/ios/libBulletSoftBody_x64_debug.a,
 					../../../lib/ios/libLinearMath_x64_debug.a,
-					../../../lib/ios/BulletInverseDynamics_x64_debug.a,
-					../../../lib/ios/BulletInverseDynamicsUtils_x64_debug.a,
-					../../../lib/ios/ConvexDecomposition_x64_debug.a,
+					../../../lib/ios/libBulletInverseDynamics_x64_debug.a,
+					../../../lib/ios/libBulletInverseDynamicsUtils_x64_debug.a,
+					../../../lib/ios/libConvexDecomposition_x64_debug.a,
 				);
 				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=*]" = (
 					"\"$(CINDER_PATH)/lib/libcinder-iphone-sim_d.a\"",
@@ -1676,9 +1676,9 @@
 					../../../lib/ios/libBulletDynamics_x64_debug.a,
 					../../../lib/ios/libBulletSoftBody_x64_debug.a,
 					../../../lib/ios/libLinearMath_x64_debug.a,
-					../../../lib/ios/BulletInverseDynamics_x64_debug.a,
-					../../../lib/ios/BulletInverseDynamicsUtils_x64_debug.a,
-					../../../lib/ios/ConvexDecomposition_x64_debug.a,
+					../../../lib/ios/libBulletInverseDynamics_x64_debug.a,
+					../../../lib/ios/libBulletInverseDynamicsUtils_x64_debug.a,
+					../../../lib/ios/libConvexDecomposition_x64_debug.a,
 				);
 			};
 			name = Debug;
@@ -1698,9 +1698,9 @@
 					../../../lib/ios/libBulletDynamics_x64_release.a,
 					../../../lib/ios/libBulletSoftBody_x64_release.a,
 					../../../lib/ios/libLinearMath_x64_release.a,
-					../../../lib/ios/BulletInverseDynamics_x64_release.a,
-					../../../lib/ios/BulletInverseDynamicsUtils_x64_release.a,
-					../../../lib/ios/ConvexDecomposition_x64_release.a,
+					../../../lib/ios/libBulletInverseDynamics_x64_release.a,
+					../../../lib/ios/libBulletInverseDynamicsUtils_x64_release.a,
+					../../../lib/ios/libConvexDecomposition_x64_release.a,
 				);
 				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=*]" = (
 					"\"$(CINDER_PATH)/lib/libcinder-iphone-sim.a\"",
@@ -1709,9 +1709,9 @@
 					../../../lib/ios/libBulletDynamics_x64_release.a,
 					../../../lib/ios/libBulletSoftBody_x64_release.a,
 					../../../lib/ios/libLinearMath_x64_release.a,
-					../../../lib/ios/BulletInverseDynamics_x64_release.a,
-					../../../lib/ios/BulletInverseDynamicsUtils_x64_release.a,
-					../../../lib/ios/ConvexDecomposition_x64_release.a,
+					../../../lib/ios/libBulletInverseDynamics_x64_release.a,
+					../../../lib/ios/libBulletInverseDynamicsUtils_x64_release.a,
+					../../../lib/ios/libConvexDecomposition_x64_release.a,
 				);
 			};
 			name = Release;
