@@ -15,10 +15,7 @@
 
 #include "btQuickprof.h"
 
-#ifndef BT_NO_PROFILE
 
-
-static btClock gProfileClock;
 
 
 #ifdef __CELLOS_LV2__
@@ -43,6 +40,11 @@ static btClock gProfileClock;
 	#include <Xtl.h>
 #else //_XBOX
 	#include <windows.h>
+
+#if WINVER <0x0602
+#define GetTickCount64 GetTickCount
+#endif
+
 #endif //_XBOX
 
 #include <time.h>
@@ -245,6 +247,10 @@ btScalar btClock::getTimeSeconds()
 	return btScalar(getTimeMicroseconds()) * microseconds_to_seconds;
 }
 
+#ifndef BT_NO_PROFILE
+
+
+static btClock gProfileClock;
 
 
 inline void Profile_Get_Ticks(unsigned long int * ticks)
@@ -258,7 +264,6 @@ inline float Profile_Get_Tick_Rate(void)
 	return 1000.f;
 
 }
-
 
 
 /***************************************************************************************************

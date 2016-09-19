@@ -17,6 +17,7 @@ subject to the following restrictions:
 #ifndef BT_SCALAR_H
 #define BT_SCALAR_H
 
+
 #ifdef BT_MANAGED_CODE
 //Aligned data types not supported in managed code
 #pragma unmanaged
@@ -28,7 +29,7 @@ subject to the following restrictions:
 #include <float.h>
 
 /* SVN $Revision$ on $Date$ from http://bullet.googlecode.com*/
-#define BT_BULLET_VERSION 283
+#define BT_BULLET_VERSION 285
 
 inline int	btGetVersion()
 {
@@ -57,7 +58,7 @@ inline int	btGetVersion()
 			//#define BT_HAS_ALIGNED_ALLOCATOR
 			#pragma warning(disable : 4324) // disable padding warning
 //			#pragma warning(disable:4530) // Disable the exception disable but used in MSCV Stl warning.
-//			#pragma warning(disable:4996) //Turn off warnings about deprecated C routines
+			#pragma warning(disable:4996) //Turn off warnings about deprecated C routines
 //			#pragma warning(disable:4786) // Disable the "debug name too long" warning
 
 			#define SIMD_FORCE_INLINE __forceinline
@@ -104,7 +105,7 @@ inline int	btGetVersion()
 #ifdef BT_DEBUG
 	#ifdef _MSC_VER
 		#include <stdio.h>
-		#define btAssert(x) { if(!(x)){printf("Assert "__FILE__ ":%u ("#x")\n", __LINE__);__debugbreak();	}}
+		#define btAssert(x) { if(!(x)){printf("Assert "__FILE__ ":%u (%s)\n", __LINE__, #x);__debugbreak();	}}
 	#else//_MSC_VER
 		#include <assert.h>
 		#define btAssert assert
@@ -418,19 +419,30 @@ SIMD_FORCE_INLINE btScalar btFmod(btScalar x,btScalar y) { return fmod(x,y); }
 SIMD_FORCE_INLINE btScalar btSqrt(btScalar y) 
 { 
 #ifdef USE_APPROXIMATION
+#ifdef __LP64__
+    float xhalf = 0.5f*y;
+    int i = *(int*)&y;
+    i = 0x5f375a86 - (i>>1);
+    y = *(float*)&i;
+    y = y*(1.5f - xhalf*y*y);
+    y = y*(1.5f - xhalf*y*y);
+    y = y*(1.5f - xhalf*y*y);
+    y=1/y;
+    return y;
+#else
     double x, z, tempf;
     unsigned long *tfptr = ((unsigned long *)&tempf) + 1;
-
-	tempf = y;
-	*tfptr = (0xbfcdd90a - *tfptr)>>1; /* estimate of 1/sqrt(y) */
-	x =  tempf;
-	z =  y*btScalar(0.5);
-	x = (btScalar(1.5)*x)-(x*x)*(x*z);         /* iteration formula     */
-	x = (btScalar(1.5)*x)-(x*x)*(x*z);
-	x = (btScalar(1.5)*x)-(x*x)*(x*z);
-	x = (btScalar(1.5)*x)-(x*x)*(x*z);
-	x = (btScalar(1.5)*x)-(x*x)*(x*z);
-	return x*y;
+    tempf = y;
+    *tfptr = (0xbfcdd90a - *tfptr)>>1; /* estimate of 1/sqrt(y) */
+    x =  tempf;
+    z =  y*btScalar(0.5);
+    x = (btScalar(1.5)*x)-(x*x)*(x*z);         /* iteration formula     */
+    x = (btScalar(1.5)*x)-(x*x)*(x*z);
+    x = (btScalar(1.5)*x)-(x*x)*(x*z);
+    x = (btScalar(1.5)*x)-(x*x)*(x*z);
+    x = (btScalar(1.5)*x)-(x*x)*(x*z);
+    return x*y;
+#endif
 #else
 	return sqrtf(y); 
 #endif
@@ -475,9 +487,17 @@ SIMD_FORCE_INLINE btScalar btFmod(btScalar x,btScalar y) { return fmodf(x,y); }
 #ifdef BT_USE_DOUBLE_PRECISION
 #define SIMD_EPSILON      DBL_EPSILON
 #define SIMD_INFINITY     DBL_MAX
+#define BT_ONE			1.0
+#define BT_ZERO			0.0
+#define BT_TWO			2.0
+#define BT_HALF			0.5
 #else
 #define SIMD_EPSILON      FLT_EPSILON
 #define SIMD_INFINITY     FLT_MAX
+#define BT_ONE			1.0f
+#define BT_ZERO			0.0f
+#define BT_TWO			2.0f
+#define BT_HALF			0.5f
 #endif
 
 SIMD_FORCE_INLINE btScalar btAtan2Fast(btScalar y, btScalar x) 
