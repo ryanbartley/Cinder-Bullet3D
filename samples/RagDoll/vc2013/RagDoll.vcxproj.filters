@@ -1,4 +1,3 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -14,61 +13,88 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
     <Filter Include="Blocks">
-      <UniqueIdentifier>{A47F0C6A-E26A-4DF4-9B8A-17046910ED9C}</UniqueIdentifier>
+      <UniqueIdentifier>{D569BF04-A899-466C-B7C8-011DD44CC251}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics">
-      <UniqueIdentifier>{C57575D4-F6B5-498E-B52A-C8090CF93FC5}</UniqueIdentifier>
+      <UniqueIdentifier>{330B4705-18D2-4B70-A680-AC789AB92395}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src">
-      <UniqueIdentifier>{4510E2A9-A625-4554-B4FD-7CC428C3D116}</UniqueIdentifier>
+      <UniqueIdentifier>{2348F01B-9C75-47F1-B133-12B66397F76D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics">
-      <UniqueIdentifier>{EB3D6B12-74CB-4C94-A946-9947FC027339}</UniqueIdentifier>
+      <UniqueIdentifier>{FED11446-5FE6-4827-B6E5-17AA72E42F21}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletCollision">
-      <UniqueIdentifier>{E892045E-21D0-45E4-8FB7-DBDB853CDF20}</UniqueIdentifier>
+      <UniqueIdentifier>{C064F295-6CFD-465C-A833-2E9E2D8EE9EF}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletCollision\BroadPhaseCollision">
-      <UniqueIdentifier>{3FFBFFA4-FD01-4434-A871-A1BA5EEA3A66}</UniqueIdentifier>
+      <UniqueIdentifier>{70032AE4-CA86-420E-BCB6-3CEA61948381}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletCollision\CollisionDispatch">
-      <UniqueIdentifier>{3F60A3D8-5BAA-408B-BFA4-00FD8C22892A}</UniqueIdentifier>
+      <UniqueIdentifier>{7FB0BA48-644C-4725-8823-145E1FFD63B9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletCollision\CollisionShapes">
-      <UniqueIdentifier>{371061A7-8F7E-4230-BC16-EB31B4A365BD}</UniqueIdentifier>
+      <UniqueIdentifier>{4B35E27D-AB40-43AA-A5C1-DDAD847171F9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletCollision\GImpact">
-      <UniqueIdentifier>{216549A4-B381-4D77-93C9-8DD3B86A4A81}</UniqueIdentifier>
+      <UniqueIdentifier>{3408C05E-382B-4236-ADCD-9FD013A63A6D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletCollision\NarrowPhaseCollision">
-      <UniqueIdentifier>{D9D011E4-86D1-4C82-904E-2D29217E33CD}</UniqueIdentifier>
+      <UniqueIdentifier>{673F3834-B952-4BF4-A31C-A36382C564DC}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics">
-      <UniqueIdentifier>{E3ED58FF-7FC2-43B8-AA0C-637E7BF5170B}</UniqueIdentifier>
+      <UniqueIdentifier>{B1244C74-978F-4B05-B845-1FAE72A8BBF3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\Character">
-      <UniqueIdentifier>{E1617002-7B43-42E4-9866-939D06331FDD}</UniqueIdentifier>
+      <UniqueIdentifier>{D69649F5-6CB7-4574-8A26-1AB038F63684}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\ConstraintSolver">
-      <UniqueIdentifier>{C4D98BAF-411E-4223-B87B-200CDCEC3574}</UniqueIdentifier>
+      <UniqueIdentifier>{7CDC0B10-4841-4DB8-A474-C2D35EF49E63}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\Dynamics">
-      <UniqueIdentifier>{E3F9647D-1789-4F7C-AC3B-C89E592BF272}</UniqueIdentifier>
+      <UniqueIdentifier>{E5BDC16C-39CF-459B-A95C-8AC0FD42B175}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\FeatherStone">
-      <UniqueIdentifier>{538336A2-4EA6-4DD1-B78C-8F7035678544}</UniqueIdentifier>
+      <UniqueIdentifier>{8DB625A3-0FAA-47FD-A96E-5A42DCD547C7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\MLCPSolvers">
-      <UniqueIdentifier>{600B4472-5A45-479E-A792-AE62B0726B14}</UniqueIdentifier>
+      <UniqueIdentifier>{34BDD2DA-8425-4854-BBFC-E2FD2CAA7C9E}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\Vehicle">
-      <UniqueIdentifier>{661C648E-2335-440C-8A81-FD26CBF14A58}</UniqueIdentifier>
+      <UniqueIdentifier>{ABEE389E-A62B-43C9-BFDE-9BF7D07A90E2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\InverseDynamics">
+      <UniqueIdentifier>{41E6AE87-071A-4332-AB41-59BDA56D43E6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\HACD">
+      <UniqueIdentifier>{1393E676-5C1F-42AE-9BD8-AD259BED75F9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition">
+      <UniqueIdentifier>{2255FEC9-FD7B-4129-B258-35B1E365CD3E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Bullet 3D Physics\src\BussIK">
+      <UniqueIdentifier>{41EEEF59-6B59-4F93-BB79-49D696E262CC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\Serialize">
+      <UniqueIdentifier>{7787192C-BA53-48CA-AECB-BE099E385005}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\Serialize\BulletFileLoader">
+      <UniqueIdentifier>{733F88FF-F7C0-4CDC-B5BB-EB716178A16A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\Serialize\BulletWorldImporter">
+      <UniqueIdentifier>{4F4A18D4-6AF5-41F5-8C17-73530A761C40}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletSoftBody">
-      <UniqueIdentifier>{6F6D0AAD-8A81-4C32-A3AD-BC5C8C1F2A5A}</UniqueIdentifier>
+      <UniqueIdentifier>{4A65022A-795C-4C21-A980-83181EA11130}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\Cinder-Bullet3D">
-      <UniqueIdentifier>{6A19EC99-752F-4091-9181-850B608894E3}</UniqueIdentifier>
+      <UniqueIdentifier>{FCFA1E7D-F6C2-491B-8B71-D47DB487BC64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletInverseDynamics">
+      <UniqueIdentifier>{82B0793F-8BD2-4FCF-8596-EC1B19490249}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletInverseDynamics\details">
+      <UniqueIdentifier>{A8F517F9-4FC3-443D-88A4-8FA285FF4C3E}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -573,6 +599,12 @@
     <ClInclude Include="..\..\..\src\BulletPhysics\BulletDynamics\FeatherStone\btMultiBodyDynamicsWorld.h">
       <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\FeatherStone</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\BulletDynamics\FeatherStone\btMultiBodyFixedConstraint.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\FeatherStone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\BulletDynamics\FeatherStone\btMultiBodyJointFeedback.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\FeatherStone</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\src\BulletPhysics\BulletDynamics\FeatherStone\btMultiBodyJointLimitConstraint.h">
       <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\FeatherStone</Filter>
     </ClInclude>
@@ -586,6 +618,9 @@
       <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\FeatherStone</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\BulletPhysics\BulletDynamics\FeatherStone\btMultiBodyPoint2Point.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\FeatherStone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\BulletDynamics\FeatherStone\btMultiBodySliderConstraint.h">
       <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\FeatherStone</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\BulletPhysics\BulletDynamics\FeatherStone\btMultiBodySolverConstraint.h">
@@ -623,6 +658,129 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\BulletPhysics\BulletDynamics\Vehicle\btWheelInfo.h">
       <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\Vehicle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\InverseDynamics\BulletInverseDynamicsUtilsCommon.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\InverseDynamics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\HACD\hacdCircularList.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\HACD</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\HACD\hacdGraph.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\HACD</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\HACD\hacdHACD.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\HACD</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\HACD\hacdICHull.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\HACD</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\HACD\hacdManifoldMesh.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\HACD</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\HACD\hacdVector.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\HACD</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\HACD\hacdVersion.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\HACD</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\ConvexDecomposition\bestfit.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\ConvexDecomposition\bestfitobb.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\ConvexDecomposition\cd_hull.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\ConvexDecomposition\cd_vector.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\ConvexDecomposition\cd_wavefront.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\ConvexDecomposition\concavity.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\ConvexDecomposition\ConvexBuilder.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\ConvexDecomposition\ConvexDecomposition.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\ConvexDecomposition\fitsphere.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\ConvexDecomposition\float_math.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\ConvexDecomposition\meshvolume.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\ConvexDecomposition\planetri.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\ConvexDecomposition\raytri.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\ConvexDecomposition\splitplane.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\ConvexDecomposition\vlookup.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BussIK\Jacobian.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BussIK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BussIK\LinearR2.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BussIK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BussIK\LinearR3.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BussIK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BussIK\LinearR4.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BussIK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BussIK\MathMisc.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BussIK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BussIK\MatrixRmn.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BussIK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BussIK\Node.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BussIK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BussIK\Spherical.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BussIK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BussIK\Tree.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BussIK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BussIK\VectorRn.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BussIK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\Serialize\BulletFileLoader\bChunk.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\Serialize\BulletFileLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\Serialize\BulletFileLoader\bCommon.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\Serialize\BulletFileLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\Serialize\BulletFileLoader\bDefines.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\Serialize\BulletFileLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\Serialize\BulletFileLoader\bDNA.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\Serialize\BulletFileLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\Serialize\BulletFileLoader\bFile.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\Serialize\BulletFileLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\Serialize\BulletFileLoader\btBulletFile.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\Serialize\BulletFileLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\Serialize\BulletWorldImporter\btBulletWorldImporter.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\Serialize\BulletWorldImporter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\Serialize\BulletWorldImporter\btWorldImporter.h">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\Serialize\BulletWorldImporter</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\BulletPhysics\BulletSoftBody\btDefaultSoftBodySolver.h">
       <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\BulletSoftBody</Filter>
@@ -1059,6 +1217,9 @@
     <ClInclude Include="..\..\..\src\BulletPhysics\BulletDynamics\FeatherStone\btMultiBodyDynamicsWorld.cpp">
       <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\FeatherStone</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\BulletDynamics\FeatherStone\btMultiBodyFixedConstraint.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\FeatherStone</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\src\BulletPhysics\BulletDynamics\FeatherStone\btMultiBodyJointLimitConstraint.cpp">
       <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\FeatherStone</Filter>
     </ClInclude>
@@ -1066,6 +1227,9 @@
       <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\FeatherStone</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\BulletPhysics\BulletDynamics\FeatherStone\btMultiBodyPoint2Point.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\FeatherStone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\BulletDynamics\FeatherStone\btMultiBodySliderConstraint.cpp">
       <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\FeatherStone</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\BulletPhysics\BulletDynamics\MLCPSolvers\btDantzigLCP.cpp">
@@ -1082,6 +1246,153 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\BulletPhysics\BulletDynamics\Vehicle\btWheelInfo.cpp">
       <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\Vehicle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\BulletInverseDynamics\IDMath.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\BulletInverseDynamics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\BulletInverseDynamics\MultiBodyTree.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\BulletInverseDynamics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\BulletInverseDynamics\details\MultiBodyTreeImpl.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\BulletInverseDynamics\details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\BulletInverseDynamics\details\MultiBodyTreeInitCache.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\BulletInverseDynamics\details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\InverseDynamics\btMultiBodyTreeCreator.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\InverseDynamics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\InverseDynamics\CloneTreeCreator.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\InverseDynamics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\InverseDynamics\CoilCreator.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\InverseDynamics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\InverseDynamics\DillCreator.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\InverseDynamics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\InverseDynamics\IDRandomUtil.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\InverseDynamics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\InverseDynamics\invdyn_bullet_comparison.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\InverseDynamics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\InverseDynamics\MultiBodyNameMap.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\InverseDynamics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\InverseDynamics\MultiBodyTreeCreator.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\InverseDynamics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\InverseDynamics\MultiBodyTreeDebugGraph.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\InverseDynamics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\InverseDynamics\RandomTreeCreator.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\InverseDynamics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\InverseDynamics\SimpleTreeCreator.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\InverseDynamics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\InverseDynamics\User2InternalIndex.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\InverseDynamics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\ConvexDecomposition\bestfit.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\ConvexDecomposition\bestfitobb.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\ConvexDecomposition\cd_hull.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\ConvexDecomposition\cd_wavefront.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\ConvexDecomposition\concavity.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\ConvexDecomposition\ConvexBuilder.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\ConvexDecomposition\ConvexDecomposition.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\ConvexDecomposition\fitsphere.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\ConvexDecomposition\float_math.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\ConvexDecomposition\meshvolume.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\ConvexDecomposition\planetri.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\ConvexDecomposition\raytri.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\ConvexDecomposition\splitplane.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\ConvexDecomposition\vlookup.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BussIK\Jacobian.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BussIK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BussIK\LinearR2.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BussIK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BussIK\LinearR3.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BussIK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BussIK\LinearR4.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BussIK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BussIK\MatrixRmn.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BussIK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BussIK\Misc.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BussIK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BussIK\Node.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BussIK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BussIK\Tree.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BussIK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BussIK\VectorRn.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BussIK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\Serialize\BulletFileLoader\bChunk.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\Serialize\BulletFileLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\Serialize\BulletFileLoader\bDNA.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\Serialize\BulletFileLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\Serialize\BulletFileLoader\bFile.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\Serialize\BulletFileLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\Serialize\BulletFileLoader\btBulletFile.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\Serialize\BulletFileLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\Serialize\BulletWorldImporter\btBulletWorldImporter.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\Serialize\BulletWorldImporter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\Serialize\BulletWorldImporter\btWorldImporter.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\Serialize\BulletWorldImporter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\HACD\hacdGraph.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\HACD</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\HACD\hacdHACD.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\HACD</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\HACD\hacdICHull.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\HACD</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\BulletPhysics\HACD\hacdManifoldMesh.cpp">
+      <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\HACD</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\BulletPhysics\BulletSoftBody\btDefaultSoftBodySolver.cpp">
       <Filter>Blocks\Bullet 3D Physics\src\BulletPhysics\BulletSoftBody</Filter>
@@ -1143,15 +1454,9 @@
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\SoftBody.cpp">
       <Filter>Blocks\Bullet 3D Physics\src\Cinder-Bullet3D</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\RagDoll.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Resources.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\RagDoll.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
