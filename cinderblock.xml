@@ -128,10 +128,10 @@
       		<staticLibrary>lib/msw/BulletInverseDynamics_x64_debug.lib</staticLibrary>
       		<staticLibrary>lib/msw/BulletInverseDynamicsUtils_x64_debug.lib</staticLibrary>
       		<staticLibrary>lib/msw/ConvexDecomposition_x64_debug.lib</staticLibrary>
-      		<staticLibrary>lib/msw/libBussIK_x64_debug.lib</staticLibrary>
-      		<staticLibrary>lib/msw/libHACD_x64_debug.lib</staticLibrary>
-      		<staticLibrary>lib/msw/libBulletWorldImporter_x64_debug.lib</staticLibrary>
-      		<staticLibrary>lib/msw/libBulletFileLoader_x64_debug.lib</staticLibrary>
+      		<staticLibrary>lib/msw/BussIK_x64_debug.lib</staticLibrary>
+      		<staticLibrary>lib/msw/HACD_x64_debug.lib</staticLibrary>
+      		<staticLibrary>lib/msw/BulletWorldImporter_x64_debug.lib</staticLibrary>
+      		<staticLibrary>lib/msw/BulletFileLoader_x64_debug.lib</staticLibrary>
 		</platform>
 		<platform config="Release">
 			<staticLibrary>lib/msw/BulletCollision_x64_release.lib</staticLibrary>
@@ -141,10 +141,10 @@
       		<staticLibrary>lib/msw/BulletInverseDynamics_x64_release.lib</staticLibrary>
       		<staticLibrary>lib/msw/BulletInverseDynamicsUtils_x64_release.lib</staticLibrary>
       		<staticLibrary>lib/msw/ConvexDecomposition_x64_release.lib</staticLibrary>
-      		<staticLibrary>lib/msw/libBussIK_x64_release.lib</staticLibrary>
-      		<staticLibrary>lib/msw/libHACD_x64_release.lib</staticLibrary>
-      		<staticLibrary>lib/msw/libBulletWorldImporter_x64_release.lib</staticLibrary>
-      		<staticLibrary>lib/msw/libBulletFileLoader_x64_release.lib</staticLibrary>
+      		<staticLibrary>lib/msw/BussIK_x64_release.lib</staticLibrary>
+      		<staticLibrary>lib/msw/HACD_x64_release.lib</staticLibrary>
+      		<staticLibrary>lib/msw/BulletWorldImporter_x64_release.lib</staticLibrary>
+      		<staticLibrary>lib/msw/BulletFileLoader_x64_release.lib</staticLibrary>
 		</platform>
 	</platform>	
 </block>

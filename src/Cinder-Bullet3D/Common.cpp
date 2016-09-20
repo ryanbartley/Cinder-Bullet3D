@@ -13,6 +13,7 @@
 #include "cinder/gl/Vbo.h"
 #include "cinder/gl/VboMesh.h"
 #include "cinder/GeomIo.h"
+#include "cinder/app/App.h"
 
 #include "BulletCollision/CollisionShapes/btHeightfieldTerrainShape.h"
 #include "BulletCollision/CollisionShapes/btConvexShape.h"
@@ -193,6 +194,7 @@ ci::gl::VboMeshRef getDrawableHeightfield( const Channel32f *heightData )
 	for( int z = 0; z < depth; ++z ) {
 		for( int x = 0; x < width; ++x ) {
 			auto & vert = plane->getPositions<3>()[z + depth * x];
+			// TODO: figure out why the 1.5 translation is needed.
 			vert.y = heightData->getValue( ivec2( x, z ) );
 		}
 	}

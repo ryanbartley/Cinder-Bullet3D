@@ -25,6 +25,7 @@ lib/msw/*/cinder*.pdb
 Debug/
 Release/
 ipch/
+*.VC.db
 
 # doxygen generated files
 docs/html

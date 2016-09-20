@@ -35,7 +35,7 @@ void ConstraintsApp::setup()
 {
 	mBulletContext = bt::Context::create( bt::Context::Format().drawDebug( true ).createDebugRenderer( true ) );
 	setupGearConstraint();
-	mCam.setPerspective( 60.0f, getWindowAspectRatio(), .01, 1000 );
+	mCam.setPerspective( 60.0f, getWindowAspectRatio(), 0.01f, 1000.0f );
 	mCam.lookAt( vec3( -8, 1, 0 ), vec3( -8, 1, -8 ) );
 }
 
