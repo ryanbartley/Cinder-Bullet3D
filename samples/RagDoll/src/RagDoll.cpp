@@ -148,105 +148,162 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::vec3 &positionOf
 		}
 	}
 	
-	ConstraintHinge::Format hingeFormat;
-	ConstraintConeTwist::Format coneFormat;
-	
-	hingeFormat.localAOrigin( vec3( 0.0f, 0.15f, 0.0f ) ).localARot( 0.0f,float(M_PI_2),0.0f ).objA( mBodies[BODYPART_PELVIS] )
-				.localBOrigin( vec3( 0.0f, -0.15f, 0.0f ) ).localBRot( 0.0f, float( M_PI_2),0.0f ).objB( mBodies[BODYPART_SPINE] );
 	{
-		auto hinge = ConstraintHinge::create( hingeFormat );
-		hinge->setLimit( btScalar(-M_PI_4), btScalar(M_PI_2) );
-		hinge->setDebugDrawSize( CONSTRAINT_DEBUG_SIZE );
-		mConstraints.push_back( hinge );
+		btTransform a, b;
+		a.setOrigin( bt::toBullet( vec3( 0.0f, 0.15f, 0.0f ) ) );
+		a.getBasis().setEulerZYX(0.0f,float(M_PI_2),0.0f);
+		auto bodyA = mBodies[BODYPART_PELVIS];
+		b.setOrigin( bt::toBullet( vec3( 0.0f, -0.15f, 0.0f ) ) );
+		b.getBasis().setEulerZYX( 0.0f, float( M_PI_2),0.0f  );
+		auto bodyB = mBodies[BODYPART_SPINE];
+		
+		auto constraint = make_shared<btHingeConstraint>( *bodyA->getRigidBody(), *bodyB->getRigidBody(), a, b, false );
+		constraint->setLimit( btScalar(-M_PI_4), btScalar(M_PI_2) );
+		constraint->setDbgDrawSize( CONSTRAINT_DEBUG_SIZE );
+		mConstraints.push_back( constraint );
 	}
 	
-	coneFormat.localAOrigin( vec3( 0.0f, 0.30f, 0.0f ) ).localARot( 0.0f,0.0f,float(M_PI_2) ).objA( mBodies[BODYPART_SPINE] )
-			  .localBOrigin( vec3( 0.0f, -0.14f, 0.0f ) ).localBRot( 0.0f,0.0f,float(M_PI_2) ).objB( mBodies[BODYPART_HEAD] );
 	{
-		auto cone = ConstraintConeTwist::create( coneFormat );
+		btTransform a, b;
+		a.setOrigin( bt::toBullet( vec3( 0.0f, 0.30f, 0.0f ) ) );
+		a.getBasis().setEulerZYX(0.0f,0.0f,float(M_PI_2));
+		auto bodyA = mBodies[BODYPART_SPINE];
+		b.setOrigin( bt::toBullet( vec3( 0.0f, -0.14f, 0.0f ) ) );
+		b.getBasis().setEulerZYX( 0.0f,0.0f,float(M_PI_2)  );
+		auto bodyB = mBodies[BODYPART_HEAD];
+		
+		auto cone = make_shared<btConeTwistConstraint>( *bodyA->getRigidBody(), *bodyB->getRigidBody(), a, b );
 		cone->setLimit( float( M_PI_4 ), float( M_PI_4 ), float( M_PI_2 ) );
-		cone->setDebugDrawSize( CONSTRAINT_DEBUG_SIZE );
+		cone->setDbgDrawSize( CONSTRAINT_DEBUG_SIZE );
 		mConstraints.push_back( cone );
 	}
 
 	// Something's going on with quaternions here
-	coneFormat.localAOrigin( vec3( -0.18f, -0.10f, 0.0f ) ).localARot( 0.0f, 0.0f, -float(M_PI_4)*5.0f ).objA( mBodies[BODYPART_PELVIS] )
-			  .localBOrigin( vec3( 0.0f, 0.225f, 0.0f ) ).localARot( 0.0f, 0.0f, -float(M_PI_4)*5.0f ).objB( mBodies[BODYPART_LEFT_UPPER_LEG] );
 	{
-		auto cone = ConstraintConeTwist::create( coneFormat );
-		cone->setLimit( float( M_PI_4 ), float(M_PI_4), 0.0f );
-		cone->setDebugDrawSize( CONSTRAINT_DEBUG_SIZE );
+		btTransform a, b;
+		a.setOrigin( bt::toBullet( vec3( -0.18f, -0.10f, 0.0f ) ) );
+		a.getBasis().setEulerZYX(0.0f, 0.0f, -float(M_PI_4)*5.0f);
+		auto bodyA = mBodies[BODYPART_PELVIS];
+		b.setOrigin( bt::toBullet( vec3( 0.0f, 0.225f, 0.0f ) ) );
+		b.getBasis().setEulerZYX( 0.0f, 0.0f, -float(M_PI_4)*5.0f  );
+		auto bodyB = mBodies[BODYPART_LEFT_UPPER_LEG];
+		
+		auto cone = make_shared<btConeTwistConstraint>( *bodyA->getRigidBody(), *bodyB->getRigidBody(), a, b );
+		cone->setLimit( float( M_PI_4 ), float( M_PI_4 ), float( M_PI_2 ) );
+		cone->setDbgDrawSize( CONSTRAINT_DEBUG_SIZE );
 		mConstraints.push_back( cone );
 	}
 	
-	hingeFormat.localAOrigin( vec3( 0.0f, -0.225f, 0.0f ) ).localARot( 0.0f,float(M_PI_2),0.0f ).objA( mBodies[BODYPART_LEFT_UPPER_LEG] )
-				.localBOrigin( vec3( 0.0f, 0.185f, 0.0f ) ).localBRot( 0.0f,float(M_PI_2),0.0f ).objB( mBodies[BODYPART_LEFT_LOWER_LEG] );
 	{
-		auto hinge = ConstraintHinge::create( hingeFormat );
-		hinge->setLimit( btScalar(0), btScalar(M_PI_2) );
-		hinge->setDebugDrawSize( CONSTRAINT_DEBUG_SIZE );
-		mConstraints.push_back( hinge );
+		btTransform a, b;
+		a.setOrigin( bt::toBullet( vec3( 0.0f, -0.225f, 0.0f ) ) );
+		a.getBasis().setEulerZYX(0.0f,float(M_PI_2),0.0f);
+		auto bodyA = mBodies[BODYPART_LEFT_UPPER_LEG];
+		b.setOrigin( bt::toBullet( vec3( 0.0f, 0.185f, 0.0f ) ) );
+		b.getBasis().setEulerZYX( 0.0f,float(M_PI_2),0.0f  );
+		auto bodyB = mBodies[BODYPART_LEFT_LOWER_LEG];
+		
+		auto constraint = make_shared<btHingeConstraint>( *bodyA->getRigidBody(), *bodyB->getRigidBody(), a, b, false );
+		constraint->setLimit( btScalar(0), btScalar(M_PI_2)  );
+		constraint->setDbgDrawSize( CONSTRAINT_DEBUG_SIZE );
+		mConstraints.push_back( constraint );
 	}
 	
-	coneFormat.localAOrigin( vec3( 0.18f, -0.10f, 0.0f ) ).localARot( 0.0f, 0.0f, float(M_PI_4)).objA( mBodies[BODYPART_PELVIS] )
-			  .localBOrigin( vec3( 0.0f, 0.225f, 0.0f ) ).localBRot( 0.0f, 0.0f, float(M_PI_4) ).objB( mBodies[BODYPART_RIGHT_UPPER_LEG] );
 	{
-		auto cone = ConstraintConeTwist::create( coneFormat );
+		btTransform a, b;
+		a.setOrigin( bt::toBullet( vec3( 0.18f, -0.10f, 0.0f ) ) );
+		a.getBasis().setEulerZYX(0.0f, 0.0f, float(M_PI_4));
+		auto bodyA = mBodies[BODYPART_PELVIS];
+		b.setOrigin( bt::toBullet( vec3( 0.0f, 0.225f, 0.0f ) ) );
+		b.getBasis().setEulerZYX( 0.0f, 0.0f, float(M_PI_4) );
+		auto bodyB = mBodies[BODYPART_RIGHT_UPPER_LEG];
+		
+		auto cone = make_shared<btConeTwistConstraint>( *bodyA->getRigidBody(), *bodyB->getRigidBody(), a, b );
 		cone->setLimit( float( M_PI_4 ), float( M_PI_4), 0.0f );
-		cone->setDebugDrawSize( CONSTRAINT_DEBUG_SIZE );
+		cone->setDbgDrawSize( CONSTRAINT_DEBUG_SIZE );
 		mConstraints.push_back( cone );
 	}
-
-	hingeFormat.localAOrigin( vec3( 0.0f, -0.225f, 0.0f ) ).localARot( 0.0f,float(M_PI_2),0.0f ).objA( mBodies[BODYPART_RIGHT_UPPER_LEG] )
-			   .localBOrigin( vec3( 0.0f, 0.185f, 0.0f ) ).localBRot( 0.0f,float(M_PI_2),0.0f ).objB( mBodies[BODYPART_RIGHT_LOWER_LEG] );
+	
 	{
-		auto hinge = ConstraintHinge::create( hingeFormat );
-		hinge->setLimit( btScalar(0), btScalar(M_PI_2) );
-		hinge->setDebugDrawSize( CONSTRAINT_DEBUG_SIZE );
-		mConstraints.push_back( hinge );
+		btTransform a, b;
+		a.setOrigin( bt::toBullet( vec3( 0.0f, -0.225f, 0.0f ) ) );
+		a.getBasis().setEulerZYX(0.0f,float(M_PI_2),0.0f);
+		auto bodyA = mBodies[BODYPART_RIGHT_UPPER_LEG];
+		b.setOrigin( bt::toBullet( vec3( 0.0f, 0.185f, 0.0f ) ) );
+		b.getBasis().setEulerZYX( 0.0f,float(M_PI_2),0.0f );
+		auto bodyB = mBodies[BODYPART_RIGHT_LOWER_LEG];
+		
+		auto constraint = make_shared<btHingeConstraint>( *bodyA->getRigidBody(), *bodyB->getRigidBody(), a, b, false );
+		constraint->setLimit( btScalar(0), btScalar(M_PI_2)  );
+		constraint->setDbgDrawSize( CONSTRAINT_DEBUG_SIZE );
+		mConstraints.push_back( constraint );
 	}
 
-	coneFormat.localAOrigin( vec3( -0.2f, 0.15f, 0.0f ) ).localARot( 0.0f,0.0f,float(M_PI )).objA( mBodies[BODYPART_SPINE] )
-			  .localBOrigin( vec3( 0.0f, -0.18f, 0.0f ) ).localBRot( 0.0f,0.0f,float(M_PI_2 )).objB( mBodies[BODYPART_LEFT_UPPER_ARM] );
 	{
-		auto cone = ConstraintConeTwist::create( coneFormat );
+		btTransform a, b;
+		a.setOrigin( bt::toBullet( vec3( -0.2f, 0.15f, 0.0f ) ) );
+		a.getBasis().setEulerZYX(0.0f,0.0f,float(M_PI));
+		auto bodyA = mBodies[BODYPART_SPINE];
+		b.setOrigin( bt::toBullet( vec3( 0.0f, -0.18f, 0.0f ) ) );
+		b.getBasis().setEulerZYX( 0.0f,0.0f,float(M_PI_2) );
+		auto bodyB = mBodies[BODYPART_LEFT_UPPER_ARM];
+		
+		auto cone = make_shared<btConeTwistConstraint>( *bodyA->getRigidBody(), *bodyB->getRigidBody(), a, b );
 		cone->setLimit( float(M_PI_2), float(M_PI_2), 0.0f );
-		cone->setDebugDrawSize( CONSTRAINT_DEBUG_SIZE );
+		cone->setDbgDrawSize( CONSTRAINT_DEBUG_SIZE );
 		mConstraints.push_back( cone );
 	}
 
-	hingeFormat.localAOrigin( vec3( 0.0f, 0.18f, 0.0f ) ).localARot( 0.0f,float(M_PI_2),0.0f ).objA( mBodies[BODYPART_LEFT_UPPER_ARM] )
-			   .localBOrigin( vec3( 0.0f, -0.14f, 0.0f ) ).localBRot( 0.0f,float(M_PI_2),0.0f ).objB( mBodies[BODYPART_LEFT_LOWER_ARM] );
 	{
-		auto hinge = ConstraintHinge::create( hingeFormat );
-		hinge->setLimit( btScalar(0), btScalar(M_PI_2) );
-		hinge->setDebugDrawSize( CONSTRAINT_DEBUG_SIZE );
-		mConstraints.push_back( hinge );
+		btTransform a, b;
+		a.setOrigin( bt::toBullet( vec3( 0.0f, 0.18f, 0.0f ) ) );
+		a.getBasis().setEulerZYX(0.0f,float(M_PI_2),0.0f);
+		auto bodyA = mBodies[BODYPART_LEFT_UPPER_ARM];
+		b.setOrigin( bt::toBullet( vec3( 0.0f, -0.14f, 0.0f ) ) );
+		b.getBasis().setEulerZYX( 0.0f,float(M_PI_2),0.0f );
+		auto bodyB = mBodies[BODYPART_LEFT_LOWER_ARM];
+		
+		auto constraint = make_shared<btHingeConstraint>( *bodyA->getRigidBody(), *bodyB->getRigidBody(), a, b, false );
+		constraint->setLimit( btScalar(0), btScalar(M_PI_2) );
+		constraint->setDbgDrawSize( CONSTRAINT_DEBUG_SIZE );
+		mConstraints.push_back( constraint );
 	}
-
-	coneFormat.localAOrigin( vec3( 0.2f, 0.15f, 0.0f ) ).localARot( 0.0f,0.0f,0.0f ).objA( mBodies[BODYPART_SPINE] )
-			  .localBOrigin( vec3( 0.0f, -0.18f, 0.0f ) ).localBRot( 0.0f,0.0f,float(M_PI_2) ).objB( mBodies[BODYPART_RIGHT_UPPER_ARM] );
+	
 	{
-		auto cone = ConstraintConeTwist::create( coneFormat );
+		btTransform a, b;
+		a.setOrigin( bt::toBullet( vec3( 0.2f, 0.15f, 0.0f ) ) );
+		a.getBasis().setEulerZYX(0.0f,0.0f,0.0f);
+		auto bodyA = mBodies[BODYPART_SPINE];
+		b.setOrigin( bt::toBullet( vec3( 0.0f, -0.18f, 0.0f ) ) );
+		b.getBasis().setEulerZYX( 0.0f,0.0f,float(M_PI_2) );
+		auto bodyB = mBodies[BODYPART_RIGHT_UPPER_ARM];
+		
+		auto cone = make_shared<btConeTwistConstraint>( *bodyA->getRigidBody(), *bodyB->getRigidBody(), a, b );
 		cone->setLimit( float(M_PI_2), float(M_PI_2), 0.0f );
-		cone->setDebugDrawSize( CONSTRAINT_DEBUG_SIZE );
+		cone->setDbgDrawSize( CONSTRAINT_DEBUG_SIZE );
 		mConstraints.push_back( cone );
 	}
 
-	hingeFormat.localAOrigin( vec3( 0.0f, 0.18f, 0.0f ) ).localARot( 0.0f,float(M_PI_2),0.0f ).objA( mBodies[BODYPART_RIGHT_UPPER_ARM] )
-			   .localBOrigin( vec3( 0.0f, -0.14f, 0.0f ) ).localBRot( 0.0f,float(M_PI_2),0.0f ).objB( mBodies[BODYPART_RIGHT_LOWER_ARM] );
 	{
-		auto hinge = ConstraintHinge::create( hingeFormat );
-		hinge->setLimit( btScalar(0), btScalar(M_PI_2) );
-		hinge->setDebugDrawSize( CONSTRAINT_DEBUG_SIZE );
-		mConstraints.push_back( hinge );
+		btTransform a, b;
+		a.setOrigin( bt::toBullet( vec3( 0.0f, 0.18f, 0.0f ) ) );
+		a.getBasis().setEulerZYX(0.0f,float(M_PI_2),0.0f);
+		auto bodyA = mBodies[BODYPART_RIGHT_UPPER_ARM];
+		b.setOrigin( bt::toBullet( vec3( 0.0f, -0.14f, 0.0f ) ) );
+		b.getBasis().setEulerZYX( 0.0f,float(M_PI_2),0.0f );
+		auto bodyB = mBodies[BODYPART_RIGHT_LOWER_ARM];
+		
+		auto constraint = make_shared<btHingeConstraint>( *bodyA->getRigidBody(), *bodyB->getRigidBody(), a, b, false );
+		constraint->setLimit( btScalar(0), btScalar(M_PI_2) );
+		constraint->setDbgDrawSize( CONSTRAINT_DEBUG_SIZE );
+		mConstraints.push_back( constraint );
 	}
 	
 	{
 		auto jointIt = mConstraints.begin();
 		auto end = mConstraints.end();
 		for( ; jointIt != end; ++jointIt ) {
-			mOwner->addConstraint( (*jointIt)->getTypedConstraint(), true );
+			mOwner->addConstraint( (*jointIt), true );
 		}
 	}
 }
