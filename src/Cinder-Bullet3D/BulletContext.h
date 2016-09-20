@@ -11,7 +11,6 @@
 #include "Cinder-Bullet3D/Common.h"
 #include "Cinder-Bullet3D/RigidBody.h"
 
-#include "Cinder-Bullet3D/ConstraintBase.h"
 #include "cinder/Signals.h"
 
 namespace bullet {
@@ -128,10 +127,8 @@ public:
 	inline void removeAction( btActionInterface *action ){ mWorld->removeAction( action ); }
 	//! Adds a constraint to the world.
 	inline void addConstraint( const btTypedConstraintRef &constraint, bool disableCollisionsBetweenLinkedBodies = false ) { mWorld->addConstraint( constraint.get(), disableCollisionsBetweenLinkedBodies ); }
-	inline void addConstraint( const ConstraintBaseRef &constraint, bool disableCollisionsBetweenLinkedBodies = false ) { mWorld->addConstraint( constraint->getTypedConstraint().get(), disableCollisionsBetweenLinkedBodies ); }
 	//! Removes a constraint from the world.
 	inline void removeConstraint( const btTypedConstraintRef &constraint ) { mWorld->removeConstraint( constraint.get() ); }
-	inline void removeConstraint( const ConstraintBaseRef &constraint ) { mWorld->removeConstraint( constraint->getTypedConstraint().get() ); }
 	
 	//! Set the Gravity of the world. Default is vec3( 0.0f, -9.8f, 0.0f ).
 	inline void setGravity( const ci::vec3 &gravity ) { mWorld->setGravity( toBullet( gravity ) ); }

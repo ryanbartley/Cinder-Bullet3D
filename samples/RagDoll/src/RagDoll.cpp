@@ -144,17 +144,17 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::vec3 &positionOf
 		auto end = mBodies.end();
 		for ( ; bodyIt != end; ++bodyIt )
 		{
-			(*bodyIt)->setDamping(0.5, 0.85);
-			(*bodyIt)->setDeactivationTime(0.8);
-			(*bodyIt)->setSleepingThresholds(4, 4);
+			(*bodyIt)->setDamping(0.5f, 0.85f);
+			(*bodyIt)->setDeactivationTime(0.8f);
+			(*bodyIt)->setSleepingThresholds(4.0f, 4.0f);
 		}
 	}
 	
 	ConstraintHinge::Format hingeFormat;
 	ConstraintConeTwist::Format coneFormat;
 	
-	hingeFormat.localAOrigin( vec3( 0.0, 0.15, 0.0 ) ).localARot( 0,M_PI_2,0 ).objA( mBodies[BODYPART_PELVIS] )
-				.localBOrigin( vec3( 0.0, -0.15, 0.0 ) ).localBRot( 0,M_PI_2,0 ).objB( mBodies[BODYPART_SPINE] );
+	hingeFormat.localAOrigin( vec3( 0.0f, 0.15f, 0.0f ) ).localARot( 0.0f,float(M_PI_2),0.0f ).objA( mBodies[BODYPART_PELVIS] )
+				.localBOrigin( vec3( 0.0f, -0.15f, 0.0f ) ).localBRot( 0.0f, float( M_PI_2),0.0f ).objB( mBodies[BODYPART_SPINE] );
 	{
 		auto hinge = ConstraintHinge::create( hingeFormat );
 		hinge->setLimit( btScalar(-M_PI_4), btScalar(M_PI_2) );
@@ -162,27 +162,27 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::vec3 &positionOf
 		mConstraints.push_back( hinge );
 	}
 	
-	coneFormat.localAOrigin( vec3( 0.0, 0.30, 0.0 ) ).localARot( 0,0,M_PI_2 ).objA( mBodies[BODYPART_SPINE] )
-			  .localBOrigin( vec3( 0.0, -0.14, 0.0 ) ).localBRot( 0,0,M_PI_2 ).objB( mBodies[BODYPART_HEAD] );
+	coneFormat.localAOrigin( vec3( 0.0f, 0.30f, 0.0f ) ).localARot( 0.0f,0.0f,float(M_PI_2) ).objA( mBodies[BODYPART_SPINE] )
+			  .localBOrigin( vec3( 0.0f, -0.14f, 0.0f ) ).localBRot( 0.0f,0.0f,float(M_PI_2) ).objB( mBodies[BODYPART_HEAD] );
 	{
 		auto cone = ConstraintConeTwist::create( coneFormat );
-		cone->setLimit( M_PI_4, M_PI_4, M_PI_2 );
+		cone->setLimit( float( M_PI_4 ), float( M_PI_4 ), float( M_PI_2 ) );
 		cone->setDebugDrawSize( CONSTRAINT_DEBUG_SIZE );
 		mConstraints.push_back( cone );
 	}
 
 	// Something's going on with quaternions here
-	coneFormat.localAOrigin( vec3( -0.18, -0.10, 0.0 ) ).localARot( 0, 0, -M_PI_4*5 ).objA( mBodies[BODYPART_PELVIS] )
-			  .localBOrigin( vec3( 0.0, 0.225, 0.0 ) ).localARot( 0, 0, -M_PI_4*5 ).objB( mBodies[BODYPART_LEFT_UPPER_LEG] );
+	coneFormat.localAOrigin( vec3( -0.18f, -0.10f, 0.0f ) ).localARot( 0.0f, 0.0f, -float(M_PI_4)*5.0f ).objA( mBodies[BODYPART_PELVIS] )
+			  .localBOrigin( vec3( 0.0f, 0.225f, 0.0f ) ).localARot( 0.0f, 0.0f, -float(M_PI_4)*5.0f ).objB( mBodies[BODYPART_LEFT_UPPER_LEG] );
 	{
 		auto cone = ConstraintConeTwist::create( coneFormat );
-		cone->setLimit( M_PI_4, M_PI_4, 0 );
+		cone->setLimit( float( M_PI_4 ), float(M_PI_4), 0.0f );
 		cone->setDebugDrawSize( CONSTRAINT_DEBUG_SIZE );
 		mConstraints.push_back( cone );
 	}
 	
-	hingeFormat.localAOrigin( vec3( 0.0, -0.225, 0.0 ) ).localARot( 0,M_PI_2,0 ).objA( mBodies[BODYPART_LEFT_UPPER_LEG] )
-				.localBOrigin( vec3( 0.0, 0.185, 0.0 ) ).localBRot( 0,M_PI_2,0 ).objB( mBodies[BODYPART_LEFT_LOWER_LEG] );
+	hingeFormat.localAOrigin( vec3( 0.0f, -0.225f, 0.0f ) ).localARot( 0.0f,float(M_PI_2),0.0f ).objA( mBodies[BODYPART_LEFT_UPPER_LEG] )
+				.localBOrigin( vec3( 0.0f, 0.185f, 0.0f ) ).localBRot( 0.0f,float(M_PI_2),0.0f ).objB( mBodies[BODYPART_LEFT_LOWER_LEG] );
 	{
 		auto hinge = ConstraintHinge::create( hingeFormat );
 		hinge->setLimit( btScalar(0), btScalar(M_PI_2) );
@@ -190,17 +190,17 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::vec3 &positionOf
 		mConstraints.push_back( hinge );
 	}
 	
-	coneFormat.localAOrigin( vec3( 0.18, -0.10, 0.0 ) ).localARot( 0, 0, M_PI_4 ).objA( mBodies[BODYPART_PELVIS] )
-			  .localBOrigin( vec3( 0.0, 0.225, 0.0 ) ).localBRot( 0, 0, M_PI_4 ).objB( mBodies[BODYPART_RIGHT_UPPER_LEG] );
+	coneFormat.localAOrigin( vec3( 0.18f, -0.10f, 0.0f ) ).localARot( 0.0f, 0.0f, float(M_PI_4)).objA( mBodies[BODYPART_PELVIS] )
+			  .localBOrigin( vec3( 0.0f, 0.225f, 0.0f ) ).localBRot( 0.0f, 0.0f, float(M_PI_4) ).objB( mBodies[BODYPART_RIGHT_UPPER_LEG] );
 	{
 		auto cone = ConstraintConeTwist::create( coneFormat );
-		cone->setLimit( M_PI_4, M_PI_4, 0 );
+		cone->setLimit( float( M_PI_4 ), float( M_PI_4), 0.0f );
 		cone->setDebugDrawSize( CONSTRAINT_DEBUG_SIZE );
 		mConstraints.push_back( cone );
 	}
 
-	hingeFormat.localAOrigin( vec3( 0.0, -0.225, 0.0 ) ).localARot( 0,M_PI_2,0 ).objA( mBodies[BODYPART_RIGHT_UPPER_LEG] )
-			   .localBOrigin( vec3( 0.0, 0.185, 0.0 ) ).localBRot( 0,M_PI_2,0 ).objB( mBodies[BODYPART_RIGHT_LOWER_LEG] );
+	hingeFormat.localAOrigin( vec3( 0.0f, -0.225f, 0.0f ) ).localARot( 0.0f,float(M_PI_2),0.0f ).objA( mBodies[BODYPART_RIGHT_UPPER_LEG] )
+			   .localBOrigin( vec3( 0.0f, 0.185f, 0.0f ) ).localBRot( 0.0f,float(M_PI_2),0.0f ).objB( mBodies[BODYPART_RIGHT_LOWER_LEG] );
 	{
 		auto hinge = ConstraintHinge::create( hingeFormat );
 		hinge->setLimit( btScalar(0), btScalar(M_PI_2) );
@@ -208,17 +208,17 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::vec3 &positionOf
 		mConstraints.push_back( hinge );
 	}
 
-	coneFormat.localAOrigin( vec3( -0.2, 0.15, 0.0 ) ).localARot( 0,0,M_PI ).objA( mBodies[BODYPART_SPINE] )
-			  .localBOrigin( vec3( 0.0, -0.18, 0.0 ) ).localBRot( 0,0,M_PI_2 ).objB( mBodies[BODYPART_LEFT_UPPER_ARM] );
+	coneFormat.localAOrigin( vec3( -0.2f, 0.15f, 0.0f ) ).localARot( 0.0f,0.0f,float(M_PI )).objA( mBodies[BODYPART_SPINE] )
+			  .localBOrigin( vec3( 0.0f, -0.18f, 0.0f ) ).localBRot( 0.0f,0.0f,float(M_PI_2 )).objB( mBodies[BODYPART_LEFT_UPPER_ARM] );
 	{
 		auto cone = ConstraintConeTwist::create( coneFormat );
-		cone->setLimit( M_PI_2, M_PI_2, 0 );
+		cone->setLimit( float(M_PI_2), float(M_PI_2), 0.0f );
 		cone->setDebugDrawSize( CONSTRAINT_DEBUG_SIZE );
 		mConstraints.push_back( cone );
 	}
 
-	hingeFormat.localAOrigin( vec3( 0.0, 0.18, 0.0 ) ).localARot( 0,M_PI_2,0 ).objA( mBodies[BODYPART_LEFT_UPPER_ARM] )
-			   .localBOrigin( vec3( 0.0, -0.14, 0.0 ) ).localBRot( 0,M_PI_2,0 ).objB( mBodies[BODYPART_LEFT_LOWER_ARM] );
+	hingeFormat.localAOrigin( vec3( 0.0f, 0.18f, 0.0f ) ).localARot( 0.0f,float(M_PI_2),0.0f ).objA( mBodies[BODYPART_LEFT_UPPER_ARM] )
+			   .localBOrigin( vec3( 0.0f, -0.14f, 0.0f ) ).localBRot( 0.0f,float(M_PI_2),0.0f ).objB( mBodies[BODYPART_LEFT_LOWER_ARM] );
 	{
 		auto hinge = ConstraintHinge::create( hingeFormat );
 		hinge->setLimit( btScalar(0), btScalar(M_PI_2) );
@@ -226,17 +226,17 @@ RagDoll::RagDoll ( const bullet::ContextRef &context, const ci::vec3 &positionOf
 		mConstraints.push_back( hinge );
 	}
 
-	coneFormat.localAOrigin( vec3( 0.2, 0.15, 0.0 ) ).localARot( 0,0,0 ).objA( mBodies[BODYPART_SPINE] )
-			  .localBOrigin( vec3( 0., -0.18, 0.0 ) ).localBRot( 0,0,M_PI_2 ).objB( mBodies[BODYPART_RIGHT_UPPER_ARM] );
+	coneFormat.localAOrigin( vec3( 0.2f, 0.15f, 0.0f ) ).localARot( 0.0f,0.0f,0.0f ).objA( mBodies[BODYPART_SPINE] )
+			  .localBOrigin( vec3( 0.0f, -0.18f, 0.0f ) ).localBRot( 0.0f,0.0f,float(M_PI_2) ).objB( mBodies[BODYPART_RIGHT_UPPER_ARM] );
 	{
 		auto cone = ConstraintConeTwist::create( coneFormat );
-		cone->setLimit( M_PI_2, M_PI_2, 0 );
+		cone->setLimit( float(M_PI_2), float(M_PI_2), 0.0f );
 		cone->setDebugDrawSize( CONSTRAINT_DEBUG_SIZE );
 		mConstraints.push_back( cone );
 	}
 
-	hingeFormat.localAOrigin( vec3( 0.0, 0.18, 0.0 ) ).localARot( 0,M_PI_2,0 ).objA( mBodies[BODYPART_RIGHT_UPPER_ARM] )
-			   .localBOrigin( vec3( 0.0, -0.14, 0.0 ) ).localBRot( 0,M_PI_2,0 ).objB( mBodies[BODYPART_RIGHT_LOWER_ARM] );
+	hingeFormat.localAOrigin( vec3( 0.0f, 0.18f, 0.0f ) ).localARot( 0.0f,float(M_PI_2),0.0f ).objA( mBodies[BODYPART_RIGHT_UPPER_ARM] )
+			   .localBOrigin( vec3( 0.0f, -0.14f, 0.0f ) ).localBRot( 0.0f,float(M_PI_2),0.0f ).objB( mBodies[BODYPART_RIGHT_LOWER_ARM] );
 	{
 		auto hinge = ConstraintHinge::create( hingeFormat );
 		hinge->setLimit( btScalar(0), btScalar(M_PI_2) );

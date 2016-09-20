@@ -15,7 +15,6 @@ using namespace std;
 class PhysicsPrimitivesApp : public App {
   public:
 	void setup();
-	void mouseDown( MouseEvent event );
 	// These two functions signal the beginning of a collision
 	// and the end of a collision. If a collision has begun,
 	// you can rest assured that they'll still be touching until
@@ -25,12 +24,12 @@ class PhysicsPrimitivesApp : public App {
 	void update();
 	void draw();
 	
-	bullet::ContextRef mContext;
-	bullet::RigidBodyRef mBox, mCapsule,
+	bullet::ContextRef		mContext;
+	bullet::RigidBodyRef	mBox, mCapsule,
 							mPlane, mSphere,
 							mCone, mCylinder,
 							mMultiSphere;
-	CameraPersp			mCam;
+	CameraPersp				mCam;
 };
 
 void PhysicsPrimitivesApp::setup()
@@ -100,7 +99,7 @@ void PhysicsPrimitivesApp::collisionBegin( btRigidBody *rigid0, btRigidBody *rig
 	RigidBody *phyObj0 = static_cast<RigidBody*>( rigid0->getUserPointer() );
 	RigidBody *phyObj1 = static_cast<RigidBody*>( rigid1->getUserPointer() );
 	
-	std::cout << "PhyObj0 shape: " << phyObj0->getCollShapeName() << " PhyObj1 shape: " << phyObj1->getCollShapeName() << std::endl;
+	app::console() << "PhyObj0 shape: " << phyObj0->getCollShapeName() << " PhyObj1 shape: " << phyObj1->getCollShapeName() << std::endl;
 }
 
 void PhysicsPrimitivesApp::collisionEnd( btRigidBody *rigid0, btRigidBody *rigid1 )
@@ -112,12 +111,7 @@ void PhysicsPrimitivesApp::collisionEnd( btRigidBody *rigid0, btRigidBody *rigid
 	RigidBody *phyObj0 = static_cast<RigidBody*>( rigid0->getUserPointer() );
 	RigidBody *phyObj1 = static_cast<RigidBody*>( rigid1->getUserPointer() );
 	
-	std::cout << "PhyObj0 shape: " << phyObj0->getCollShapeName() << " PhyObj1 shape: " << phyObj1->getCollShapeName() << std::endl;
-}
-
-void PhysicsPrimitivesApp::mouseDown( MouseEvent event )
-{
-	
+	app::console() << "PhyObj0 shape: " << phyObj0->getCollShapeName() << " PhyObj1 shape: " << phyObj1->getCollShapeName() << std::endl;
 }
 
 void PhysicsPrimitivesApp::update()
