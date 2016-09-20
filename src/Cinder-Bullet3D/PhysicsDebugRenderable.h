@@ -26,18 +26,18 @@ public:
 	void draw();
 	
 	//! This is used by Bullet and shouldn't necessarily be used by your application.
-	void drawContactPoint(const btVector3 &pointOnB, const btVector3 &normalOnB, btScalar distance, int lifeTime, const btVector3 &color);
+	void drawContactPoint(const btVector3 &pointOnB, const btVector3 &normalOnB, btScalar distance, int lifeTime, const btVector3 &color) override;
 	//! This is used by Bullet and shouldn't necessarily be used by your application.
-	void drawLine(const btVector3& from,const btVector3& to,const btVector3& color);
+	void drawLine(const btVector3& from,const btVector3& to,const btVector3& color) override;
 	//! This is used by Bullet and shouldn't necessarily be used by your application.
-	void reportErrorWarning(const char* warningString) {}
+	void reportErrorWarning(const char* warningString) override {}
 	//! This is used by Bullet and shouldn't necessarily be used by your application.
-	void draw3dText( const btVector3& location, const char* textString );
+	void draw3dText( const btVector3& location, const char* textString ) override;
 	
 	//! Sets what to draw in the Debug Renderer
 	void setDebugMode( int debugMode ) override { mDebugMode = debugMode; }
 	//! Returns the Current Debug Renderer Mode.
-	int	 getDebugMode() const { return mDebugMode; }
+	int	 getDebugMode() const override { return mDebugMode; }
 	//! This will simply toggle a specific debug flag.
 	void toggleDebugFlag( const int flag );
 	

@@ -40,7 +40,7 @@ void PhyObjCharacterController::init( const Format &format )
 	mCharacter->setJumpSpeed( format.mJumpSpeed );
 	mCharacter->setFallSpeed( format.mFallSpeed );
 	
-	mCharacter->setUpAxis( 2 );
+//	mCharacter->setUpAxis( 2 );
 	
 	auto world = Context::getCurrent()->world();
 	
@@ -101,7 +101,7 @@ void PhyObjCharacterController::setRotation( const ci::quat &rotate )
 	
 void PhyObjCharacterController::setGravity( float gravity )
 {
-	mCharacter->setGravity( gravity );
+//	mCharacter->setGravity( gravity );
 }
 	
 ci::AxisAlignedBox PhyObjCharacterController::getAabb()

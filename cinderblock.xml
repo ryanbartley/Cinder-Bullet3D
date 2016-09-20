@@ -23,12 +23,16 @@
 	<headerPattern>src/BulletPhysics/BulletDynamics/FeatherStone/*.h</headerPattern>
 	<headerPattern>src/BulletPhysics/BulletDynamics/MLCPSolvers/*.h</headerPattern>
 	<headerPattern>src/BulletPhysics/BulletDynamics/Vehicle/*.h</headerPattern>
+  	<headerPattern>src/BulletPhysics/BulletInverseDynamics/*.h</headerPattern>
+  	<headerPattern>src/BulletPhysics/BulletInverseDynamics/details/*.h</headerPattern>
+  	<headerPattern>src/BulletPhysics/InverseDynamics/*.h</headerPattern>
+  	<headerPattern>src/BulletPhysics/HACD/*.h</headerPattern>
+  	<headerPattern>src/BulletPhysics/ConvexDecomposition/*.h</headerPattern>
+  	<headerPattern>src/BussIK/*.h</headerPattern>
+  	<headerPattern>src/BulletPhysics/Serialize/BulletFileLoader/*.h</headerPattern>
+  	<headerPattern>src/BulletPhysics/Serialize/BulletWorldImporter/*.h</headerPattern>
 	<headerPattern>src/BulletPhysics/BulletSoftBody/*.h</headerPattern>
 	<headerPattern>src/BulletPhysics/BulletLinearMath/*.h</headerPattern>
-	<headerPattern>src/BulletPhysics/vectormath/neon/*.h</headerPattern>
-	<headerPattern>src/BulletPhysics/vectormath/scalar/*.h</headerPattern>
-	<headerPattern>src/BulletPhysics/vectormath/sse/*.h</headerPattern>
-	<headerPattern>src/BulletPhysics/vectormath/*.h</headerPattern>
 	<headerPattern>src/Cinder-Bullet3D/*.h</headerPattern>
 	
 	<headerPattern>src/BulletPhysics/BulletCollision/BroadPhaseCollision/*.cpp</headerPattern>
@@ -42,11 +46,17 @@
 	<headerPattern>src/BulletPhysics/BulletDynamics/FeatherStone/*.cpp</headerPattern>
 	<headerPattern>src/BulletPhysics/BulletDynamics/MLCPSolvers/*.cpp</headerPattern>
 	<headerPattern>src/BulletPhysics/BulletDynamics/Vehicle/*.cpp</headerPattern>
+  	<headerPattern>src/BulletPhysics/BulletInverseDynamics/*.cpp</headerPattern>
+  	<headerPattern>src/BulletPhysics/BulletInverseDynamics/details/*.cpp</headerPattern>
+  	<headerPattern>src/BulletPhysics/InverseDynamics/*.cpp</headerPattern>
+  	<headerPattern>src/BulletPhysics/ConvexDecomposition/*.cpp</headerPattern>
+  	<headerPattern>src/BussIK/*.cpp</headerPattern>
+  	<headerPattern>src/BulletPhysics/Serialize/BulletFileLoader/*.cpp</headerPattern>
+  	<headerPattern>src/BulletPhysics/Serialize/BulletWorldImporter/*.cpp</headerPattern>
+  	<headerPattern>src/BulletPhysics/HACD/*.cpp</headerPattern>
+  	<headerPattern>src/BulletPhysics/HACD/*.ini</headerPattern>
 	<headerPattern>src/BulletPhysics/BulletSoftBody/*.cpp</headerPattern>
 	<headerPattern>src/BulletPhysics/BulletLinearMath/*.cpp</headerPattern>
-	<headerPattern>src/BulletPhysics/vectormath/neon/*.cpp</headerPattern>
-	<headerPattern>src/BulletPhysics/vectormath/scalar/*.cpp</headerPattern>
-	<headerPattern>src/BulletPhysics/vectormath/sse/*.cpp</headerPattern>
 	<sourcePattern>src/Cinder-Bullet3D/*.cpp</sourcePattern>
 
 	<includePath>src/</includePath>
@@ -55,16 +65,30 @@
 	
 	<platform os="ios">
 		<platform config="Debug">
-			<staticLibrary>lib/ios/libBulletCollision_xcode4_x64_debug.a</staticLibrary>
-			<staticLibrary>lib/ios/libBulletDynamics_xcode4_x64_debug.a</staticLibrary>
-			<staticLibrary>lib/ios/libBulletSoftBody_xcode4_x64_debug.a</staticLibrary>
-			<staticLibrary>lib/ios/libLinearMath_xcode4_x64_debug.a</staticLibrary>
+			<staticLibrary>lib/ios/libBulletCollision_x64_debug.a</staticLibrary>
+			<staticLibrary>lib/ios/libBulletDynamics_x64_debug.a</staticLibrary>
+			<staticLibrary>lib/ios/libBulletSoftBody_x64_debug.a</staticLibrary>
+			<staticLibrary>lib/ios/libLinearMath_x64_debug.a</staticLibrary>
+      		<staticLibrary>lib/ios/libBulletInverseDynamics_x64_debug.a</staticLibrary>
+      		<staticLibrary>lib/ios/libBulletInverseDynamicsUtils_x64_debug.a</staticLibrary>
+      		<staticLibrary>lib/ios/libConvexDecomposition_x64_debug.a</staticLibrary>
+      		<staticLibrary>lib/ios/libBussIK_x64_debug.a</staticLibrary>
+      		<staticLibrary>lib/ios/libHACD_x64_debug.a</staticLibrary>
+      		<staticLibrary>lib/ios/libBulletWorldImporter_x64_debug.a</staticLibrary>
+      		<staticLibrary>lib/ios/libBulletFileLoader_x64_debug.a</staticLibrary>
 		</platform>
 		<platform config="Release">
-			<staticLibrary>lib/ios/libBulletCollision_xcode4_x64_release.a</staticLibrary>
-			<staticLibrary>lib/ios/libBulletDynamics_xcode4_x64_release.a</staticLibrary>
-			<staticLibrary>lib/ios/libBulletSoftBody_xcode4_x64_release.a</staticLibrary>
-			<staticLibrary>lib/ios/libLinearMath_xcode4_x64_release.a</staticLibrary>
+			<staticLibrary>lib/ios/libBulletCollision_x64_release.a</staticLibrary>
+			<staticLibrary>lib/ios/libBulletDynamics_x64_release.a</staticLibrary>
+			<staticLibrary>lib/ios/libBulletSoftBody_x64_release.a</staticLibrary>
+			<staticLibrary>lib/ios/libLinearMath_x64_release.a</staticLibrary>
+      		<staticLibrary>lib/ios/libBulletInverseDynamics_x64_release.a</staticLibrary>
+      		<staticLibrary>lib/ios/libBulletInverseDynamicsUtils_x64_release.a</staticLibrary>
+      		<staticLibrary>lib/ios/libConvexDecomposition_x64_release.a</staticLibrary>
+      		<staticLibrary>lib/ios/libBussIK_x64_release.a</staticLibrary>
+      		<staticLibrary>lib/ios/libHACD_x64_release.a</staticLibrary>
+      		<staticLibrary>lib/ios/libBulletWorldImporter_x64_release.a</staticLibrary>
+      		<staticLibrary>lib/ios/libBulletFileLoader_x64_release.a</staticLibrary>
 		</platform>
 	</platform>
 	<platform os="macosx">
@@ -73,27 +97,54 @@
 			<staticLibrary>lib/macosx/libBulletDynamics_x64_debug.a</staticLibrary>
 			<staticLibrary>lib/macosx/libBulletSoftBody_x64_debug.a</staticLibrary>
 			<staticLibrary>lib/macosx/libLinearMath_x64_debug.a</staticLibrary>
+      		<staticLibrary>lib/macosx/libBulletInverseDynamics_x64_debug.a</staticLibrary>
+      		<staticLibrary>lib/macosx/libBulletInverseDynamicsUtils_x64_debug.a</staticLibrary>
+      		<staticLibrary>lib/macosx/libConvexDecomposition_x64_debug.a</staticLibrary>
+      		<staticLibrary>lib/macosx/libBussIK_x64_debug.a</staticLibrary>
+      		<staticLibrary>lib/macosx/libHACD_x64_debug.a</staticLibrary>
+      		<staticLibrary>lib/macosx/libBulletWorldImporter_x64_debug.a</staticLibrary>
+      		<staticLibrary>lib/macosx/libBulletFileLoader_x64_debug.a</staticLibrary>
 		</platform>
 		<platform config="Release">
 			<staticLibrary>lib/macosx/libBulletCollision_x64_release.a</staticLibrary>
 			<staticLibrary>lib/macosx/libBulletDynamics_x64_release.a</staticLibrary>
 			<staticLibrary>lib/macosx/libBulletSoftBody_x64_release.a</staticLibrary>
 			<staticLibrary>lib/macosx/libLinearMath_x64_release.a</staticLibrary>
+      		<staticLibrary>lib/macosx/libBulletInverseDynamics_x64_release.a</staticLibrary>
+      		<staticLibrary>lib/macosx/libBulletInverseDynamicsUtils_x64_release.a</staticLibrary>
+      		<staticLibrary>lib/macosx/libConvexDecomposition_x64_release.a</staticLibrary>
+      		<staticLibrary>lib/macosx/libBussIK_x64_release.a</staticLibrary>
+      		<staticLibrary>lib/macosx/libHACD_x64_release.a</staticLibrary>
+      		<staticLibrary>lib/macosx/libBulletWorldImporter_x64_release.a</staticLibrary>
+      		<staticLibrary>lib/macosx/libBulletFileLoader_x64_release.a</staticLibrary>
 		</platform>
 	</platform>
 	<platform os="msw">
-
 		<platform config="Debug">
-			<staticLibrary>lib/msw/x64/BulletCollision_vs2010_x64_debug.lib</staticLibrary>
-			<staticLibrary>lib/msw/x64/BulletDynamics_vs2010_x64_debug.lib</staticLibrary>
-			<staticLibrary>lib/msw/x64/BulletSoftBody_vs2010_x64_debug.lib</staticLibrary>
-			<staticLibrary>lib/msw/x64/LinearMath_vs2010_x64_debug.lib</staticLibrary>
+			<staticLibrary>lib/msw/BulletCollision_x64_debug.lib</staticLibrary>
+			<staticLibrary>lib/msw/BulletDynamics_x64_debug.lib</staticLibrary>
+			<staticLibrary>lib/msw/BulletSoftBody_x64_debug.lib</staticLibrary>
+			<staticLibrary>lib/msw/LinearMath_x64_debug.lib</staticLibrary>
+      		<staticLibrary>lib/msw/BulletInverseDynamics_x64_debug.lib</staticLibrary>
+      		<staticLibrary>lib/msw/BulletInverseDynamicsUtils_x64_debug.lib</staticLibrary>
+      		<staticLibrary>lib/msw/ConvexDecomposition_x64_debug.lib</staticLibrary>
+      		<staticLibrary>lib/msw/libBussIK_x64_debug.lib</staticLibrary>
+      		<staticLibrary>lib/msw/libHACD_x64_debug.lib</staticLibrary>
+      		<staticLibrary>lib/msw/libBulletWorldImporter_x64_debug.lib</staticLibrary>
+      		<staticLibrary>lib/msw/libBulletFileLoader_x64_debug.lib</staticLibrary>
 		</platform>
 		<platform config="Release">
-			<staticLibrary>lib/msw/x64/BulletCollision_vs2010_x64_release.lib</staticLibrary>
-			<staticLibrary>lib/msw/x64/BulletDynamics_vs2010_x64_release.lib</staticLibrary>
-			<staticLibrary>lib/msw/x64/BulletSoftBody_vs2010_x64_release.lib</staticLibrary>
-			<staticLibrary>lib/msw/x64/LinearMath_vs2010_x64_release.lib</staticLibrary>
+			<staticLibrary>lib/msw/BulletCollision_x64_release.lib</staticLibrary>
+			<staticLibrary>lib/msw/BulletDynamics_x64_release.lib</staticLibrary>
+			<staticLibrary>lib/msw/BulletSoftBody_x64_release.lib</staticLibrary>
+			<staticLibrary>lib/msw/LinearMath_x64_release.lib</staticLibrary>
+      		<staticLibrary>lib/msw/BulletInverseDynamics_x64_release.lib</staticLibrary>
+      		<staticLibrary>lib/msw/BulletInverseDynamicsUtils_x64_release.lib</staticLibrary>
+      		<staticLibrary>lib/msw/ConvexDecomposition_x64_release.lib</staticLibrary>
+      		<staticLibrary>lib/msw/libBussIK_x64_release.lib</staticLibrary>
+      		<staticLibrary>lib/msw/libHACD_x64_release.lib</staticLibrary>
+      		<staticLibrary>lib/msw/libBulletWorldImporter_x64_release.lib</staticLibrary>
+      		<staticLibrary>lib/msw/libBulletFileLoader_x64_release.lib</staticLibrary>
 		</platform>
 	</platform>	
 </block>
