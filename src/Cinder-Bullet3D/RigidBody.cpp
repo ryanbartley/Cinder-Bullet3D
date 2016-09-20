@@ -39,8 +39,16 @@ RigidBodyRef RigidBody::create( const bullet::RigidBody::Format &format )
 	
 RigidBody::~RigidBody()
 {
+	auto context = Context();
 	if( mAddedToWorld ) {
-		Context()->removeRigidBody( mRigidBody.get() );
+		context->removeRigidBody( mRigidBody.get() );
+	}
+	auto rb = mRigidBody.get();
+	auto numConstraints = rb->getNumConstraintRefs();
+	for( auto i = 0; i < numConstraints; i++ ) {
+		auto con = rb->getConstraintRef( i );
+		rb->removeConstraintRef( con );
+		context->removeConstraint( btTypedConstraintRef( con, []( btTypedConstraint *con ){} ) );
 	}
 	
 	mRigidBody.reset();

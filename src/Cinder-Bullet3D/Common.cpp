@@ -198,7 +198,7 @@ ci::gl::VboMeshRef getDrawableHeightfield( const Channel32f *heightData )
 			vert.y = heightData->getValue( ivec2( x, z ) );
 		}
 	}
-	
+	plane->recalculateNormals();
 	auto ret = gl::VboMesh::create( *plane );
 	return ret;
 }
