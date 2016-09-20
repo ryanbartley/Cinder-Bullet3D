@@ -5,7 +5,6 @@
 #include "Cinder-Bullet3D/BulletContext.h"
 #include "Cinder-Bullet3D/RigidBody.h"
 #include "Cinder-Bullet3D/Common.h"
-#include "Cinder-Bullet3D/ConstraintHinge.h"
 
 // NOTE: This sample is not finished. It is experimental as I'm trying to figure out
 // how best to wrap the constraints. Use constraints at your own risk.
@@ -105,13 +104,6 @@ void ConstraintsApp::setupGearConstraint()
 		
 		body->setLinearFactor( vec3( 0 ) );
 	
-		mHinge = ConstraintHinge::create( ConstraintHinge::Format()
-											 .objA( body )
-											 .localAOrigin( vec3(0,0,0) )
-											 .localARot( 0, 1, 0 )
-											 .useReferenceFrameA( true ) );
-		mBulletContext->addConstraint( mHinge );
-		
 		mBodyB = body;
 		body->setAngularVelocity( vec3( 0, 3, 0 ) );
 		

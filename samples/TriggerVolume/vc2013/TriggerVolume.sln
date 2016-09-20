@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TriggerVolume", "TriggerVolume.vcxproj", "{049375CC-FC51-4F73-BAC2-CC862343D1E7}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TriggerVolume", "TriggerVolume.vcxproj", "{1AD4F408-4560-4DCD-BBA5-84EE3C141961}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{049375CC-FC51-4F73-BAC2-CC862343D1E7}.Debug|x64.ActiveCfg = Debug|x64
-		{049375CC-FC51-4F73-BAC2-CC862343D1E7}.Debug|x64.Build.0 = Debug|x64
-		{049375CC-FC51-4F73-BAC2-CC862343D1E7}.Release|x64.ActiveCfg = Release|x64
-		{049375CC-FC51-4F73-BAC2-CC862343D1E7}.Release|x64.Build.0 = Release|x64
+		{1AD4F408-4560-4DCD-BBA5-84EE3C141961}.Debug|x64.ActiveCfg = Debug|x64
+		{1AD4F408-4560-4DCD-BBA5-84EE3C141961}.Debug|x64.Build.0 = Debug|x64
+		{1AD4F408-4560-4DCD-BBA5-84EE3C141961}.Release|x64.ActiveCfg = Release|x64
+		{1AD4F408-4560-4DCD-BBA5-84EE3C141961}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

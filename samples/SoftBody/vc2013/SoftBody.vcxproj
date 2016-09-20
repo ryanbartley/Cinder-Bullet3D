@@ -1,4 +1,5 @@
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
@@ -10,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{CC138AA0-580F-4C8F-88FE-C6FA26CB00C1}</ProjectGuid>
+    <ProjectGuid>{677021B6-8361-42E5-83FE-542FFD4EF58F}</ProjectGuid>
     <RootNamespace>SoftBody</RootNamespace>
     <Keyword>Win32Proj</Keyword>
   </PropertyGroup>
@@ -18,14 +19,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -53,12 +54,13 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <ResourceCompile>
       <AdditionalIncludeDirectories>"..\..\..\..\..\include";..\include</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>cinder-$(PlatformToolset)_d.lib;OpenGL32.lib;%(AdditionalDependencies);..\..\..\lib\msw\BulletCollision_x64_debug.lib;..\..\..\lib\msw\BulletDynamics_x64_debug.lib;..\..\..\lib\msw\BulletSoftBody_x64_debug.lib;..\..\..\lib\msw\LinearMath_x64_debug.lib;..\..\..\lib\msw\BulletInverseDynamics_x64_debug.lib;..\..\..\lib\msw\BulletInverseDynamicsUtils_x64_debug.lib;..\..\..\lib\msw\ConvexDecomposition_x64_debug.lib;..\..\..\lib\msw\libBussIK_x64_debug.lib;..\..\..\lib\msw\libHACD_x64_debug.lib;..\..\..\lib\msw\libBulletWorldImporter_x64_debug.lib;..\..\..\lib\msw\libBulletFileLoader_x64_debug.lib</AdditionalDependencies>
+      <AdditionalDependencies>cinder-$(PlatformToolset)_d.lib;OpenGL32.lib;%(AdditionalDependencies);..\..\..\lib\msw\BulletCollision_x64_debug.lib;..\..\..\lib\msw\BulletDynamics_x64_debug.lib;..\..\..\lib\msw\BulletSoftBody_x64_debug.lib;..\..\..\lib\msw\LinearMath_x64_debug.lib;..\..\..\lib\msw\BulletInverseDynamics_x64_debug.lib;..\..\..\lib\msw\BulletInverseDynamicsUtils_x64_debug.lib;..\..\..\lib\msw\ConvexDecomposition_x64_debug.lib;..\..\..\lib\msw\BussIK_x64_debug.lib;..\..\..\lib\msw\HACD_x64_debug.lib;..\..\..\lib\msw\BulletWorldImporter_x64_debug.lib;..\..\..\lib\msw\BulletFileLoader_x64_debug.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>"..\..\..\..\..\lib\msw\$(PlatformTarget)"</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -84,7 +86,7 @@
       <AdditionalIncludeDirectories>"..\..\..\..\..\include";..\include</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>cinder-$(PlatformToolset).lib;OpenGL32.lib;%(AdditionalDependencies);..\..\..\lib\msw\BulletCollision_x64_release.lib;..\..\..\lib\msw\BulletDynamics_x64_release.lib;..\..\..\lib\msw\BulletSoftBody_x64_release.lib;..\..\..\lib\msw\LinearMath_x64_release.lib;..\..\..\lib\msw\BulletInverseDynamics_x64_release.lib;..\..\..\lib\msw\BulletInverseDynamicsUtils_x64_release.lib;..\..\..\lib\msw\ConvexDecomposition_x64_release.lib;..\..\..\lib\msw\libBussIK_x64_release.lib;..\..\..\lib\msw\libHACD_x64_release.lib;..\..\..\lib\msw\libBulletWorldImporter_x64_release.lib;..\..\..\lib\msw\libBulletFileLoader_x64_release.lib</AdditionalDependencies>
+      <AdditionalDependencies>cinder-$(PlatformToolset).lib;OpenGL32.lib;%(AdditionalDependencies);..\..\..\lib\msw\BulletCollision_x64_release.lib;..\..\..\lib\msw\BulletDynamics_x64_release.lib;..\..\..\lib\msw\BulletSoftBody_x64_release.lib;..\..\..\lib\msw\LinearMath_x64_release.lib;..\..\..\lib\msw\BulletInverseDynamics_x64_release.lib;..\..\..\lib\msw\BulletInverseDynamicsUtils_x64_release.lib;..\..\..\lib\msw\ConvexDecomposition_x64_release.lib;..\..\..\lib\msw\BussIK_x64_release.lib;..\..\..\lib\msw\HACD_x64_release.lib;..\..\..\lib\msw\BulletWorldImporter_x64_release.lib;..\..\..\lib\msw\BulletFileLoader_x64_release.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>"..\..\..\..\..\lib\msw\$(PlatformTarget)"</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <GenerateMapFile>true</GenerateMapFile>
@@ -104,13 +106,6 @@
     <ClCompile Include="..\src\SoftBodyApp.cpp" />
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\BulletContext.cpp" />
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\Common.cpp" />
-    <ClCompile Include="..\..\..\src\Cinder-Bullet3D\ConstraintBase.cpp" />
-    <ClCompile Include="..\..\..\src\Cinder-Bullet3D\ConstraintConeTwist.cpp" />
-    <ClCompile Include="..\..\..\src\Cinder-Bullet3D\ConstraintGeneric6Dof.cpp" />
-    <ClCompile Include="..\..\..\src\Cinder-Bullet3D\ConstraintHinge.cpp" />
-    <ClCompile Include="..\..\..\src\Cinder-Bullet3D\ConstraintPoint2Point.cpp" />
-    <ClCompile Include="..\..\..\src\Cinder-Bullet3D\PhyObjCharacterController.cpp" />
-    <ClCompile Include="..\..\..\src\Cinder-Bullet3D\PhyObjTriggerVol.cpp" />
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\PhysicsDebugRenderable.cpp" />
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\RigidBody.cpp" />
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\SoftBody.cpp" />
@@ -357,14 +352,7 @@
     <ClInclude Include="..\..\..\src\BulletPhysics\BulletSoftBody\btSparseSDF.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\BulletContext.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\Common.h" />
-    <ClInclude Include="..\..\..\src\Cinder-Bullet3D\ConstraintBase.h" />
-    <ClInclude Include="..\..\..\src\Cinder-Bullet3D\ConstraintConeTwist.h" />
-    <ClInclude Include="..\..\..\src\Cinder-Bullet3D\ConstraintGeneric6Dof.h" />
-    <ClInclude Include="..\..\..\src\Cinder-Bullet3D\ConstraintHinge.h" />
-    <ClInclude Include="..\..\..\src\Cinder-Bullet3D\ConstraintPoint2Point.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\MotionState.h" />
-    <ClInclude Include="..\..\..\src\Cinder-Bullet3D\PhyObjCharacterController.h" />
-    <ClInclude Include="..\..\..\src\Cinder-Bullet3D\PhyObjTriggerVol.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\PhysicsDebugRenderable.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\RigidBody.h" />
     <ClInclude Include="..\..\..\src\Cinder-Bullet3D\SoftBody.h" />

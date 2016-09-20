@@ -213,19 +213,19 @@ void BulletSpheresApp::update()
 	// add attractive force
 	mat4 * matrices = (mat4*)mMatrices->map( GL_WRITE_ONLY );
 	for( auto &body : mRigidBodies ){
-		body.update( mTimeElapsed );
+		//body.update( mTimeElapsed );
 		int index = body.getId();
 		if( index >=2 ){		// small orbs
 			for( int i=0; i<2; i++ ){
 				vec3 pos		= mRigidBodies[i].getPos();
 				float size		= mRigidBodies[i].getSize();
 				float strength	= mRigidBodies[i].getStrength();
-				body.attract( pos, size, strength );
+				//body.attract( pos, size, strength );
 			}
 			matrices[index-2] = body.getMatrix();
 		} else {				// big orbs
 			float size			= mRigidBodies[index].getSize();
-			body.attract( vec3( 0 ), size, 1.0f );
+			//body.attract( vec3( 0 ), size, 1.0f );
 		}
 	}
 	mMatrices->unmap();
