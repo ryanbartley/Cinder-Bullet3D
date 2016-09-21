@@ -4,13 +4,6 @@ if( NOT TARGET Cinder-Bullet3D )
 	get_filename_component( BULLET3D_LIBS "${CMAKE_CURRENT_LIST_DIR}/../../lib/linux" ABSOLUTE )
 	get_filename_component( CINDER_PATH "${CMAKE_CURRENT_LIST_DIR}/../../../.." ABSOLUTE )
 	
-	if( NOT TARGET cinder )
-                find_package( cinder REQUIRED PATHS
-                        "${ARG_CINDER_PATH}/${CINDER_LIB_DIRECTORY}"
-                        "$ENV{CINDER_PATH}/${CINDER_LIB_DIRECTORY}"
-                )
-        endif()
-	
 	list( APPEND CINDER_BULLET3D_SOURCES
 		${CINDER_BULLET3D_SOURCE_PATH}/Cinder-Bullet3D/BulletContext.cpp
 		${CINDER_BULLET3D_SOURCE_PATH}/Cinder-Bullet3D/Common.cpp
@@ -21,7 +14,6 @@ if( NOT TARGET Cinder-Bullet3D )
 	add_library( Cinder-Bullet3D ${CINDER_BULLET3D_SOURCES} )
 	
 	target_link_libraries( 	Cinder-Bullet3D 
-                        	"$ENV{CINDER_PATH}/${CINDER_LIB_DIRECTORY}"
 				${BULLET3D_LIBS}/libBulletSoftBody_gmake_x64_release.a
 				${BULLET3D_LIBS}/libBulletInverseDynamicsUtils_gmake_x64_release.a
 				${BULLET3D_LIBS}/libBulletInverseDynamics_gmake_x64_release.a
