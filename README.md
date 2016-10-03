@@ -1,7 +1,11 @@
-Working platforms support iOS, MacOSX, and Windows on the glNext branch of Cinder, found [here](https://github.com/cinder/Cinder/tree/glNext). 
+Working platforms support iOS, MacOSX, and Windows on master and android\_linux branches and linux on the android\_linux branch of Cinder, found [here](https://github.com/cinder/Cinder/tree/glNext). 
 
-Warning:
-Master Branch using new glNext branch of Cinder. In other words, you won't be able to use it with Cinder 0.8.6 and below.
+Installation
+============
+* First run `git submodule update --init` in the repo's root.
+* For Windows, execute the install.bat in install subdirectory. `cd install && install.bat` (then get some coffee)
+* For OSX, IOS, and Linux, execute the install.sh in install subdirectory, giving the platform you wish to build as an argument, i.e. `cd install && ./install.sh macosx` (also, go ahead and get some fresh air).
+The above will build the binaries of Bullet for you and place them where they need to go. After they're done, have at it!
 
 Samples
 =======

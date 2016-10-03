@@ -1,4 +1,6 @@
 #!/bin/sh
+cd ..
+
 lib_path=""
 premake=""
 make=""
