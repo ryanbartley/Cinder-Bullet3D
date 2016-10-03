@@ -5,6 +5,7 @@ Installation
 * First run `git submodule update --init` in the repo's root.
 * For Windows, execute the install.bat in install subdirectory. `cd install && install.bat` (then get some coffee)
 * For OSX, IOS, and Linux, execute the install.sh in install subdirectory, giving the platform you wish to build as an argument, i.e. `cd install && ./install.sh macosx` (also, go ahead and get some fresh air).
+
 The above will build the binaries of Bullet for you and place them where they need to go. After they're done, have at it!
 
 Samples
