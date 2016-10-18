@@ -64,7 +64,7 @@ void Body::update( float time )
 		mScale			= sinVal * 2.5f + 0.5f;
 		mStrength		= sinVal * 10.0f;
 	}
-	
+
 	mPhyObj->getRigidBody()->getCollisionShape()->setLocalScaling( bt::toBullet( vec3( mScale ) ) );
 }
 

@@ -158,7 +158,8 @@ void BulletSpheresApp::createPhysics()
 	btVector3 worldAabbMax(10000,10000,10000);
 	// bullet
 	mContext = bullet::Context::create( bullet::Context::Format().drawDebug( false ).createDebugRenderer( true ).broadphase( new btAxisSweep3 (worldAabbMin, worldAabbMax) ) );
-	
+	mContext->setGravity( vec3( 0 ) );
+
 	createBigSphere( 0, vec3(  40.0f, 0, 0 ), 15.0f, mGlowGlsl );
 	createBigSphere( 1, vec3( -40.0f, 0, 0 ), 15.0f, mGlowGlsl );
 	
@@ -198,7 +199,7 @@ void BulletSpheresApp::updateTime()
 	mTimeDelta		= mTime - prevTime;
 	if( mTimeDelta > 1.0f/30.0f )
 		mTimeDelta = 1.0f/30.0f;
-	mTimeElapsed += mTimeDelta;
+	mTimeElapsed += mTimeDelta; 
 }
 
 void BulletSpheresApp::update()
@@ -206,8 +207,7 @@ void BulletSpheresApp::update()
 	// update time
 	// update bullet context
 	updateTime(); 
-	
-	mContext->setGravity( vec3( 0 ) );
+
 	mContext->update();
 
 	// add attractive force
