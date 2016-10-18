@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
@@ -11,7 +10,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{FDEC32CB-31A1-48F6-8C89-091FF2E4F13B}</ProjectGuid>
+    <ProjectGuid>{90958796-A71C-45D5-8C93-483879659B16}</ProjectGuid>
     <RootNamespace>RagDoll</RootNamespace>
     <Keyword>Win32Proj</Keyword>
   </PropertyGroup>
@@ -19,14 +18,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -54,14 +53,13 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <ResourceCompile>
       <AdditionalIncludeDirectories>"..\..\..\..\..\include";..\include</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>cinder-$(PlatformToolset)_d.lib;OpenGL32.lib;%(AdditionalDependencies);..\..\..\lib\msw\BulletCollision_x64_debug.lib;..\..\..\lib\msw\BulletDynamics_x64_debug.lib;..\..\..\lib\msw\BulletSoftBody_x64_debug.lib;..\..\..\lib\msw\LinearMath_x64_debug.lib;..\..\..\lib\msw\BulletInverseDynamics_x64_debug.lib;..\..\..\lib\msw\BulletInverseDynamicsUtils_x64_debug.lib;..\..\..\lib\msw\ConvexDecomposition_x64_debug.lib;..\..\..\lib\msw\BussIK_x64_debug.lib;..\..\..\lib\msw\HACD_x64_debug.lib;..\..\..\lib\msw\BulletWorldImporter_x64_debug.lib;..\..\..\lib\msw\BulletFileLoader_x64_debug.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>"..\..\..\..\..\lib\msw\$(PlatformTarget)"</AdditionalLibraryDirectories>
+      <AdditionalDependencies>cinder.lib;OpenGL32.lib;%(AdditionalDependencies);..\..\..\lib\msw\Debug\BulletCollision.lib;..\..\..\lib\msw\Debug\BulletDynamics.lib;..\..\..\lib\msw\Debug\BulletSoftBody.lib;..\..\..\lib\msw\Debug\LinearMath.lib;..\..\..\lib\msw\Debug\BulletInverseDynamics.lib;..\..\..\lib\msw\Debug\BulletInverseDynamicsUtils.lib;..\..\..\lib\msw\Debug\ConvexDecomposition.lib;..\..\..\lib\msw\Debug\BussIK.lib;..\..\..\lib\msw\Debug\HACD.lib;..\..\..\lib\msw\Debug\BulletWorldImporter.lib;..\..\..\lib\msw\Debug\BulletFileLoader.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>"..\..\..\..\..\lib\msw\$(PlatformTarget)";"..\..\..\..\..\lib\msw\$(PlatformTarget)\$(Configuration)\$(PlatformToolset)\"</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -86,8 +84,8 @@
       <AdditionalIncludeDirectories>"..\..\..\..\..\include";..\include</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>cinder-$(PlatformToolset).lib;OpenGL32.lib;%(AdditionalDependencies);..\..\..\lib\msw\BulletCollision_x64_release.lib;..\..\..\lib\msw\BulletDynamics_x64_release.lib;..\..\..\lib\msw\BulletSoftBody_x64_release.lib;..\..\..\lib\msw\LinearMath_x64_release.lib;..\..\..\lib\msw\BulletInverseDynamics_x64_release.lib;..\..\..\lib\msw\BulletInverseDynamicsUtils_x64_release.lib;..\..\..\lib\msw\ConvexDecomposition_x64_release.lib;..\..\..\lib\msw\BussIK_x64_release.lib;..\..\..\lib\msw\HACD_x64_release.lib;..\..\..\lib\msw\BulletWorldImporter_x64_release.lib;..\..\..\lib\msw\BulletFileLoader_x64_release.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>"..\..\..\..\..\lib\msw\$(PlatformTarget)"</AdditionalLibraryDirectories>
+      <AdditionalDependencies>cinder.lib;OpenGL32.lib;%(AdditionalDependencies);..\..\..\lib\msw\Release\BulletCollision.lib;..\..\..\lib\msw\Release\BulletDynamics.lib;..\..\..\lib\msw\Release\BulletSoftBody.lib;..\..\..\lib\msw\Release\LinearMath.lib;..\..\..\lib\msw\Release\BulletInverseDynamics.lib;..\..\..\lib\msw\Release\BulletInverseDynamicsUtils.lib;..\..\..\lib\msw\Release\ConvexDecomposition.lib;..\..\..\lib\msw\Release\BussIK.lib;..\..\..\lib\msw\Release\HACD.lib;..\..\..\lib\msw\Release\BulletWorldImporter.lib;..\..\..\lib\msw\Release\BulletFileLoader.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>"..\..\..\..\..\lib\msw\$(PlatformTarget)\";"..\..\..\..\..\lib\msw\$(PlatformTarget)\$(Configuration)\$(PlatformToolset)\"</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <GenerateMapFile>true</GenerateMapFile>
       <SubSystem>Windows</SubSystem>
@@ -103,7 +101,6 @@
   <ItemGroup />
   <ItemGroup />
   <ItemGroup>
-    <ClCompile Include="..\src\RagDoll.cpp" />
     <ClCompile Include="..\src\RagDollApp.cpp" />
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\BulletContext.cpp" />
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\Common.cpp" />
@@ -112,7 +109,6 @@
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\SoftBody.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\RagDoll.h" />
     <ClInclude Include="..\include\Resources.h" />
     <ClInclude Include="..\..\..\src\BulletPhysics\btBulletCollisionCommon.h" />
     <ClInclude Include="..\..\..\src\BulletPhysics\btBulletDynamicsCommon.h" />

@@ -1,4 +1,3 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -14,88 +13,88 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
     <Filter Include="Blocks">
-      <UniqueIdentifier>{727458E3-7A5D-4CD6-A5F2-BB1219BACC83}</UniqueIdentifier>
+      <UniqueIdentifier>{CF249C53-3D7E-4853-BEF8-D3CD16CA9C47}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics">
-      <UniqueIdentifier>{51950E33-FB60-48EC-B4E3-FB28787884C6}</UniqueIdentifier>
+      <UniqueIdentifier>{91FD56B0-5F03-4C32-8F43-E081EE1DAFFB}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src">
-      <UniqueIdentifier>{A2567E85-FEF4-47F5-88D0-7D6CE83764B8}</UniqueIdentifier>
+      <UniqueIdentifier>{18DBD7F2-CBF8-4ABE-8EC9-03C840386653}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics">
-      <UniqueIdentifier>{5EE5F343-21B8-4D3C-9A01-B2CF40E52B35}</UniqueIdentifier>
+      <UniqueIdentifier>{2F80AC3B-769F-4742-8290-51AAE0C09BEE}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletCollision">
-      <UniqueIdentifier>{68135B11-CF06-4166-A8F6-708C9F82968C}</UniqueIdentifier>
+      <UniqueIdentifier>{1745DB02-86F6-4741-9FCE-16AC14C85197}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletCollision\BroadPhaseCollision">
-      <UniqueIdentifier>{DB7A44EC-2CB0-4A43-86F3-162377A08EE5}</UniqueIdentifier>
+      <UniqueIdentifier>{89C9E9D7-19DD-431B-9A9E-BBF2E3EAF5DE}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletCollision\CollisionDispatch">
-      <UniqueIdentifier>{416DBE97-4879-4F74-B0AD-533876F782B0}</UniqueIdentifier>
+      <UniqueIdentifier>{F1A913D9-5206-40AD-91D7-5E6AC33A522B}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletCollision\CollisionShapes">
-      <UniqueIdentifier>{53BF8639-4CA5-4092-9BA8-BECC9BCD19CA}</UniqueIdentifier>
+      <UniqueIdentifier>{65009940-D05D-4791-B16F-C4348D5245B4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletCollision\GImpact">
-      <UniqueIdentifier>{9C0A7B4E-A637-4A7A-BD26-71093DB57FFE}</UniqueIdentifier>
+      <UniqueIdentifier>{E9657235-6628-438C-8BF2-E0BA99C7F009}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletCollision\NarrowPhaseCollision">
-      <UniqueIdentifier>{6D68EC24-BEFD-4365-9387-30CE5848891B}</UniqueIdentifier>
+      <UniqueIdentifier>{D74E4417-591F-41CA-AC3D-575D9EAA4E6D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics">
-      <UniqueIdentifier>{8C6FBF32-FC47-4543-9E64-3CAF6BBB618A}</UniqueIdentifier>
+      <UniqueIdentifier>{223145C3-DF3D-402D-85B1-F3F46BE17A8C}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\Character">
-      <UniqueIdentifier>{58F474A6-D99A-4B6E-B598-79D20934B09A}</UniqueIdentifier>
+      <UniqueIdentifier>{54A7398C-BAAE-4024-84AD-3372BF06779F}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\ConstraintSolver">
-      <UniqueIdentifier>{4C45DFC3-576B-4A04-BF73-093B546534EA}</UniqueIdentifier>
+      <UniqueIdentifier>{43C61B2C-FCEB-4442-AD66-15F5ACFA37B6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\Dynamics">
-      <UniqueIdentifier>{3C8670DB-0931-4DD4-8BEF-8CB785B6741B}</UniqueIdentifier>
+      <UniqueIdentifier>{A4D6351C-BEDF-4092-8ABD-ADC5EF1A77FE}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\FeatherStone">
-      <UniqueIdentifier>{1DC95185-B22C-4100-A5CE-C5AD04FF53A0}</UniqueIdentifier>
+      <UniqueIdentifier>{827608E6-9C87-406B-80F7-55A3070BE75D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\MLCPSolvers">
-      <UniqueIdentifier>{E73BE26B-B13D-4695-9D72-244546FD230A}</UniqueIdentifier>
+      <UniqueIdentifier>{9339727C-B082-45ED-BAE5-3E90BA375138}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\Vehicle">
-      <UniqueIdentifier>{D3C75E11-B87D-4BD1-8E0E-3F0FBF4B2CCE}</UniqueIdentifier>
+      <UniqueIdentifier>{B2D9FD67-39E0-4027-A7B0-87339212C197}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\InverseDynamics">
-      <UniqueIdentifier>{B9C9F170-1523-4F5F-8189-3540214F3075}</UniqueIdentifier>
+      <UniqueIdentifier>{D8CDE453-CC3E-44D0-9942-5A69EBB2EBD7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\HACD">
-      <UniqueIdentifier>{82FB36D0-E8FA-49AF-AAB0-46A32B8B1D68}</UniqueIdentifier>
+      <UniqueIdentifier>{ED792079-742C-402B-A299-F44AB7882757}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition">
-      <UniqueIdentifier>{91801900-4FC8-4BE6-BC4F-E75D7BA5F425}</UniqueIdentifier>
+      <UniqueIdentifier>{FBA6A766-DF66-46B6-B177-A85E03FEF993}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BussIK">
-      <UniqueIdentifier>{A2AC40FD-9242-492F-9E98-FFCE7D323814}</UniqueIdentifier>
+      <UniqueIdentifier>{34E11F30-DBB4-43E1-887A-1747D60CA7ED}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\Serialize">
-      <UniqueIdentifier>{3A5F4871-AA1E-4C48-976B-9C1942282EE9}</UniqueIdentifier>
+      <UniqueIdentifier>{62974C4C-76FD-4A39-9CE9-1108CCD5B020}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\Serialize\BulletFileLoader">
-      <UniqueIdentifier>{1B2DD700-CB94-442C-8C16-B48590037271}</UniqueIdentifier>
+      <UniqueIdentifier>{206942D7-58D4-48AE-9836-702A182D7D53}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\Serialize\BulletWorldImporter">
-      <UniqueIdentifier>{8B670202-9197-4E1B-A6A4-E93F2158D0AC}</UniqueIdentifier>
+      <UniqueIdentifier>{2ED169AD-4B52-4371-98A4-70FAA2414D16}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletSoftBody">
-      <UniqueIdentifier>{7CDDB6FD-A717-4D6E-A249-5DE053CD981B}</UniqueIdentifier>
+      <UniqueIdentifier>{C4A1D40F-DBA5-448E-ABA1-14FCD1DD1B02}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\Cinder-Bullet3D">
-      <UniqueIdentifier>{77713E3C-DBAC-4AA4-8A1C-6B01E101B743}</UniqueIdentifier>
+      <UniqueIdentifier>{F3DC185B-3848-4681-A28D-932B44EF9E38}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletInverseDynamics">
-      <UniqueIdentifier>{C38C78C0-2FC3-4981-8AC9-4898787E8464}</UniqueIdentifier>
+      <UniqueIdentifier>{0195E158-D6CA-4835-A63E-92A5C03D0A40}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletInverseDynamics\details">
-      <UniqueIdentifier>{A809E0E6-9641-4594-91B7-557267937A5F}</UniqueIdentifier>
+      <UniqueIdentifier>{25266711-E65A-49F2-B7BD-3DC9733AC2EF}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1413,15 +1412,9 @@
     <ClCompile Include="..\..\..\src\Cinder-Bullet3D\SoftBody.cpp">
       <Filter>Blocks\Bullet 3D Physics\src\Cinder-Bullet3D</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\VisPhy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Resources.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\VisPhy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

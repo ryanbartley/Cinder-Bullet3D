@@ -13,88 +13,88 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
     <Filter Include="Blocks">
-      <UniqueIdentifier>{E7E7527D-A7B3-4626-A0BB-E351A73DC928}</UniqueIdentifier>
+      <UniqueIdentifier>{D819E002-C0D8-4F89-B6DC-933D0456D147}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics">
-      <UniqueIdentifier>{C8BF1CAD-C8B4-47CB-B33B-0B25DBD7D5CD}</UniqueIdentifier>
+      <UniqueIdentifier>{A79F745C-A482-4AC1-9E77-7056F385702C}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src">
-      <UniqueIdentifier>{168653E0-4F33-40BD-AD76-29EF898A8F9A}</UniqueIdentifier>
+      <UniqueIdentifier>{42345BF1-340B-4369-9682-8F39FE704983}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics">
-      <UniqueIdentifier>{4AF66A3E-832E-45EA-9CBC-F45736FCAAD7}</UniqueIdentifier>
+      <UniqueIdentifier>{FE9F823B-DD69-4842-8673-58D271C64929}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletCollision">
-      <UniqueIdentifier>{A77E7366-A89C-47D7-9AB4-9D56EAC97D68}</UniqueIdentifier>
+      <UniqueIdentifier>{0817D92F-65B9-43AA-8C0F-30E8785ED25D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletCollision\BroadPhaseCollision">
-      <UniqueIdentifier>{6C5EF311-7326-4B8D-AD46-73E8D702EF7D}</UniqueIdentifier>
+      <UniqueIdentifier>{5058CEE5-B363-4E3D-BDE9-6B347F5059FA}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletCollision\CollisionDispatch">
-      <UniqueIdentifier>{C6BC1BAF-3165-4A72-BA0A-23C2DA5EEE93}</UniqueIdentifier>
+      <UniqueIdentifier>{073A0C40-3FAF-42C6-ADA1-147A5A6216E7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletCollision\CollisionShapes">
-      <UniqueIdentifier>{D8DF87A2-42AF-4478-8446-4F8087D0B2EC}</UniqueIdentifier>
+      <UniqueIdentifier>{D32B3548-1153-42DD-9D2B-A6226ED1FA14}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletCollision\GImpact">
-      <UniqueIdentifier>{E15EE10D-A1B3-4FB9-9654-8A7CDF25426D}</UniqueIdentifier>
+      <UniqueIdentifier>{61D05859-475C-471B-B322-92B0CDC8BC9F}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletCollision\NarrowPhaseCollision">
-      <UniqueIdentifier>{F8670617-FC4A-45E1-9595-8E3AAD30BD05}</UniqueIdentifier>
+      <UniqueIdentifier>{02E6FBAB-A357-49A6-B807-06743DDF38AD}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics">
-      <UniqueIdentifier>{563C2D41-B7C2-489E-AFE2-3EF4AC007CAC}</UniqueIdentifier>
+      <UniqueIdentifier>{3A04BE4D-FB24-47C2-9B6C-585995DCC51F}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\Character">
-      <UniqueIdentifier>{0E9170F5-F957-4BC6-A5F8-18066511DF66}</UniqueIdentifier>
+      <UniqueIdentifier>{6D2FEA7A-732D-473D-96A8-03D3A3471A32}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\ConstraintSolver">
-      <UniqueIdentifier>{6051F7A4-E15E-4945-8DC9-375D6AC2F764}</UniqueIdentifier>
+      <UniqueIdentifier>{FDCE93C0-47DE-4CB9-897A-2495B51B3CEB}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\Dynamics">
-      <UniqueIdentifier>{4CB061DA-45ED-40A9-B3E0-B5A18026727C}</UniqueIdentifier>
+      <UniqueIdentifier>{079AF8C5-D29A-4EC3-918A-81B04E7BB75B}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\FeatherStone">
-      <UniqueIdentifier>{DA3E1685-033F-4F0C-AAB8-2D7A82C22DCC}</UniqueIdentifier>
+      <UniqueIdentifier>{82578800-BF85-4AA3-8A16-AE10B5BD808B}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\MLCPSolvers">
-      <UniqueIdentifier>{21171A22-4489-4D23-AA39-52EF42511B77}</UniqueIdentifier>
+      <UniqueIdentifier>{76C90E6A-7149-4200-9552-AE5401B428EC}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletDynamics\Vehicle">
-      <UniqueIdentifier>{FBE0471B-FC1B-44BE-BB43-0E58E378F571}</UniqueIdentifier>
+      <UniqueIdentifier>{AFDE3F25-A1F8-4B53-9C63-9D380177B5C6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\InverseDynamics">
-      <UniqueIdentifier>{FA3ED6E8-014C-405F-90E1-D502F750DA8A}</UniqueIdentifier>
+      <UniqueIdentifier>{96B08311-DB93-43C2-81F4-A4E35B14CABA}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\HACD">
-      <UniqueIdentifier>{6F284523-B5EC-4F42-80D5-79CFF49AFCEC}</UniqueIdentifier>
+      <UniqueIdentifier>{97482A9E-EA0A-4E40-B446-27F0E1EEB8E2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\ConvexDecomposition">
-      <UniqueIdentifier>{25049747-9144-42CE-BA7F-16B9E8EE0275}</UniqueIdentifier>
+      <UniqueIdentifier>{1AF5A28F-7DBE-47B6-9D16-E23243F0882D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BussIK">
-      <UniqueIdentifier>{7C77CAFB-F824-48A7-BFAE-3E6CD257C1C3}</UniqueIdentifier>
+      <UniqueIdentifier>{5AE16C18-401A-499E-8946-49F0AE3E2004}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\Serialize">
-      <UniqueIdentifier>{FF133452-E6CC-4D80-A7E0-6B7DB6F64C8D}</UniqueIdentifier>
+      <UniqueIdentifier>{A2ABFFBE-466B-40AB-B4AB-4CA1DB71359A}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\Serialize\BulletFileLoader">
-      <UniqueIdentifier>{03A24461-DE2B-41DF-8F1A-257DCD6E0D6E}</UniqueIdentifier>
+      <UniqueIdentifier>{4E25ABE3-C8FE-4AFE-8496-6DBE6577B7BB}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\Serialize\BulletWorldImporter">
-      <UniqueIdentifier>{1E2E5881-0CC0-491A-BA7A-DA4137887CB1}</UniqueIdentifier>
+      <UniqueIdentifier>{5D0C5AD9-D9F5-462B-9437-20AFDD0D5FB1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletSoftBody">
-      <UniqueIdentifier>{C8AB8271-67FB-44E2-AA11-AE1F29EEC897}</UniqueIdentifier>
+      <UniqueIdentifier>{2891D42F-DEA2-4D30-ADE1-7AEC4CDDA97C}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\Cinder-Bullet3D">
-      <UniqueIdentifier>{FCD8F957-49FE-4083-9CB9-5EF92A9D5C36}</UniqueIdentifier>
+      <UniqueIdentifier>{79DA95F8-1D8F-47F0-B7DB-CE14DD47510E}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletInverseDynamics">
-      <UniqueIdentifier>{699DAC78-5B36-4F29-973A-AFB0DD3BABCB}</UniqueIdentifier>
+      <UniqueIdentifier>{CAD7FC16-F2D4-49D5-91DA-45A0FD99685E}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Bullet 3D Physics\src\BulletPhysics\BulletInverseDynamics\details">
-      <UniqueIdentifier>{5D356C7F-0CC6-4722-923A-3B9261E40444}</UniqueIdentifier>
+      <UniqueIdentifier>{6CC9752B-EBD0-4B18-8E64-09A18B9EDE19}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
