@@ -89,6 +89,7 @@ MultiSphereShapeRef createMultiSphereShape( const std::vector<btVector3> &positi
 using ShapesAndOffsets = std::map<btCollisionShapeRef, btTransform>;
 CompoundShapeRef createCompoundShape( const ShapesAndOffsets &shapesAndOffsets );
 ConvexHullShapeRef createConvexHull( const ci::TriMeshRef &mesh );
+ConvexHullShapeRef createConvexHull( const std::vector<btVector3> &verts );
 HeightfieldTerrainShapeRef createHeightfieldShape( const ci::Channel32f *heightData,
 													float minHeight,
 													float maxHeight,

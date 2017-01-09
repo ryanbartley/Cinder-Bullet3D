@@ -159,7 +159,13 @@ ConvexHullShapeRef createConvexHull( const ci::TriMeshRef &mesh )
 		++bulletIt;
 	}
 	
-	ConvexHullShapeRef convexShape( new btConvexHullShape( &mBulletMesh.data()->getX(), mBulletMesh.size() ) );
+	return createConvexHull( mBulletMesh );
+}
+	
+	
+ConvexHullShapeRef createConvexHull( const std::vector<btVector3> &verts )
+{
+	ConvexHullShapeRef convexShape( new btConvexHullShape( &verts.data()->getX(), verts.size() ) );
 	convexShape->initializePolyhedralFeatures();
 	
 	return convexShape;

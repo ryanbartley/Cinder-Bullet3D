@@ -66,6 +66,7 @@ public:
 		Format& debugDrawMode( int mode ) { mDebugMode = mode; return *this; }
 		//! Sets the world to create to SoftRigidDynamicsWorld. Experimental.
 		Format& createSoftRigidWorld( bool create ) { mCreateSoftRigidWorld = create; return *this; }
+		Format& makeGlobal( bool global ) { mMakeGlobal = global; return *this; }
 		
 		const btDynamicsWorld*			getDynamicsWorld() const { return mWorld; }
 		const btCollisionDispatcher*	getCollisionDispatcher() const { return mCollisionDispatcher; }
@@ -94,7 +95,7 @@ public:
 		float						mStepVal;
 		int							mDebugMode;
 		bool						mCreateDebugRenderer, mDrawDebug,
-									mCreateSoftRigidWorld;
+									mCreateSoftRigidWorld, mMakeGlobal;
 		
 		friend class Context;
 	};

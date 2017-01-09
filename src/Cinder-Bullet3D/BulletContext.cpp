@@ -16,7 +16,7 @@ using namespace std;
 
 namespace bullet {
 
-static class Context* sBulletContext = nullptr;
+static ContextRef sBulletContext = nullptr;
 static bool sBulletContextInitialized = false;
 	
 	
@@ -25,7 +25,7 @@ Context::Format::Format()
 	mBroadphase( nullptr ), mSolver( nullptr ), mSoftBodySolver( nullptr ),
 	mConfiguration( nullptr ), mCreateDebugRenderer( false ),
 	mDrawDebug( false ), mStepVal( 1.0f / 60.0f),
-	mCreateSoftRigidWorld( false ),
+	mCreateSoftRigidWorld( false ), mMakeGlobal( true ),
 	mGravity( ci::vec3( 0.0f, -9.8f, 0.0f ) ),
 	mDebugMode(  btIDebugDraw::DBG_DrawWireframe |
 			   btIDebugDraw::DBG_DrawContactPoints |
@@ -37,12 +37,16 @@ Context::Format::Format()
 
 ContextRef Context::create( const Format &format )
 {
-	static ContextRef factoryBulletContext;
-	if( ! sBulletContextInitialized ) {
-		factoryBulletContext = ContextRef( new Context( format ) );
+	ContextRef ret( new Context( format ) );
+	
+	if( format.mMakeGlobal ) {
+		if( sBulletContextInitialized )
+			CI_LOG_W( "Changing Global Bullet Context" );
+		sBulletContextInitialized = true;
+		sBulletContext = ret;
 	}
 	
-	return factoryBulletContext;
+	return ret;
 }
 	
 Context::Context( const Format &format )
@@ -70,10 +74,6 @@ void Context::init( const Format &format )
 		setupDebugRenderer( format.mDebugMode );
 	}
 	
-	// This initializes the static pointer to the bullet context
-	sBulletContext = this;
-	sBulletContextInitialized = true;
-	
 	mWorld->setWorldUserInfo( this );
 	mWorld->setGravity( toBullet( format.mGravity ) );
 	if( format.mCreateSoftRigidWorld ) {
@@ -96,10 +96,7 @@ Context::~Context()
 	
 class Context* Context::getCurrent()
 {
-	if( ! sBulletContextInitialized ) {
-		return nullptr;
-	}
-	return sBulletContext;
+	return sBulletContext.get();
 }
 	
 void Context::setupDebugRenderer( int mode )
