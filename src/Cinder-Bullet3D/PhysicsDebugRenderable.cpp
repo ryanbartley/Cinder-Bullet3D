@@ -53,15 +53,21 @@ void PhysicsDebugRenderable::toggleDebugFlag( const int flag ) {
 	
 void PhysicsDebugRenderable::initBuffers()
 {
-	if( !mNewInfo )
+	if( ! mNewInfo )
 		return;
 	
-	if( !mPositionVbo )
+	if( ! mPositionVbo )
 		mPositionVbo = gl::Vbo::create( GL_ARRAY_BUFFER );
 	
+	mTotalNumVerts = mPositionBuffer.size() / 2;
 	mPositionVbo->bufferData( mPositionBuffer.size() * sizeof(vec3), mPositionBuffer.data(), GL_DYNAMIC_DRAW );
 	
-	if( mVao ) return;
+	mNewInfo = false;
+	mPositionBuffer.clear();
+	mText.clear();
+	
+	if( mVao )
+		return;
 	
 	mVao = gl::Vao::create();
 	
@@ -84,30 +90,24 @@ void PhysicsDebugRenderable::draw()
 {
 	initBuffers();
 	
-	gl::ScopedVao mVaoScope( mVao );
-	gl::ScopedGlslProg mGlslScope( gl::getStockShader( gl::ShaderDef().color() ) );
-	
-	gl::setDefaultShaderVars();
-	
-	gl::drawArrays( GL_LINES, 0, mPositionBuffer.size() / 2 );
+	{
+		gl::ScopedVao mVaoScope( mVao );
+		gl::ScopedGlslProg mGlslScope( gl::getStockShader( gl::ShaderDef().color() ) );
+		gl::setDefaultShaderVars();
+		gl::drawArrays( GL_LINES, 0, mTotalNumVerts );
+	}
 	
 	if( mText.size() > 0 ) {
-		gl::pushMatrices();
+		gl::ScopedMatrices scopeMat;
 		auto textIt = mText.begin();
 		auto end = mText.end();
 		while( textIt != end ) {
-			gl::pushModelMatrix();
+			gl::ScopedModelMatrix scopeModel;
 			gl::translate( (*textIt).first );
 			mTextureFont->drawString( (*textIt).second, vec2( 0.0f ) );
-			gl::popModelMatrix();
 			++textIt;
 		}
-		gl::popMatrices();
 	}
-	
-	mNewInfo = false;
-	mPositionBuffer.clear();
-	mText.clear();
 }
 	
 	

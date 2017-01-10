@@ -54,6 +54,7 @@ private:
 	std::vector<ci::vec3>	mPositionBuffer;
 	std::vector<std::pair<ci::vec3, std::string>> mText;
 	int			mDebugMode;
+	uint32_t	mTotalNumVerts;
 	bool		mNewInfo;
 	
 	friend class Context;

@@ -27,7 +27,7 @@ Context::Format::Format()
 	mDrawDebug( false ), mStepVal( 1.0f / 60.0f),
 	mCreateSoftRigidWorld( false ), mMakeGlobal( true ),
 	mGravity( ci::vec3( 0.0f, -9.8f, 0.0f ) ),
-	mDebugMode(  btIDebugDraw::DBG_DrawWireframe |
+	mDebugMode(btIDebugDraw::DBG_DrawWireframe |
 			   btIDebugDraw::DBG_DrawContactPoints |
 			   btIDebugDraw::DBG_DrawConstraints |
 			   btIDebugDraw::DBG_DrawConstraintLimits )
@@ -50,7 +50,7 @@ ContextRef Context::create( const Format &format )
 }
 	
 Context::Context( const Format &format )
-: mStepVal( format.mStepVal ), mDrawDebug( format.mDrawDebug )
+: mStepVal( format.mStepVal ), mDrawDebug( format.mDrawDebug ), mShouldCacheDebug( false )
 {
 	init( format );
 }
@@ -101,15 +101,14 @@ class Context* Context::getCurrent()
 	
 void Context::setupDebugRenderer( int mode )
 {
-	if( mDebugRenderer )
-		return;
-
-	mDebugRenderer.reset( new PhysicsDebugRenderable() );
-	
-	if( mWorld ) {
-		mWorld->setDebugDrawer( mDebugRenderer.get() );
-		mDebugRenderer->setDebugMode( mode );
+	if( ! mDebugRenderer ) {
+		mDebugRenderer.reset( new PhysicsDebugRenderable() );
+		if( mWorld )
+			mWorld->setDebugDrawer( mDebugRenderer.get() );
 	}
+	
+	mDebugRenderer->setDebugMode( mode );
+	mShouldCacheDebug = true;
 }
 	
 void Context::addRigidBody( const RigidBodyRef &phyObj )
@@ -146,11 +145,9 @@ void Context::removeSoftBody( btSoftBody *body )
 	
 void Context::update()
 {
-	mWorld->stepSimulation(mStepVal);
+	mWorld->stepSimulation( mStepVal );
 	checkForCollisions();
-	if( mDrawDebug ) {
-		mWorld->debugDrawWorld();
-	}
+	mShouldCacheDebug = true;
 }
 	
 bool Context::closestRayCast( const ci::vec3 &startPosition, const ci::vec3 &direction, RayResult &result )
@@ -208,6 +205,11 @@ void Context::debugDraw()
 	if( ! ( mDrawDebug && mDebugRenderer ) )
 		return;
 	
+	// TODO: What to do if we're not updating the world but adding bodies to it.
+	if( mShouldCacheDebug ) {
+		mWorld->debugDrawWorld();
+		mShouldCacheDebug = false;
+	}
 	mDebugRenderer->draw();
 }
 	

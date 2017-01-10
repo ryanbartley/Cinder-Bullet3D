@@ -246,7 +246,7 @@ private:
 	CollisionSignal			mCollisionBegin, mCollisionEnd;
 	DebugRendererRef		mDebugRenderer;
 	mutable float			mStepVal;
-	bool					mDrawDebug;
+	bool					mDrawDebug, mShouldCacheDebug;
 	
 	// Actual Collision Signal Dispatchers
 	inline void collisionBegin( btRigidBody* pBody0, btRigidBody* pBody1 )
