@@ -18,7 +18,7 @@ using namespace cinder;
 namespace bullet {
 	
 PhysicsDebugRenderable::PhysicsDebugRenderable()
-: mNewInfo( false ), mDebugMode( 0 ), mTextureFont( gl::TextureFont::create( Font( Font::getNames()[0], 20 ) ) )
+: mNewInfo( false ), mDebugMode( 0 ) //, mTextureFont( gl::TextureFont::create( Font( Font::getNames()[0], 20 ) ) )
 {
 }
 	
@@ -83,7 +83,8 @@ void PhysicsDebugRenderable::initBuffers()
 	
 void PhysicsDebugRenderable::draw3dText( const btVector3 &location, const char *textString )
 {
-	mText.push_back( std::make_pair( fromBullet( location ), textString ) );
+	CI_ASSERT_MSG( false, "Not allowed" );
+	//mText.push_back( std::make_pair( fromBullet( location ), textString ) );
 }
 	
 void PhysicsDebugRenderable::draw()
@@ -97,17 +98,17 @@ void PhysicsDebugRenderable::draw()
 		gl::drawArrays( GL_LINES, 0, mTotalNumVerts );
 	}
 	
-	if( mText.size() > 0 ) {
-		gl::ScopedMatrices scopeMat;
-		auto textIt = mText.begin();
-		auto end = mText.end();
-		while( textIt != end ) {
-			gl::ScopedModelMatrix scopeModel;
-			gl::translate( (*textIt).first );
-			mTextureFont->drawString( (*textIt).second, vec2( 0.0f ) );
-			++textIt;
-		}
-	}
+//	if( mText.size() > 0 ) {
+//		gl::ScopedMatrices scopeMat;
+//		auto textIt = mText.begin();
+//		auto end = mText.end();
+//		while( textIt != end ) {
+//			gl::ScopedModelMatrix scopeModel;
+//			gl::translate( (*textIt).first );
+//			mTextureFont->drawString( (*textIt).second, vec2( 0.0f ) );
+//			++textIt;
+//		}
+//	}
 }
 	
 	

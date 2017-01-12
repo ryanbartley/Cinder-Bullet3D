@@ -31,8 +31,6 @@ public:
 	void drawLine(const btVector3& from,const btVector3& to,const btVector3& color) override;
 	//! This is used by Bullet and shouldn't necessarily be used by your application.
 	void reportErrorWarning(const char* warningString) override {}
-	//! This is used by Bullet and shouldn't necessarily be used by your application.
-	void draw3dText( const btVector3& location, const char* textString ) override;
 	
 	//! Sets what to draw in the Debug Renderer
 	void setDebugMode( int debugMode ) override { mDebugMode = debugMode; }
@@ -47,6 +45,8 @@ private:
 	//! This pushes data to the gpu and initializes all of the gl. Must be called after
 	//! Cinder has initialized.
 	void initBuffers();
+	//! This is used by Bullet and shouldn't necessarily be used by your application.
+	void draw3dText( const btVector3& location, const char* textString ) override;
 	
 	ci::gl::VaoRef			mVao;
 	ci::gl::VboRef			mPositionVbo;
