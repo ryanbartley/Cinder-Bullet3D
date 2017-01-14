@@ -18,8 +18,6 @@ if( NOT TARGET Cinder-Bullet3D )
 	target_include_directories( Cinder-Bullet3D PUBLIC ${BULLET3D_SOURCE_PATH} ${CINDER_BULLET3D_INCLUDE_PATH} )
 	target_include_directories( Cinder-Bullet3D PRIVATE BEFORE "${CINDER_PATH}/include" )
 	
-	target_compile_options( Cinder-Bullet3D PUBLIC "-std=c++11" )
-
 	if( NOT TARGET cinder )
 		include( "${CINDER_PATH}/proj/cmake/configure.cmake" )
 		find_package( cinder REQUIRED PATHS
