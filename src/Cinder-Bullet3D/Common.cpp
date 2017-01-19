@@ -165,10 +165,17 @@ ConvexHullShapeRef createConvexHull( const ci::TriMeshRef &mesh )
 	
 ConvexHullShapeRef createConvexHull( const std::vector<btVector3> &verts )
 {
-	ConvexHullShapeRef convexShape( new btConvexHullShape( &verts.data()->getX(), verts.size() ) );
-	convexShape->initializePolyhedralFeatures();
-	
-	return convexShape;
+	auto shape = std::make_shared<btConvexHullShape>();
+    for( auto &vert : verts ) {
+        shape->addPoint(vert, false);
+    }
+
+    static int i = 0;
+    CI_LOG_I("Num times: " << i++ << " num verts: " << verts.size() );
+    shape->recalcLocalAabb();
+    shape->optimizeConvexHull();
+
+	return shape;
 }
 	
 HeightfieldTerrainShapeRef createHeightfieldShape( const ci::Channel32f *heightData, float maxHeight, float minHeight, ci::vec3 scale )

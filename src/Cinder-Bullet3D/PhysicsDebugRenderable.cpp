@@ -90,10 +90,10 @@ void PhysicsDebugRenderable::draw3dText( const btVector3 &location, const char *
 void PhysicsDebugRenderable::draw()
 {
 	initBuffers();
-	
+
 	if( mTotalNumVerts == 0 )
-		return;
-	
+        return;
+
 	{
 		gl::ScopedVao mVaoScope( mVao );
 		gl::ScopedGlslProg mGlslScope( gl::getStockShader( gl::ShaderDef().color() ) );
