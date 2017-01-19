@@ -18,7 +18,7 @@ using namespace cinder;
 namespace bullet {
 	
 PhysicsDebugRenderable::PhysicsDebugRenderable()
-: mNewInfo( false ), mDebugMode( 0 ) //, mTextureFont( gl::TextureFont::create( Font( Font::getNames()[0], 20 ) ) )
+: mNewInfo( false ), mDebugMode( 0 ), mTotalNumVerts( 0 ) //, mTextureFont( gl::TextureFont::create( Font( Font::getNames()[0], 20 ) ) )
 {
 }
 	
@@ -90,7 +90,9 @@ void PhysicsDebugRenderable::draw3dText( const btVector3 &location, const char *
 void PhysicsDebugRenderable::draw()
 {
 	initBuffers();
-	
+	if( mTotalNumVerts == 0 )
+        return;
+
 	{
 		gl::ScopedVao mVaoScope( mVao );
 		gl::ScopedGlslProg mGlslScope( gl::getStockShader( gl::ShaderDef().color() ) );
