@@ -155,7 +155,7 @@ bool Context::closestRayCast( const ci::vec3 &startPosition, const ci::vec3 &dir
 	if( ! world() )
 		return false;
 	
-	btVector3 rayTo = toBullet( direction * 100000.0f );
+	btVector3 rayTo = toBullet( startPosition + direction * 500.0f );
 	btVector3 rayFrom = toBullet( startPosition );
 	
 	btCollisionWorld::ClosestRayResultCallback rayCallback( rayFrom, rayTo );
