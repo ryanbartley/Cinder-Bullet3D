@@ -90,6 +90,7 @@ void PhysicsDebugRenderable::draw3dText( const btVector3 &location, const char *
 void PhysicsDebugRenderable::draw()
 {
 	initBuffers();
+
 	if( mTotalNumVerts == 0 )
         return;
 
@@ -99,7 +100,7 @@ void PhysicsDebugRenderable::draw()
 		gl::setDefaultShaderVars();
 		gl::drawArrays( GL_LINES, 0, mTotalNumVerts );
 	}
-	
+	CI_CHECK_GL();
 //	if( mText.size() > 0 ) {
 //		gl::ScopedMatrices scopeMat;
 //		auto textIt = mText.begin();
