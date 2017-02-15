@@ -29,6 +29,8 @@ if( NOT TARGET Cinder-Bullet3D )
 	
 	get_filename_component( BULLET3D_LIBS "${CMAKE_CURRENT_LIST_DIR}/../../lib/${CINDER_TARGET_LOWER}/${CMAKE_BUILD_TYPE}" ABSOLUTE )
 	target_link_libraries( 	Cinder-Bullet3D PRIVATE cinder
+				PUBLIC ${BULLET3D_LIBS}/libBulletWorldImporter.a
+				PUBLIC ${BULLET3D_LIBS}/libBulletFileLoader.a
 				PUBLIC ${BULLET3D_LIBS}/libBulletSoftBody.a
 				PUBLIC ${BULLET3D_LIBS}/libBulletInverseDynamicsUtils.a
 				PUBLIC ${BULLET3D_LIBS}/libBulletInverseDynamics.a
@@ -38,8 +40,6 @@ if( NOT TARGET Cinder-Bullet3D )
 				PUBLIC ${BULLET3D_LIBS}/libHACD.a
 				PUBLIC ${BULLET3D_LIBS}/libBussIK.a
 				PUBLIC ${BULLET3D_LIBS}/libConvexDecomposition.a
-				PUBLIC ${BULLET3D_LIBS}/libBulletFileLoader.a
-				PUBLIC ${BULLET3D_LIBS}/libBulletWorldImporter.a
 			)
 
 
