@@ -242,8 +242,8 @@ ci::gl::VboMeshRef getDrawableSoftBody( const SoftBodyRef &softBody, bool interl
 		}
 		auto vbo = gl::Vbo::create( GL_ARRAY_BUFFER, verts.size() * sizeof(vec3), verts.data(), GL_DYNAMIC_DRAW );
 		geom::BufferLayout layout;
-		layout.append( geom::Attrib::POSITION, geom::DataType::FLOAT, 3, 2 * sizeof(vec3), 0 );
-		layout.append( geom::Attrib::NORMAL, geom::DataType::FLOAT, 3, 2 * sizeof(vec3), 0 );
+		layout.append( geom::Attrib::POSITION, geom::DataType::FLOAT, 3, sizeof(vec3), 0 );
+		layout.append( geom::Attrib::NORMAL, geom::DataType::FLOAT, 3, sizeof(vec3), sizeof(vec3) );
 		auto& softFaces = softBody->getFaces();
 		std::vector<uint32_t> indices( softFaces.size() * 3 );
 		auto indexIt = indices.begin();
@@ -272,9 +272,9 @@ ci::gl::VboMeshRef getDrawableSoftBody( const SoftBodyRef &softBody, bool interl
 		auto posVbo = gl::Vbo::create( GL_ARRAY_BUFFER, pos.size() * sizeof(vec3), pos.data(), GL_DYNAMIC_DRAW );
 		auto normVbo = gl::Vbo::create( GL_ARRAY_BUFFER, norm.size() * sizeof(vec3), norm.data(), GL_DYNAMIC_DRAW );
 		geom::BufferLayout posLayout;
-		posLayout.append( geom::Attrib::POSITION, geom::DataType::FLOAT, 3, 2 * sizeof(vec3), 0 );
+		posLayout.append( geom::Attrib::POSITION, geom::DataType::FLOAT, 3, sizeof(vec3), 0 );
 		geom::BufferLayout normLayout;
-		normLayout.append( geom::Attrib::NORMAL, geom::DataType::FLOAT, 3, 2 * sizeof(vec3), 0 );
+		normLayout.append( geom::Attrib::NORMAL, geom::DataType::FLOAT, 3, sizeof(vec3), 0 );
 		auto& softFaces = softBody->getFaces();
 		std::vector<uint32_t> indices( softFaces.size() * 3 );
 		auto indexIt = indices.begin();
